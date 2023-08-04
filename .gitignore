@@ -1,3 +1,6 @@
 Library/
 Temp/
 FileContentIndex/
+Logs/
+obj/
+Temp/
