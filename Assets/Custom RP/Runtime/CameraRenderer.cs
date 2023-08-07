@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
 using Conditional = System.Diagnostics.ConditionalAttribute;
-using UnityEditor.Experimental;
+// using UnityEditor.Experimental;
 using System.Linq;
+using Unity.Collections;
 
 public partial class CameraRenderer
 {
@@ -38,12 +39,13 @@ public partial class CameraRenderer
         set => _isEnabledInstacing = value;
     }
 
-    const int MAX_VISIBLE_LIGHTS = 5;
+    const int MAX_VISIBLE_LIGHTS = 16;
 
     private static int _visibleLightColorsId = Shader.PropertyToID("_VisibleLightColors");
     private static int _visibleLightDirectionsOrPositionsId = Shader.PropertyToID("_VisibleLightDirectionsOrPositions");
     private static int _visibleLightAttenuationsId = Shader.PropertyToID("_VisibleLightAttenuations");
     private static int _visibleLightSpotDirectionsId = Shader.PropertyToID("_VisibleLightSpotsDirections");
+    private static int _lightIndicesOffsetAndCountId = Shader.PropertyToID("unity_LightIndicesOffsetAndCount");
 
     private Vector4[] _visibleLightColors = new Vector4[MAX_VISIBLE_LIGHTS];
     private Vector4[] _visibleLightDirectionsOrPositions = new Vector4[MAX_VISIBLE_LIGHTS];
@@ -54,6 +56,7 @@ public partial class CameraRenderer
     {
         _isEnabledDynamicBatch = isEnabledDynamicBatch;
         _isEnabledInstacing = isEnabledInstancing;
+        QualitySettings.pixelLightCount = 8;
     }
 
     public void Render(ScriptableRenderContext context, Camera camera)
@@ -82,7 +85,15 @@ public partial class CameraRenderer
         _commandBuffer.ClearRenderTarget(flags <= CameraClearFlags.Depth, 
                                         flags == CameraClearFlags.Color, 
                                         flags == CameraClearFlags.Color ? _camera.backgroundColor.linear : Color.clear);
-        ConfigureLights();
+        // ConfigureLights();
+        if(_cullingResults.visibleLights.Length > 0)
+        {
+            ConfigureLights();
+        }
+        else
+        {
+            _commandBuffer.SetGlobalVector(_lightIndicesOffsetAndCountId, Vector4.zero);
+        }
 
         _commandBuffer.BeginSample(_sampleName);
 
@@ -102,10 +113,19 @@ public partial class CameraRenderer
             criteria = SortingCriteria.CommonOpaque
         };
 
-        var drawingSettings = new DrawingSettings(_customURPShaderTagId, sortingSettings);
-        drawingSettings.enableDynamicBatching = _isEnabledDynamicBatch;
-        drawingSettings.enableInstancing = _isEnabledInstacing;
-        var filteringSettings = new FilteringSettings(RenderQueueRange.all); 
+        // PerObjectData lightsPerObjectFlags = PerObjectData.LightData | PerObjectData.LightIndices;
+
+        var drawingSettings = new DrawingSettings(_customURPShaderTagId, sortingSettings)
+        {
+            enableDynamicBatching = _isEnabledDynamicBatch,
+            enableInstancing = _isEnabledInstacing,
+            // perObjectData = drawingSettings.perObjectData |  PerObjectData.LightIndices;
+            perObjectData = PerObjectData.LightIndices,
+        };
+       
+    //    drawingSettings.perObjectData |= PerObjectData.LightIndices;
+
+        var filteringSettings = new FilteringSettings(RenderQueueRange.all);
 
         _context.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
 
@@ -145,8 +165,7 @@ public partial class CameraRenderer
 
     void ConfigureLights()
     {
-        int i = 0;
-        for(; i < _cullingResults.visibleLights.Length; ++i)
+        for(int i = 0; i < _cullingResults.visibleLights.Length; ++i)
         {
             if(i == MAX_VISIBLE_LIGHTS) { break; }
 
@@ -154,6 +173,7 @@ public partial class CameraRenderer
             _visibleLightColors[i] = light.finalColor;
 
             Vector4 attenuation = Vector4.zero;
+            attenuation.w = 1f;
 
             if(light.lightType == LightType.Directional)
             {
@@ -179,16 +199,31 @@ public partial class CameraRenderer
                     float outerRad = Mathf.Deg2Rad * 0.5f * light.spotAngle;
                     float outerCos = Mathf.Cos(outerRad);
                     float outerTan = Mathf.Tan(outerRad);
-                    float innerCos = Mathf.Cos(Mathf.Atan((46f / 64f) * outerTan));
+                    float innerCos = Mathf.Cos(Mathf.Atan(46f / 64f * outerTan));
+                    float angleRange = Mathf.Max(innerCos - outerCos, 0.001f);
+                    attenuation.z = 1f / angleRange;
+                    attenuation.w = -outerCos *  attenuation.z;
                 }
             }   
 
             _visibleLightAttenuations[i] = attenuation;
         }
 
-        for(; i < MAX_VISIBLE_LIGHTS; ++i)
+
+        if(_cullingResults.visibleLights.Length > MAX_VISIBLE_LIGHTS)
         {
-            _visibleLightColors[i] = Color.clear;
+            var lightIndices = _cullingResults.GetLightIndexMap(Allocator.Temp);
+            for(int i = MAX_VISIBLE_LIGHTS; i < _cullingResults.visibleLights.Length; ++i)
+            {
+                lightIndices[i] = -1;
+            }
+            _cullingResults.SetLightIndexMap(lightIndices);
         }
+
+
+        // for(; i < MAX_VISIBLE_LIGHTS; ++i)
+        // {
+        //     _visibleLightColors[i] = Color.clear;
+        // }
     }
 }

@@ -5,14 +5,18 @@
 
 
 CBUFFER_START(UnityPerDraw)
-    float4x4 unity_ObjectToWorld;
+	float4x4 unity_ObjectToWorld;
+	// float4 unity_LightIndicesOffsetAndCount;
+    float4 unity_LightData;
+	float4 unity_LightIndices[2];
+    // float4 unity_4LightIndices0, unity_4LightIndices1;
 CBUFFER_END
 
 CBUFFER_START(UnityPerFrame)
     float4x4 unity_MatrixVP;
 CBUFFER_END
 
-#define MAX_VISIBLE_LIGHTS 5
+#define MAX_VISIBLE_LIGHTS 16
 
 CBUFFER_START(_LightBUffer)
     float4 _VisibleLightColors[MAX_VISIBLE_LIGHTS];
@@ -36,8 +40,13 @@ float3 DiffuseLight(int index, float3 normal, float3 worldPos)
     rangeFade = saturate(1.0 - rangeFade * rangeFade);
     rangeFade *= rangeFade;
 
+    float spotFade = dot(lightSpotDir, direction);
+    spotFade = saturate(spotFade * lightAttenuation.z + lightAttenuation.w);
+    spotFade *= spotFade;
+
+
     float distanceSqr = max(dot(lightVector, lightVector), 0.00001);
-    diffuse *= rangeFade / distanceSqr;
+    diffuse *= spotFade * rangeFade / distanceSqr;
     return diffuse * lightColor;
 }
 
@@ -85,10 +94,20 @@ half4 frag(VertexOutput input) : SV_TARGET
     float3 albedo =  UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color).rgb;
     float3 diffuse = 0;
     
-    for(int i = 0; i < MAX_VISIBLE_LIGHTS; i++)
+    for(int i = 0; i < min(unity_LightData.y, 8); i++)    
+    // for(int i = 0; i < 5; i++)               
     {
-        diffuse += DiffuseLight(i, input.normal, input.worldPos);
+        int lightIndex = unity_LightIndices[i / 4][i % 4];
+        // int lightIndex = unity_4LightIndices0[i];
+
+        diffuse += DiffuseLight(lightIndex, input.normal, input.worldPos);
     }
+
+    // for(int i = 4; i < min(unity_LightData.y, 8); i++)
+    // {
+    //     int lightIndex = unity_LightIndices[i - 4];
+    //     diffuse += DiffuseLight(lightIndex, input.normal, input.worldPos);
+    // }
 
     float3 color = diffuse * albedo;
     return half4(color, 1);
