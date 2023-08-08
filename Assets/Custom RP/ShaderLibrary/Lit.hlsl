@@ -78,6 +78,7 @@ struct VertexInput
 struct VertexOutput
 {
     float4 positionCS : SV_POSITION;
+    float3 positionWS : VAR_POSITION;
     float3 normalWS : VAR_NORMAL;
     float2 baseUV : VAR_BASE_UV;
     float3 worldPos : TEXCOORD1;
@@ -98,6 +99,7 @@ VertexOutput vert(VertexInput input)
     o.normalWS = TransformObjectToWorldNormal(input.normalOS);
     // o.normalWS = TransformWorldToView(input.normalOS);
     o.worldPos = positionWS.xyz;
+    o.positionWS = positionWS;
     return o;
 }
 
@@ -111,6 +113,7 @@ half4 frag(VertexOutput input) : SV_TARGET
     surface.alpha = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color).a;
     surface.metallic = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Metallic);
     surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Smoothness);
+    surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
 
     return half4(GetLighting(surface, GetBRDF(surface)), surface.alpha);
 
