@@ -5,16 +5,17 @@
 #include "../ShaderLibrary/Common.hlsl"
 #include "../ShaderLibrary/Surface.hlsl"
 #include "../ShaderLibrary/Light.hlsl"
+#include "../ShaderLibrary/BRDF.hlsl"
 #include "../ShaderLibrary/Lighting.hlsl"
 
 
-CBUFFER_START(UnityPerDraw)
-	// float4x4 unity_ObjectToWorld;
-	// float4 unity_LightIndicesOffsetAndCount;
-    float4 unity_LightData;
-	float4 unity_LightIndices[2];
-    // float4 unity_4LightIndices0, unity_4LightIndices1;
-CBUFFER_END
+// CBUFFER_START(UnityPerDraw)
+// 	// float4x4 unity_ObjectToWorld;
+// 	// float4 unity_LightIndicesOffsetAndCount;
+//     float4 unity_LightData;
+// 	float4 unity_LightIndices[2];
+//     // float4 unity_4LightIndices0, unity_4LightIndices1;
+// CBUFFER_END
 
 // CBUFFER_START(UnityPerFrame)
 //     float4x4 unity_MatrixVP;
@@ -22,37 +23,37 @@ CBUFFER_END
 
 
 
-CBUFFER_START(_LightBUffer)
-    float4 _VisibleLightColors[MAX_VISIBLE_LIGHTS];
-    float4 _VisibleLightDirectionsOrPositions[MAX_VISIBLE_LIGHTS];
-    float4 _VisibleLightAttenuations[MAX_VISIBLE_LIGHTS];
-    float4 _VisibleLightSpotsDirections[MAX_VISIBLE_LIGHTS];
-CBUFFER_END
+// CBUFFER_START(_LightBUffer)
+//     float4 _VisibleLightColors[MAX_VISIBLE_LIGHTS];
+//     float4 _VisibleLightDirectionsOrPositions[MAX_VISIBLE_LIGHTS];
+//     float4 _VisibleLightAttenuations[MAX_VISIBLE_LIGHTS];
+//     float4 _VisibleLightSpotsDirections[MAX_VISIBLE_LIGHTS];
+// CBUFFER_END
 
-float3 DiffuseLight(int index, float3 normal, float3 worldPos)
-{
-    float3 lightColor = _VisibleLightColors[index].rgb;
-    float4 lightDirOrPos = _VisibleLightDirectionsOrPositions[index];
-    float4 lightAttenuation = _VisibleLightAttenuations[index];
-    float3 lightSpotDir = _VisibleLightSpotsDirections[index].xyz;
+// float3 DiffuseLight(int index, float3 normal, float3 worldPos)
+// {
+//     float3 lightColor = _VisibleLightColors[index].rgb;
+//     float4 lightDirOrPos = _VisibleLightDirectionsOrPositions[index];
+//     float4 lightAttenuation = _VisibleLightAttenuations[index];
+//     float3 lightSpotDir = _VisibleLightSpotsDirections[index].xyz;
 
-    float3 lightVector = lightDirOrPos - worldPos * lightDirOrPos.w;
-    float3 direction = normalize(lightVector);
-    float diffuse = saturate(dot(normal, direction));
+//     float3 lightVector = lightDirOrPos - worldPos * lightDirOrPos.w;
+//     float3 direction = normalize(lightVector);
+//     float diffuse = saturate(dot(normal, direction));
 
-    float rangeFade = dot(lightVector, lightVector) * lightAttenuation.x;
-    rangeFade = saturate(1.0 - rangeFade * rangeFade);
-    rangeFade *= rangeFade;
+//     float rangeFade = dot(lightVector, lightVector) * lightAttenuation.x;
+//     rangeFade = saturate(1.0 - rangeFade * rangeFade);
+//     rangeFade *= rangeFade;
 
-    float spotFade = dot(lightSpotDir, direction);
-    spotFade = saturate(spotFade * lightAttenuation.z + lightAttenuation.w);
-    spotFade *= spotFade;
+//     float spotFade = dot(lightSpotDir, direction);
+//     spotFade = saturate(spotFade * lightAttenuation.z + lightAttenuation.w);
+//     spotFade *= spotFade;
 
 
-    float distanceSqr = max(dot(lightVector, lightVector), 0.00001);
-    diffuse *= spotFade * rangeFade / distanceSqr;
-    return diffuse * lightColor;
-}
+//     float distanceSqr = max(dot(lightVector, lightVector), 0.00001);
+//     diffuse *= spotFade * rangeFade / distanceSqr;
+//     return diffuse * lightColor;
+// }
 
 // #define UNITY_MATRIX_M unity_ObjectToWorld
 // #include "../ShaderLibrary/UnityInput.hlsl"
@@ -61,6 +62,9 @@ float3 DiffuseLight(int index, float3 normal, float3 worldPos)
 
 UNITY_INSTANCING_BUFFER_START(PerInstance)
     UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+    UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
+    UNITY_DEFINE_INSTANCED_PROP(float, _Metallic)
+    UNITY_DEFINE_INSTANCED_PROP(float4, _Smoothness)
 UNITY_INSTANCING_BUFFER_END(PerInstance)
 
 struct VertexInput
@@ -105,8 +109,10 @@ half4 frag(VertexOutput input) : SV_TARGET
     surface.normal = normalize(input.normalWS);
     surface.color = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color).rgb;
     surface.alpha = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color).a;
+    surface.metallic = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Metallic);
+    surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Smoothness);
 
-    return half4(GetLighting(surface), surface.alpha);
+    return half4(GetLighting(surface, GetBRDF(surface)), surface.alpha);
 
     // UNITY_SETUP_INSTANCE_ID(input);
     // half3 rgb = abs(length( input.normalWS) - 1.0) * 20.0;
