@@ -25,11 +25,10 @@ public partial class CameraRenderer
         new ShaderTagId("PrepassBase"),
         new ShaderTagId("Vertex"),
         new ShaderTagId("VertexLMRGBM"),
-        new ShaderTagId("VertexLM")
+        new ShaderTagId("VertexLM"),
     };
 
     private static Material _errorMaterial;
-
 
     partial void DrawUnsupportedShaders()
     {

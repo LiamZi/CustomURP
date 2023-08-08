@@ -7,7 +7,10 @@ using UnityEngine.Experimental.Rendering;
 
 public class CustomRenderPipeline : RenderPipeline
 {
-    private CameraRenderer _renderer = null;
+    private CameraRenderer _renderer = new CameraRenderer();
+
+    bool _useDynamicBatching;
+    bool _useGPUInstanceing;
 
     public CameraRenderer Renderer
     {
@@ -15,28 +18,21 @@ public class CustomRenderPipeline : RenderPipeline
     }
 
 
-    public CustomRenderPipeline(bool isEnabledDynamicBatch, bool isEnabledInstancing)
+    public CustomRenderPipeline(bool isEnabledDynamicBatch, bool isEnabledInstancing, bool useSRPBatcher)
     {
-        //if (_renderer == null)
-        //{
-
-        //}
-        //else
-        //{
-        //    _renderer.EnabledDynamicBatch = isEnabledDynamicBatch;
-        //    _renderer.EnabledInstacing = isEnabledInstancing;
-        //}
         GraphicsSettings.lightsUseLinearIntensity = true;
-        _renderer = new CameraRenderer(isEnabledDynamicBatch, isEnabledInstancing);
+        this._useDynamicBatching = isEnabledDynamicBatch;
+        this._useGPUInstanceing = isEnabledInstancing;
+        GraphicsSettings.useScriptableRenderPipelineBatching = useSRPBatcher;
+        GraphicsSettings.lightsUseLinearIntensity = true;
+        // _renderer = new CameraRenderer(isEnabledDynamicBatch, isEnabledInstancing);
     }
 
     protected override void Render(ScriptableRenderContext context, Camera[] cameras)
     {
         foreach(Camera camera in cameras)
         {
-            _renderer.Render(context, camera);
+            _renderer.Render(context, camera, _useDynamicBatching, _useGPUInstanceing);
         }
     }
-
-
 }
