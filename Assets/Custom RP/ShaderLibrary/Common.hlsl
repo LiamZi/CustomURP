@@ -2,6 +2,7 @@
 #define __CUSTOM_COMMON_HLSL__
 
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl"
 #include "UnityInput.hlsl"
 
 #define UNITY_MATRIX_M unity_ObjectToWorld
