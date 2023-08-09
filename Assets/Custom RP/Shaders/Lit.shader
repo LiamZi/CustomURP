@@ -5,18 +5,19 @@ Shader "Custom RP/Lit"
         _BaseMap("Texture", 2D) = "white" {}
         _Color("Color", Color) = (1, 1, 1, 1)
         _CutOff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
-        _Meteallic("Metallic", Range(0, 1)) = 0
+        _Metallic("Metallic", Range(0, 1)) = 0
         _Smoothness("Smoothness", Range(0, 1)) = 0.5
         [Toggle(_CLIPPING)] _Clipping("Alpha Clipping", Float) = 0
         [Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend ("Src Blend", Float) = 1
         [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Dst Blend", Float) = 0
         [Enum(Off, 0, On, 1)] _ZWrite ("Z Write", Float) = 1
+        [Toggle(_PREMULTIPLY_ALPHA)] _PremulAlpha ("Premultiply Alpha", Float) = 0
     }
 
     SubShader
     {
-        // Tags { "RenderType"="Opaque"  "LightMode" = "CustomLit"}
-        Tags { "RenderType"="Opaque"}
+        Tags { "RenderType"="Opaque"  "LightMode" = "CustomLit"}
+        // Tags { "RenderType"="Opaque"}
         LOD 100
 
         Pass
@@ -32,9 +33,29 @@ Shader "Custom RP/Lit"
 
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature _CLIPPING
+            #pragma shader_feature _PREMULTIPLY_ALPHA
 
             #include "../ShaderLibrary/Lit.hlsl"
             ENDHLSL
         }
+
+        Pass
+        {
+            Tags{ "LightMode" = "ShadowCaster" }
+
+            ColorMask 0
+
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma shader_feature _CLIPPING
+            #pragma multi_compile_instancing
+            #pragma vertex ShadowCasterVert
+            #pragma fragment ShadowCasterFrag
+            #include "../ShaderLibrary/ShadowCaster.hlsl"
+            ENDHLSL
+        }
     }
+
+    CustomEditor "CustomShaderGUI"
 }

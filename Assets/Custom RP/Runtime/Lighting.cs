@@ -20,15 +20,19 @@ public class Lighting
 
     static Vector4[] _dirLightColors = new Vector4[MAX_VISIBLE_LIGHTS];
     static Vector4[] _dirLightDirections = new Vector4[MAX_VISIBLE_LIGHTS];
+
+    Shadows _shadows = new Shadows();
     
 
-    public void Setup(ScriptableRenderContext context, CullingResults cull)
+    public void Setup(ScriptableRenderContext context, CullingResults cull, ShadowSettings shadowSettings)
     {
         this._cullingResults = cull;
 
         _commandBuffer.BeginSample(_bufferName);
         // SetupDirectionalLight();
+        _shadows.Setup(context, cull, shadowSettings);
         SetupLights();
+        _shadows.Render();
         _commandBuffer.EndSample(_bufferName);
         context.ExecuteCommandBuffer(_commandBuffer);
         _commandBuffer.Clear();
@@ -59,9 +63,15 @@ public class Lighting
     {
         _dirLightColors[index] = visibleLight.finalColor;
         _dirLightDirections[index] = -visibleLight.localToWorldMatrix.GetColumn(2);
+        _shadows.ReserveDirectinalShadows(visibleLight.light, index);
 
         // Light light = RenderSettings.sun;
         // _commandBuffer.SetGlobalVector(_dirLightColorId, light.color.linear * light.intensity);
         // _commandBuffer.SetGlobalVector(_dirLightDirectionId, -light.transform.forward);
+    }
+
+    public void Clearup()
+    {
+        _shadows.Clearup();
     }
 };

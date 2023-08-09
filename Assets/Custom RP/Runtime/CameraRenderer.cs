@@ -59,10 +59,12 @@ public partial class CameraRenderer
     {
         // _isEnabledDynamicBatch = isEnabledDynamicBatch;
         // _isEnabledInstacing = isEnabledInstancing;
-        QualitySettings.pixelLightCount = 8;
+        // QualitySettings.pixelLightCount = 8;
     }
 
-    public void Render(ScriptableRenderContext context, Camera camera, bool useDynamicBatching, bool useGPUInstanceing)
+    public void Render(ScriptableRenderContext context, Camera camera, 
+                    bool useDynamicBatching, bool useGPUInstanceing, 
+                    ShadowSettings shadowSettings)
     {
         this._context = context;
         this._camera = camera;
@@ -70,13 +72,19 @@ public partial class CameraRenderer
         PrepareBuffer();
         PrepareForSceneWindow();
 
-        if (!Cull()) return;
+        if (!Cull(shadowSettings._maxDistance)) return;
+
+        _commandBuffer.BeginSample(_sampleName);
+        ExcuteBuffer();
+
+        _lighting.Setup(context, _cullingResults, shadowSettings);
+        _commandBuffer.EndSample(_sampleName);
 
         Setup();
-        _lighting.Setup(context, _cullingResults);
         DrawVisibleGeometry(useDynamicBatching, useGPUInstanceing);
         DrawUnsupportedShaders();
         DrawGizmos();
+        _lighting.Clearup();
         Submit();
     }
 
@@ -159,10 +167,11 @@ public partial class CameraRenderer
         _commandBuffer.Clear();
     }
 
-    bool Cull()
+    bool Cull(float maxShadowDistance)
     {
        if(_camera.TryGetCullingParameters(out ScriptableCullingParameters p))
        {
+            p.shadowDistance = Mathf.Min(maxShadowDistance, _camera.farClipPlane);
             _cullingResults = _context.Cull(ref p);
             return true;
        }

@@ -17,7 +17,7 @@
 //     float4 _Color;
 // CBUFFER_END
 
-#include "../ShaderLibrary/Common.hlsl"
+#include "Common.hlsl"
 
 TEXTURE2D(_BaseMap);
 SAMPLER(sampler_BaseMap);

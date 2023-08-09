@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - _mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  - _material: {fileID: 2100000, guid: 4e24da47d3b000741aa05463ee89dd5a, type: 2}
+  - _material: {fileID: 2100000, guid: 56e6da75bc82ab34aac19ca28c0a91fb, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

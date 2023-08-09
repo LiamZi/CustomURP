@@ -2,11 +2,11 @@
 #define __CUSTOM_RP_SHADER_LIT_HLSL__
 
 // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
-#include "../ShaderLibrary/Common.hlsl"
-#include "../ShaderLibrary/Surface.hlsl"
-#include "../ShaderLibrary/Light.hlsl"
-#include "../ShaderLibrary/BRDF.hlsl"
-#include "../ShaderLibrary/Lighting.hlsl"
+#include "Common.hlsl"
+#include "Surface.hlsl"
+#include "Light.hlsl"
+#include "BRDF.hlsl"
+#include "Lighting.hlsl"
 
 
 // CBUFFER_START(UnityPerDraw)
@@ -60,11 +60,15 @@
 
 // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
 
+TEXTURE2D(_BaseMap);
+SAMPLER(sampler_BaseMap);
+
 UNITY_INSTANCING_BUFFER_START(PerInstance)
     UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
+    UNITY_DEFINE_INSTANCED_PROP(float, _CutOff)
     UNITY_DEFINE_INSTANCED_PROP(float, _Metallic)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _Smoothness)
+    UNITY_DEFINE_INSTANCED_PROP(float, _Smoothness)
 UNITY_INSTANCING_BUFFER_END(PerInstance)
 
 struct VertexInput
@@ -100,6 +104,8 @@ VertexOutput vert(VertexInput input)
     // o.normalWS = TransformWorldToView(input.normalOS);
     o.worldPos = positionWS.xyz;
     o.positionWS = positionWS;
+    float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
+    o.baseUV = input.baseUV * baseST.xy + baseST.zw;
     return o;
 }
 
@@ -107,15 +113,28 @@ half4 frag(VertexOutput input) : SV_TARGET
 {
 
     UNITY_SETUP_INSTANCE_ID(input);
+    float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
+    float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
+    float4 col = baseMap * baseColor;
+#if defined(_CLIPPING)
+        clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+#endif
+
     Surface surface;
     surface.normal = normalize(input.normalWS);
-    surface.color = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color).rgb;
-    surface.alpha = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color).a;
+    surface.color = col.rgb;
+    surface.alpha = col.a;
     surface.metallic = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Metallic);
     surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Smoothness);
     surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
 
-    return half4(GetLighting(surface, GetBRDF(surface)), surface.alpha);
+#if defined(_PREMULTIPLY_ALPHA)
+    BRDF brdf = GetBRDF(surface, true);
+#else
+    BRDF brdf = GetBRDF(surface);
+#endif
+
+    return half4(GetLighting(surface, brdf), surface.alpha);
 
     // UNITY_SETUP_INSTANCE_ID(input);
     // half3 rgb = abs(length( input.normalWS) - 1.0) * 20.0;

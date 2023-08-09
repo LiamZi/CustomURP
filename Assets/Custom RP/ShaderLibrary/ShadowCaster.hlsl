@@ -1,0 +1,56 @@
+#ifndef __SHADER_LIBRARY_SHADOW_CASTER_HLSL__
+#define __SHADER_LIBRARY_SHADOW_CASTER_HLSL__
+
+
+#include "Common.hlsl"
+
+TEXTURE2D(_BaseMap);
+SAMPLER(sampler_BaseMap);
+
+UNITY_INSTANCING_BUFFER_START(PerInstance)
+    UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+    UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
+    UNITY_DEFINE_INSTANCED_PROP(float3, _CutOff)
+UNITY_INSTANCING_BUFFER_END(PerInstance)
+
+struct Attributes
+{
+    float3 positionOS : POSITION;
+    float2 baseUV : TEXCOORD0;
+    UNITY_VERTEX_INPUT_INSTANCE_ID
+};
+
+struct Varyings
+{
+    float4 positionCS : SV_POSITION;
+    float2 baseUV : VAR_BASE_UV;
+    UNITY_VERTEX_INPUT_INSTANCE_ID
+};
+
+Varyings ShadowCasterVert(Attributes input)
+{
+    Varyings o;
+    UNITY_SETUP_INSTANCE_ID(input);
+    UNITY_TRANSFER_INSTANCE_ID(input, o);
+    float3 positionWS = TransformObjectToWorld(input.positionOS);
+    o.positionCS = TransformWorldToHClip(positionWS);
+
+    float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
+    o.baseUV = input.baseUV * baseST.xy + baseST.zw;
+    return o;
+}
+
+void ShadowCasterFrag(Varyings input)
+{
+    UNITY_SETUP_INSTANCE_ID(input);
+    float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
+    float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
+    float4 col = baseMap * baseColor;
+
+#if defined(_CLIPPING)
+    clip(base.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+#endif
+
+}
+
+#endif

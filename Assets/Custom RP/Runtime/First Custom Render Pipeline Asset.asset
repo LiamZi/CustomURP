@@ -15,3 +15,7 @@ MonoBehaviour:
   _dynamicBatching: 1
   _instancing: 1
   _useSRPBatcher: 1
+  _shadows:
+    _maxDistance: 100
+    _directional:
+      _atlasSize: 512
