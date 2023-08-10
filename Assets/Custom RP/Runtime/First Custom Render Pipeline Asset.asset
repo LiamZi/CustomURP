@@ -16,6 +16,10 @@ MonoBehaviour:
   _instancing: 1
   _useSRPBatcher: 1
   _shadows:
-    _maxDistance: 100
+    _maxDistance: 30
     _directional:
-      _atlasSize: 512
+      _atlasSize: 1024
+      _cascadeCount: 4
+      _cascadeRatio1: 0.3
+      _cascadeRatio2: 0.4
+      _cascadeRatio3: 0.5

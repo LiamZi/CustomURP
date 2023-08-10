@@ -4,6 +4,7 @@
 // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 #include "Common.hlsl"
 #include "Surface.hlsl"
+#include "Shadows.hlsl"
 #include "Light.hlsl"
 #include "BRDF.hlsl"
 #include "Lighting.hlsl"
@@ -109,7 +110,7 @@ VertexOutput vert(VertexInput input)
     return o;
 }
 
-half4 frag(VertexOutput input) : SV_TARGET
+float4 frag(VertexOutput input) : SV_TARGET
 {
 
     UNITY_SETUP_INSTANCE_ID(input);
@@ -121,6 +122,7 @@ half4 frag(VertexOutput input) : SV_TARGET
 #endif
 
     Surface surface;
+    surface.position = input.positionWS;
     surface.normal = normalize(input.normalWS);
     surface.color = col.rgb;
     surface.alpha = col.a;
@@ -134,7 +136,8 @@ half4 frag(VertexOutput input) : SV_TARGET
     BRDF brdf = GetBRDF(surface);
 #endif
 
-    return half4(GetLighting(surface, brdf), surface.alpha);
+    return float4(GetLighting(surface, brdf), surface.alpha);
+    // return float4(surface.color, surface.alpha);
 
     // UNITY_SETUP_INSTANCE_ID(input);
     // half3 rgb = abs(length( input.normalWS) - 1.0) * 20.0;
