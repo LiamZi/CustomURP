@@ -124,11 +124,13 @@ float4 frag(VertexOutput input) : SV_TARGET
     Surface surface;
     surface.position = input.positionWS;
     surface.normal = normalize(input.normalWS);
+    surface.depth = -TransformWorldToView(input.positionWS).z;
     surface.color = col.rgb;
     surface.alpha = col.a;
     surface.metallic = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Metallic);
     surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Smoothness);
     surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
+    surface.dither = InterleavedGradientNoise(input.positionCS.xy, 0);
 
 #if defined(_PREMULTIPLY_ALPHA)
     BRDF brdf = GetBRDF(surface, true);

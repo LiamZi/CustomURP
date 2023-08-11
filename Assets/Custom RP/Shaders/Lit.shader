@@ -29,12 +29,15 @@ Shader "Custom RP/Lit"
             #pragma target 3.5
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling
-            // #pragma enable_d3d11_debug_symbols
+            #pragma enable_d3d11_debug_symbols
 
             #pragma vertex vert
             #pragma fragment frag
             #pragma shader_feature _CLIPPING
             #pragma shader_feature _PREMULTIPLY_ALPHA
+            #pragma multi_compile _ _DIRECTIONAL_PCF3 _DIRECTIONAL_PCF5 _DIRECTIONAL_PCF7
+            #pragma multi_compile _ _CASCADE_BLEND_SOFT _CASCADE_BLEND_DITHER
+
 
             #include "../ShaderLibrary/Lit.hlsl"
             ENDHLSL
@@ -52,6 +55,7 @@ Shader "Custom RP/Lit"
             #pragma multi_compile_instancing
             #pragma vertex ShadowCasterVert
             #pragma fragment ShadowCasterFrag
+            // #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/ShadowCaster.hlsl"
             ENDHLSL
         }
