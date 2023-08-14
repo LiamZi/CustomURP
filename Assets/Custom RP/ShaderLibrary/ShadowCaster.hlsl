@@ -10,7 +10,8 @@ SAMPLER(sampler_BaseMap);
 UNITY_INSTANCING_BUFFER_START(PerInstance)
     UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
-    UNITY_DEFINE_INSTANCED_PROP(float3, _CutOff)
+    // UNITY_DEFINE_INSTANCED_PROP(float3, _CutOff)
+    UNITY_DEFINE_INSTANCED_PROP(float, _CutOff)
 UNITY_INSTANCING_BUFFER_END(PerInstance)
 
 struct Attributes
@@ -52,8 +53,11 @@ void ShadowCasterFrag(Varyings input)
     float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
     float4 col = baseMap * baseColor;
 
-#if defined(_CLIPPING)
-    clip(base.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+#if defined(_SHADOWS_CLIP)
+    clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+#elif defined(_SHADOWS_DITHER)
+    float dither = InterleavedGradientNoise(input.positionCS.xy, 0);
+    clip(col.a - dither);
 #endif
 
 }

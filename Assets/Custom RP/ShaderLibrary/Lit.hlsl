@@ -7,6 +7,7 @@
 #include "Shadows.hlsl"
 #include "Light.hlsl"
 #include "BRDF.hlsl"
+#include "GI.hlsl"
 #include "Lighting.hlsl"
 
 
@@ -77,6 +78,7 @@ struct VertexInput
     float4 positionOS : POSITION;
     float3 normalOS : NORMAL;
     float2 baseUV : TEXCOORD0;
+    GI_ATTRIBUTE_DATA
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
@@ -87,6 +89,7 @@ struct VertexOutput
     float3 normalWS : VAR_NORMAL;
     float2 baseUV : VAR_BASE_UV;
     float3 worldPos : TEXCOORD1;
+    GI_VARYINGS_DATA
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
@@ -96,6 +99,7 @@ VertexOutput vert(VertexInput input)
     // o.positionWS = input.positionOS;
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_TRANSFER_INSTANCE_ID(input, o);
+    TRANSFER_GI_DATA(input, o);
     // float4 positionWS = mul(UNITY_MATRIX_M, float4(input.positionOS.xyz, 1.0));
     float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
     // o.positionCS = mul(unity_MatrixVP, positionWS);
@@ -138,7 +142,8 @@ float4 frag(VertexOutput input) : SV_TARGET
     BRDF brdf = GetBRDF(surface);
 #endif
 
-    return float4(GetLighting(surface, brdf), surface.alpha);
+    GI gi = GetGI(GI_FRAGMENT_DATA(input));
+    return float4(GetLighting(surface, brdf, gi), surface.alpha);
     // return float4(surface.color, surface.alpha);
 
     // UNITY_SETUP_INSTANCE_ID(input);

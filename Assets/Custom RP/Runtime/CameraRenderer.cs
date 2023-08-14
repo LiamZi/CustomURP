@@ -135,7 +135,7 @@ public partial class CameraRenderer
             // perObjectData = PerObjectData.LightIndices,
         };
 
-       drawingSettings.perObjectData |= PerObjectData.LightIndices;
+       drawingSettings.perObjectData |= PerObjectData.LightIndices | PerObjectData.Lightmaps;
 
        drawingSettings.SetShaderPassName(1, _litShaderTagId);
        

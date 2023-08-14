@@ -47,6 +47,7 @@
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
      <None Include="Assets\Custom RP\ShaderLibrary\Shadows.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\UnityInput.hlsl" />
+     <None Include="Assets\Custom RP\ShaderLibrary\GI.hlsl" />
      <None Include="Assets\Custom RP\Shaders\UnlitOpaque.shader" />
      <None Include="Assets\Custom RP\ShaderLibrary\Lit.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\ShadowCaster.hlsl" />

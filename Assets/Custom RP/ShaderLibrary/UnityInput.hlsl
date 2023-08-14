@@ -8,6 +8,9 @@ CBUFFER_START(UnityPerDraw)
     float4 unity_LODFade;
     float4 unity_WorldTransformParams;
     float3 _WorldSpaceCameraPos;
+
+    float4 unity_LightmapST;
+    float4 unity_DynamicLightmapST;
 CBUFFER_END
 
 CBUFFER_START(UnityPerFrame)

@@ -12,6 +12,7 @@ Shader "Custom RP/Lit"
         [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Dst Blend", Float) = 0
         [Enum(Off, 0, On, 1)] _ZWrite ("Z Write", Float) = 1
         [Toggle(_PREMULTIPLY_ALPHA)] _PremulAlpha ("Premultiply Alpha", Float) = 0
+        [KeywordEnum(On, Clip, Dither, Off)] _Shadows ("Shadows", Float) = 0
     }
 
     SubShader
@@ -27,9 +28,10 @@ Shader "Custom RP/Lit"
 
             HLSLPROGRAM
             #pragma target 3.5
+            #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling
-            #pragma enable_d3d11_debug_symbols
+            // #pragma enable_d3d11_debug_symbols
 
             #pragma vertex vert
             #pragma fragment frag
@@ -37,6 +39,8 @@ Shader "Custom RP/Lit"
             #pragma shader_feature _PREMULTIPLY_ALPHA
             #pragma multi_compile _ _DIRECTIONAL_PCF3 _DIRECTIONAL_PCF5 _DIRECTIONAL_PCF7
             #pragma multi_compile _ _CASCADE_BLEND_SOFT _CASCADE_BLEND_DITHER
+            
+ 
 
 
             #include "../ShaderLibrary/Lit.hlsl"
@@ -51,10 +55,11 @@ Shader "Custom RP/Lit"
 
             HLSLPROGRAM
             #pragma target 3.5
-            #pragma shader_feature _CLIPPING
+            // #pragma shader_feature _CLIPPING
             #pragma multi_compile_instancing
             #pragma vertex ShadowCasterVert
             #pragma fragment ShadowCasterFrag
+            #pragma shader_feature _ _SHADOWS_CLIP _SHADOWS_DITHER
             // #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/ShadowCaster.hlsl"
             ENDHLSL

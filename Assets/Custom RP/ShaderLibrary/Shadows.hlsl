@@ -77,6 +77,8 @@ float GetDirectionalShadowAttenuation(DirectinalShadowData data, ShadowData glob
 {
     if(data.strength <= 0.0) return 1.0;
 
+    // return 1.0;
+
     float3 normalBias = surface.normal * (data.normalBias * _CascadData[global.cascadeIndex].y);
 
     float3 positionSTS = mul(_DirectionalShadowMatrices[data.tileIndex], float4(surface.position + normalBias, 1.0)).xyz;
@@ -88,8 +90,9 @@ float GetDirectionalShadowAttenuation(DirectinalShadowData data, ShadowData glob
         positionSTS = mul(_DirectionalShadowMatrices[data.tileIndex + 1], float4(surface.position + normalBias, 1.0)).xyz;
         shadow = lerp(FilterDirectionalShadow(positionSTS), shadow, global.cascadBlend);
     }
-    // return shadow;
+    // // return shadow;
     return lerp(1.0, shadow, data.strength);
+    // return 1.0;
 }
 
 float FadeShadowStrength(float distance, float scale, float fade)
