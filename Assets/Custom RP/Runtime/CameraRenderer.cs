@@ -133,9 +133,10 @@ public partial class CameraRenderer
             enableInstancing = useGPUInstanceing,
             // perObjectData = drawingSettings.perObjectData |  PerObjectData.LightIndices;
             // perObjectData = PerObjectData.LightIndices,
+            perObjectData = PerObjectData.LightIndices | PerObjectData.Lightmaps | PerObjectData.LightProbe | PerObjectData.LightProbeProxyVolume
         };
 
-       drawingSettings.perObjectData |= PerObjectData.LightIndices | PerObjectData.Lightmaps;
+       
 
        drawingSettings.SetShaderPassName(1, _litShaderTagId);
        

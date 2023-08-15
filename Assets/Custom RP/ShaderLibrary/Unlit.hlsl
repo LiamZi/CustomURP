@@ -18,16 +18,17 @@
 // CBUFFER_END
 
 #include "Common.hlsl"
+#include "UnLitInput.hlsl"
 
-TEXTURE2D(_BaseMap);
-SAMPLER(sampler_BaseMap);
+// TEXTURE2D(_BaseMap);
+// SAMPLER(sampler_BaseMap);
 
 
-UNITY_INSTANCING_BUFFER_START(PerInstance)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
-    UNITY_DEFINE_INSTANCED_PROP(float, _CutOff)
-UNITY_INSTANCING_BUFFER_END(PerInstance)
+// UNITY_INSTANCING_BUFFER_START(PerInstance)
+//     UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+//     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
+//     UNITY_DEFINE_INSTANCED_PROP(float, _CutOff)
+// UNITY_INSTANCING_BUFFER_END(PerInstance)
 
 struct VertexInput
 {
@@ -54,20 +55,23 @@ VertexOutput vert(VertexInput input)
 
     // o.positionCS = mul(unity_MatrixVP, positionWS);
     o.positionCS = TransformWorldToHClip(positionWS);
-    float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
-    o.baseUV = input.baseUV * baseST.xy + baseST.zw;
+    // float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
+    // o.baseUV = input.baseUV * baseST.xy + baseST.zw;
+    o.baseUV = TransformBaseUV(input.baseUV);
     return o;
 }
 
 half4 frag(VertexOutput input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
-    float4 diffuse = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
-    float4 col = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
-    col *= diffuse;
+    // float4 diffuse = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
+    // float4 col = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
+    // col *= diffuse;
+    float4 col = GetBase(input.baseUV);
 
 #if defined(_CLIPPING)
-    clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+    // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+    clip(col.a - GetCutoff(input.baseUV));
 #endif
     return col;
 }

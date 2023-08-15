@@ -3,6 +3,7 @@
 
 // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 #include "Common.hlsl"
+#include "LitInput.hlsl"
 #include "Surface.hlsl"
 #include "Shadows.hlsl"
 #include "Light.hlsl"
@@ -62,16 +63,16 @@
 
 // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
 
-TEXTURE2D(_BaseMap);
-SAMPLER(sampler_BaseMap);
+// TEXTURE2D(_BaseMap);
+// SAMPLER(sampler_BaseMap);
 
-UNITY_INSTANCING_BUFFER_START(PerInstance)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
-    UNITY_DEFINE_INSTANCED_PROP(float, _CutOff)
-    UNITY_DEFINE_INSTANCED_PROP(float, _Metallic)
-    UNITY_DEFINE_INSTANCED_PROP(float, _Smoothness)
-UNITY_INSTANCING_BUFFER_END(PerInstance)
+// UNITY_INSTANCING_BUFFER_START(PerInstance)
+//     UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+//     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
+//     UNITY_DEFINE_INSTANCED_PROP(float, _CutOff)
+//     UNITY_DEFINE_INSTANCED_PROP(float, _Metallic)
+//     UNITY_DEFINE_INSTANCED_PROP(float, _Smoothness)
+// UNITY_INSTANCING_BUFFER_END(PerInstance)
 
 struct VertexInput
 {
@@ -109,8 +110,9 @@ VertexOutput vert(VertexInput input)
     // o.normalWS = TransformWorldToView(input.normalOS);
     o.worldPos = positionWS.xyz;
     o.positionWS = positionWS;
-    float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
-    o.baseUV = input.baseUV * baseST.xy + baseST.zw;
+    // float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
+    // o.baseUV = input.baseUV * baseST.xy + baseST.zw;
+    o.baseUV = TransformBaseUV(input.baseUV);
     return o;
 }
 
@@ -118,11 +120,13 @@ float4 frag(VertexOutput input) : SV_TARGET
 {
 
     UNITY_SETUP_INSTANCE_ID(input);
-    float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
-    float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
-    float4 col = baseMap * baseColor;
+    // float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
+    // float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
+    // float4 col = baseMap * baseColor;
+    float4 col = GetBase(input.baseUV);
 #if defined(_CLIPPING)
-        clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+        // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+        clip(col.a - GetCutoff(input.baseUV));
 #endif
 
     Surface surface;
@@ -131,8 +135,10 @@ float4 frag(VertexOutput input) : SV_TARGET
     surface.depth = -TransformWorldToView(input.positionWS).z;
     surface.color = col.rgb;
     surface.alpha = col.a;
-    surface.metallic = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Metallic);
-    surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Smoothness);
+    // surface.metallic = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Metallic);
+    surface.metallic = GetMetallic(input.baseUV);
+    // surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Smoothness);
+    surface.smoothness = GetSmoothness(input.baseUV);
     surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
     surface.dither = InterleavedGradientNoise(input.positionCS.xy, 0);
 
@@ -142,8 +148,10 @@ float4 frag(VertexOutput input) : SV_TARGET
     BRDF brdf = GetBRDF(surface);
 #endif
 
-    GI gi = GetGI(GI_FRAGMENT_DATA(input));
-    return float4(GetLighting(surface, brdf, gi), surface.alpha);
+    GI gi = GetGI(GI_FRAGMENT_DATA(input), surface);
+    float3 finalColor = GetLighting(surface, brdf, gi);
+    finalColor += GetEmission(input.baseUV);
+    return float4(finalColor, surface.alpha);
     // return float4(surface.color, surface.alpha);
 
     // UNITY_SETUP_INSTANCE_ID(input);

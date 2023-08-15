@@ -68,6 +68,8 @@ public class CustomShaderGUI : ShaderGUI
         this._materials = materialEditor.targets;
         this._properties = properties;
 
+        BakedEmission();
+
         EditorGUILayout.Space();
         _showPresets = EditorGUILayout.Foldout(_showPresets, "Presets", true);
         if(_showPresets)
@@ -212,5 +214,19 @@ public class CustomShaderGUI : ShaderGUI
             m.SetShaderPassEnabled("ShadowCaster", enabled);
         }
 
+    }
+
+    void BakedEmission()
+    {
+        EditorGUI.BeginChangeCheck();
+        _editor.LightmapEmissionProperty();
+        if(EditorGUI.EndChangeCheck())
+        {
+            foreach(Material m in _editor.targets)
+            {
+                // m.globalIlluminationFlags &= ~MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+                m.globalIlluminationFlags &= ~MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+            }
+        }
     }
 };

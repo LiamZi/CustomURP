@@ -13,6 +13,8 @@ Shader "Custom RP/Lit"
         [Enum(Off, 0, On, 1)] _ZWrite ("Z Write", Float) = 1
         [Toggle(_PREMULTIPLY_ALPHA)] _PremulAlpha ("Premultiply Alpha", Float) = 0
         [KeywordEnum(On, Clip, Dither, Off)] _Shadows ("Shadows", Float) = 0
+        [NoScaleOffset] _EmissionMap("Emission", 2D) = "white" {}
+        [HDR] _EmissionColor("Emission", Color) = (0.0, 0.0, 0.0, 0.0)
     }
 
     SubShader
@@ -62,6 +64,21 @@ Shader "Custom RP/Lit"
             #pragma shader_feature _ _SHADOWS_CLIP _SHADOWS_DITHER
             // #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/ShadowCaster.hlsl"
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Tags { "LightMode" = "Meta" }
+
+            Cull Off
+
+            HLSLPROGRAM
+            #pragma target 3.5
+            // #pragma enable_d3d11_debug_symbols
+            #pragma vertex MetaPassVert
+            #pragma fragment MetaPassFrag
+            #include "../ShaderLibrary/MetaPass.hlsl"
             ENDHLSL
         }
     }
