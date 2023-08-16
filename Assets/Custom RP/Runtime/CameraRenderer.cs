@@ -132,8 +132,13 @@ public partial class CameraRenderer
             enableDynamicBatching = useDynamicBatching,
             enableInstancing = useGPUInstanceing,
             // perObjectData = drawingSettings.perObjectData |  PerObjectData.LightIndices;
-            // perObjectData = PerObjectData.LightIndices,
-            perObjectData = PerObjectData.LightIndices | PerObjectData.Lightmaps | PerObjectData.LightProbe | PerObjectData.LightProbeProxyVolume
+            // perObjectData = PerObjectData.LightIndices, 
+            perObjectData = PerObjectData.LightIndices | PerObjectData.Lightmaps | 
+                            PerObjectData.ShadowMask | PerObjectData.LightProbe | 
+                            PerObjectData.LightProbeProxyVolume | PerObjectData.OcclusionProbe |
+                            PerObjectData.OcclusionProbeProxyVolume 
+                            // 
+
         };
 
        

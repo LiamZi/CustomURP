@@ -17,6 +17,8 @@ public class Shadows
 
     int _shadowedDirectinnalLightCount;
 
+    bool _useShadowMask;
+
     static int _dirShadowAtlasId = Shader.PropertyToID("_DirectionalShadowAtlas");
     static int _dirShadowMatricesId = Shader.PropertyToID("_DirectionalShadowMatrices");
     static int _cascadCountId = Shader.PropertyToID("_CascadCount");
@@ -51,12 +53,19 @@ public class Shadows
         "_CASCADE_BLEND_DITHER"
     };
 
+    static string[] _shadowMaskKeywords = 
+    {
+        "_SHADOW_MASK_ALWAYS",
+        "_SHADOW_MASK_DISTANCE"
+    };
+
     public void Setup(ScriptableRenderContext context, CullingResults culling, ShadowSettings shadowSettings)
     {
         _context = context;
         _cullingResults = culling;
         _settings = shadowSettings;
         _shadowedDirectinnalLightCount = 0;
+        _useShadowMask = false;
     }
 
     void ExcuteBuffer()
@@ -65,22 +74,35 @@ public class Shadows
         _commandBuffer.Clear();
     }
 
-    public Vector3 ReserveDirectinalShadows(Light light, int visibleLightIndex)
+    public Vector4 ReserveDirectinalShadows(Light light, int visibleLightIndex)
     {
         if(_shadowedDirectinnalLightCount < MaxShadowedDirectionalLightCount 
-            && light.shadows != LightShadows.None && light.shadowStrength > 0f
-            && _cullingResults.GetShadowCasterBounds(visibleLightIndex, out Bounds b))
+            && light.shadows != LightShadows.None && light.shadowStrength > 0f)
+            // && _cullingResults.GetShadowCasterBounds(visibleLightIndex, out Bounds b))
         {
+            float maskChannel = -1;
+            LightBakingOutput lightBaking = light.bakingOutput;
+            if(lightBaking.lightmapBakeType == LightmapBakeType.Mixed && lightBaking.mixedLightingMode == MixedLightingMode.Shadowmask)
+            {
+                _useShadowMask = true;
+                maskChannel = lightBaking.occlusionMaskChannel;
+            }
+
+            if(!_cullingResults.GetShadowCasterBounds(visibleLightIndex, out Bounds b))
+            {
+                return new Vector4(-light.shadowStrength, 0f, 0f, maskChannel);
+            }
+
             _shadowedDirectionalLights[_shadowedDirectinnalLightCount] =  new ShadowedDirectionalLight 
             {   _visibleLightIndex = visibleLightIndex, 
                 _slopeScaleBias = light.shadowBias, 
                 _nearPlaneOffset = light.shadowNearPlane 
             };
 
-            return new Vector3(light.shadowStrength, _settings._directional._cascadeCount * _shadowedDirectinnalLightCount++, light.shadowNormalBias);
+            return new Vector4(light.shadowStrength, _settings._directional._cascadeCount * _shadowedDirectinnalLightCount++, light.shadowNormalBias, maskChannel);
         }
 
-        return Vector3.zero;
+        return new Vector4(0f, 0f, 0f, -1f);
     }
 
     public void Render()
@@ -93,6 +115,11 @@ public class Shadows
         {
             _commandBuffer.GetTemporaryRT(_dirShadowAtlasId, 1, 1, 32, FilterMode.Bilinear, RenderTextureFormat.Shadowmap);
         }
+
+        _commandBuffer.BeginSample(_bufferName);
+        SetKeywords(_shadowMaskKeywords, _useShadowMask ? QualitySettings.shadowmaskMode == ShadowmaskMode.Shadowmask ? 0 : 1 : -1);
+        _commandBuffer.EndSample(_bufferName);
+        ExcuteBuffer();
     }
 
     void RenderDirectionalShadows()

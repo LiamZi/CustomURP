@@ -8,10 +8,10 @@ TEXTURE2D(_BaseMap);
 SAMPLER(sampler_BaseMap);
 
 UNITY_INSTANCING_BUFFER_START(PerInstance)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+    UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
-    // UNITY_DEFINE_INSTANCED_PROP(float3, _CutOff)
-    UNITY_DEFINE_INSTANCED_PROP(float, _CutOff)
+    // UNITY_DEFINE_INSTANCED_PROP(float3, _Cutoff)
+    UNITY_DEFINE_INSTANCED_PROP(float, _Cutoff)
 UNITY_INSTANCING_BUFFER_END(PerInstance)
 
 struct Attributes
@@ -50,11 +50,11 @@ void ShadowCasterFrag(Varyings input)
 {
     UNITY_SETUP_INSTANCE_ID(input);
     float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
-    float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
+    float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseColor);
     float4 col = baseMap * baseColor;
 
 #if defined(_SHADOWS_CLIP)
-    clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+    clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Cutoff));
 #elif defined(_SHADOWS_DITHER)
     float dither = InterleavedGradientNoise(input.positionCS.xy, 0);
     clip(col.a - dither);

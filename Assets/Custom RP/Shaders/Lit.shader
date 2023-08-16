@@ -3,8 +3,8 @@ Shader "Custom RP/Lit"
     Properties 
     {
         _BaseMap("Texture", 2D) = "white" {}
-        _Color("Color", Color) = (1, 1, 1, 1)
-        _CutOff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
+        _BaseColor("Color", Color) = (1, 1, 1, 1)
+        _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
         _Metallic("Metallic", Range(0, 1)) = 0
         _Smoothness("Smoothness", Range(0, 1)) = 0.5
         [Toggle(_CLIPPING)] _Clipping("Alpha Clipping", Float) = 0
@@ -15,6 +15,9 @@ Shader "Custom RP/Lit"
         [KeywordEnum(On, Clip, Dither, Off)] _Shadows ("Shadows", Float) = 0
         [NoScaleOffset] _EmissionMap("Emission", 2D) = "white" {}
         [HDR] _EmissionColor("Emission", Color) = (0.0, 0.0, 0.0, 0.0)
+
+        [HideInInspector] _MainTex("Texture for Lightmap", 2D) = "white" {}
+        [HideInInspector] _Color("Color for Lightmap", Color) = (0.5, 0.5, 0.5, 1.0)
     }
 
     SubShader
@@ -33,7 +36,7 @@ Shader "Custom RP/Lit"
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling
-            // #pragma enable_d3d11_debug_symbols
+            #pragma enable_d3d11_debug_symbols
 
             #pragma vertex vert
             #pragma fragment frag
@@ -41,6 +44,7 @@ Shader "Custom RP/Lit"
             #pragma shader_feature _PREMULTIPLY_ALPHA
             #pragma multi_compile _ _DIRECTIONAL_PCF3 _DIRECTIONAL_PCF5 _DIRECTIONAL_PCF7
             #pragma multi_compile _ _CASCADE_BLEND_SOFT _CASCADE_BLEND_DITHER
+            #pragma multi_compile _ _SHADOW_MASK_ALWAYS _SHADOW_MASK_DISTANCE 
             
  
 
@@ -62,7 +66,7 @@ Shader "Custom RP/Lit"
             #pragma vertex ShadowCasterVert
             #pragma fragment ShadowCasterFrag
             #pragma shader_feature _ _SHADOWS_CLIP _SHADOWS_DITHER
-            // #pragma enable_d3d11_debug_symbols
+            #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/ShadowCaster.hlsl"
             ENDHLSL
         }
@@ -75,7 +79,7 @@ Shader "Custom RP/Lit"
 
             HLSLPROGRAM
             #pragma target 3.5
-            // #pragma enable_d3d11_debug_symbols
+            #pragma enable_d3d11_debug_symbols
             #pragma vertex MetaPassVert
             #pragma fragment MetaPassFrag
             #include "../ShaderLibrary/MetaPass.hlsl"

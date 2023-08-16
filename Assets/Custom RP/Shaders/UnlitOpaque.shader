@@ -2,7 +2,7 @@ Shader "Custom RP/UnlitOpaque"
 {
     Properties
     {
-        _Color("Color", Color) = (1, 1, 1, 1)
+        _BaseColor("Color", Color) = (1, 1, 1, 1)
     }
 
     SubShader

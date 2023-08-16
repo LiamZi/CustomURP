@@ -14,7 +14,7 @@
 
 
 // CBUFFER_START(UnityPerMaterial)
-//     float4 _Color;
+//     float4 _BaseColor;
 // CBUFFER_END
 
 #include "Common.hlsl"
@@ -25,9 +25,9 @@
 
 
 // UNITY_INSTANCING_BUFFER_START(PerInstance)
-//     UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+//     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
 //     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
-//     UNITY_DEFINE_INSTANCED_PROP(float, _CutOff)
+//     UNITY_DEFINE_INSTANCED_PROP(float, _Cutoff)
 // UNITY_INSTANCING_BUFFER_END(PerInstance)
 
 struct VertexInput
@@ -65,12 +65,12 @@ half4 frag(VertexOutput input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
     // float4 diffuse = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
-    // float4 col = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
+    // float4 col = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseColor);
     // col *= diffuse;
     float4 col = GetBase(input.baseUV);
 
 #if defined(_CLIPPING)
-    // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+    // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Cutoff));
     clip(col.a - GetCutoff(input.baseUV));
 #endif
     return col;

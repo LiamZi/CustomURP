@@ -67,9 +67,9 @@
 // SAMPLER(sampler_BaseMap);
 
 // UNITY_INSTANCING_BUFFER_START(PerInstance)
-//     UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+//     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
 //     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
-//     UNITY_DEFINE_INSTANCED_PROP(float, _CutOff)
+//     UNITY_DEFINE_INSTANCED_PROP(float, _Cutoff)
 //     UNITY_DEFINE_INSTANCED_PROP(float, _Metallic)
 //     UNITY_DEFINE_INSTANCED_PROP(float, _Smoothness)
 // UNITY_INSTANCING_BUFFER_END(PerInstance)
@@ -121,11 +121,11 @@ float4 frag(VertexOutput input) : SV_TARGET
 
     UNITY_SETUP_INSTANCE_ID(input);
     // float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
-    // float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color);
+    // float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseColor);
     // float4 col = baseMap * baseColor;
     float4 col = GetBase(input.baseUV);
 #if defined(_CLIPPING)
-        // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _CutOff));
+        // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Cutoff));
         clip(col.a - GetCutoff(input.baseUV));
 #endif
 
@@ -161,7 +161,7 @@ float4 frag(VertexOutput input) : SV_TARGET
     // return half4(rgb, 1.0);
     // input.normal = normalize(input.normal);
 
-    // float3 albedo =  UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Color).rgb;
+    // float3 albedo =  UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseColor).rgb;
     // float3 diffuse = 0;
     
     // for(int i = 0; i < min(unity_LightData.y, 8); i++)    
