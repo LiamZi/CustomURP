@@ -136,7 +136,7 @@ public partial class CameraRenderer
             perObjectData = PerObjectData.LightIndices | PerObjectData.Lightmaps | 
                             PerObjectData.ShadowMask | PerObjectData.LightProbe | 
                             PerObjectData.LightProbeProxyVolume | PerObjectData.OcclusionProbe |
-                            PerObjectData.OcclusionProbeProxyVolume 
+                            PerObjectData.OcclusionProbeProxyVolume | PerObjectData.ReflectionProbes
                             // 
 
         };

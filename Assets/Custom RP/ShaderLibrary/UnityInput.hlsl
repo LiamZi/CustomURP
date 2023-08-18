@@ -24,6 +24,9 @@ CBUFFER_START(UnityPerDraw)
 	float4x4 unity_ProbeVolumeWorldToObject;
 	float4 unity_ProbeVolumeSizeInv;
 	float4 unity_ProbeVolumeMin;
+
+    float4 unity_SpecCube0_HDR;
+    
 CBUFFER_END
 
 CBUFFER_START(UnityPerFrame)
@@ -34,5 +37,8 @@ CBUFFER_START(UnityPerFrame)
     float4x4 unity_prev_MatrixIM;
     float4x4 glstate_matrix_projection;
 CBUFFER_END
+
+
+
 
 #endif

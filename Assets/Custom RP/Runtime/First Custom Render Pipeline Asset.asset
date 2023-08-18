@@ -16,14 +16,14 @@ MonoBehaviour:
   _instancing: 1
   _useSRPBatcher: 1
   _shadows:
-    _maxDistance: 50
+    _maxDistance: 30
     _distanceFade: 0.1
     _directional:
-      _atlasSize: 2048
-      _filter: 2
+      _atlasSize: 8192
+      _filter: 3
       _cascadeCount: 4
       _cascadeRatio1: 0.3
       _cascadeRatio2: 0.4
       _cascadeRatio3: 0.5
       _cascadeFade: 0.1
-      _cascadblendMode: 2
+      _cascadblendMode: 1
