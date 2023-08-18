@@ -8,6 +8,7 @@ public class Lighting
     const string _bufferName = "Lighting";
 
     const int MAX_VISIBLE_LIGHTS = 4;
+    const int MAX_OTHER_LIGHTS = 64;
 
 
     CommandBuffer _commandBuffer = new CommandBuffer { name = _bufferName };
@@ -17,11 +18,18 @@ public class Lighting
     static int _dirLightDirectionId = Shader.PropertyToID("_directionalLightDirection");
     static int _dirLightShadowDataId = Shader.PropertyToID("_directionalLightShadowData");
 
+    static int _otherLightSizeId = Shader.PropertyToID("_OtherLightSize");
+    static int _otherLightColorsId = Shader.PropertyToID("_OtherLightsColors");
+    static int _otherLightPositionsId = Shader.PropertyToID("_OtherLightPositions");
+
     CullingResults _cullingResults;
 
     static Vector4[] _dirLightColors = new Vector4[MAX_VISIBLE_LIGHTS];
     static Vector4[] _dirLightDirections = new Vector4[MAX_VISIBLE_LIGHTS];
     static Vector4[] _dirLightShadowData = new Vector4[MAX_VISIBLE_LIGHTS];
+    
+    static Vector4[] _otherLightColors = new Vector4[MAX_OTHER_LIGHTS];
+    static Vector4[] _otherLightPositions = new Vector4[MAX_OTHER_LIGHTS];
 
     Shadows _shadows = new Shadows();
     
@@ -42,6 +50,7 @@ public class Lighting
     void SetupLights()
     {
         int dirLightCount = 0;
+        int otherLightCount = 0;
 
         NativeArray<VisibleLight> visibleLights = _cullingResults.visibleLights;
         for(int i = 0; i < visibleLights.Length; ++i)
@@ -56,9 +65,20 @@ public class Lighting
         }
 
         _commandBuffer.SetGlobalInt(_dirLightCountId, visibleLights.Length);
-        _commandBuffer.SetGlobalVectorArray(_dirLightColorId, _dirLightColors);
-        _commandBuffer.SetGlobalVectorArray(_dirLightDirectionId, _dirLightDirections);
-        _commandBuffer.SetGlobalVectorArray(_dirLightShadowDataId, _dirLightShadowData);
+
+        if(dirLightCount > 0)
+        {
+            _commandBuffer.SetGlobalVectorArray(_dirLightColorId, _dirLightColors);
+            _commandBuffer.SetGlobalVectorArray(_dirLightDirectionId, _dirLightDirections);
+            _commandBuffer.SetGlobalVectorArray(_dirLightShadowDataId, _dirLightShadowData);
+        }
+
+        _commandBuffer.SetGlobalInt(_otherLightSizeId, otherLightCount);
+        if(otherLightCount > 0)
+        {
+            _commandBuffer.SetGlobalVectorArray(_otherLightColorsId, _otherLightColors);
+            _commandBuffer.SetGlobalVectorArray(_otherLightPositionsId, _otherLightPositions);
+        }
     }
 
     void SetupDirectionalLight(int index, ref VisibleLight visibleLight)
@@ -70,6 +90,12 @@ public class Lighting
         // Light light = RenderSettings.sun;
         // _commandBuffer.SetGlobalVector(_dirLightColorId, light.color.linear * light.intensity);
         // _commandBuffer.SetGlobalVector(_dirLightDirectionId, -light.transform.forward);
+    }
+
+    void SetupPointLight(int index, ref VisibleLight visibleLight)
+    {
+        _otherLightColors[index] = visibleLight.finalColor;
+        _otherLightPositions[index] = visibleLight.localToWorldMatrix.GetColumn(3);
     }
 
     public void Clearup()
