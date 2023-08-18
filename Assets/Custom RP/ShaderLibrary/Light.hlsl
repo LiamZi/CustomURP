@@ -2,6 +2,7 @@
 #define __SHADER_LIBRARY_LIGHT_HLSL__
 
 #define MAX_VISIBLE_LIGHTS 4
+#define MAX_OTHER_LIGHT 64
 
 
 CBUFFER_START(_CustomLight)
@@ -9,6 +10,10 @@ CBUFFER_START(_CustomLight)
     float3 _directionalLightColor[MAX_VISIBLE_LIGHTS];
     float3 _directionalLightDirection[MAX_VISIBLE_LIGHTS];
     float4 _directionalLightShadowData[MAX_VISIBLE_LIGHTS];
+
+    int _otherLightSize;
+    float4 _otherLightColors[MAX_OTHER_LIGHT];
+    float4 _otherLightPositions[MAX_OTHER_LIGHT];
 CBUFFER_END
 
 struct Light
@@ -21,6 +26,11 @@ struct Light
 int GetDirectionalLightSize()
 {
     return _directionalLightCount;
+}
+
+int GetOtherLightSize()
+{
+    return _otherLightSize;
 }
 
 DirectinalShadowData GetDirectionalShadowData(int index, ShadowData shadowData)

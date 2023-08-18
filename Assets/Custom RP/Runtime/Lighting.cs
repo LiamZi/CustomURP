@@ -18,9 +18,9 @@ public class Lighting
     static int _dirLightDirectionId = Shader.PropertyToID("_directionalLightDirection");
     static int _dirLightShadowDataId = Shader.PropertyToID("_directionalLightShadowData");
 
-    static int _otherLightSizeId = Shader.PropertyToID("_OtherLightSize");
-    static int _otherLightColorsId = Shader.PropertyToID("_OtherLightsColors");
-    static int _otherLightPositionsId = Shader.PropertyToID("_OtherLightPositions");
+    static int _otherLightSizeId = Shader.PropertyToID("_otherLightSize");
+    static int _otherLightColorsId = Shader.PropertyToID("_otherLightsColors");
+    static int _otherLightPositionsId = Shader.PropertyToID("_otherLightPositions");
 
     CullingResults _cullingResults;
 
@@ -56,10 +56,26 @@ public class Lighting
         for(int i = 0; i < visibleLights.Length; ++i)
         {
             VisibleLight visibleLight = visibleLights[i];
-            if(visibleLight.lightType == LightType.Directional)
+            // if(visibleLight.lightType == LightType.Directional)
+            // {
+            //     SetupDirectionalLight(dirLightCount++, ref visibleLight);
+            //     if(dirLightCount >= MAX_VISIBLE_LIGHTS) break;
+            // }
+            switch(visibleLight.lightType)
             {
-                SetupDirectionalLight(dirLightCount++, ref visibleLight);
-                if(dirLightCount >= MAX_VISIBLE_LIGHTS) break;
+            case LightType.Directional:
+                if(dirLightCount < MAX_VISIBLE_LIGHTS)
+                {
+                    SetupDirectionalLight(dirLightCount++, ref visibleLight);
+                }
+                break;
+
+            case LightType.Point:
+                if(otherLightCount < MAX_OTHER_LIGHTS)
+                {
+                    SetupPointLight(otherLightCount++, ref visibleLight);
+                }
+                break;
             }
 
         }
