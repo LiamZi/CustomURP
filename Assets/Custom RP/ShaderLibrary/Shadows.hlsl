@@ -55,6 +55,11 @@ struct DirectinalShadowData
     int shadowMaskChannel;
 };
 
+struct OtherShadowData
+{
+    float strength;
+    int shadowMaskChannel;
+};
 
 
 float SampleDirectionalShadowAtlas(float3 positionSTS)
@@ -175,10 +180,31 @@ float GetDirectionalShadowAttenuation(DirectinalShadowData data, ShadowData glob
     // return 1.0;
 }
 
+float GetOtherShadowAttenuation(OtherShadowData data, ShadowData global, Surface surface)
+{
+#if !defined(_RECEIVE_SHADOWS)
+    return 1.0;
+#endif
+
+    float shadow;
+    if(data.strength > 0.0)
+    {
+        shadow = GetBakedShadow(global.shadowMask, data.shadowMaskChannel, data.strength);
+    }
+    else
+    {
+        shadow = 1.0;
+    }
+
+    return shadow;
+}
+
 float FadeShadowStrength(float distance, float scale, float fade)
 {
     return saturate((1.0 - distance * scale) * fade);
 }
+
+
 
 
 ShadowData GetShadowData(Surface surface)

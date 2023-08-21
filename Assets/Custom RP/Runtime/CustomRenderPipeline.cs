@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
 
 
-public class CustomRenderPipeline : RenderPipeline
+public partial class CustomRenderPipeline : RenderPipeline
 {
     private CameraRenderer _renderer = new CameraRenderer();
 
@@ -28,6 +28,8 @@ public class CustomRenderPipeline : RenderPipeline
         GraphicsSettings.useScriptableRenderPipelineBatching = useSRPBatcher;
         GraphicsSettings.lightsUseLinearIntensity = true;
         // _renderer = new CameraRenderer(isEnabledDynamicBatch, isEnabledInstancing);
+
+        InitializeForEditor();
     }
 
     protected override void Render(ScriptableRenderContext context, Camera[] cameras)
