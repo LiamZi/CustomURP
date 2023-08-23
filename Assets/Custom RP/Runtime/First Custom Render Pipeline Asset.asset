@@ -15,6 +15,7 @@ MonoBehaviour:
   _dynamicBatching: 1
   _instancing: 1
   _useSRPBatcher: 1
+  _useLightsPerObject: 1
   _shadows:
     _maxDistance: 30
     _distanceFade: 0.1

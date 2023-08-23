@@ -58,6 +58,7 @@ Shader "Custom RP/Lit"
             #pragma multi_compile _ _CASCADE_BLEND_SOFT _CASCADE_BLEND_DITHER
             #pragma multi_compile _ _SHADOW_MASK_ALWAYS _SHADOW_MASK_DISTANCE 
             #pragma multi_compile _ LOD_FADE_CROSSFADE LOD_FADE_PERCENTAGE 
+            #pragma multi_compile _ _LIGHTS_PER_OBJECT
             #pragma shader_feature _NORMAL_MAP
             #pragma shader_feature _MASK_MAP
             #pragma shader_feature _DETAIL_MAP

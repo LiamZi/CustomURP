@@ -10,6 +10,7 @@ public class Lighting
     const int MAX_VISIBLE_LIGHTS = 4;
     const int MAX_OTHER_LIGHTS = 64;
 
+    static string LIGHTS_PER_OBJECT_KEYWORD = "_LIGHTS_PER_OBJECT";
 
     CommandBuffer _commandBuffer = new CommandBuffer { name = _bufferName };
 
@@ -40,27 +41,30 @@ public class Lighting
     Shadows _shadows = new Shadows();
     
 
-    public void Setup(ScriptableRenderContext context, CullingResults cull, ShadowSettings shadowSettings)
+    public void Setup(ScriptableRenderContext context, CullingResults cull, ShadowSettings shadowSettings, bool useLightsPerObject)
     {
         this._cullingResults = cull;
 
         _commandBuffer.BeginSample(_bufferName);
         // SetupDirectionalLight();
         _shadows.Setup(context, cull, shadowSettings);
-        SetupLights();
+        SetupLights(useLightsPerObject);
         _shadows.Render();
         _commandBuffer.EndSample(_bufferName);
         context.ExecuteCommandBuffer(_commandBuffer);
         _commandBuffer.Clear();
     }
-    void SetupLights()
+    void SetupLights(bool useLightsPerObject)
     {
         int dirLightCount = 0;
         int otherLightCount = 0;
+        NativeArray<int> indexMap = useLightsPerObject ? _cullingResults.GetLightIndexMap(Allocator.Temp) : default;
 
         NativeArray<VisibleLight> visibleLights = _cullingResults.visibleLights;
-        for(int i = 0; i < visibleLights.Length; ++i)
+        int i = 0;
+        for(i = 0; i < visibleLights.Length; ++i)
         {
+            int newIndex = -1;
             VisibleLight visibleLight = visibleLights[i];
             // if(visibleLight.lightType == LightType.Directional)
             // {
@@ -82,6 +86,7 @@ public class Lighting
             {
                 if(otherLightCount < MAX_OTHER_LIGHTS)
                 {
+                    newIndex = otherLightCount;
                     SetupPointLight(otherLightCount++, ref visibleLight);
                 }
             }
@@ -90,12 +95,34 @@ public class Lighting
                 {
                     if(otherLightCount < MAX_OTHER_LIGHTS)
                     {
+                        newIndex = otherLightCount;
                         SetupSpotLight(otherLightCount++, ref visibleLight);
                     }
                 }
                 break;
             }
 
+            if(useLightsPerObject)
+            {
+                indexMap[i] = newIndex;
+            }
+
+        }
+
+        if(useLightsPerObject)
+        {
+            for(; i < indexMap.Length; ++i)
+            {
+                indexMap[i] = -1;
+            }
+            _cullingResults.SetLightIndexMap(indexMap);
+            indexMap.Dispose();
+            Shader.EnableKeyword(LIGHTS_PER_OBJECT_KEYWORD);
+
+        }
+        else
+        {
+            Shader.DisableKeyword(LIGHTS_PER_OBJECT_KEYWORD);
         }
 
         _commandBuffer.SetGlobalInt(_dirLightCountId, visibleLights.Length);

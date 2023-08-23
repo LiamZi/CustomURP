@@ -63,7 +63,7 @@ public partial class CameraRenderer
     }
 
     public void Render(ScriptableRenderContext context, Camera camera, 
-                    bool useDynamicBatching, bool useGPUInstanceing, 
+                    bool useDynamicBatching, bool useGPUInstanceing, bool useLightsPerObject,
                     ShadowSettings shadowSettings)
     {
         this._context = context;
@@ -77,11 +77,11 @@ public partial class CameraRenderer
         _commandBuffer.BeginSample(_sampleName);
         ExcuteBuffer();
 
-        _lighting.Setup(context, _cullingResults, shadowSettings);
+        _lighting.Setup(context, _cullingResults, shadowSettings, useLightsPerObject);
         _commandBuffer.EndSample(_sampleName);
 
         Setup();
-        DrawVisibleGeometry(useDynamicBatching, useGPUInstanceing);
+        DrawVisibleGeometry(useDynamicBatching, useGPUInstanceing, useLightsPerObject);
         DrawUnsupportedShaders();
         DrawGizmos();
         _lighting.Clearup();
@@ -118,8 +118,10 @@ public partial class CameraRenderer
        
     }
 
-    void DrawVisibleGeometry(bool useDynamicBatching, bool useGPUInstanceing)
+    void DrawVisibleGeometry(bool useDynamicBatching, bool useGPUInstanceing, bool useLightsPerObject)
     {
+        PerObjectData lightsPerObjectFlags = useLightsPerObject ? PerObjectData.LightData | PerObjectData.LightIndices : PerObjectData.None;
+
         var sortingSettings = new SortingSettings(_camera)
         {
             criteria = SortingCriteria.CommonOpaque
@@ -136,7 +138,8 @@ public partial class CameraRenderer
             perObjectData = PerObjectData.LightIndices | PerObjectData.Lightmaps | 
                             PerObjectData.ShadowMask | PerObjectData.LightProbe | 
                             PerObjectData.LightProbeProxyVolume | PerObjectData.OcclusionProbe |
-                            PerObjectData.OcclusionProbeProxyVolume | PerObjectData.ReflectionProbes
+                            PerObjectData.OcclusionProbeProxyVolume | PerObjectData.ReflectionProbes |
+                            lightsPerObjectFlags
                             // 
 
         };

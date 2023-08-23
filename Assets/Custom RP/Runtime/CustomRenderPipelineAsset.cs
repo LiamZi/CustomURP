@@ -15,6 +15,9 @@ public class CustomRenderPipelineAsset : RenderPipelineAsset
 
     [SerializeField]
     bool _useSRPBatcher = true;
+    
+    [SerializeField]
+    bool _useLightsPerObject = true;
 
     [SerializeField]
     ShadowSettings _shadows = default;
@@ -24,7 +27,7 @@ public class CustomRenderPipelineAsset : RenderPipelineAsset
     protected override RenderPipeline CreatePipeline()
     {   
 
-        _pipeline = new CustomRenderPipeline(_dynamicBatching, _instancing, _useSRPBatcher, _shadows);
+        _pipeline = new CustomRenderPipeline(_dynamicBatching, _instancing, _useSRPBatcher, _useLightsPerObject, _shadows);
 
         return _pipeline;
     }
