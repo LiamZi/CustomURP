@@ -6,6 +6,7 @@
 
 TEXTURE2D(_BaseMap);
 SAMPLER(sampler_BaseMap);
+bool _ShadowPancaking;
 
 UNITY_INSTANCING_BUFFER_START(PerInstance)
     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
@@ -35,11 +36,14 @@ Varyings ShadowCasterVert(Attributes input)
     UNITY_TRANSFER_INSTANCE_ID(input, o);
     float3 positionWS = TransformObjectToWorld(input.positionOS);
     o.positionCS = TransformWorldToHClip(positionWS);
+    if(_ShadowPancaking)
+    {
 #if UNITY_REVERSED_Z
-    o.positionCS.z = min(o.positionCS.z, o.positionCS.w * UNITY_NEAR_CLIP_VALUE);
+        o.positionCS.z = min(o.positionCS.z, o.positionCS.w * UNITY_NEAR_CLIP_VALUE);
 #else
-    o.positionCS.z = max(o.positionCS.z, o.positionCS.w * UNITY_NEAR_CLIP_VALUE);
+        o.positionCS.z = max(o.positionCS.z, o.positionCS.w * UNITY_NEAR_CLIP_VALUE);
 #endif
+    }
 
     float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
     o.baseUV = input.baseUV * baseST.xy + baseST.zw;
