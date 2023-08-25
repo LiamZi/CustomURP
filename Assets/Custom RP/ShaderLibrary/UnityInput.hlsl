@@ -28,6 +28,8 @@ CBUFFER_START(UnityPerDraw)
 	float4 unity_ProbeVolumeMin;
 
     float4 unity_SpecCube0_HDR;
+
+    float4 _ProjectionParams;
     
 CBUFFER_END
 

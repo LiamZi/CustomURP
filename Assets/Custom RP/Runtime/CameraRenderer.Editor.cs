@@ -7,7 +7,8 @@ using UnityEngine.Profiling;
 
 public partial class CameraRenderer
 {
-
+    partial void DrawGizmosBeforeFX();
+    partial void DrawGizmosAfterFX();
     partial void DrawUnsupportedShaders();
     partial void DrawGizmos();
     partial void PrepareForSceneWindow();
@@ -73,6 +74,22 @@ public partial class CameraRenderer
         Profiler.BeginSample("Editor Only");
         _commandBuffer.name = _sampleName = _camera.name;
         Profiler.EndSample();
+    }
+
+    partial void DrawGizmosBeforeFX()
+    {
+        if(Handles.ShouldRenderGizmos())
+        {
+            _context.DrawGizmos(_camera, GizmoSubset.PreImageEffects);
+        }
+    }
+
+    partial void DrawGizmosAfterFX()
+    {
+        if(Handles.ShouldRenderGizmos())
+        {
+            _context.DrawGizmos(_camera, GizmoSubset.PostImageEffects);
+        }
     }
 
 #else

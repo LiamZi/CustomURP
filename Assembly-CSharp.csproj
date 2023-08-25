@@ -40,12 +40,15 @@
      <Compile Include="Assets\Custom RP\Runtime\ShadowSettings.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipeline.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Lighting.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipeline.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Shadows.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.Editor.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
-     <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipeline.Editor.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\PostFXSettings.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\PostFXStack.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\PostFXStack.Editor.cs" />
      <None Include="Assets\Custom RP\ShaderLibrary\Shadows.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\UnityInput.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\GI.hlsl" />
@@ -53,6 +56,7 @@
      <None Include="Assets\Custom RP\ShaderLibrary\Lit.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\UnLitInput.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\ShadowCaster.hlsl" />
+     <None Include="Assets\Custom RP\Shaders\PostFXStackPass.shader" />
      <None Include="Assets\Custom RP\ShaderLibrary\MetaPass.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\Unlit.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\Light.hlsl" />
@@ -62,6 +66,7 @@
      <None Include="Assets\Custom RP\Shaders\Unlit.shader" />
      <None Include="Assets\Custom RP\ShaderLibrary\Common.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\Lighting.hlsl" />
+     <None Include="Assets\Custom RP\ShaderLibrary\PostFXStackPasses.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\Surface.hlsl" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.47f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
