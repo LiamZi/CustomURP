@@ -9,6 +9,21 @@ public class PostFXSettings : ScriptableObject
     [System.NonSerialized]
     Material _material;
 
+    [System.Serializable]
+    public struct BloomSettings
+    {
+        [Range(0f, 16f)]
+        public int _maxIterations;
+
+        [Min(1f)]
+        public int _downScaleLimit;
+    }
+
+    [SerializeField]
+    BloomSettings _bloom = default;
+
+    public BloomSettings Bloom => _bloom;
+
 
     public Material Material
     {

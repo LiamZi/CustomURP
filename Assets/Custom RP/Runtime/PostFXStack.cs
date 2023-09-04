@@ -66,6 +66,7 @@ public partial class PostFXStack
     void Bloom(int sourceId)
     {
         _commandBuffer.BeginSample("Bloom");
+        PostFXSettings.BloomSettings bloom = _settings.Bloom;
         int width = _camera.pixelWidth / 2;
         int height = _camera.pixelHeight / 2;
         RenderTextureFormat format = RenderTextureFormat.Default;
@@ -73,9 +74,9 @@ public partial class PostFXStack
         int toId = _bloomPyramidId;
 
         int i;
-        for(i = 0; i < _maxBloomPyramidLevels; i++)
+        for(i = 0; i < bloom._maxIterations; i++)
         {
-            if(height < 1 || width < 1) break;
+            if(height < bloom._downScaleLimit || width < bloom._downScaleLimit) break;
 
             _commandBuffer.GetTemporaryRT(toId, width, height, 0, FilterMode.Bilinear, format);
             Draw(fromId, toId, Pass.Copy);
