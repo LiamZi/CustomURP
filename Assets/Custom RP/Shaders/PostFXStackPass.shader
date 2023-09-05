@@ -13,7 +13,7 @@ Shader "Hidden/Custom RP/Post FX Stack"
 
         Pass
         {
-            Name "Bloom Combine"
+            Name "Bloom Add"
             HLSLPROGRAM
             #pragma target 3.5
             #pragma vertex DefaultPassVertex
@@ -48,6 +48,39 @@ Shader "Hidden/Custom RP/Post FX Stack"
 
         Pass
         {
+            Name "Bloom PrefilterFireflies"
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex DefaultPassVertex
+            #pragma fragment BloomPrefilterFirefliesPassFragment
+            #pragma enable_d3d11_debug_symbols
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "Bloom Scatter"
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex DefaultPassVertex
+            #pragma fragment BloomScatterPassFragment
+            #pragma enable_d3d11_debug_symbols
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "Bloom Scatter Final"
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex DefaultPassVertex
+            #pragma fragment BloomScatterFinalPassfragment
+            #pragma enable_d3d11_debug_symbols
+            ENDHLSL
+        }
+
+        Pass
+        {
             Name "Bloom Vertical"
             HLSLPROGRAM
             #pragma target 3.5
@@ -65,6 +98,39 @@ Shader "Hidden/Custom RP/Post FX Stack"
             #pragma target 3.5
             #pragma vertex DefaultPassVertex
             #pragma fragment CopyPassFragment
+            #pragma enable_d3d11_debug_symbols
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "ToneMapping ACES"
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex DefaultPassVertex
+            #pragma fragment ToneMappingACESPassFragment
+            #pragma enable_d3d11_debug_symbols
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "ToneMapping Neutral"
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex DefaultPassVertex
+            #pragma fragment ToneMappingNeutralPassFragment
+            #pragma enable_d3d11_debug_symbols
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "ToneMapping Reinhard"
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex DefaultPassVertex
+            #pragma fragment ToneMappingReinhardPassFragment
             #pragma enable_d3d11_debug_symbols
             ENDHLSL
         }

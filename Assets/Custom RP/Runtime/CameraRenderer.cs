@@ -33,6 +33,8 @@ public partial class CameraRenderer
     private static ShaderTagId _customURPShaderTagId = new ShaderTagId("SRPDefaultUnlit");
     private static ShaderTagId _litShaderTagId = new ShaderTagId("CustomLit");
 
+    private bool _isUseHDR;
+
     // private bool _isEnabledDynamicBatch = false;
     // public bool EnabledDynamicBatch
     // {
@@ -68,7 +70,7 @@ public partial class CameraRenderer
     }
 
     public void Render(ScriptableRenderContext context, Camera camera, 
-                    bool useDynamicBatching, bool useGPUInstanceing, 
+                    bool useHDR, bool useDynamicBatching, bool useGPUInstanceing, 
                     bool useLightsPerObject, ShadowSettings shadowSettings, 
                     PostFXSettings postFXSettings)
     {
@@ -80,11 +82,13 @@ public partial class CameraRenderer
 
         if (!Cull(shadowSettings._maxDistance)) return;
 
+        _isUseHDR = useHDR && camera.allowHDR;
+
         _commandBuffer.BeginSample(_sampleName);
         ExcuteBuffer();
 
         _lighting.Setup(context, _cullingResults, shadowSettings, useLightsPerObject);
-        _postStack.Setup(context, camera, postFXSettings);
+        _postStack.Setup(context, camera, postFXSettings, _isUseHDR);
         _commandBuffer.EndSample(_sampleName);
 
         Setup();
@@ -119,7 +123,7 @@ public partial class CameraRenderer
 
             _commandBuffer.GetTemporaryRT(_frameBufferId, _camera.pixelWidth, 
                                 _camera.pixelHeight, 32, FilterMode.Bilinear, 
-                                RenderTextureFormat.Default);
+                                _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
             _commandBuffer.SetRenderTarget(_frameBufferId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
         }
 

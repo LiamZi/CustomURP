@@ -1,6 +1,7 @@
 #ifndef __SHADER_LIBRARY_POST_FX_STACK_PASSES_HLSL__
 #define __SHADER_LIBRARY_POST_FX_STACK_PASSES_HLSL__
 
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Filtering.hlsl"
 
 
@@ -133,6 +134,91 @@ float4 BloomPrefilterPassFragment(Varyings input) : SV_TARGET
 {
     float3 color = ApplyBloomThreshold(GetSource(input.screenUV).rgb);
     return float4(color, 1.0);
+}
+
+// A sample's weight is 1/(l+1) with l its luminance. thus or luminance 0 the weight is 1, for luminance 1 the weight is 1/2, 
+// for 3 its 1/4 ..., and so on,
+float4 BloomPrefilterFirefliesPassFragment(Varyings input) : SV_TARGET
+{
+    float3 color = 0.0;
+    float weightSum = 0.0;
+
+    float2 offsets[] = { float2(0.0, 0.0), float2(-1.0, -1.0), float2(-1.0, 1.0), 
+                         float2(1.0, -1.0), float2(1.0, 1.0) };
+                        //  float2(-1.0, 0.0), float2(1.0, 0.0), float2(0.0, -1.0), float2(0.0, 1.0) };
+
+    for(int i = 0; i < 5; i++)
+    {
+        float3 c = GetSource(input.screenUV + offsets[i] * GetSourceTexelSize().xy * 2.0).rgb;
+        c = ApplyBloomThreshold(c);
+        float w = 1.0 / (Luminance(c) + 1.0);
+        color += c * w;
+        weightSum += w;
+    }            
+
+    // color *= 1.0 / 9.0;
+    color /= weightSum;
+    return float4(color, 1.0);
+}
+
+float4 BloomScatterPassFragment(Varyings input) : SV_TARGET
+{
+    float3 lowRes;
+    if(_BloomBicubicUpSampling)
+    {
+        lowRes = GetSourceBicubic(input.screenUV).rgb;
+    }
+    else
+    {
+        lowRes = GetSource(input.screenUV).rgb;
+    }
+    float3 highRes = GetSource2(input.screenUV).rgb;
+    return float4(lerp(highRes, lowRes, _BloomIntensity), 1.0);
+}
+
+float4 BloomScatterFinalPassfragment(Varyings input) : SV_TARGET
+{
+    float3 lowRes;
+    if(_BloomBicubicUpSampling)
+    {
+        lowRes = GetSourceBicubic(input.screenUV).rgb;
+    }
+    else
+    {
+        lowRes = GetSource(input.screenUV).rgb;
+    }
+
+    float3 highRes = GetSource2(input.screenUV).rgb;
+    lowRes += highRes - ApplyBloomThreshold(highRes);
+    return float4(lerp(highRes, lowRes, _BloomIntensity), 1.0);
+}
+
+//ToneMapping Reinhard  c/(1+c).  c is color 
+//the alternative function c(1+c/w^2)/(1+c), where w is the white point.
+float4 ToneMappingReinhardPassFragment(Varyings input) : SV_TARGET
+{
+    float4 color = GetSource(input.screenUV);
+    color.rgb = min(color.rgb, 60.0);
+    color.rgb /= color.rgb + 1.0;
+    return color;
+}
+
+//ToneMapping Neutral t(x)=(x(ax+cb)+de)/(x(ax+b)+df)-e/f The final color is then (t(ce))/(t(w))
+// In this case x is an input color channel and the other values are constants that configure the curve.
+float4 ToneMappingNeutralPassFragment(Varyings input) : SV_TARGET
+{
+    float4 color = GetSource(input.screenUV);
+    color.rgb = min(color.rgb, 60.0);
+    color.rgb = NeutralTonemap(color.rgb);
+    return color;
+}
+
+float4 ToneMappingACESPassFragment(Varyings input) : SV_TARGET
+{
+    float4 color = GetSource(input.screenUV);
+    color.rgb = min(color.rgb, 60.0f);
+    color.rgb = AcesTonemap(unity_to_ACES(color.rgb));
+    return color;
 }
 
 #endif

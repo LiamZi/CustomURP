@@ -18,7 +18,7 @@ MonoBehaviour:
   _useLightsPerObject: 1
   _shadows:
     _maxDistance: 50
-    _distanceFade: 0.1
+    _distanceFade: 0.5
     _directional:
       _atlasSize: 2048
       _filter: 3
@@ -32,3 +32,4 @@ MonoBehaviour:
       _atlasSize: 1024
       _filter: 0
   _postFXSettings: {fileID: 11400000, guid: b0ff7122a6c855942a0fcc60938ce4b6, type: 2}
+  _allowHDR: 1
