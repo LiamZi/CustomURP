@@ -8,12 +8,32 @@
 TEXTURE2D(_PostFXSource);
 TEXTURE2D(_PostFXSource2);
 SAMPLER(sampler_linear_clamp);
+SAMPLER(sampler_point_clamp);
+
+TEXTURE2D(_ColorGradingLUT);
 
 float4 _PostFXSource_TexelSize;
 
 bool _BloomBicubicUpSampling;
 float4 _BloomThreshold;
 float _BloomIntensity;
+
+float4 _ColorAdjustments;
+float4 _ColorFilter;
+float4 _WhiteBalance;
+float4 _SplitToningShadows;
+float4 _SplitToningHighlights;
+float4 _ChannelMixerRed;
+float4 _ChannelMixerGreen;
+float4 _ChannelMixerBlue;
+float4 _SMHShadows;
+float4 _SMHMidtones;
+float4 _SMHHighlights; 
+float4 _SMHRange;
+float4 _ColorGradingLUTParameters;
+bool _ColorGradingLUTInLogC;
+
+
 
 struct Varyings
 {
@@ -193,32 +213,168 @@ float4 BloomScatterFinalPassfragment(Varyings input) : SV_TARGET
     return float4(lerp(highRes, lowRes, _BloomIntensity), 1.0);
 }
 
+float Luminance(float3 color, bool useACES)
+{
+    return useACES ?  AcesLuminance(color) : Luminance(color);
+}
+
+float3 ColorGradePostExposure(float3 color)
+{
+    return color * _ColorAdjustments.x;
+}
+
+float3 ColorGradingWhiteBalance(float3 color)
+{
+    color = LinearToLMS(color);
+    color *= _WhiteBalance.rgb;
+    return LMSToLinear(color);
+}
+
+float3 ColorGradingContrast(float3 color, bool useACES)
+{
+    color = useACES ? ACES_to_ACEScc(unity_to_ACES(color)) : LinearToLogC(color);
+    color = (color - ACEScc_MIDGRAY) * _ColorAdjustments.y + ACEScc_MIDGRAY;
+    return useACES ? ACES_to_ACEScg(ACEScc_to_ACES(color)) : LogCToLinear(color);
+}
+
+float3 ColorGradeColorFilter(float3 color)
+{
+    return color * _ColorFilter.rgb;
+}
+
+float3 ColorGradingHueShift(float3 color)
+{
+    color = RgbToHsv(color);
+    float hue = color.x + _ColorAdjustments.z;
+    color.x = RotateHue(hue, 0.0, 1.0);
+    return HsvToRgb(color);
+}
+
+float3 ColorGradingSaturation(float3 color, bool useACES)
+{
+    float luminance = Luminance(color, useACES);
+    color = (color - luminance) * _ColorAdjustments.w + luminance;
+    return color;
+}
+
+float3 ColorGradingSplitToning(float3 color, bool useACES)
+{
+    color = PositivePow(color, 1.0 / 2.2);
+    float t = saturate(Luminance(saturate(color), useACES) + _SplitToningShadows.w);
+    float3 shadows = lerp(0.5, _SplitToningShadows.rgb, 1.0 - t);
+    float3 highlights = lerp(0.5, _SplitToningHighlights.rgb, t) ;
+    color = SoftLight(color, shadows);
+    color = SoftLight(color, highlights);
+    return PositivePow(color, 2.2);
+}
+
+float3 ColorGradingChannelMixer(float3 color)
+{
+    return mul(float3x3(_ChannelMixerRed.rgb, _ChannelMixerGreen.rgb, _ChannelMixerBlue.rgb), color);
+}
+
+float3 ColorGradingShadowMidtonesHighligths(float3 color, bool useACES)
+{
+    float luminance = Luminance(color, useACES);
+    float shadowsWeight = 1.0 - smoothstep(_SMHRange.x, _SMHRange.y, luminance);
+    float highlightsWeight = smoothstep(_SMHRange.z, _SMHRange.w, luminance);
+    float midtonesWeight = 1.0 - shadowsWeight - highlightsWeight;
+    return color * _SMHShadows.rgb * shadowsWeight + color * _SMHMidtones.rgb * midtonesWeight + color * _SMHHighlights.rgb * highlightsWeight;
+}
+
+float3 ColorGrade(float3 color, bool useACES)
+{
+    // color = min(color, 60.0);
+    color = ColorGradePostExposure(color);
+    color = ColorGradingWhiteBalance(color);
+    color = ColorGradingContrast(color, useACES);
+    color = ColorGradeColorFilter(color);
+    color = max(color, 0.0);
+    color = ColorGradingSplitToning(color, useACES);
+    color = ColorGradingChannelMixer(color);
+    color = max(color, 0.0);
+    color = ColorGradingShadowMidtonesHighligths(color, useACES);
+    color = ColorGradingHueShift(color);
+    color = ColorGradingSaturation(color, useACES);
+    return max(useACES ? ACEScg_to_ACES(color) : color, 0.0);
+}
+
+
+float3 GetColorGradeLUT(float2 uv, bool useACES = false)
+{
+    // float3 color = float3(uv, 0.0);
+    float3 color = GetLutStripValue(uv, _ColorGradingLUTParameters);
+    return ColorGrade(_ColorGradingLUTInLogC ?  LogCToLinear(color) : color, useACES);
+}
+
+float3 ApplyColorGradingLUT(float3 color)
+{
+    // return ApplyLut2D(TEXTURE2D_ARGS(_ColorGradingLUT, sampler_linear_clamp), saturate(_ColorGradingLUTInLogC ? LinearToLogC(color) : color), _ColorGradingLUTParameters.xyz);
+	return ApplyLut2D(TEXTURE2D_ARGS(_ColorGradingLUT, sampler_linear_clamp), saturate(_ColorGradingLUTInLogC ? LinearToLogC(color) : color), _ColorGradingLUTParameters.xyz);
+}
+
 //ToneMapping Reinhard  c/(1+c).  c is color 
 //the alternative function c(1+c/w^2)/(1+c), where w is the white point.
-float4 ToneMappingReinhardPassFragment(Varyings input) : SV_TARGET
+// float4 ToneMappingReinhardPassFragment(Varyings input) : SV_TARGET
+float4 ColorGradingReinhardPassFragment(Varyings input) : SV_TARGET
 {
-    float4 color = GetSource(input.screenUV);
-    color.rgb = min(color.rgb, 60.0);
-    color.rgb /= color.rgb + 1.0;
-    return color;
+    // float4 color = GetSource(input.screenUV);
+    // // color.rgb = min(color.rgb, 60.0);
+    // color.rgb = ColorGrade(color.rgb, false);
+    // color.rgb /= color.rgb + 1.0;
+    // return color;
+    float3 color = GetColorGradeLUT(input.screenUV);
+	color /= color + 1.0;
+	return float4(color, 1.0);
 }
 
 //ToneMapping Neutral t(x)=(x(ax+cb)+de)/(x(ax+b)+df)-e/f The final color is then (t(ce))/(t(w))
 // In this case x is an input color channel and the other values are constants that configure the curve.
-float4 ToneMappingNeutralPassFragment(Varyings input) : SV_TARGET
+// float4 ToneMappingNeutralPassFragment(Varyings input) : SV_TARGET
+float4 ColorGradingNeutralPassFragment(Varyings input) : SV_TARGET
+{
+    // float4 color = GetSource(input.screenUV);
+    // // color.rgb = min(color.rgb, 60.0);
+    //  color.rgb = ColorGrade(color.rgb, false);
+    float3 color = GetColorGradeLUT(input.screenUV);
+    color = NeutralTonemap(color);
+    return float4(color, 1.0);
+}
+
+// float4 ToneMappingACESPassFragment(Varyings input) : SV_TARGET
+float4 ColorGradingACESPassFragment(Varyings input) : SV_TARGET
+{
+    // float4 color = GetSource(input.screenUV);
+    // // color.rgb = min(color.rgb, 60.0f);
+    // color.rgb = ColorGrade(color.rgb, true);
+    // color.rgb = AcesTonemap(unity_to_ACES(color.rgb));
+    // return color;
+
+    float3 color = GetColorGradeLUT(input.screenUV, true);
+    // color = AcesTonemap(unity_to_ACES(color));
+    color = AcesTonemap(color);
+    return float4(color, 1.0);
+}
+
+// float4 ToneMappingNonePassFragment(Varyings input) : SV_TARGET
+float4 ColorGradingNonePassFragment(Varyings input) : SV_TARGET
+{
+    // float4 color = GetSource(input.screenUV);
+    // color.rgb = ColorGrade(color.rgb, false);
+    float3 color = GetColorGradeLUT(input.screenUV);
+
+    return float4(color, 1.0);
+}
+
+
+float4 FinalPassFragment(Varyings input) : SV_TARGET
 {
     float4 color = GetSource(input.screenUV);
-    color.rgb = min(color.rgb, 60.0);
-    color.rgb = NeutralTonemap(color.rgb);
+    color.rgb = ApplyColorGradingLUT(color.rgb);
     return color;
 }
 
-float4 ToneMappingACESPassFragment(Varyings input) : SV_TARGET
-{
-    float4 color = GetSource(input.screenUV);
-    color.rgb = min(color.rgb, 60.0f);
-    color.rgb = AcesTonemap(unity_to_ACES(color.rgb));
-    return color;
-}
+
+
 
 #endif

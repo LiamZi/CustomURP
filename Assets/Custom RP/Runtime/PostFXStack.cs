@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static PostFXSettings;
 
 public partial class PostFXStack 
 {
@@ -18,21 +19,39 @@ public partial class PostFXStack
     Camera _camera;
     PostFXSettings _settings;
 
-    enum Pass
-    {
-        BloomAdd,
-        // BloomCombine,
-        BloomHorizontal,
-        BloomPrefilter,
-        BloomPrefilterFireflies,
-        BloomScatter,
-        BloomScatterFinal,
-        BloomVertical,
-        Copy,
-        ToneMappingACES,
-        ToneMappingNeutral,
-        ToneMappingReinhard
-    };
+    // enum Pass
+    // {
+    //     BloomAdd,
+    //     // BloomCombine,
+    //     BloomHorizontal,
+    //     BloomPrefilter,
+    //     BloomPrefilterFireflies,
+    //     BloomScatter,
+    //     BloomScatterFinal,
+    //     BloomVertical,
+    //     Copy,
+    //     ColorGradingNone,
+    //     ColorGradingACES,
+    //     ColorGradingNeutral,
+    //     ColorGradingReinhard,
+    //     Final
+    // };
+
+    enum Pass {
+		BloomAdd,
+		BloomHorizontal,
+		BloomPrefilter,
+		BloomPrefilterFireflies,
+		BloomScatter,
+		BloomScatterFinal,
+		BloomVertical,
+		Copy,
+		ColorGradingNone,
+		ColorGradingACES,
+		ColorGradingNeutral,
+		ColorGradingReinhard,
+		Final
+	}
 
     int _fxSourceId = Shader.PropertyToID("_PostFXSource");
     int _fxSourceId2 = Shader.PropertyToID("_PostFXSource2");
@@ -41,13 +60,29 @@ public partial class PostFXStack
     int _bloomThresholdId = Shader.PropertyToID("_BloomThreshold");
     int _bloomIntensityId = Shader.PropertyToID("_BloomIntensity");
     int _bloomResultId = Shader.PropertyToID("_BloomResult");
+    int _colorAdjustmentsId = Shader.PropertyToID("_ColorAdjustments");
+    int _colorFilterId = Shader.PropertyToID("_ColorFilter");
+    int _whiteBalanceId = Shader.PropertyToID("_WhiteBalance");
+    int _splitToningShadowsId = Shader.PropertyToID("_SplitToningShadows");
+    int _splitToningHighlightsId = Shader.PropertyToID("_SplitToningHighlights");
+	int	_channelMixerRedId = Shader.PropertyToID("_ChannelMixerRed");
+	int	_channelMixerGreenId = Shader.PropertyToID("_ChannelMixerGreen");
+	int	_channelMixerBlueId = Shader.PropertyToID("_ChannelMixerBlue");
+    int _smhShadowsId = Shader.PropertyToID("_SMHShadows");
+    int _smhMidtonesId = Shader.PropertyToID("_SMHMidtones");
+    int _smhHighlightsId = Shader.PropertyToID("_SMHHighlights"); 
+    int _smhRangeId = Shader.PropertyToID("_SMHRange");
+    int _colorGradingLUTId = Shader.PropertyToID("_ColorGradingLUT");
+    int _colorGradingLUTParametersId = Shader.PropertyToID("_ColorGradingLUTParameters"); 
+    int _colorGradingLUTInLogCId = Shader.PropertyToID("_ColorGradingLUTInLogC");
 
     bool _isUseHDR = false;
-
 
     public bool IsActive => _settings != null;
 
     int _bloomPyramidId;
+
+    int _colorLUTResolution;
 
     public PostFXStack()
     {
@@ -58,11 +93,12 @@ public partial class PostFXStack
         }
     }
 
-    public void Setup(ScriptableRenderContext context, Camera camera, PostFXSettings settings, bool isUseHDR)
+    public void Setup(ScriptableRenderContext context, Camera camera, PostFXSettings settings, bool isUseHDR, int colorLUTResolution)
     {
         _context = context;
         _camera = camera;
         _isUseHDR = isUseHDR;
+        _colorLUTResolution = colorLUTResolution;
         // _settings = settings;
         _settings = camera.cameraType <= CameraType.SceneView ? settings : null;
         ApplySceneViewState();
@@ -71,15 +107,15 @@ public partial class PostFXStack
     public void Render(int sourceId)
     {
         // _commandBuffer.Blit(sourceId, BuiltinRenderTextureType.CameraTarget);
-        // Draw(sourceId, BuiltinRenderTextureType.CameraTarget, Pass.Copy);/
+        // Draw(sourceId, BuiltinRenderTextureType.CameraTarget, Pass.Copy);
         if(Bloom(sourceId))
         {
-            ToneMapping(_bloomResultId);
+            ColorGradingAndToneMapping(_bloomResultId);
             _commandBuffer.ReleaseTemporaryRT(_bloomResultId);
         }
         else
         {
-            ToneMapping(sourceId);
+            ColorGradingAndToneMapping(sourceId);
         }
 
         _context.ExecuteCommandBuffer(_commandBuffer);
@@ -120,6 +156,7 @@ public partial class PostFXStack
 
         RenderTextureFormat format = _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default;
         _commandBuffer.GetTemporaryRT(_bloomPrefilterId, width, height, 0, FilterMode.Bilinear, format);
+        // Draw(sourceId, _bloomPrefilterId, bloom._fadeFireFlies ? Pass.BloomPrefilterFireflies : Pass.BloomPrefilter);
         Draw(sourceId, _bloomPrefilterId, bloom._fadeFireFlies ? Pass.BloomPrefilterFireflies : Pass.BloomPrefilter);
         width /= 2;
         height /= 2;
@@ -189,7 +226,8 @@ public partial class PostFXStack
             _commandBuffer.ReleaseTemporaryRT(_bloomPyramidId);
         }
 
-        _commandBuffer.SetGlobalFloat(_bloomIntensityId, bloom._intensity);
+        // _commandBuffer.SetGlobalFloat(_bloomIntensityId, bloom._intensity);
+        _commandBuffer.SetGlobalFloat(_bloomIntensityId, finalIntensity);
         _commandBuffer.SetGlobalTexture(_fxSourceId2, sourceId);
         _commandBuffer.GetTemporaryRT(_bloomResultId, _camera.pixelWidth, _camera.pixelHeight, 0, FilterMode.Bilinear, format);
         Draw(fromId, _bloomResultId, finalPass);
@@ -200,12 +238,85 @@ public partial class PostFXStack
         return true;
     }
 
-    void ToneMapping(int sourceId)
+    void ColorGradingAndToneMapping(int sourceId)
     {
-        PostFXSettings.ToneMappingSettings.Mode mode = _settings.ToneMaping._mode;
-        Pass pass = mode < 0 ? Pass.Copy : Pass.ToneMappingACES + (int)mode;
+        ConfigureColorAdjustments();
+        ConfigureWhiteBalance();
+        ConfigureSplitToning();
+        ConfigureChannelMixer();
+        ConfigureShadowMidtonesHighlights();
 
-        Draw(sourceId, BuiltinRenderTextureType.CameraTarget, pass);
+        int lutHeight = _colorLUTResolution;
+        int lutWidth = lutHeight * lutHeight;
+        _commandBuffer.GetTemporaryRT(_colorGradingLUTId, lutWidth, lutHeight, 
+                                0, FilterMode.Bilinear, RenderTextureFormat.DefaultHDR);
+        _commandBuffer.SetGlobalVector(_colorGradingLUTParametersId, 
+                                    new Vector4(lutHeight, 0.5f / lutWidth, 
+                                    0.5f / lutHeight, lutHeight / (lutHeight - 1f)));
+       
+
+        PostFXSettings.ToneMappingSettings.Mode mode = _settings.ToneMaping._mode;
+        // Pass pass = mode < 0 ? Pass.Copy : Pass.ToneMapingNone + (int)mode;
+        Pass pass = Pass.ColorGradingNone + (int)mode;
+        _commandBuffer.SetGlobalFloat(_colorGradingLUTInLogCId, _isUseHDR && pass != Pass.ColorGradingNone ? 1f : 0f);
+
+        Draw(sourceId, _colorGradingLUTId, pass);
+
+        _commandBuffer.SetGlobalVector(_colorGradingLUTParametersId, new Vector4(1f / lutWidth, 1f / lutHeight, lutHeight - 1f));
+
+        Draw(sourceId, BuiltinRenderTextureType.CameraTarget, Pass.Final);
+        _commandBuffer.ReleaseTemporaryRT(_colorGradingLUTId);
+    }
+
+    void ConfigureColorAdjustments()
+    {
+        ColorAdjustmentsSettings colorAdjustments = _settings.ColorAdjustments;
+        //exposure to 2^
+        var exposure = Mathf.Pow(2f, colorAdjustments._postExposure);
+        //contrast and saturation to [0-2]
+        var contrast = colorAdjustments._contrast * 0.01f + 1f;
+        //hue to [-1, 1]
+        var hueShift = colorAdjustments._hueShift * (1f / 360f);
+        var stauration = colorAdjustments._saturation * 0.01f + 1f;
+
+        Vector4 adjuestments = new Vector4(exposure, contrast, hueShift, stauration);
+        _commandBuffer.SetGlobalVector(_colorAdjustmentsId, adjuestments);
+        _commandBuffer.SetGlobalColor(_colorFilterId, colorAdjustments._colorFilter.linear);
+    }
+
+    void ConfigureWhiteBalance()
+    {
+        WhiteBalanceSettings whiteBalance = _settings.WhiteBalance;
+        var white = ColorUtils.ColorBalanceToLMSCoeffs(whiteBalance._temperature, whiteBalance._tint);
+        _commandBuffer.SetGlobalVector(_whiteBalanceId, white);
+    }
+
+    void ConfigureSplitToning()
+    {
+        SplitToningSettings splitToningSetting = _settings.SplitToning;
+        Color splitColor = splitToningSetting._shadows;
+        splitColor.a = splitToningSetting._balance * 0.01f;
+        _commandBuffer.SetGlobalColor(_splitToningShadowsId, splitColor);
+        _commandBuffer.SetGlobalColor(_splitToningHighlightsId, splitToningSetting._highlights);
+    }
+
+    void ConfigureChannelMixer()
+    {
+        ChannelMixerSettings mixer = _settings.ChannelMixer;
+        _commandBuffer.SetGlobalVector(_channelMixerRedId, mixer._red);
+        _commandBuffer.SetGlobalVector(_channelMixerGreenId, mixer._green);
+        _commandBuffer.SetGlobalVector(_channelMixerBlueId, mixer._blue);
+    }
+
+    void ConfigureShadowMidtonesHighlights()
+    {
+        ShadowMidtonesHighlightsSettings midtones = _settings.ShadowMidtonesHighlights;
+        _commandBuffer.SetGlobalColor(_smhShadowsId, midtones._shadows.linear);
+        _commandBuffer.SetGlobalColor(_smhMidtonesId, midtones._midtone.linear);
+        _commandBuffer.SetGlobalColor(_smhHighlightsId, midtones._highlights.linear);
+        var range = new Vector4(midtones._shadowStart, midtones._shadowEnd, midtones._highlightsStart, midtones._hightlightsEnd);
+        _commandBuffer.SetGlobalVector(_smhRangeId, range);
+        
     }
 
 };

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7840572267feb50408b78f0aabea4d26, type: 3}
   m_Name: PostFXSettings
   m_EditorClassIdentifier: 
-  _shader: {fileID: 4800000, guid: 58cc08bee69a3d845845c4bb6b5855e2, type: 3}
+  _shader: {fileID: 4800000, guid: a2d9fb05a91eea243ad4fd8f0e094c8d, type: 3}
   _bloom:
-    _maxIterations: 5
+    _maxIterations: 16
     _downScaleLimit: 2
     _bicubicUpSampling: 1
     _threshold: 1
@@ -24,4 +24,29 @@ MonoBehaviour:
     _mode: 1
     _scatter: 0.7
   _toneMapping:
-    _mode: 0
+    _mode: 1
+  _colorAdjustments:
+    _postExposure: 0
+    _contrast: 0
+    _colorFilter: {r: 1, g: 1, b: 1, a: 1}
+    _hueShift: 0
+    _saturation: 28
+  _whiteBalanceSettings:
+    _temperature: 0
+    _tint: 0
+  _splitToningSettings:
+    _shadows: {r: 0.4481132, g: 0.7520087, b: 1, a: 1}
+    _highlights: {r: 1, g: 0.8036097, b: 0.4198113, a: 1}
+    _balance: 0
+  _channelMixerSettings:
+    _red: {x: 1, y: 0, z: 0}
+    _green: {x: 0, y: 1, z: 0}
+    _blue: {x: 0, y: 0, z: 1}
+  _shadowMidtonesHighlightsSettings:
+    _shadows: {r: 0.7490196, g: 0.6156863, b: 1, a: 1}
+    _midtone: {r: 1, g: 0.8509804, b: 0.8509804, a: 1}
+    _highlights: {r: 1, g: 0.89411765, b: 0.7921569, a: 1}
+    _shadowStart: 0
+    _shadowEnd: 0.3
+    _highlightsStart: 0.55
+    _hightlightsEnd: 1

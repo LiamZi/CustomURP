@@ -104,33 +104,55 @@ Shader "Hidden/Custom RP/Post FX Stack"
 
         Pass
         {
-            Name "ToneMapping ACES"
+            Name "Color Grading None"
             HLSLPROGRAM
             #pragma target 3.5
             #pragma vertex DefaultPassVertex
-            #pragma fragment ToneMappingACESPassFragment
+            #pragma fragment ColorGradingNonePassFragment
             #pragma enable_d3d11_debug_symbols
             ENDHLSL
         }
 
         Pass
         {
-            Name "ToneMapping Neutral"
+            Name "Color Grading ACES"
             HLSLPROGRAM
             #pragma target 3.5
             #pragma vertex DefaultPassVertex
-            #pragma fragment ToneMappingNeutralPassFragment
+            #pragma fragment ColorGradingACESPassFragment
             #pragma enable_d3d11_debug_symbols
             ENDHLSL
         }
 
         Pass
         {
-            Name "ToneMapping Reinhard"
+            Name "Color Grading Neutral"
             HLSLPROGRAM
             #pragma target 3.5
             #pragma vertex DefaultPassVertex
-            #pragma fragment ToneMappingReinhardPassFragment
+            #pragma fragment ColorGradingNeutralPassFragment
+            #pragma enable_d3d11_debug_symbols
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "Color Grading Reinhard"
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex DefaultPassVertex
+            #pragma fragment ColorGradingReinhardPassFragment
+            #pragma enable_d3d11_debug_symbols
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "Final Pass"
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex DefaultPassVertex
+            #pragma fragment FinalPassFragment
             #pragma enable_d3d11_debug_symbols
             ENDHLSL
         }

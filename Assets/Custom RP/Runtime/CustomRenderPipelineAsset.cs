@@ -28,6 +28,16 @@ public class CustomRenderPipelineAsset : RenderPipelineAsset
     [SerializeField]
     bool _allowHDR = true;
 
+    public enum ColorLUTResolution 
+    {
+        _16 = 16,
+        _32 = 32,
+        _64 = 64
+    };
+
+    [SerializeField]
+    ColorLUTResolution _colorLUTResolution = ColorLUTResolution._32;
+
     private RenderPipeline _pipeline = null;
 
     protected override RenderPipeline CreatePipeline()
@@ -35,8 +45,10 @@ public class CustomRenderPipelineAsset : RenderPipelineAsset
 
         _pipeline = new CustomRenderPipeline(_allowHDR, _dynamicBatching, _instancing, 
                                         _useSRPBatcher, _useLightsPerObject, 
-                                        _shadows, _postFXSettings);
+                                        _shadows, _postFXSettings, (int)_colorLUTResolution);
 
         return _pipeline;
     }
+
+
 }
