@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Lit
   m_Shader: {fileID: 4800000, guid: 3c4a8283cbc79b54fbd799197fb077ac, type: 3}
-  m_ShaderKeywords: _SHADOWS_ON
+  m_ShaderKeywords: _RECEIVE_SHADOWS _SHADOWS_ON
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -73,13 +73,14 @@ Material:
     - _NormalScale: 1
     - _Occlusion: 1
     - _PremulAlpha: 0
+    - _ReceiveShadows: 1
     - _Shadows: 0
     - _Smoothness: 0.5
     - _SrcBlend: 3
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 1, b: 0.20048067, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.38039216, g: 0.38039216, b: 0.38039216, a: 0}
     - _EmissonColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

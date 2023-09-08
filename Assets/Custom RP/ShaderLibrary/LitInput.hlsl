@@ -86,9 +86,10 @@ float4 GetBase(InputConfig c)
 
     if(c.useDetail)
     {
-        float4 detail = GetDetail(c).r * INPUT_PROP(_DetailAlbedo);
+        float detail = GetDetail(c).r * INPUT_PROP(_DetailAlbedo);
         float mask = GetMask(c).b;
         // map += detail;
+        // map.rgb = lerp(sqrt(map.rgb), detail < 0.0 ? 0.0 : 1.0, abs(detail) * mask);
         map.rgb = lerp(sqrt(map.rgb), detail < 0.0 ? 0.0 : 1.0, abs(detail) * mask);
         map.rgb *= map.rgb;
     }

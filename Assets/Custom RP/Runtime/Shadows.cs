@@ -225,8 +225,10 @@ public class Shadows
         ExcuteBuffer();
 
         int tiles = _shadowedDirectinnalLightCount * _settings._directional._cascadeCount;
-        int split = _shadowedDirectinnalLightCount <= 1 ?  1 : tiles <= 4 ? 2 : 4;
+        // int split = _shadowedDirectinnalLightCount <= 1 ?  1 : tiles <= 4 ? 2 : 4;
+        int split = tiles <= 1 ?  1 : tiles <= 4 ? 2 : 4;
         int tileSize = atlasSize / split;
+
         for(int i = 0; i < _shadowedDirectinnalLightCount; ++i)
         {
             RenderDirectionalShadows(i, split, tileSize);
@@ -255,7 +257,7 @@ public class Shadows
         int tileOffset = index * cascadeCount;
         Vector3 ratios = _settings._directional.GetCascadeRatios;
         float cullingFactor = Mathf.Max(0f, 0.8f - _settings._directional._cascadeFade);
-        float tileScale = 1 / split;
+        float tileScale = 1f / split;
         for(int i = 0; i < cascadeCount; ++i)
         {
             _cullingResults.ComputeDirectionalShadowMatricesAndCullingPrimitives(light._visibleLightIndex, i, 

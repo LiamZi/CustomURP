@@ -190,11 +190,13 @@ float MixBakedAndRealtimeShadows(ShadowData global, float shadow, int shadowMask
 
 float GetDirectionalShadowAttenuation(DirectinalShadowData data, ShadowData global, Surface surface)
 {
-// #if !defined(_RECEIVE_SHADOWS)
-//     return 1.0;
-// #endif
+#if !defined(_RECEIVE_SHADOWS)
+		return 1.0;
+#endif
 
-    float shadow = 1.0;
+
+    float shadow = 0.0;
+    // float shadow;
     if(data.strength * global.strength <= 0.0) 
     {
         // return shadow;
@@ -261,9 +263,9 @@ float GetOtherShadow(OtherShadowData other, ShadowData global, Surface surface)
 
 float GetOtherShadowAttenuation(OtherShadowData data, ShadowData global, Surface surface)
 {
-// #if !defined(_RECEIVE_SHADOWS)
-//     return 1.0;
-// #endif
+#if !defined(_RECEIVE_SHADOWS)
+    return 1.0;
+#endif
 
     float shadow;
     if(data.strength * global.strength <= 0.0)
@@ -290,53 +292,94 @@ float FadeShadowStrength(float distance, float scale, float fade)
 
 ShadowData GetShadowData(Surface surface)
 {
+//     ShadowData data;
+//     data.shadowMask.always = false;
+//     data.shadowMask.distance = false;
+//     data.shadowMask.shadows = 1.0;
+//     // data.strength = surface.depth < _ShadowDistance ? 1.0 : 0.0;
+//     data.cascadBlend = 1.0;
+//     data.strength = FadeShadowStrength(surface.depth, _ShadowDistanceFade.x, _ShadowDistanceFade.y);
+//     int i;
+//     for(i = 0; i < _CascadCount; ++i)
+//     {
+//         float4 sphere = _CascadCullingSpheres[i];
+//         float distanceSqr = DistanceSquared(surface.position, sphere.xyz);
+//         if(distanceSqr < sphere.w)
+//         {
+//             float fade = FadeShadowStrength(distanceSqr, _CascadData[i].x, _ShadowDistanceFade.z);
+//             // if(i == _CascadCount && _CascadCount > 0)
+//             if(i == _CascadCount - 1)
+//             {
+//                 // data.strength *= FadeShadowStrength(distanceSqr, 1.0 / sphere.w, _ShadowDistanceFade.z);
+//                 // data.strength *= FadeShadowStrength(distanceSqr, _CascadData[i].x, _ShadowDistanceFade.z);
+//                 data.strength *= fade;
+//                 // data.strength = 0.0;
+//             }
+//             else
+//             {
+//                 data.cascadBlend = fade;
+//             }
+//             break;
+//         }
+//     }
+
+//     if(i == _CascadCount && _CascadCount > 0)
+//     {
+//         data.strength = 0.0;
+//     }
+// #if defined(_CASCADE_BLEND_DITHER)
+//     else if(data.cascadBlend < surface.dither)
+//     {
+//         i += 1;
+//     }
+// #endif
+
+// #if !defined(_CASCADE_BLEND_SOFT)
+//     data.cascadBlend = 1.0;
+// #endif
+
+//     data.cascadeIndex = i;
+//     return data;
+
     ShadowData data;
-    data.shadowMask.always = false;
-    data.shadowMask.distance = false;
-    data.shadowMask.shadows = 1.0;
-    // data.strength = surface.depth < _ShadowDistance ? 1.0 : 0.0;
-    data.cascadBlend = 1.0;
-    data.strength = FadeShadowStrength(surface.depth, _ShadowDistanceFade.x, _ShadowDistanceFade.y);
-    int i;
-    for(i = 0; i < _CascadCount; ++i)
-    {
-        float4 sphere = _CascadCullingSpheres[i];
-        float distanceSqr = DistanceSquared(surface.position, sphere.xyz);
-        if(distanceSqr < sphere.w)
-        {
-            float fade = FadeShadowStrength(distanceSqr, _CascadData[i].x, _ShadowDistanceFade.z);
-            if(i == _CascadCount && _CascadCount > 0)
-            {
-                // data.strength *= FadeShadowStrength(distanceSqr, 1.0 / sphere.w, _ShadowDistanceFade.z);
-                // data.strength *= FadeShadowStrength(distanceSqr, _CascadData[i].x, _ShadowDistanceFade.z);
-                // data.strength *= fade;
-                data.strength = 0.0;
-            }
-            else
-            {
-                data.cascadBlend = fade;
-            }
-            break;
-        }
-    }
-
-    if(i == _CascadCount && _CascadCount > 0)
-    {
-        data.strength = 0.0;
-    }
-#if defined(_CASCADE_BLEND_DITHER)
-    else if(data.cascadBlend < surface.dither)
-    {
-        i += 1;
-    }
-#endif
-
-#if !defined(_CASCADE_BLEND_SOFT)
-    data.cascadBlend = 1.0;
-#endif
-
-    data.cascadeIndex = i;
-    return data;
+	data.shadowMask.always = false;
+	data.shadowMask.distance = false;
+	data.shadowMask.shadows = 1.0;
+	data.cascadBlend = 1.0;
+	data.strength = FadeShadowStrength(
+		surface.depth, _ShadowDistanceFade.x, _ShadowDistanceFade.y
+	);
+	int i;
+	for (i = 0; i < _CascadCount; i++) {
+		float4 sphere = _CascadCullingSpheres[i];
+		float distanceSqr = DistanceSquared(surface.position, sphere.xyz);
+		if (distanceSqr < sphere.w) {
+			float fade = FadeShadowStrength(
+				distanceSqr, _CascadData[i].x, _ShadowDistanceFade.z
+			);
+			if (i == _CascadCount - 1) {
+				data.strength *= fade;
+			}
+			else {
+				data.cascadBlend = fade;
+			}
+			break;
+		}
+	}
+	
+	if (i == _CascadCount && _CascadCount > 0) {
+		data.strength = 0.0;
+	}
+	#if defined(_CASCADE_BLEND_DITHER)
+		else if (data.cascadBlend < surface.dither) {
+			i += 1;
+		}
+	#endif
+	#if !defined(_CASCADE_BLEND_SOFT)
+		data.cascadBlend = 1.0;
+	#endif
+	data.cascadeIndex = i;
+	return data;
 }
 
 

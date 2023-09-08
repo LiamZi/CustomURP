@@ -20,8 +20,8 @@ MonoBehaviour:
     _maxDistance: 50
     _distanceFade: 0.5
     _directional:
-      _atlasSize: 2048
-      _filter: 3
+      _atlasSize: 4096
+      _filter: 2
       _cascadeCount: 4
       _cascadeRatio1: 0.3
       _cascadeRatio2: 0.4
@@ -30,7 +30,7 @@ MonoBehaviour:
       _cascadblendMode: 1
     _other:
       _atlasSize: 1024
-      _filter: 0
+      _filter: 2
   _postFXSettings: {fileID: 11400000, guid: b0ff7122a6c855942a0fcc60938ce4b6, type: 2}
   _allowHDR: 1
   _colorLUTResolution: 32
