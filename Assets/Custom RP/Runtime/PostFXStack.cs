@@ -10,6 +10,8 @@ public partial class PostFXStack
 
     const int _maxBloomPyramidLevels = 16;
 
+    static Rect FullViewRect = new Rect(0f, 0f, 1f, 1f);
+
     CommandBuffer _commandBuffer = new CommandBuffer 
     {
         name = _bufferName
@@ -18,24 +20,6 @@ public partial class PostFXStack
     ScriptableRenderContext _context;
     Camera _camera;
     PostFXSettings _settings;
-
-    // enum Pass
-    // {
-    //     BloomAdd,
-    //     // BloomCombine,
-    //     BloomHorizontal,
-    //     BloomPrefilter,
-    //     BloomPrefilterFireflies,
-    //     BloomScatter,
-    //     BloomScatterFinal,
-    //     BloomVertical,
-    //     Copy,
-    //     ColorGradingNone,
-    //     ColorGradingACES,
-    //     ColorGradingNeutral,
-    //     ColorGradingReinhard,
-    //     Final
-    // };
 
     enum Pass {
 		BloomAdd,
@@ -127,6 +111,14 @@ public partial class PostFXStack
         _commandBuffer.SetGlobalTexture(_fxSourceId, from);
         _commandBuffer.SetRenderTarget(to, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
         _commandBuffer.DrawProcedural(Matrix4x4.identity, _settings.Material, (int)pass, MeshTopology.Triangles, 3);
+    }
+
+    void DrawFinal(RenderTargetIdentifier from)
+    {
+        _commandBuffer.SetGlobalTexture(_fxSourceId, from);
+        _commandBuffer.SetRenderTarget(BuiltinRenderTextureType.CameraTarget, _camera.rect == FullViewRect ? RenderBufferLoadAction.DontCare : RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
+        _commandBuffer.SetViewport(_camera.pixelRect);
+        _commandBuffer.DrawProcedural(Matrix4x4.identity, _settings.Material, (int)Pass.Final, MeshTopology.Triangles, 3);
     }
 
     bool Bloom(int sourceId)
@@ -264,7 +256,8 @@ public partial class PostFXStack
 
         _commandBuffer.SetGlobalVector(_colorGradingLUTParametersId, new Vector4(1f / lutWidth, 1f / lutHeight, lutHeight - 1f));
 
-        Draw(sourceId, BuiltinRenderTextureType.CameraTarget, Pass.Final);
+        // Draw(sourceId, BuiltinRenderTextureType.CameraTarget, Pass.Final);
+        DrawFinal(sourceId);
         _commandBuffer.ReleaseTemporaryRT(_colorGradingLUTId);
     }
 

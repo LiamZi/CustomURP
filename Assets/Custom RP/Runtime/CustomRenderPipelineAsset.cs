@@ -20,13 +20,15 @@ public class CustomRenderPipelineAsset : RenderPipelineAsset
     bool _useLightsPerObject = true;
 
     [SerializeField]
+    bool _allowHDR = true;
+
+    [SerializeField]
     ShadowSettings _shadows = default;
 
     [SerializeField]
     PostFXSettings _postFXSettings = default;
 
-    [SerializeField]
-    bool _allowHDR = true;
+
 
     public enum ColorLUTResolution 
     {
