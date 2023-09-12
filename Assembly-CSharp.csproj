@@ -45,11 +45,11 @@
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipeline.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Shadows.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\CameraSettings.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\PostFXSettings.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
-     <Compile Include="Assets\Custom RP\Runtime\CameraSettings.cs" />
      <None Include="Assets\Custom RP\ShaderLibrary\Shadows.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\UnityInput.hlsl" />
      <None Include="Assets\Custom RP\Shaders\PostFXStackPass.shader" />

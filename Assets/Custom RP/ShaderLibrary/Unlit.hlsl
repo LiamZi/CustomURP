@@ -73,7 +73,7 @@ half4 frag(VertexOutput input) : SV_TARGET
     // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Cutoff));
     clip(col.a - GetCutoff(input.baseUV));
 #endif
-    return col;
+    return  float4(col.rgb, GetFinalAlpha(col.a));
 }
 
 #endif

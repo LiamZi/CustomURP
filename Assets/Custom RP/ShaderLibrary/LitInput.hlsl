@@ -35,6 +35,7 @@ UNITY_INSTANCING_BUFFER_START(PerInstance)
     UNITY_DEFINE_INSTANCED_PROP(float, _DetailSmoothness)
     UNITY_DEFINE_INSTANCED_PROP(float, _NormalScale)
     UNITY_DEFINE_INSTANCED_PROP(float, _DetailNormalScale)
+    UNITY_DEFINE_INSTANCED_PROP(float, _ZWrite)
 
     
 UNITY_INSTANCING_BUFFER_END(PerInstance)
@@ -180,5 +181,9 @@ float3 GetNormalTS(InputConfig c)
     return normal;
 }
 
+float GetFinalAlpha(float alpha)
+{
+    return INPUT_PROP(_ZWrite) ? 1.0 : alpha;
+}
 
 #endif

@@ -205,7 +205,8 @@ float4 frag(VertexOutput input) : SV_TARGET
     GI gi = GetGI(GI_FRAGMENT_DATA(input), surface, brdf);
     float3 finalColor = GetLighting(surface, brdf, gi);
     finalColor += GetEmission(config);
-    return float4(finalColor, surface.alpha);
+    // return float4(finalColor, surface.alpha);
+    return float4(finalColor, GetFinalAlpha(surface.alpha));
     // return float4(surface.color, surface.alpha);
 
     // UNITY_SETUP_INSTANCE_ID(input);

@@ -73,10 +73,10 @@ public class MeshBall : MonoBehaviour
                 _block.CopyProbeOcclusionArrayFrom(occlusionProbes);
             }
         }
-        // Graphics.DrawMeshInstanced(_mesh, 0, _material, _matrices, 1023, _block, ShadowCastingMode.On, true, 0, null, LightProbeUsage.CustomProvided);
-        Graphics.DrawMeshInstanced(_mesh, 0, _material, _matrices, 1023, _block, ShadowCastingMode.On, true, 0, null, _lightProbeVolume ? LightProbeUsage.UseProxyVolume : LightProbeUsage.CustomProvided, _lightProbeVolume);
+        Graphics.DrawMeshInstanced(_mesh, 0, _material, _matrices, 1023, _block, ShadowCastingMode.On, true, 0, null, LightProbeUsage.CustomProvided);
         // Graphics.DrawMeshInstanced(_mesh, 0, _material, _matrices, 1023, _block, ShadowCastingMode.On, true, 0, null, _lightProbeVolume ? LightProbeUsage.UseProxyVolume : LightProbeUsage.CustomProvided, _lightProbeVolume);
-
+        // Graphics.DrawMeshInstanced(_mesh, 0, _material, _matrices, 1023, _block, ShadowCastingMode.On, true, 0, null, _lightProbeVolume ? LightProbeUsage.UseProxyVolume : LightProbeUsage.CustomProvided, _lightProbeVolume);
+		// Graphics.DrawMeshInstanced(_mesh, 0, _material, _matrices, 1023, _block, ShadowCastingMode.On, true, 0, null, _lightProbeVolume ? LightProbeUsage.UseProxyVolume : LightProbeUsage.CustomProvided, _lightProbeVolume);
     }
 
 };

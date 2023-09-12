@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011f94fdb012e014a9e9a77a5bab3863, type: 3}
   m_Name: Custom Render Pipeline Asset
   m_EditorClassIdentifier: 
-  _dynamicBatching: 0
+  _dynamicBatching: 1
   _instancing: 1
   _useSRPBatcher: 1
   _useLightsPerObject: 0
+  _allowHDR: 1
   _shadows:
     _maxDistance: 50
     _distanceFade: 0.5
@@ -32,5 +33,4 @@ MonoBehaviour:
       _atlasSize: 1024
       _filter: 2
   _postFXSettings: {fileID: 11400000, guid: b0ff7122a6c855942a0fcc60938ce4b6, type: 2}
-  _allowHDR: 1
   _colorLUTResolution: 32
