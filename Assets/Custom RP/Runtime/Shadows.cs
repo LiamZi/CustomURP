@@ -253,6 +253,7 @@ public class Shadows
     {
         ShadowedDirectionalLight light = _shadowedDirectionalLights[index];
         var shadowSettings =  new ShadowDrawingSettings(_cullingResults, light._visibleLightIndex);
+        shadowSettings.useRenderingLayerMaskTest = true;
         int cascadeCount = _settings._directional._cascadeCount;
         int tileOffset = index * cascadeCount;
         Vector3 ratios = _settings._directional.GetCascadeRatios;

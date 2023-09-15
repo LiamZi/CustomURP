@@ -194,6 +194,7 @@ float4 frag(VertexOutput input) : SV_TARGET
 
     surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
     surface.dither = InterleavedGradientNoise(input.positionCS.xy, 0);
+    surface.renderingLayerMask = asuint(unity_RenderingLayer.x);
 
 
 #if defined(_PREMULTIPLY_ALPHA)

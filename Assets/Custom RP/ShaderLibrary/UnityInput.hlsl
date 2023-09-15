@@ -30,6 +30,7 @@ CBUFFER_START(UnityPerDraw)
     float4 unity_SpecCube0_HDR;
 
     float4 _ProjectionParams;
+    float4 unity_RenderingLayer;
     
 CBUFFER_END
 

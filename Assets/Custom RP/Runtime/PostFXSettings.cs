@@ -122,6 +122,8 @@ public class PostFXSettings : ScriptableObject
     {
         [ColorUsage(false)]
         public Color _shadows;
+        
+        [ColorUsage(false)]
         public Color _highlights;
 
         [Range(-100f, 100f)]

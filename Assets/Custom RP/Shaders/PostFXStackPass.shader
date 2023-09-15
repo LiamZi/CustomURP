@@ -150,7 +150,8 @@ Shader "Hidden/Custom RP/Post FX Stack"
         {
             Name "Final Pass"
 
-            Blend SrcAlpha OneMinusSrcAlpha
+            // Blend SrcAlpha OneMinusSrcAlpha
+            Blend [_FinalSrcBlend] [_FinalDstBlend]
 
             HLSLPROGRAM
             #pragma target 3.5

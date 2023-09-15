@@ -35,6 +35,8 @@ public partial class CameraRenderer
 
     private bool _isUseHDR;
 
+    static CameraSettings _defaultCameraSettings = new CameraSettings();
+
     // private bool _isEnabledDynamicBatch = false;
     // public bool EnabledDynamicBatch
     // {
@@ -77,6 +79,14 @@ public partial class CameraRenderer
         this._context = context;
         this._camera = camera;
 
+        var crpCamera = camera.GetComponent<CustomRenderPipelineCamera>();
+        CameraSettings cameraSettings = crpCamera ? crpCamera.Setting : _defaultCameraSettings;
+
+        if(cameraSettings._overridePostFx)
+        {
+            postFXSettings = cameraSettings._postFXSettings;
+        }
+
         PrepareBuffer();
         PrepareForSceneWindow();
 
@@ -88,7 +98,7 @@ public partial class CameraRenderer
         ExcuteBuffer();
 
         _lighting.Setup(context, _cullingResults, shadowSettings, useLightsPerObject);
-        _postStack.Setup(context, camera, postFXSettings, _isUseHDR, colorLUTResolution);
+        _postStack.Setup(context, camera, postFXSettings, _isUseHDR, colorLUTResolution, cameraSettings._finalBlendMode);
         _commandBuffer.EndSample(_sampleName);
 
         Setup();

@@ -59,6 +59,8 @@ public partial class PostFXStack
     int _colorGradingLUTId = Shader.PropertyToID("_ColorGradingLUT");
     int _colorGradingLUTParametersId = Shader.PropertyToID("_ColorGradingLUTParameters"); 
     int _colorGradingLUTInLogCId = Shader.PropertyToID("_ColorGradingLUTInLogC");
+    int _finalSrcBlendId = Shader.PropertyToID("_FinalSrcBlend");
+    int _finalDstBlendId = Shader.PropertyToID("_FinalDstBlend");
 
     bool _isUseHDR = false;
 
@@ -67,6 +69,8 @@ public partial class PostFXStack
     int _bloomPyramidId;
 
     int _colorLUTResolution;
+
+    CameraSettings.FinalBlendMode _finalBlendMode;
 
     public PostFXStack()
     {
@@ -77,12 +81,13 @@ public partial class PostFXStack
         }
     }
 
-    public void Setup(ScriptableRenderContext context, Camera camera, PostFXSettings settings, bool isUseHDR, int colorLUTResolution)
+    public void Setup(ScriptableRenderContext context, Camera camera, PostFXSettings settings, bool isUseHDR, int colorLUTResolution, CameraSettings.FinalBlendMode finalBlendMode)
     {
         _context = context;
         _camera = camera;
         _isUseHDR = isUseHDR;
         _colorLUTResolution = colorLUTResolution;
+        _finalBlendMode = finalBlendMode;
         // _settings = settings;
         _settings = camera.cameraType <= CameraType.SceneView ? settings : null;
         ApplySceneViewState();
@@ -115,8 +120,11 @@ public partial class PostFXStack
 
     void DrawFinal(RenderTargetIdentifier from)
     {
+        _commandBuffer.SetGlobalFloat(_finalSrcBlendId, (float)_finalBlendMode._source);
+        _commandBuffer.SetGlobalFloat(_finalDstBlendId, (float)_finalBlendMode._destiantion);
         _commandBuffer.SetGlobalTexture(_fxSourceId, from);
-        _commandBuffer.SetRenderTarget(BuiltinRenderTextureType.CameraTarget, _camera.rect == FullViewRect ? RenderBufferLoadAction.DontCare : RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
+        _commandBuffer.SetRenderTarget(BuiltinRenderTextureType.CameraTarget, _finalBlendMode._destiantion == BlendMode.Zero && _camera.rect == FullViewRect ? RenderBufferLoadAction.DontCare : RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
+        // _commandBuffer.SetRenderTarget(BuiltinRenderTextureType.CameraTarget, _camera.rect == FullViewRect ? RenderBufferLoadAction.DontCare : RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
         _commandBuffer.SetViewport(_camera.pixelRect);
         _commandBuffer.DrawProcedural(Matrix4x4.identity, _settings.Material, (int)Pass.Final, MeshTopology.Triangles, 3);
     }

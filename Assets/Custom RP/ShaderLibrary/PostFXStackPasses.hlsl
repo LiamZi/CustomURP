@@ -1,4 +1,4 @@
-#ifndef __SHADER_LIBRARY_POST_FX_STACK_PASSES_HLSL__
+﻿#ifndef __SHADER_LIBRARY_POST_FX_STACK_PASSES_HLSL__
 #define __SHADER_LIBRARY_POST_FX_STACK_PASSES_HLSL__
 
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
@@ -32,7 +32,8 @@ float4 _SMHHighlights;
 float4 _SMHRange;
 float4 _ColorGradingLUTParameters;
 bool _ColorGradingLUTInLogC;
-
+// float _FinalSrcBlend;
+// float _FinalDstBlend;
 
 
 struct Varyings
