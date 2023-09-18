@@ -49,7 +49,9 @@ Shader "Custom RP/Lit"
         #include "../ShaderLibrary/Common.hlsl"
         #include "../ShaderLibrary/LitInput.hlsl"
         ENDHLSL
-        Tags { "RenderType"="Opaque"  "LightMode" = "CustomLit"}
+        // Tags { "RenderType"="Opaque"  "LightMode" = "CustomLit"}
+        Tags { "LightMode" = "CustomLit" }
+
         // Tags { "RenderType"="Opaque"}
         // LOD 100
 
@@ -82,7 +84,7 @@ Shader "Custom RP/Lit"
             #pragma fragment frag
 
              
-            // #pragma enable_d3d11_debug_symbols
+            #pragma enable_d3d11_debug_symbols
 
             #include "../ShaderLibrary/Lit.hlsl"
             ENDHLSL
