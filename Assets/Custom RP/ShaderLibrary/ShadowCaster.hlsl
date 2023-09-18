@@ -2,18 +2,10 @@
 #define __SHADER_LIBRARY_SHADOW_CASTER_HLSL__
 
 
-#include "Common.hlsl"
+// #include "Common.hlsl"
 
-TEXTURE2D(_BaseMap);
-SAMPLER(sampler_BaseMap);
 bool _ShadowPancaking;
 
-UNITY_INSTANCING_BUFFER_START(PerInstance)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
-    // UNITY_DEFINE_INSTANCED_PROP(float3, _Cutoff)
-    UNITY_DEFINE_INSTANCED_PROP(float, _Cutoff)
-UNITY_INSTANCING_BUFFER_END(PerInstance)
 
 struct Attributes
 {
@@ -45,7 +37,7 @@ Varyings ShadowCasterVert(Attributes input)
 #endif
     }
 
-    float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
+    float4 baseST = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseMap_ST);
     o.baseUV = input.baseUV * baseST.xy + baseST.zw;
     return o;
 }
@@ -54,11 +46,11 @@ void ShadowCasterFrag(Varyings input)
 {
     UNITY_SETUP_INSTANCE_ID(input);
     float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
-    float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseColor);
+    float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
     float4 col = baseMap * baseColor;
 
 #if defined(_SHADOWS_CLIP)
-    clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Cutoff));
+    clip(col.a - UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Cutoff));
 #elif defined(_SHADOWS_DITHER)
     float dither = InterleavedGradientNoise(input.positionCS.xy, 0);
     clip(col.a - dither);

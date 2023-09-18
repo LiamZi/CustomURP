@@ -7,7 +7,7 @@ CBUFFER_START(UnityPerDraw)
     float4x4 unity_WorldToObject;
     float4 unity_LODFade;
     float4 unity_WorldTransformParams;
-    float3 _WorldSpaceCameraPos;
+    // float3 _WorldSpaceCameraPos;
     float4 unity_ProbesOcclusion;
     float4 unity_LightmapST;
     float4 unity_DynamicLightmapST;
@@ -28,21 +28,24 @@ CBUFFER_START(UnityPerDraw)
 	float4 unity_ProbeVolumeMin;
 
     float4 unity_SpecCube0_HDR;
-
-    float4 _ProjectionParams;
     float4 unity_RenderingLayer;
     
 CBUFFER_END
 
-CBUFFER_START(UnityPerFrame)
+
+//TODO: do not write those in unity cbuffer.
+
+// CBUFFER_START(UnityPerFrame)
     float4x4 unity_MatrixVP;
     float4x4 unity_MatrixV;
     float4x4 unity_MatrixInvV;
     float4x4 unity_prev_MatrixM;
     float4x4 unity_prev_MatrixIM;
     float4x4 glstate_matrix_projection;
-CBUFFER_END
+// CBUFFER_END
 
+float3 _WorldSpaceCameraPos;
+float4 _ProjectionParams;
 
 
 

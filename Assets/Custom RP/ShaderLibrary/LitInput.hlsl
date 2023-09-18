@@ -9,38 +9,35 @@ struct InputConfig
     bool useDetail;
 };
 
-
 TEXTURE2D(_BaseMap);
 TEXTURE2D(_MaskMap);
+TEXTURE2D(_NormalMap);
 TEXTURE2D(_EmissionMap);
 SAMPLER(sampler_BaseMap);
+
 TEXTURE2D(_DetailMap);
-SAMPLER(sampler_DetailMap);
-TEXTURE2D(_NormalMap);
 TEXTURE2D(_DetailNormalMap);
+SAMPLER(sampler_DetailMap);
 
-#define INPUT_PROP(name) UNITY_ACCESS_INSTANCED_PROP(PerInstance, name)
 
-// UNITY_INSTANCING_BUFFER_START(PerInstance)
-UNITY_INSTANCING_BUFFER_START(PerInstance)
-
-    UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
+UNITY_INSTANCING_BUFFER_START(UnityPerMaterial)
     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _DetailMap_ST)
-    UNITY_DEFINE_INSTANCED_PROP(float, _Cutoff)
-    UNITY_DEFINE_INSTANCED_PROP(float, _Metallic)
-    UNITY_DEFINE_INSTANCED_PROP(float, _Occlusion)
-    UNITY_DEFINE_INSTANCED_PROP(float, _Smoothness)
-    UNITY_DEFINE_INSTANCED_PROP(float, _Fresnel)
-    UNITY_DEFINE_INSTANCED_PROP(float4, _EmissionColor)
-    UNITY_DEFINE_INSTANCED_PROP(float, _DetailAlbedo)
-    UNITY_DEFINE_INSTANCED_PROP(float, _DetailSmoothness)
-    UNITY_DEFINE_INSTANCED_PROP(float, _NormalScale)
-    UNITY_DEFINE_INSTANCED_PROP(float, _DetailNormalScale)
-    UNITY_DEFINE_INSTANCED_PROP(float, _ZWrite)
+	UNITY_DEFINE_INSTANCED_PROP(float4, _DetailMap_ST)
+	UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
+	UNITY_DEFINE_INSTANCED_PROP(float4, _EmissionColor)
+	UNITY_DEFINE_INSTANCED_PROP(float, _Cutoff)
+	UNITY_DEFINE_INSTANCED_PROP(float, _ZWrite)
+	UNITY_DEFINE_INSTANCED_PROP(float, _Metallic)
+	UNITY_DEFINE_INSTANCED_PROP(float, _Occlusion)
+	UNITY_DEFINE_INSTANCED_PROP(float, _Smoothness)
+	UNITY_DEFINE_INSTANCED_PROP(float, _Fresnel)
+	UNITY_DEFINE_INSTANCED_PROP(float, _DetailAlbedo)
+	UNITY_DEFINE_INSTANCED_PROP(float, _DetailSmoothness)
+	UNITY_DEFINE_INSTANCED_PROP(float, _DetailNormalScale)
+	UNITY_DEFINE_INSTANCED_PROP(float, _NormalScale)
+UNITY_INSTANCING_BUFFER_END(UnityPerMaterial)
 
-    
-UNITY_INSTANCING_BUFFER_END(PerInstance)
+#define INPUT_PROP(name) UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, name)
 
 InputConfig GetInputConfig(float2 baseUV, float2 detailUV = 0.0)
 {
@@ -54,7 +51,7 @@ InputConfig GetInputConfig(float2 baseUV, float2 detailUV = 0.0)
 
 float2 TransformBaseUV(float2 baseUV)
 {
-    // float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
+    // float4 baseST = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseMap_ST);
     float4 baseST = INPUT_PROP(_BaseMap_ST);
     return baseUV * baseST.xy + baseST.zw;
 }
@@ -85,7 +82,7 @@ float4 GetMask(InputConfig c)
 float4 GetBase(InputConfig c)
 {
     float4 map = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, c.baseUV);
-    float4 color = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseColor);
+    float4 color = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
 
     if(c.useDetail)
     {
@@ -104,7 +101,7 @@ float4 GetBase(InputConfig c)
 // float GetCutoff(float2 baseUV)
 float GetCutoff(InputConfig c)
 {
-    return UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Cutoff);
+    return UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Cutoff);
 }
 
 // float GetMetallic(float2 baseUV)
@@ -119,7 +116,7 @@ float GetMetallic(InputConfig c)
 float GetSmoothness(InputConfig c)
 
 {
-    // return UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Smoothness);
+    // return UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Smoothness);
     float smoothness = INPUT_PROP(_Smoothness);
     smoothness *= GetMask(c).a;
 
@@ -137,7 +134,7 @@ float GetSmoothness(InputConfig c)
 float3 GetEmission(InputConfig c)
 {
     float4 map = SAMPLE_TEXTURE2D(_EmissionMap, sampler_BaseMap, c.baseUV);
-    float4 col = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _EmissionColor);
+    float4 col = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _EmissionColor);
     return map.rgb * col.rgb;
     // return GetBase(baseUV).rgb;
 }
@@ -145,7 +142,7 @@ float3 GetEmission(InputConfig c)
 // float GetFresnel(float2 baseUV)
 float GetFresnel(InputConfig c)
 {
-    return UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Fresnel);
+    return UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Fresnel);
 }
 
 // float GetOcclusion(float2 baseUV)

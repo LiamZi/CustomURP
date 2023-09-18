@@ -1,8 +1,8 @@
 #ifndef __CUSTOM_RP_SHADER_LIT_HLSL__
 #define __CUSTOM_RP_SHADER_LIT_HLSL__
 
-#include "Common.hlsl"
-#include "LitInput.hlsl"
+// #include "Common.hlsl"
+// #include "LitInput.hlsl"
 #include "Surface.hlsl"
 #include "Shadows.hlsl"
 #include "Light.hlsl"
@@ -61,7 +61,7 @@ VertexOutput vert(VertexInput input)
 #if defined(_NORMAL_MAP)
     o.tangentWS = float4(TransformObjectToWorldDir(input.tangentOS.xyz), input.tangentOS.w);
 #endif
-    // float4 baseST = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseMap_ST);
+    // float4 baseST = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseMap_ST);
     // o.baseUV = input.baseUV * baseST.xy + baseST.zw;
     o.baseUV = TransformBaseUV(input.baseUV);
     return o;
@@ -78,7 +78,7 @@ float4 frag(VertexOutput input) : SV_TARGET
 #endif
 
     // float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
-    // float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseColor);
+    // float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
     // float4 col = baseMap * baseColor;
     InputConfig config = GetInputConfig(input.baseUV);
 #if defined(_MASK_MAP)
@@ -93,7 +93,7 @@ float4 frag(VertexOutput input) : SV_TARGET
     // float4 col = GetBase(input.baseUV, input.detailUV);
     float4 col = GetBase(config);
 #if defined(_CLIPPING)
-        // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Cutoff));
+        // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Cutoff));
         // clip(col.a - GetCutoff(input.baseUV));
         clip(col.a - GetCutoff(config));
 #endif
@@ -114,11 +114,11 @@ float4 frag(VertexOutput input) : SV_TARGET
     surface.depth = -TransformWorldToView(input.positionWS).z;
     surface.color = col.rgb;
     surface.alpha = col.a;
-    // surface.metallic = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Metallic);
+    // surface.metallic = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Metallic);
     // surface.metallic = GetMetallic(input.baseUV);
     surface.metallic = GetMetallic(config);
 
-    // surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Smoothness);
+    // surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Smoothness);
     // surface.smoothness = GetSmoothness(input.baseUV, input.detailUV);
     surface.smoothness = GetSmoothness(config);
 
@@ -153,7 +153,7 @@ float4 frag(VertexOutput input) : SV_TARGET
     // return half4(rgb, 1.0);
     // input.normal = normalize(input.normal);
 
-    // float3 albedo =  UNITY_ACCESS_INSTANCED_PROP(PerInstance, _BaseColor).rgb;
+    // float3 albedo =  UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor).rgb;
     // float3 diffuse = 0;
     
     // for(int i = 0; i < min(unity_LightData.y, 8); i++)    
