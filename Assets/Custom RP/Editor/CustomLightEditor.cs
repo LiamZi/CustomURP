@@ -12,7 +12,9 @@ public class CustomLightEditor : LightEditor
     {
         
         base.OnInspectorGUI();
-        DrawRenderingLayerMask();
+        // DrawRenderingLayerMask();
+        RenderingLayerMaskDrawer.Draw(settings.renderingLayerMask, RenderingLayerMaskLabel);
+        
         if(!settings.lightType.hasMultipleDifferentValues && (LightType)settings.lightType.enumValueIndex == LightType.Spot)
         {
             settings.DrawInnerAndOuterSpotAngle();
@@ -28,21 +30,21 @@ public class CustomLightEditor : LightEditor
         }
     }
 
-    void DrawRenderingLayerMask()
-    {
-        SerializedProperty property = settings.renderingLayerMask;
-        EditorGUI.showMixedValue = property.hasMultipleDifferentValues;
-        EditorGUI.BeginChangeCheck();
-        int mask = property.intValue;
-        if(mask == int.MaxValue)
-        {
-            mask = -1;
-        }
-        mask = EditorGUILayout.MaskField(RenderingLayerMaskLabel, mask, GraphicsSettings.currentRenderPipeline.renderingLayerMaskNames);
-        if(EditorGUI.EndChangeCheck())
-        {
-            property.intValue = mask == -1 ? int.MaxValue : mask;
-        }
-        EditorGUI.showMixedValue = false;
-    }
+    // void DrawRenderingLayerMask()
+    // {
+    //     SerializedProperty property = settings.renderingLayerMask;
+    //     EditorGUI.showMixedValue = property.hasMultipleDifferentValues;
+    //     EditorGUI.BeginChangeCheck();
+    //     int mask = property.intValue;
+    //     if(mask == int.MaxValue)
+    //     {
+    //         mask = -1;
+    //     }
+    //     mask = EditorGUILayout.MaskField(RenderingLayerMaskLabel, mask, GraphicsSettings.currentRenderPipeline.renderingLayerMaskNames);
+    //     if(EditorGUI.EndChangeCheck())
+    //     {
+    //         property.intValue = mask == -1 ? int.MaxValue : mask;
+    //     }
+    //     EditorGUI.showMixedValue = false;
+    // }
 };

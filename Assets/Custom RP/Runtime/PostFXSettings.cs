@@ -109,6 +109,7 @@ public class PostFXSettings : ScriptableObject
     {
         [Range(-100f, 100f)]
         public float _temperature;
+        [Range(-100f, 100f)]
         public float _tint;
     };
 

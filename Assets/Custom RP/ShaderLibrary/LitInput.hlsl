@@ -21,7 +21,9 @@ TEXTURE2D(_DetailNormalMap);
 
 #define INPUT_PROP(name) UNITY_ACCESS_INSTANCED_PROP(PerInstance, name)
 
+// UNITY_INSTANCING_BUFFER_START(PerInstance)
 UNITY_INSTANCING_BUFFER_START(PerInstance)
+
     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
     UNITY_DEFINE_INSTANCED_PROP(float4, _BaseMap_ST)
     UNITY_DEFINE_INSTANCED_PROP(float4, _DetailMap_ST)
@@ -108,7 +110,6 @@ float GetCutoff(InputConfig c)
 // float GetMetallic(float2 baseUV)
 float GetMetallic(InputConfig c)
 {
-    // return UNITY_ACCESS_INSTANCED_PROP(PerInstance, _Metallic);
     float metallic = INPUT_PROP(_Metallic);
     metallic *= GetMask(c).r;
     return metallic;

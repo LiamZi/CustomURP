@@ -419,8 +419,8 @@
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\SubTarget.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Graphs\Texture3DMaterialSlot.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Inspector\PropertyDrawers\BoolPropertyDrawer.cs" />
-     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Util\Logging.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Channel\SplitNode.cs" />
+     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Util\Logging.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Math\Range\MinimumNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Importers\ShaderGraphAssetPostProcessor.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\NormalMapSpace.cs" />

@@ -41,20 +41,20 @@ public class Lighting
     Shadows _shadows = new Shadows();
     
 
-    public void Setup(ScriptableRenderContext context, CullingResults cull, ShadowSettings shadowSettings, bool useLightsPerObject)
+    public void Setup(ScriptableRenderContext context, CullingResults cull, ShadowSettings shadowSettings, bool useLightsPerObject, int renderingLayerMask)
     {
         this._cullingResults = cull;
 
         _commandBuffer.BeginSample(_bufferName);
         // SetupDirectionalLight();
         _shadows.Setup(context, cull, shadowSettings);
-        SetupLights(useLightsPerObject);
+        SetupLights(useLightsPerObject, renderingLayerMask);
         _shadows.Render();
         _commandBuffer.EndSample(_bufferName);
         context.ExecuteCommandBuffer(_commandBuffer);
         _commandBuffer.Clear();
     }
-    void SetupLights(bool useLightsPerObject)
+    void SetupLights(bool useLightsPerObject, int renderingLayerMask)
     {
         int dirLightCount = 0;
         int otherLightCount = 0;
@@ -72,35 +72,38 @@ public class Lighting
             //     SetupDirectionalLight(dirLightCount++, ref visibleLight);
             //     if(dirLightCount >= MAX_VISIBLE_LIGHTS) break;
             // }
-            switch(visibleLight.lightType)
+            if((light.renderingLayerMask & renderingLayerMask) != 0)
             {
-            case LightType.Directional:
-            {
-                if(dirLightCount < MAX_VISIBLE_LIGHTS)
+                switch(visibleLight.lightType)
                 {
-                    SetupDirectionalLight(dirLightCount++, i, ref visibleLight, light);
-                }
-            }
-                break;
-
-            case LightType.Point:
-            {
-                if(otherLightCount < MAX_OTHER_LIGHTS)
-                {
-                    newIndex = otherLightCount;
-                    SetupPointLight(otherLightCount++, i, ref visibleLight, light);
-                }
-            }
-                break;
-            case LightType.Spot:
-                {
-                    if(otherLightCount < MAX_OTHER_LIGHTS)
+                    case LightType.Directional:
                     {
-                        newIndex = otherLightCount;
-                        SetupSpotLight(otherLightCount++, i, ref visibleLight, light);
+                        if(dirLightCount < MAX_VISIBLE_LIGHTS)
+                        {
+                            SetupDirectionalLight(dirLightCount++, i, ref visibleLight, light);
+                        }
                     }
+                        break;
+
+                    case LightType.Point:
+                    {
+                        if(otherLightCount < MAX_OTHER_LIGHTS)
+                        {
+                            newIndex = otherLightCount;
+                            SetupPointLight(otherLightCount++, i, ref visibleLight, light);
+                        }
+                    }
+                        break;
+                    case LightType.Spot:
+                        {
+                            if(otherLightCount < MAX_OTHER_LIGHTS)
+                            {
+                                newIndex = otherLightCount;
+                                SetupSpotLight(otherLightCount++, i, ref visibleLight, light);
+                            }
+                        }
+                        break;
                 }
-                break;
             }
 
             if(useLightsPerObject)
@@ -182,8 +185,7 @@ public class Lighting
         // _otherLightDirectionsAndMasks[index] = -visibleLight.localToWorldMatrix.GetColumn(2);
 
         Vector4 position = visibleLight.localToWorldMatrix.GetColumn(3);
-		position.w =
-			1f / Mathf.Max(visibleLight.range * visibleLight.range, 0.00001f);
+		position.w = 1f / Mathf.Max(visibleLight.range * visibleLight.range, 0.00001f);
 		_otherLightPositions[index] = position;
         Vector4 dirAndMask = -visibleLight.localToWorldMatrix.GetColumn(2);
         dirAndMask.w = light.renderingLayerMask.ReinterpretAsFloat();

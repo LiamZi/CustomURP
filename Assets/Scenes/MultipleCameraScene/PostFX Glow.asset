@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7840572267feb50408b78f0aabea4d26, type: 3}
-  m_Name: PostFX Cold Settings
+  m_Name: PostFX Glow
   m_EditorClassIdentifier: 
   _shader: {fileID: 4800000, guid: a2d9fb05a91eea243ad4fd8f0e094c8d, type: 3}
   _bloom:
-    _maxIterations: 16
+    _maxIterations: 2
     _downScaleLimit: 2
     _bicubicUpSampling: 1
-    _threshold: 1
+    _threshold: 0
     _thresholdKnee: 0.5
-    _intensity: 0.2
-    _fadeFireFlies: 1
-    _mode: 1
+    _intensity: 0.8
+    _fadeFireFlies: 0
+    _mode: 0
     _scatter: 0.7
   _toneMapping:
-    _mode: 2
+    _mode: 1
   _colorAdjustments:
     _postExposure: 0
-    _contrast: 0
+    _contrast: 100
     _colorFilter: {r: 1, g: 1, b: 1, a: 1}
     _hueShift: 0
     _saturation: 0
   _whiteBalanceSettings:
-    _temperature: -50
+    _temperature: 0
     _tint: 0
   _splitToningSettings:
     _shadows: {r: 0.5, g: 0.5, b: 0.5, a: 1}
