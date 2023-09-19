@@ -129,7 +129,8 @@ public class Lighting
             Shader.DisableKeyword(LIGHTS_PER_OBJECT_KEYWORD);
         }
 
-        _commandBuffer.SetGlobalInt(_dirLightCountId, visibleLights.Length);
+        // _commandBuffer.SetGlobalInt(_dirLightCountId, visibleLights.Length);
+        _commandBuffer.SetGlobalInt(_dirLightCountId, dirLightCount);
 
         if(dirLightCount > 0)
         {
