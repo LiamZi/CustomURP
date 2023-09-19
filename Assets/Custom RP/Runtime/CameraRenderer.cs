@@ -97,7 +97,8 @@ public partial class CameraRenderer
         _commandBuffer.BeginSample(_sampleName);
         ExcuteBuffer();
 
-        _lighting.Setup(context, _cullingResults, shadowSettings, useLightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
+        _lighting.Setup(context, _cullingResults, shadowSettings, 
+                    useLightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
         _postStack.Setup(context, camera, postFXSettings, _isUseHDR, colorLUTResolution, cameraSettings._finalBlendMode);
         _commandBuffer.EndSample(_sampleName);
 

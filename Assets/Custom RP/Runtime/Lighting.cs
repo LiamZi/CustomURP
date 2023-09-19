@@ -41,7 +41,8 @@ public class Lighting
     Shadows _shadows = new Shadows();
     
 
-    public void Setup(ScriptableRenderContext context, CullingResults cull, ShadowSettings shadowSettings, bool useLightsPerObject, int renderingLayerMask)
+    public void Setup(ScriptableRenderContext context, CullingResults cull, 
+                    ShadowSettings shadowSettings, bool useLightsPerObject, int renderingLayerMask)
     {
         this._cullingResults = cull;
 
