@@ -331,9 +331,13 @@ public class Shadows
     void RenderSpotShadows(int index, int split, int tileSize)
     {
         ShadowedOtherLight light = _shadowedOtherLights[index];
-        var shadowSettings = new ShadowDrawingSettings(_cullingResults, light._visibleLightIndex);
+        var shadowSettings = new ShadowDrawingSettings(_cullingResults, light._visibleLightIndex)
+        {
+            useRenderingLayerMaskTest = true
+        };
         // _cullingResults.ComputeSpotShadowMatricesAndCullingPrimitives(light._visibleLightIndex, out Matrix4x4 viewMatrix, out Matrix4x4 projectionMatrix, out ShadowSplitData splitData);
-        _cullingResults.ComputeSpotShadowMatricesAndCullingPrimitives(light._visibleLightIndex, out Matrix4x4 viewMatrix, out Matrix4x4 projectionMatrix, out ShadowSplitData splitData);
+        _cullingResults.ComputeSpotShadowMatricesAndCullingPrimitives(light._visibleLightIndex, out Matrix4x4 viewMatrix, 
+                                                                out Matrix4x4 projectionMatrix, out ShadowSplitData splitData);
         shadowSettings.splitData = splitData;
         float texelSize = 2f / (tileSize * projectionMatrix.m00);
         float filterSize = texelSize * ((float)_settings._other._filter + 1f);
@@ -356,7 +360,10 @@ public class Shadows
     void RenderPointShadows(int index, int split, int tileSize)
     {
         ShadowedOtherLight light = _shadowedOtherLights[index];
-        var shadowSettings = new ShadowDrawingSettings(_cullingResults, light._visibleLightIndex);
+        var shadowSettings = new ShadowDrawingSettings(_cullingResults, light._visibleLightIndex) 
+        {
+            useRenderingLayerMaskTest = true
+        };
 
         float texelSize = 2f / tileSize;
         float filterSize = texelSize * ((float)_settings._other._filter + 1f);
