@@ -28,12 +28,17 @@ public partial class CameraRenderer
 
     private PostFXStack _postStack = new PostFXStack();
 
-    static int _frameBufferId = Shader.PropertyToID("_CameraFrameBuffer");
+    // static int _frameBufferId = Shader.PropertyToID("_CameraFrameBuffer");
+    static int _colorAttachmentId = Shader.PropertyToID("_CameraColorAttachment");
+    static int _depthAttachmentId = Shader.PropertyToID("_CameraDepthAttachment");
+    static int _depthTextureId = Shader.PropertyToID("_CameraDepthTexture");
 
     private static ShaderTagId _customURPShaderTagId = new ShaderTagId("SRPDefaultUnlit");
     private static ShaderTagId _litShaderTagId = new ShaderTagId("CustomLit");
 
     private bool _isUseHDR;
+
+    private bool _isUseDepthTexture;
 
     static CameraSettings _defaultCameraSettings = new CameraSettings();
 
@@ -82,6 +87,8 @@ public partial class CameraRenderer
         var crpCamera = camera.GetComponent<CustomRenderPipelineCamera>();
         CameraSettings cameraSettings = crpCamera ? crpCamera.Setting : _defaultCameraSettings;
 
+        _isUseDepthTexture = true;
+
         if(cameraSettings._overridePostFx)
         {
             postFXSettings = cameraSettings._postFXSettings;
@@ -110,7 +117,7 @@ public partial class CameraRenderer
 
         if(_postStack.IsActive)
         {
-            _postStack.Render(_frameBufferId);
+            _postStack.Render(_colorAttachmentId);
         }
         
         DrawGizmosAfterFX();
@@ -132,10 +139,13 @@ public partial class CameraRenderer
                 flags = CameraClearFlags.Color;
             }
 
-            _commandBuffer.GetTemporaryRT(_frameBufferId, _camera.pixelWidth, 
+            _commandBuffer.GetTemporaryRT(_colorAttachmentId, _camera.pixelWidth, 
                                 _camera.pixelHeight, 32, FilterMode.Bilinear, 
                                 _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
-            _commandBuffer.SetRenderTarget(_frameBufferId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
+            _commandBuffer.GetTemporaryRT(_depthAttachmentId, _camera.pixelWidth, _camera.pixelHeight, 32, FilterMode.Point, RenderTextureFormat.Depth);
+
+            _commandBuffer.SetRenderTarget(_colorAttachmentId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store, 
+                                        _depthAttachmentId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
         }
 
         //_commandBuffer.ClearRenderTarget(true, true, Color.clear);
@@ -193,13 +203,14 @@ public partial class CameraRenderer
 
        drawingSettings.SetShaderPassName(1, _litShaderTagId);
        
-    //    var filteringSettings = new FilteringSettings(RenderQueueRange.all, renderingLayerMask: (uint)renderingLayerMask);
-       var filteringSettings = new FilteringSettings(RenderQueueRange.opaque, renderingLayerMask: (uint)renderingLayerMask);
+       var filteringSettings = new FilteringSettings(RenderQueueRange.all, renderingLayerMask: (uint)renderingLayerMask);
+    //    var filteringSettings = new FilteringSettings(RenderQueueRange.opaque, renderingLayerMask: (uint)renderingLayerMask);
 
        
        _context.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
        
        _context.DrawSkybox(_camera);
+       CopyAttachments();
        
        sortingSettings.criteria = SortingCriteria.CommonTransparent;
        
@@ -234,6 +245,16 @@ public partial class CameraRenderer
 
        return false;
 
+    }
+
+    void CopyAttachments()
+    {
+        if(_isUseDepthTexture)
+        {
+            _commandBuffer.GetTemporaryRT(_depthTextureId, _camera.pixelWidth, _camera.pixelHeight, 32, FilterMode.Point, RenderTextureFormat.Depth);
+            _commandBuffer.CopyTexture(_depthAttachmentId, _depthTextureId);
+            ExcuteBuffer();
+        }
     }
 
     void ConfigureLights()
@@ -305,7 +326,13 @@ public partial class CameraRenderer
         _lighting.Clearup();
         if(_postStack.IsActive)
         {
-            _commandBuffer.ReleaseTemporaryRT(_frameBufferId);
+            _commandBuffer.ReleaseTemporaryRT(_colorAttachmentId);
+            _commandBuffer.ReleaseTemporaryRT(_depthAttachmentId);
+        }
+
+        if(_isUseDepthTexture)
+        {
+            _commandBuffer.ReleaseTemporaryRT(_depthTextureId);
         }
 
     }

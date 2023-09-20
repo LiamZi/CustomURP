@@ -2,54 +2,85 @@
 #define CUSTOM_UNLIT_PASS_INCLUDED
 
 
-
-#include "Common.hlsl"
-#include "UnLitInput.hlsl"
-
 struct VertexInput
 {
     float3 positionOS : POSITION;
+    float4 color : COLOR;
+
+#if defined(_FLIPBOOK_BLENDING)
+    float4 baseUV : TEXCOORD0;
+    float flipbookBlend : TEXCOORD1;
+#else
     float2 baseUV : TEXCOORD0;
+#endif
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
 struct VertexOutput
 {
     float4 positionCS : SV_POSITION;
+#if defined(_VERTEX_COLORS)
+    float4 color : VAR_COLOR;
+#endif
+
     float2 baseUV : VAR_BASE_UV;
+
+#if defined(_FLIPBOOK_BLENDING)
+    float3 flipbookUVB : VAR_FILPBOOk;
+#endif
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
 VertexOutput vert(VertexInput input)
 {
     VertexOutput o;
-    // o.positionWS = input.positionOS;
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_TRANSFER_INSTANCE_ID(input, o);
-    // float4 positionWS = mul(UNITY_MATRIX_M, float4(input.positionOS.xyz, 1.0));
-    float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
 
-    // o.positionCS = mul(unity_MatrixVP, positionWS);
+    float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
     o.positionCS = TransformWorldToHClip(positionWS);
-    // float4 baseST = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseMap_ST);
-    // o.baseUV = input.baseUV * baseST.xy + baseST.zw;
-    o.baseUV = TransformBaseUV(input.baseUV);
+
+#if defined(_VERTEX_COLORS)
+    o.color = input.color;
+#endif
+
+    o.baseUV.xy = TransformBaseUV(input.baseUV.xy);
+
+#if defined(_FLIPBOOK_BLENDING)
+    o.flipbookUVB.xy = TransformBaseUV(input.baseUV.zw);
+    o.flipbookUVB.z = input.flipbookBlend;
+#endif
+
     return o;
 }
 
 half4 frag(VertexOutput input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
-    // float4 diffuse = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
-    // float4 col = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
-    // col *= diffuse;
-    float4 col = GetBase(input.baseUV);
+
+    InputConfig config = GetInputConfig(input.positionCS, input.baseUV);
+    // return float4(config.fragment.depth.xxx / 20.0, 1.0);
+
+#if defined(_VERTEX_COLORS)
+    config.color = input.color;
+#endif
+
+#if defined(_FLIPBOOK_BLENDING)
+    config.flipbookUVB = input.flipbookUVB;
+    config.flipbookBlending = true;
+#endif
+
+#if defined(_NEAR_FADE)
+    config.nearFade = true;
+#endif
+
+    float4 col = GetBase(config);
 
 #if defined(_CLIPPING)
-    // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Cutoff));
-    clip(col.a - GetCutoff(input.baseUV));
+    clip(col.a - GetCutoff(config));
 #endif
-    return  float4(col.rgb, GetFinalAlpha(col.a));
+
+    return float4(col.rgb, GetFinalAlpha(col.a));
 }
 
 #endif

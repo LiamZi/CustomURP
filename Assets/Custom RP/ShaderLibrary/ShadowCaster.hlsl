@@ -45,15 +45,21 @@ Varyings ShadowCasterVert(Attributes input)
 void ShadowCasterFrag(Varyings input)
 {
     UNITY_SETUP_INSTANCE_ID(input);
-    float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
-    float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
-    float4 col = baseMap * baseColor;
+    // float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
+    // float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
+    // float4 col = baseMap * baseColor;
+    InputConfig config = GetInputConfig(input.positionCS, input.baseUV);
+    ClipLOD(config.fragment, unity_LODFade.x);
+
+    float4 base = GetBase(config);
 
 #if defined(_SHADOWS_CLIP)
-    clip(col.a - UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Cutoff));
+    // clip(col.a - UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Cutoff));
+    clip(base.a - GetCutoff(config));
 #elif defined(_SHADOWS_DITHER)
     float dither = InterleavedGradientNoise(input.positionCS.xy, 0);
-    clip(col.a - dither);
+    // clip(col.a - dither);
+    clip(base.a - dither);
 #endif
 
 }

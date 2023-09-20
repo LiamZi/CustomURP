@@ -59,6 +59,8 @@
      <None Include="Assets\Custom RP\Shaders\PostFXStackPass.shader" />
      <None Include="Assets\Custom RP\ShaderLibrary\GI.hlsl" />
      <None Include="Assets\Custom RP\Shaders\UnlitOpaque.shader" />
+     <None Include="Assets\Custom RP\ShaderLibrary\Fragment.hlsl" />
+     <None Include="Assets\Custom RP\Shaders\ParticlesUnlit.shader" />
      <None Include="Assets\Custom RP\ShaderLibrary\Lit.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\UnLitInput.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\ShadowCaster.hlsl" />

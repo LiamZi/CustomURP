@@ -142,7 +142,7 @@ Shader "Hidden/Custom RP/Post FX Stack"
             #pragma target 3.5
             #pragma vertex DefaultPassVertex
             #pragma fragment ColorGradingReinhardPassFragment
-            #pragma enable_d3d11_debug_symbols
+            // #pragma enable_d3d11_debug_symbols
             ENDHLSL
         }
 
@@ -157,7 +157,7 @@ Shader "Hidden/Custom RP/Post FX Stack"
             #pragma target 3.5
             #pragma vertex DefaultPassVertex
             #pragma fragment FinalPassFragment
-            #pragma enable_d3d11_debug_symbols
+            // #pragma enable_d3d11_debug_symbols
             ENDHLSL
         }
     }

@@ -72,15 +72,23 @@ float4 frag(VertexOutput input) : SV_TARGET
 
     UNITY_SETUP_INSTANCE_ID(input);
 // #if defined(LOD_FADE_CROSSFADE) || defined (LOD_FADE_PERCENTAGE)
-#if defined(LOD_FADE_CROSSFADE)
-    // return unity_LODFade.x;
-    ClipLOD(input.positionCS.xy, unity_LODFade.x);
-#endif
+// #if defined(LOD_FADE_CROSSFADE)
+//     // return unity_LODFade.x;
+//     ClipLOD(input.positionCS.xy, unity_LODFade.x);
+// #endif
 
     // float4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.baseUV);
     // float4 baseColor = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
     // float4 col = baseMap * baseColor;
-    InputConfig config = GetInputConfig(input.baseUV);
+    InputConfig config = GetInputConfig(input.positionCS, input.baseUV);
+    // return float4(config.fragment.depth.xxx / 20.0, 1.0);
+
+#if defined(LOD_FADE_CROSSFADE)
+    // return unity_LODFade.x;
+    // ClipLOD(input.positionCS.xy, unity_LODFade.x);
+    ClipLOD(config.fragment, unity_LODFade.x);
+#endif
+
 #if defined(_MASK_MAP)
     config.useMask = true;
 #endif
@@ -129,7 +137,8 @@ float4 frag(VertexOutput input) : SV_TARGET
     surface.fresnelStrength = GetFresnel(config);
 
     surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
-    surface.dither = InterleavedGradientNoise(input.positionCS.xy, 0);
+    // surface.dither = InterleavedGradientNoise(input.positionCS.xy, 0);
+    surface.dither = InterleavedGradientNoise(config.fragment.positionSS, 0);
     surface.renderingLayerMask = asuint(unity_RenderingLayer.x);
 
 

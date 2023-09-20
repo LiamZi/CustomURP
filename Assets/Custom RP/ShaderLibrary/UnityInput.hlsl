@@ -45,6 +45,7 @@ CBUFFER_END
 // CBUFFER_END
 
 float3 _WorldSpaceCameraPos;
+float4 unity_OrthoParams;
 float4 _ProjectionParams;
 
 

@@ -7,8 +7,8 @@
 
 TEXTURE2D(_PostFXSource);
 TEXTURE2D(_PostFXSource2);
-SAMPLER(sampler_linear_clamp);
-SAMPLER(sampler_point_clamp);
+// SAMPLER(sampler_linear_clamp);
+// SAMPLER(sampler_point_clamp);
 
 TEXTURE2D(_ColorGradingLUT);
 

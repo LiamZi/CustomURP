@@ -7,8 +7,10 @@ Shader "Custom RP/UnlitOpaque"
 
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        HLSLINCLUDE
+        #include "../ShaderLibrary/Common.hlsl"
+        #include "../ShaderLibrary/UnlitInput.hlsl"
+        ENDHLSL
 
         Pass
         {

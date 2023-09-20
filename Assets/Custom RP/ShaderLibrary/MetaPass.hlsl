@@ -1,12 +1,7 @@
 #ifndef __SHADER_LIBRARY_META_PASS_HLSL__
 #define __SHADER_LIBRARY_META_PASS_HLSL__
 
-// #include "Surface.hlsl"
-// #include "Shadows.hlsl"
-// #include "Light.hlsl"
-// #include "BRDF.hlsl"
 #include "Common.hlsl"
-#include "LitInput.hlsl"
 #include "Surface.hlsl"
 #include "Shadows.hlsl"
 #include "Light.hlsl"
@@ -41,7 +36,7 @@ Varyings MetaPassVert(Attributes input)
 
 float4 MetaPassFrag(Varyings input) : SV_TARGET
 {
-    InputConfig config = GetInputConfig(input.baseUV);
+    InputConfig config = GetInputConfig(input.positionCS, input.baseUV);
     float4 base = GetBase(config);
     Surface surface;
     ZERO_INITIALIZE(Surface, surface);
