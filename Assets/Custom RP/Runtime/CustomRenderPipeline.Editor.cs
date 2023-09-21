@@ -8,6 +8,8 @@ public partial class CustomRenderPipeline
 {
     partial void InitializeForEditor();
 
+    partial void DisposeForEditor();
+
 #if UNITY_EDITOR
 
     static Lightmapping.RequestLightsDelegate lightsDelegate = (Light[] lights, NativeArray<LightDataGI> output) => {
@@ -66,9 +68,8 @@ public partial class CustomRenderPipeline
         Lightmapping.SetDelegate(lightsDelegate);
     }
 
-    protected override void Dispose(bool disposing)
+    partial void DisposeForEditor()
     {
-        base.Dispose(disposing);
         Lightmapping.ResetDelegate();
     }
 

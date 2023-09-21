@@ -80,6 +80,11 @@ public partial class CameraRenderer
     {
         if(Handles.ShouldRenderGizmos())
         {
+            if(_isUseIntermediateBuffer)
+            {
+                Draw(_depthAttachmentId, BuiltinRenderTextureType.CameraTarget, true);
+                ExcuteBuffer();
+            }
             _context.DrawGizmos(_camera, GizmoSubset.PreImageEffects);
         }
     }
@@ -88,6 +93,11 @@ public partial class CameraRenderer
     {
         if(Handles.ShouldRenderGizmos())
         {
+            if(_postStack.IsActive)
+            {
+                Draw(_depthAttachmentId, BuiltinRenderTextureType.CameraTarget, true);
+                ExcuteBuffer();
+            }
             _context.DrawGizmos(_camera, GizmoSubset.PostImageEffects);
         }
     }

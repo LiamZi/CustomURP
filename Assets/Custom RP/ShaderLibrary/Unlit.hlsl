@@ -59,7 +59,8 @@ half4 frag(VertexOutput input) : SV_TARGET
     UNITY_SETUP_INSTANCE_ID(input);
 
     InputConfig config = GetInputConfig(input.positionCS, input.baseUV);
-    // return float4(config.fragment.depth.xxx / 20.0, 1.0);
+    // return GetBufferColor(config.fragment, 0.05);
+    // return float4(config.fragment.bufferDepth.xxx / 20.0, 1.0);
 
 #if defined(_VERTEX_COLORS)
     config.color = input.color;
@@ -74,10 +75,20 @@ half4 frag(VertexOutput input) : SV_TARGET
     config.nearFade = true;
 #endif
 
+#if defined(_SOFT_PARTICLES)
+    config.softParticles = true;
+#endif
+
     float4 col = GetBase(config);
 
 #if defined(_CLIPPING)
     clip(col.a - GetCutoff(config));
+#endif
+
+#if defined(_DISTORTION)
+    float2 distortion = GetDistortion(config) * col.a;
+    col.rgb = lerp(GetBufferColor(config.fragment, distortion).rgb, col.rgb, saturate(col.a - GetDistortionBlend(config))) ;
+    // col.r = distortion;
 #endif
 
     return float4(col.rgb, GetFinalAlpha(col.a));

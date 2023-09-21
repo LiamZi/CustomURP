@@ -5,6 +5,9 @@ using UnityEngine.Rendering;
 [Serializable]
 public class CameraSettings
 {
+    public bool _copyColor = true;
+    public bool _copyDepth = true;
+
     [RenderingLayerMaskField]
     public int _renderingLayerMask = -1;
     public bool _maskLights = false;

@@ -16,7 +16,12 @@ MonoBehaviour:
   _instancing: 1
   _useSRPBatcher: 1
   _useLightsPerObject: 0
-  _allowHDR: 1
+  _cameraBuffer:
+    _allowHDR: 1
+    _copyColor: 1
+    _copyColorReflection: 0
+    _copyDepth: 1
+    _copyDepthReflection: 0
   _shadows:
     _maxDistance: 50
     _distanceFade: 0.5
@@ -32,5 +37,6 @@ MonoBehaviour:
     _other:
       _atlasSize: 1024
       _filter: 2
-  _postFXSettings: {fileID: 0}
+  _postFXSettings: {fileID: 11400000, guid: b0ff7122a6c855942a0fcc60938ce4b6, type: 2}
   _colorLUTResolution: 32
+  _cameraRendererShader: {fileID: 4800000, guid: 4011e83c664b3b542998e4d8b98a88e8, type: 3}
