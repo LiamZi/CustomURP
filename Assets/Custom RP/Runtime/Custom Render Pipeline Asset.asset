@@ -26,6 +26,8 @@ MonoBehaviour:
     _bicubicRescaling: 0
     _fxaa:
       _enabled: 1
+      _fixedThreshold: 0.0833
+      _relativeThreshold: 0.166
   _shadows:
     _maxDistance: 50
     _distanceFade: 0.5

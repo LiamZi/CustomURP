@@ -71,6 +71,7 @@ public partial class PostFXStack
     int _colorGradingResultId = Shader.PropertyToID("_ColorGradingResult");
     int _finalResultId = Shader.PropertyToID("_FinalResult");
     int _copyBicubicId = Shader.PropertyToID("_CopyBicubic");
+    int _fxaaConfigId = Shader.PropertyToID("_FXAAConfig");
 
 
     bool _isUseHDR = false;
@@ -302,6 +303,7 @@ public partial class PostFXStack
         {
             _commandBuffer.GetTemporaryRT(_colorGradingResultId, _bufferSize.x, _bufferSize.y, 
                                             0, FilterMode.Bilinear, RenderTextureFormat.Default);
+            _commandBuffer.SetGlobalVector(_fxaaConfigId, new Vector4(_fxaa._fixedThreshold, _fxaa._relativeThreshold));
             Draw(sourceId, _colorGradingResultId, _isKeepAlpha ? Pass.ApplyColorGrading : Pass.ApplyColorGradingWithLuma);
         }
 
