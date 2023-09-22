@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shader: {fileID: 4800000, guid: a2d9fb05a91eea243ad4fd8f0e094c8d, type: 3}
   _bloom:
-    _maxIterations: 1
+    _ignoreRenderScale: 1
+    _maxIterations: 3
     _downScaleLimit: 2
     _bicubicUpSampling: 1
     _threshold: 0
     _thresholdKnee: 0.5
     _intensity: 0.8
     _fadeFireFlies: 0
-    _mode: 0
+    _mode: 1
     _scatter: 0.7
   _toneMapping:
     _mode: 1

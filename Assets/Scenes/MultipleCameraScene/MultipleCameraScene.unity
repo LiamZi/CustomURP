@@ -765,6 +765,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings:
+    _copyColor: 1
+    _copyDepth: 1
     _renderingLayerMask: -1
     _maskLights: 0
     _overridePostFx: 0
@@ -1453,6 +1455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings:
+    _copyColor: 1
+    _copyDepth: 1
     _renderingLayerMask: 67
     _maskLights: 1
     _overridePostFx: 0
@@ -2727,6 +2731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings:
+    _copyColor: 1
+    _copyDepth: 1
     _renderingLayerMask: 561
     _maskLights: 1
     _overridePostFx: 1
@@ -2924,6 +2930,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings:
+    _copyColor: 1
+    _copyDepth: 1
     _renderingLayerMask: 8
     _maskLights: 1
     _overridePostFx: 1
@@ -3553,6 +3561,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings:
+    _copyColor: 1
+    _copyDepth: 1
     _renderingLayerMask: 5
     _maskLights: 1
     _overridePostFx: 1
@@ -4216,7 +4226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1808698749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4622,6 +4632,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings:
+    _copyColor: 1
+    _copyDepth: 1
     _renderingLayerMask: 80
     _maskLights: 1
     _overridePostFx: 1

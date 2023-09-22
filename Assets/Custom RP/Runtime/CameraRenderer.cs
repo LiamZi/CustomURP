@@ -8,6 +8,7 @@ using Conditional = System.Diagnostics.ConditionalAttribute;
 using System.Linq;
 using Unity.Collections;
 using TMPro;
+using System;
 
 public partial class CameraRenderer
 {
@@ -23,9 +24,7 @@ public partial class CameraRenderer
     };
 
     private CullingResults _cullingResults;
-
     private Lighting _lighting = new Lighting();
-
     private PostFXStack _postStack = new PostFXStack();
 
     // static int _frameBufferId = Shader.PropertyToID("_CameraFrameBuffer");
@@ -36,13 +35,16 @@ public partial class CameraRenderer
     static int _sourceTextureId = Shader.PropertyToID("_SourceTexture");
     static int _srcBlendId = Shader.PropertyToID("_CameraSrcBlend");
     static int _dstBlendId = Shader.PropertyToID("_CameraDstBlend");
+    static int _bufferSizeId = Shader.PropertyToID("_CameraBufferSize");
     private static ShaderTagId _customURPShaderTagId = new ShaderTagId("SRPDefaultUnlit");
     private static ShaderTagId _litShaderTagId = new ShaderTagId("CustomLit");
+
 
     private bool _isUseHDR;
     private bool _isUseColorTexture;
     private bool _isUseDepthTexture;
     private bool _isUseIntermediateBuffer;
+    private bool _isUseScaledRendering;
 
     static CameraSettings _defaultCameraSettings = new CameraSettings();
 
@@ -53,6 +55,11 @@ public partial class CameraRenderer
     static bool CopyTextureSupported = SystemInfo.copyTextureSupport > CopyTextureSupport.None;
 
     static Rect FullViewRect = new Rect(0f, 0f, 1f, 1f);
+
+    private Vector2Int _bufferSize;
+
+    public const float _renderScaleMin = 0.1f;
+    public const float _renderScaleMax = 2f;
 
     // private bool _isEnabledDynamicBatch = false;
     // public bool EnabledDynamicBatch
@@ -123,6 +130,11 @@ public partial class CameraRenderer
             postFXSettings = cameraSettings._postFXSettings;
         }
 
+        // float renderScale = cameraBufferSetting._renderScale;
+        float renderScale = cameraSettings.GetRenderScale(cameraBufferSetting._renderScale);
+
+        _isUseScaledRendering = renderScale < 0.99f || renderScale > 1.01f;
+
         PrepareBuffer();
         PrepareForSceneWindow();
 
@@ -131,12 +143,26 @@ public partial class CameraRenderer
         // _isUseHDR = useHDR && camera.allowHDR;
         _isUseHDR = cameraBufferSetting._allowHDR && camera.allowHDR;
 
+
+        if(_isUseScaledRendering)
+        {
+            renderScale = Mathf.Clamp(renderScale, 0.1f, 2f);
+            _bufferSize.x = (int)(camera.pixelWidth * renderScale);
+            _bufferSize.y = (int)(camera.pixelHeight * renderScale);
+        }
+        else
+        {
+            _bufferSize.x = camera.pixelWidth;
+            _bufferSize.y = camera.pixelHeight;
+        }
+
         _commandBuffer.BeginSample(_sampleName);
+        _commandBuffer.SetGlobalVector(_bufferSizeId, new Vector4(1f / _bufferSize.x, 1f / _bufferSize.y, _bufferSize.x, _bufferSize.y));
         ExcuteBuffer();
 
         _lighting.Setup(context, _cullingResults, shadowSettings, 
                     useLightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
-        _postStack.Setup(context, camera, postFXSettings, _isUseHDR, colorLUTResolution, cameraSettings._finalBlendMode);
+        _postStack.Setup(context, camera, _bufferSize, postFXSettings, _isUseHDR, colorLUTResolution, cameraSettings._finalBlendMode, cameraBufferSetting._bicubicRescaling);
         _commandBuffer.EndSample(_sampleName);
 
         Setup();
@@ -168,7 +194,7 @@ public partial class CameraRenderer
         _context.SetupCameraProperties(_camera);
         CameraClearFlags flags = _camera.clearFlags;
 
-        _isUseIntermediateBuffer = _isUseColorTexture || _isUseDepthTexture || _postStack.IsActive;
+        _isUseIntermediateBuffer = _isUseScaledRendering || _isUseColorTexture || _isUseDepthTexture || _postStack.IsActive;
         if(_isUseIntermediateBuffer)
         {
             if(flags > CameraClearFlags.Color)
@@ -176,11 +202,11 @@ public partial class CameraRenderer
                 flags = CameraClearFlags.Color;
             }
 
-            _commandBuffer.GetTemporaryRT(_colorAttachmentId, _camera.pixelWidth, 
-                                _camera.pixelHeight, 32, FilterMode.Bilinear, 
+            _commandBuffer.GetTemporaryRT(_colorAttachmentId, _bufferSize.x, 
+                                _bufferSize.y, 32, FilterMode.Bilinear, 
                                 _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
 
-            _commandBuffer.GetTemporaryRT(_depthAttachmentId, _camera.pixelWidth, _camera.pixelHeight, 
+            _commandBuffer.GetTemporaryRT(_depthAttachmentId, _bufferSize.x, _bufferSize.y, 
                                         32, FilterMode.Point, RenderTextureFormat.Depth);
 
             _commandBuffer.SetRenderTarget(_colorAttachmentId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store, 
@@ -230,14 +256,12 @@ public partial class CameraRenderer
         {
             enableDynamicBatching = useDynamicBatching,
             enableInstancing = useGPUInstanceing,
-            // perObjectData = drawingSettings.perObjectData |  PerObjectData.LightIndices;
-            // perObjectData = PerObjectData.LightIndices, 
+
             perObjectData = PerObjectData.LightIndices | PerObjectData.Lightmaps | 
                             PerObjectData.ShadowMask | PerObjectData.LightProbe | 
                             PerObjectData.LightProbeProxyVolume | PerObjectData.OcclusionProbe |
                             PerObjectData.OcclusionProbeProxyVolume | PerObjectData.ReflectionProbes |
                             lightsPerObjectFlags
-                            // 
 
         };
 
@@ -316,8 +340,8 @@ public partial class CameraRenderer
     {
         if(_isUseColorTexture)
         {
-            _commandBuffer.GetTemporaryRT(_colorTextureId, _camera.pixelWidth, 
-                                    _camera.pixelHeight, 0, 
+            _commandBuffer.GetTemporaryRT(_colorTextureId, _bufferSize.x, 
+                                    _bufferSize.y, 0, 
                                     FilterMode.Bilinear, _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
             if(CopyTextureSupported)
             {
@@ -331,7 +355,7 @@ public partial class CameraRenderer
 
         if(_isUseDepthTexture)
         {
-            _commandBuffer.GetTemporaryRT(_depthTextureId, _camera.pixelWidth, _camera.pixelHeight, 
+            _commandBuffer.GetTemporaryRT(_depthTextureId, _bufferSize.x, _bufferSize.y, 
                                         32, FilterMode.Point, RenderTextureFormat.Depth);
             // _commandBuffer.CopyTexture(_depthAttachmentId, _depthTextureId);
  

@@ -157,8 +157,22 @@ Shader "Hidden/Custom RP/Post FX Stack"
             #pragma target 3.5
             #pragma vertex DefaultPassVertex
             #pragma fragment FinalPassFragment
-            // #pragma enable_d3d11_debug_symbols
+            #pragma enable_d3d11_debug_symbols
             ENDHLSL
+        }
+
+        Pass
+        {
+            Name "Final Rescale"
+
+			Blend [_FinalSrcBlend] [_FinalDstBlend]
+			
+			HLSLPROGRAM
+				#pragma target 3.5
+				#pragma vertex DefaultPassVertex
+				#pragma fragment FinalPassFragmentRescale
+                #pragma enable_d3d11_debug_symbols
+			ENDHLSL
         }
     }
 

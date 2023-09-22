@@ -12873,9 +12873,12 @@ MonoBehaviour:
     _copyColor: 1
     _copyDepth: 1
     _renderingLayerMask: -1
+    _renderScaleMode: 0
+    _renderScale: 1
     _maskLights: 0
-    _overridePostFx: 0
-    _postFXSettings: {fileID: 0}
+    _overridePostFx: 1
+    _postFXSettings: {fileID: 11400000, guid: b0ff7122a6c855942a0fcc60938ce4b6, type: 2}
+    _allowFXAA: 1
     _finalBlendMode:
       _source: 1
       _destiantion: 0
