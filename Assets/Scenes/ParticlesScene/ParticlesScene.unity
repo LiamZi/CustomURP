@@ -12879,6 +12879,7 @@ MonoBehaviour:
     _overridePostFx: 1
     _postFXSettings: {fileID: 11400000, guid: b0ff7122a6c855942a0fcc60938ce4b6, type: 2}
     _allowFXAA: 1
+    _keepAlpha: 0
     _finalBlendMode:
       _source: 1
       _destiantion: 0

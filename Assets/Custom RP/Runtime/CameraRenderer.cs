@@ -162,7 +162,12 @@ public partial class CameraRenderer
 
         _lighting.Setup(context, _cullingResults, shadowSettings, 
                     useLightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
-        _postStack.Setup(context, camera, _bufferSize, postFXSettings, _isUseHDR, colorLUTResolution, cameraSettings._finalBlendMode, cameraBufferSetting._bicubicRescaling);
+
+        cameraBufferSetting._fxaa._enabled &= cameraSettings._allowFXAA;
+
+        _postStack.Setup(context, camera, _bufferSize, 
+                    postFXSettings, cameraSettings._keepAlpha,  _isUseHDR, colorLUTResolution, 
+                    cameraSettings._finalBlendMode, cameraBufferSetting._bicubicRescaling, cameraBufferSetting._fxaa);
         _commandBuffer.EndSample(_sampleName);
 
         Setup();

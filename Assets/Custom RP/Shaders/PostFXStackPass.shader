@@ -148,7 +148,7 @@ Shader "Hidden/Custom RP/Post FX Stack"
 
         Pass
         {
-            Name "Final Pass"
+            Name "Apply Color Grading"
 
             // Blend SrcAlpha OneMinusSrcAlpha
             Blend [_FinalSrcBlend] [_FinalDstBlend]
@@ -156,9 +156,19 @@ Shader "Hidden/Custom RP/Post FX Stack"
             HLSLPROGRAM
             #pragma target 3.5
             #pragma vertex DefaultPassVertex
-            #pragma fragment FinalPassFragment
+            #pragma fragment ApplyColorGradingPassFragment
             #pragma enable_d3d11_debug_symbols
             ENDHLSL
+        }
+
+        Pass
+        {
+            Name "Apply Color Grading With Luma"
+            HLSLPROGRAM
+				#pragma target 3.5
+				#pragma vertex DefaultPassVertex
+				#pragma fragment ApplyColorGradingWithLumaPassFragment
+			ENDHLSL
         }
 
         Pass
@@ -172,6 +182,38 @@ Shader "Hidden/Custom RP/Post FX Stack"
 				#pragma vertex DefaultPassVertex
 				#pragma fragment FinalPassFragmentRescale
                 #pragma enable_d3d11_debug_symbols
+			ENDHLSL
+        }
+
+        Pass
+        {
+            Name "FXAA"
+
+			Blend [_FinalSrcBlend] [_FinalDstBlend]
+			
+			HLSLPROGRAM
+				#pragma target 3.5
+				#pragma vertex DefaultPassVertex
+				#pragma fragment FXAAPassFragment
+                #pragma enable_d3d11_debug_symbols
+                #include "../ShaderLibrary/FXAAPass.hlsl"
+			ENDHLSL
+        }
+
+        
+        Pass
+        {
+            Name "FXAA With Luma"
+
+			Blend [_FinalSrcBlend] [_FinalDstBlend]
+			
+			HLSLPROGRAM
+				#pragma target 3.5
+				#pragma vertex DefaultPassVertex
+				#pragma fragment FXAAPassFragment
+                #pragma enable_d3d11_debug_symbols
+                #define FXAA_ALPHA_CONTAINS_LUMA
+                #include "../ShaderLibrary/FXAAPass.hlsl"
 			ENDHLSL
         }
     }

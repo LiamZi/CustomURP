@@ -768,9 +768,13 @@ MonoBehaviour:
     _copyColor: 1
     _copyDepth: 1
     _renderingLayerMask: -1
+    _renderScaleMode: 0
+    _renderScale: 1
     _maskLights: 0
     _overridePostFx: 0
     _postFXSettings: {fileID: 0}
+    _allowFXAA: 0
+    _keepAlpha: 0
     _finalBlendMode:
       _source: 1
       _destiantion: 0
@@ -882,7 +886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &161530263
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1458,9 +1462,13 @@ MonoBehaviour:
     _copyColor: 1
     _copyDepth: 1
     _renderingLayerMask: 67
+    _renderScaleMode: 0
+    _renderScale: 1
     _maskLights: 1
     _overridePostFx: 0
     _postFXSettings: {fileID: 0}
+    _allowFXAA: 0
+    _keepAlpha: 0
     _finalBlendMode:
       _source: 1
       _destiantion: 0
@@ -2734,9 +2742,13 @@ MonoBehaviour:
     _copyColor: 1
     _copyDepth: 1
     _renderingLayerMask: 561
+    _renderScaleMode: 0
+    _renderScale: 1
     _maskLights: 1
     _overridePostFx: 1
-    _postFXSettings: {fileID: 0}
+    _postFXSettings: {fileID: 11400000, guid: a598bf72848c3884f9f8d8a34877ac16, type: 2}
+    _allowFXAA: 1
+    _keepAlpha: 0
     _finalBlendMode:
       _source: 1
       _destiantion: 0
@@ -2933,9 +2945,13 @@ MonoBehaviour:
     _copyColor: 1
     _copyDepth: 1
     _renderingLayerMask: 8
+    _renderScaleMode: 0
+    _renderScale: 1
     _maskLights: 1
     _overridePostFx: 1
     _postFXSettings: {fileID: 11400000, guid: a598bf72848c3884f9f8d8a34877ac16, type: 2}
+    _allowFXAA: 0
+    _keepAlpha: 0
     _finalBlendMode:
       _source: 1
       _destiantion: 0
@@ -3564,9 +3580,13 @@ MonoBehaviour:
     _copyColor: 1
     _copyDepth: 1
     _renderingLayerMask: 5
+    _renderScaleMode: 0
+    _renderScale: 1
     _maskLights: 1
     _overridePostFx: 1
     _postFXSettings: {fileID: 11400000, guid: b0ff7122a6c855942a0fcc60938ce4b6, type: 2}
+    _allowFXAA: 0
+    _keepAlpha: 0
     _finalBlendMode:
       _source: 1
       _destiantion: 0
@@ -4635,9 +4655,13 @@ MonoBehaviour:
     _copyColor: 1
     _copyDepth: 1
     _renderingLayerMask: 80
+    _renderScaleMode: 0
+    _renderScale: 1
     _maskLights: 1
     _overridePostFx: 1
     _postFXSettings: {fileID: 11400000, guid: 153f77e5b46652449af79e489c08f49d, type: 2}
+    _allowFXAA: 0
+    _keepAlpha: 0
     _finalBlendMode:
       _source: 1
       _destiantion: 10

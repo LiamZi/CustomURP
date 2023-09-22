@@ -59,6 +59,7 @@
      <None Include="Assets\Custom RP\ShaderLibrary\Shadows.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\CameraRendererPasses.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\UnityInput.hlsl" />
+     <None Include="Assets\Custom RP\ShaderLibrary\FXAAPass.hlsl" />
      <None Include="Assets\Custom RP\Shaders\PostFXStackPass.shader" />
      <None Include="Assets\Custom RP\ShaderLibrary\GI.hlsl" />
      <None Include="Assets\Custom RP\Shaders\UnlitOpaque.shader" />

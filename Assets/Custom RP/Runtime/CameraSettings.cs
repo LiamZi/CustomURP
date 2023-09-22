@@ -27,6 +27,7 @@ public class CameraSettings
     public bool _overridePostFx = false;
     public PostFXSettings _postFXSettings = default;
     public bool _allowFXAA = false;
+    public bool _keepAlpha = false;
 
     [Serializable]
     public struct FinalBlendMode
