@@ -22,21 +22,23 @@ MonoBehaviour:
     _copyColorReflection: 0
     _copyDepth: 1
     _copyDepthReflection: 0
-    _renderScale: 1
+    _renderScale: 1.33
     _bicubicRescaling: 0
     _fxaa:
       _enabled: 1
       _fixedThreshold: 0.0833
-      _relativeThreshold: 0.166
+      _relativeThreshold: 0.333
+      _subpixelBlending: 0.667
+      _quality: 2
   _shadows:
     _maxDistance: 50
-    _distanceFade: 0.5
+    _distanceFade: 0.1
     _directional:
-      _atlasSize: 4096
+      _atlasSize: 1024
       _filter: 2
       _cascadeCount: 4
-      _cascadeRatio1: 0.3
-      _cascadeRatio2: 0.4
+      _cascadeRatio1: 0.1
+      _cascadeRatio2: 0.25
       _cascadeRatio3: 0.5
       _cascadeFade: 0.1
       _cascadblendMode: 1

@@ -88,7 +88,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SoftParticles: 1
     - _SoftParticlesDistance: 0
-    - _SoftParticlesRange: 1
+    - _SoftParticlesRange: 3.19
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _UVSec: 0

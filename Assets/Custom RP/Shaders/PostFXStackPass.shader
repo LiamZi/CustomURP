@@ -211,7 +211,8 @@ Shader "Hidden/Custom RP/Post FX Stack"
 				#pragma target 3.5
 				#pragma vertex DefaultPassVertex
 				#pragma fragment FXAAPassFragment
-                #pragma enable_d3d11_debug_symbols
+                #pragma multi_compile _ FXAA_QUALITY_MEDIUM FXAA_QUALITY_LOW
+                // #pragma enable_d3d11_debug_symbols
                 #define FXAA_ALPHA_CONTAINS_LUMA
                 #include "../ShaderLibrary/FXAAPass.hlsl"
 			ENDHLSL

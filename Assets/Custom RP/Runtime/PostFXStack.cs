@@ -7,6 +7,8 @@ using static PostFXSettings;
 public partial class PostFXStack 
 {
     const string _bufferName = "Post Fx";
+    const string _fxaaQualityLowKeyWord = "FXAA_QUALITY_LOW";
+    const string _fxaaQualityMediumKeyWord = "FXAA_QUALITY_MEDIUM";
 
     const int _maxBloomPyramidLevels = 16;
 
@@ -301,9 +303,10 @@ public partial class PostFXStack
         _commandBuffer.SetGlobalFloat(_finalDstBlendId, 0f);
         if(_fxaa._enabled)
         {
+            ConfigureFXAA();
             _commandBuffer.GetTemporaryRT(_colorGradingResultId, _bufferSize.x, _bufferSize.y, 
                                             0, FilterMode.Bilinear, RenderTextureFormat.Default);
-            _commandBuffer.SetGlobalVector(_fxaaConfigId, new Vector4(_fxaa._fixedThreshold, _fxaa._relativeThreshold));
+            _commandBuffer.SetGlobalVector(_fxaaConfigId, new Vector4(_fxaa._fixedThreshold, _fxaa._relativeThreshold, _fxaa._subpixelBlending));
             Draw(sourceId, _colorGradingResultId, _isKeepAlpha ? Pass.ApplyColorGrading : Pass.ApplyColorGradingWithLuma);
         }
 
@@ -395,6 +398,27 @@ public partial class PostFXStack
         var range = new Vector4(midtones._shadowStart, midtones._shadowEnd, midtones._highlightsStart, midtones._hightlightsEnd);
         _commandBuffer.SetGlobalVector(_smhRangeId, range);
         
+    }
+
+    void ConfigureFXAA()
+    {
+        if(_fxaa._quality == CameraBufferSettings.FXAA.Quality.Low)
+        {
+            _commandBuffer.DisableShaderKeyword(_fxaaQualityMediumKeyWord);
+            _commandBuffer.EnableShaderKeyword(_fxaaQualityLowKeyWord);
+        }
+        else if(_fxaa._quality == CameraBufferSettings.FXAA.Quality.Medium)
+        {
+            _commandBuffer.DisableShaderKeyword(_fxaaQualityLowKeyWord);
+            _commandBuffer.EnableShaderKeyword(_fxaaQualityMediumKeyWord);
+        }
+        else
+        {
+            _commandBuffer.DisableShaderKeyword(_fxaaQualityLowKeyWord);
+            _commandBuffer.DisableShaderKeyword(_fxaaQualityMediumKeyWord);
+        }
+
+        _commandBuffer.SetGlobalVector(_fxaaConfigId, new Vector4(_fxaa._fixedThreshold, _fxaa._relativeThreshold, _fxaa._subpixelBlending));
     }
 
 };
