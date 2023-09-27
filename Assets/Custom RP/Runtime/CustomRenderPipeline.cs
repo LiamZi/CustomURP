@@ -25,6 +25,24 @@ public partial class CustomRenderPipeline : RenderPipeline
 
     int _colorLUTResolution;
 
+    public CustomRenderPipeline(CustomRenderPipelineAsset asset)
+    {
+        GraphicsSettings.lightsUseLinearIntensity = true;
+        this._useDynamicBatching = asset.DynamicBatching;
+        this._cameraBufferSettings = asset.CameraBuffer;
+        this._useGPUInstanceing = asset.GPUInstancing;
+        this._useLightsPerObject = asset.LightsPerObject;
+        this._shadowSettings = asset.Shadows;
+        this._postFXSettings = asset.PostProcessing;
+        this._colorLUTResolution = (int)asset.ColorLUT;
+        GraphicsSettings.useScriptableRenderPipelineBatching = asset.SRPBatcher;
+        GraphicsSettings.lightsUseLinearIntensity = true;
+
+        _renderer = new CameraRenderer(asset.DefaultShader);
+
+        InitializeForEditor();
+    }
+
 
     public CustomRenderPipeline(CameraBufferSettings cameraBufferSettings, bool isEnabledDynamicBatch, bool isEnabledInstancing, 
                             bool useSRPBatcher, bool useLightsPerObject, 

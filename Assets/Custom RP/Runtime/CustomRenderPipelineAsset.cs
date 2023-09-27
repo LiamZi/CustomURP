@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -54,12 +55,58 @@ public partial class CustomRenderPipelineAsset : RenderPipelineAsset
 
     private RenderPipeline _pipeline = null;
 
+    public CameraBufferSettings CameraBuffer
+    {
+        get => _cameraBuffer;
+    }
+
+    public bool DynamicBatching
+    {
+        get => _dynamicBatching;
+    }
+
+    public bool GPUInstancing
+    {
+        get => _instancing;
+    }
+
+    public bool LightsPerObject
+    {
+        get => _useLightsPerObject;
+    }
+
+    public ShadowSettings Shadows
+    {
+        get => _shadows;
+    }
+
+    public PostFXSettings PostProcessing
+    {
+        get => _postFXSettings;
+    }
+
+    public ColorLUTResolution ColorLUT
+    {
+        get => _colorLUTResolution;
+    }
+
+    public bool SRPBatcher
+    {
+        get => _useSRPBatcher;
+    }
+
+    public Shader DefaultShader
+    {
+        get => _cameraRendererShader;
+    }
+
+    public LoadingThread _loadingThread;
+
+    public CustomPipeline.PipelineShaders _pipelineShaders = new CustomPipeline.PipelineShaders();
+
     protected override RenderPipeline CreatePipeline()
     {   
-
-        _pipeline = new CustomRenderPipeline(_cameraBuffer, _dynamicBatching, _instancing, 
-                                        _useSRPBatcher, _useLightsPerObject, 
-                                        _shadows, _postFXSettings, (int)_colorLUTResolution, _cameraRendererShader);
+        _pipeline = new CustomRenderPipeline(this);
 
         return _pipeline;
     }

@@ -51,10 +51,14 @@
      <Compile Include="Assets\Custom RP\Runtime\CameraSettings.cs" />
      <Compile Include="Assets\Custom RP\Runtime\RenderingLayerMaskFieldAttributePropertyAttribute.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\CameraBufferSettings.cs" />
+     <Compile Include="Assets\Custom RP\Core\LoadingThread.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\PostFXSettings.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
-     <Compile Include="Assets\Custom RP\Runtime\CameraBufferSettings.cs" />
+     <Compile Include="Assets\Custom RP\Core\LoadingCommandQueue.cs" />
+     <Compile Include="Assets\Custom RP\Utility\PipelineShaders.cs" />
+     <None Include="Assets\Custom RP\Shaders\GpuFrustumCulling.compute" />
      <None Include="Assets\Custom RP\Shaders\CameraRenderer.shader" />
      <None Include="Assets\Custom RP\ShaderLibrary\Shadows.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\CameraRendererPasses.hlsl" />

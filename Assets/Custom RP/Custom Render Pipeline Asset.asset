@@ -31,7 +31,7 @@ MonoBehaviour:
       _subpixelBlending: 0.667
       _quality: 2
   _shadows:
-    _maxDistance: 50
+    _maxDistance: 20
     _distanceFade: 0.1
     _directional:
       _atlasSize: 1024
@@ -41,7 +41,7 @@ MonoBehaviour:
       _cascadeRatio2: 0.25
       _cascadeRatio3: 0.5
       _cascadeFade: 0.1
-      _cascadblendMode: 1
+      _cascadblendMode: 2
     _other:
       _atlasSize: 1024
       _filter: 2

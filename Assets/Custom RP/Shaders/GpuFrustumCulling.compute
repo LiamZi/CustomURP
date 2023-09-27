@@ -1,0 +1,53 @@
+#pragma kernel ClusterCull
+#pragma kernel ClearCluster
+#pragma kernel UnsafeCull
+#pragma kernel MoveVertex
+#pragma kernel MoveCluster
+#pragma kernel FustumFilter
+#pragma kernel OcclusionRecheck
+#pragma kernel ClearOcclustionData
+
+struct ClusterMeshData
+{
+    float3 extent;
+    float3 position;
+    int index;
+};
+
+RWStructuredBuffer<ClusterMeshData> _clusterBuffer;
+
+float _FrustumMinPoint;
+float _FrustumMaxPoint;
+float4 Planes[PLANE_COUNT];
+
+float PlaneTest(ClusterMeshData data)
+{
+    float3 position = data.position;
+    float3 extent = data.extent;
+    float3 minPos = position - extent;
+    float3 maxPos = position + extent;
+    float outOfRange = dot(_FrustumMinPoint > maxPos, 1) + dot(_FrustumMaxPoint < minPos, 1);
+    if(outOfRange > 0.5) return 0;
+
+    [unroll]
+    for(uint i = 0; i < 6; ++i)
+    {
+        float4 plane = Planes[i];
+    }
+
+}
+
+[numthreads(64, 1, 1)]
+void ClusterCull(uint id : SV_DISPATCHTHREADID)
+{
+    if(id >= _Count) return;
+
+    ClusterMeshData currentObj = _clusterBuffer[id];
+    float result = PlaneTest(currentObj);
+}
+
+[numthreads(64, 1, 1)]
+void UnsafeCull(uint id : SV_DISPATCHTHREADID)
+{
+
+}
