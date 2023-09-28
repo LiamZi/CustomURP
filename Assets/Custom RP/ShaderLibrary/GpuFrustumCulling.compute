@@ -1,0 +1,126 @@
+#include "Common.hlsl"
+#include "Procedural.hlsl"
+
+#pragma kernel ClusterCull
+#pragma kernel ClearCluster
+#pragma kernel UnsafeCull
+#pragma kernel MoveVertex
+#pragma kernel MoveCluster
+#pragma kernel FrustumFilter
+#pragma kernel OcclusionRecheck
+#pragma kernel ClearOcclustionData
+
+#define COMPUTESHADER
+#define PLANE_COUNT 6
+
+
+struct ClusterMeshData
+{
+    float3 extent;
+    float3 position;
+    int index;
+};
+
+RWStructuredBuffer<ClusterMeshData> _clusterBuffer;
+RWStructuredBuffer<uint> _instanceCountBuffer;
+RWStructuredBuffer<uint> _resultBuffer;
+RWStructuredBuffer<uint> _reCheckResult;
+RWStructuredBuffer<uint> _reCheckCount;
+RWStructuredBuffer<uint> _dispatchBuffer;
+RWStructuredBuffer<TriangleLayout> _verticesBuffer;
+
+Texture2D<half> _HizDepthTexture;
+SamplerState _sampler_HizDepthTexture;
+
+float _FrustumMinPoint;
+float _FrustumMaxPoint;
+float4 Planes[PLANE_COUNT];
+uint _Count;
+float3 _CameraUpVector;
+float4x4 _NonJitterVp;
+float4 _HizScreenRes;
+float4x4 _lastVp;
+float3 _ScreenOffset;
+uint _OffsetIndex;
+
+float PlaneTest(ClusterMeshData data)
+{
+    float3 position = data.position;
+    float3 extent = data.extent;
+    float3 minPos = position - extent;
+    float3 maxPos = position + extent;
+    float outOfRange = dot(_FrustumMinPoint > maxPos, 1) + dot(_FrustumMaxPoint < minPos, 1);
+    if(outOfRange > 0.5) return 0;
+
+    [unroll]
+    for(uint i = 0; i < 6; ++i)
+    {
+        float4 plane = Planes[i];
+        float3 absNormal = abs(plane.xyz);
+        if ((dot(position, plane.xyz) - dot(absNormal, extent)) > -plane.w)
+        {
+            return 0;
+        }
+    }
+    
+    return 1;
+}
+
+[numthreads(64, 1, 1)]
+void ClusterCull(uint id : SV_DISPATCHTHREADID)
+{
+    if(id >= _Count) return;
+
+    ClusterMeshData currentObj = _clusterBuffer[id];
+    float result = PlaneTest(currentObj);
+    if(result > 0.5)
+    {
+        uint currentIndex;
+        InterlockedAdd(_instanceCountBuffer[1], 1, currentIndex);
+        _resultBuffer[currentIndex] = id;
+    }
+}
+
+[numthreads(64, 1, 1)]
+void UnsafeCull(uint id : SV_DISPATCHTHREADID)
+{
+
+}
+
+[numthreads(1, 1, 1)]
+void ClearCluster(uint id : SV_DISPATCHTHREADID)
+{
+    _instanceCountBuffer[1] = 0;
+}
+
+[numthreads(1, CLUSTERCLIPCOUNT, 1)]
+void MoveVertex(uint2 id : SV_DISPATCHTHREADID)
+{
+    _verticesBuffer[(id.x + _OffsetIndex) * CLUSTERCLIPCOUNT + id.y].vertex += _ScreenOffset;
+}
+
+[numthreads(64, 1, 1)]
+void MoveCluster(uint id : SV_DISPATCHTHREADID)
+{
+    if(id >= _Count) return;
+    _clusterBuffer[id + _OffsetIndex].position += _ScreenOffset;
+}
+
+[numthreads(64, 1, 1)]
+void FrustumFilter(uint id : SV_DISPATCHTHREADID)
+{
+    
+}
+
+[numthreads(64, 1, 1)]
+void OcclusionRecheck(uint id : SV_DISPATCHTHREADID)
+{
+    
+}
+
+[numthreads(1, 1, 1)]
+void ClearOcclustionData(uint id : SV_DISPATCHTHREADID)
+{
+    
+}
+

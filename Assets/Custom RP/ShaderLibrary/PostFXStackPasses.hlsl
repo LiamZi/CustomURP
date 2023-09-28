@@ -318,7 +318,6 @@ float3 ApplyColorGradingLUT(float3 color)
 
 //ToneMapping Reinhard  c/(1+c).  c is color 
 //the alternative function c(1+c/w^2)/(1+c), where w is the white point.
-// float4 ToneMappingReinhardPassFragment(Varyings input) : SV_TARGET
 float4 ColorGradingReinhardPassFragment(Varyings input) : SV_TARGET
 {
     // float4 color = GetSource(input.screenUV);
@@ -333,7 +332,6 @@ float4 ColorGradingReinhardPassFragment(Varyings input) : SV_TARGET
 
 //ToneMapping Neutral t(x)=(x(ax+cb)+de)/(x(ax+b)+df)-e/f The final color is then (t(ce))/(t(w))
 // In this case x is an input color channel and the other values are constants that configure the curve.
-// float4 ToneMappingNeutralPassFragment(Varyings input) : SV_TARGET
 float4 ColorGradingNeutralPassFragment(Varyings input) : SV_TARGET
 {
     // float4 color = GetSource(input.screenUV);
