@@ -16,6 +16,10 @@ MonoBehaviour:
   _instancing: 1
   _useSRPBatcher: 1
   _useLightsPerObject: 0
+  _indirectSettings:
+    _indirectRendering: 1
+    _runCompute: 1
+    _AsyncCompute: 1
   _cameraBuffer:
     _allowHDR: 1
     _copyColor: 1
@@ -48,3 +52,8 @@ MonoBehaviour:
   _postFXSettings: {fileID: 11400000, guid: b0ff7122a6c855942a0fcc60938ce4b6, type: 2}
   _colorLUTResolution: 32
   _cameraRendererShader: {fileID: 4800000, guid: 4011e83c664b3b542998e4d8b98a88e8, type: 3}
+  _pipelineShaders:
+    _gpuFrustumCulling: {fileID: 0}
+    _streamingShader: {fileID: 0}
+    HizLodShader: {fileID: 0}
+    _ClusterRenderShader: {fileID: 0}

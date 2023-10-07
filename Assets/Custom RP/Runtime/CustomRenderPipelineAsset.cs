@@ -20,6 +20,9 @@ public partial class CustomRenderPipelineAsset : RenderPipelineAsset
     [SerializeField]
     bool _useLightsPerObject = true;
 
+    [SerializeField]  
+    Core.IndirectSettings _indirectSettings = default;
+
     [SerializeField]
     // bool _allowHDR = true;
     CameraBufferSettings _cameraBuffer = new CameraBufferSettings
@@ -52,7 +55,7 @@ public partial class CustomRenderPipelineAsset : RenderPipelineAsset
 
     [SerializeField]
     Shader _cameraRendererShader = default;
-
+    
     private RenderPipeline _pipeline = null;
 
     public CameraBufferSettings CameraBuffer
@@ -73,6 +76,11 @@ public partial class CustomRenderPipelineAsset : RenderPipelineAsset
     public bool LightsPerObject
     {
         get => _useLightsPerObject;
+    }
+
+    public Core.IndirectSettings IndirectSettings
+    {
+        get => _indirectSettings;
     }
 
     public ShadowSettings Shadows
@@ -103,7 +111,7 @@ public partial class CustomRenderPipelineAsset : RenderPipelineAsset
     public LoadingThread _loadingThread;
 
     public CustomPipeline.PipelineShaders _pipelineShaders = new CustomPipeline.PipelineShaders();
-
+    
     protected override RenderPipeline CreatePipeline()
     {   
         _pipeline = new CustomRenderPipeline(this);

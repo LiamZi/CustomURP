@@ -15,8 +15,8 @@ public partial class CustomRenderPipeline : RenderPipeline
     // bool _useHDR;
     CameraBufferSettings _cameraBufferSettings;
     ShadowSettings _shadowSettings;
-
     PostFXSettings _postFXSettings;
+    Core.IndirectSettings _indirectSettings;
 
     public CameraRenderer Renderer
     {
@@ -37,6 +37,7 @@ public partial class CustomRenderPipeline : RenderPipeline
         this._colorLUTResolution = (int)asset.ColorLUT;
         GraphicsSettings.useScriptableRenderPipelineBatching = asset.SRPBatcher;
         GraphicsSettings.lightsUseLinearIntensity = true;
+        this._indirectSettings = asset.IndirectSettings;
 
         _renderer = new CameraRenderer(asset.DefaultShader);
 
@@ -44,9 +45,10 @@ public partial class CustomRenderPipeline : RenderPipeline
     }
 
 
-    public CustomRenderPipeline(CameraBufferSettings cameraBufferSettings, bool isEnabledDynamicBatch, bool isEnabledInstancing, 
-                            bool useSRPBatcher, bool useLightsPerObject, 
-                            ShadowSettings shadowSettings, PostFXSettings postFXSettings, int colorLUTResolution , Shader cameraRendererShader)
+    public CustomRenderPipeline(CameraBufferSettings cameraBufferSettings, bool isEnabledDynamicBatch, 
+                            bool isEnabledInstancing, bool useSRPBatcher, bool useLightsPerObject, 
+                            ShadowSettings shadowSettings, PostFXSettings postFXSettings, int colorLUTResolution , 
+                            Shader cameraRendererShader)
     {
         GraphicsSettings.lightsUseLinearIntensity = true;
         this._useDynamicBatching = isEnabledDynamicBatch;

@@ -68,6 +68,8 @@
      <Compile Include="Assets\Custom RP\Runtime\PostFXSettings.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Components.cs" />
+     <Compile Include="Assets\Custom RP\Core\QuadTree.cs" />
+     <Compile Include="Assets\Custom RP\Core\IndirectSettings.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
      <None Include="Assets\Custom RP\ShaderLibrary\GpuFrustumCulling.compute" />
@@ -103,7 +105,7 @@
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.universal@10.10.1\Textures\SMAA" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\cm.es.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\basecommands.ko.txt" />
-     <Folder Include="Library\PackageCache\com.unity.ide.rider@3.0.18\Rider" />
+     <Folder Include="Library\PackageCache\com.unity.ide.rider@3.0.24\Rider" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\semantic.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\clientcommon.es.txt" />
      <None Include="Assets\Custom RP\ShaderLibrary\Shadows.hlsl" />
@@ -178,7 +180,7 @@
      <None Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0\package.json" />
      <None Include="Assets\Custom RP\Shaders\ParticlesUnlit.shader" />
      <Folder Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0" />
-     <None Include="Library\PackageCache\com.unity.ide.rider@3.0.18\package.json" />
+     <None Include="Library\PackageCache\com.unity.ide.rider@3.0.24\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\i3.zh-Hans.txt" />
      <None Include="Library\PackageCache\com.unity.searcher@4.3.2\package.json" />
      <None Include="Library\PackageCache\com.unity.modules.video@1.0.0\package.json" />
@@ -263,7 +265,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\binmergetool.ja.txt" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6" />
      <None Include="Library\PackageCache\com.unity.modules.uielementsnative@1.0.0\package.json" />
-     <Folder Include="Library\PackageCache\com.unity.ide.rider@3.0.18" />
+     <Folder Include="Library\PackageCache\com.unity.ide.rider@3.0.24" />
      <None Include="Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0\package.json" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.core@10.10.1" />
      <None Include="Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0\package.json" />
