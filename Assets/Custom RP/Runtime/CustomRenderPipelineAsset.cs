@@ -111,11 +111,11 @@ public partial class CustomRenderPipelineAsset : RenderPipelineAsset
     public LoadingThread _loadingThread;
 
     public CustomPipeline.PipelineShaders _pipelineShaders = new CustomPipeline.PipelineShaders();
+
     
     protected override RenderPipeline CreatePipeline()
-    {   
+    {
         _pipeline = new CustomRenderPipeline(this);
-
         return _pipeline;
     }
 

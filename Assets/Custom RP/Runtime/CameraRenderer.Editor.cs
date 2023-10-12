@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Profiling;
+using CustomURP;
 
 public partial class CameraRenderer
 {
@@ -73,7 +74,15 @@ public partial class CameraRenderer
     partial void PrepareBuffer()
     {
         Profiler.BeginSample("Editor Only");
-        _commandBuffer.name = _sampleName = _camera.name;
+        //_commandBuffer.name = _sampleName = _camera.name;
+        //CommandBufferManager.Singleton.Get(_sampleName).Name = _camera.name;
+        var buffer = CommandBufferManager.Singleton.Get(_sampleName);
+        if (buffer == null)
+        {
+            buffer = CommandBufferManager.Singleton.First();
+            
+        }
+        buffer.Name = _sampleName = _camera.name;
         Profiler.EndSample();
     }
 

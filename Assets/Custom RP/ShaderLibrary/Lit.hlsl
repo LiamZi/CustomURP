@@ -154,34 +154,6 @@ float4 frag(VertexOutput input) : SV_TARGET
     // return float4(finalColor, surface.alpha);
     return float4(finalColor, GetFinalAlpha(surface.alpha));
     // return float4(surface.color, surface.alpha);
-
-    // UNITY_SETUP_INSTANCE_ID(input);
-    // half3 rgb = abs(length( input.normalWS) - 1.0) * 20.0;
-    // half3 rgb = normalize(input.normalWS);
-    // half3 rgb = input.normalWS;
-    // return half4(rgb, 1.0);
-    // input.normal = normalize(input.normal);
-
-    // float3 albedo =  UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor).rgb;
-    // float3 diffuse = 0;
-    
-    // for(int i = 0; i < min(unity_LightData.y, 8); i++)    
-    // // for(int i = 0; i < 5; i++)               
-    // {
-    //     int lightIndex = unity_LightIndices[i / 4][i % 4];
-    //     // int lightIndex = unity_4LightIndices0[i];
-
-    //     diffuse += DiffuseLight(lightIndex, input.normal, input.worldPos);
-    // }
-
-    // // for(int i = 4; i < min(unity_LightData.y, 8); i++)
-    // // {
-    // //     int lightIndex = unity_LightIndices[i - 4];
-    // //     diffuse += DiffuseLight(lightIndex, input.normal, input.worldPos);
-    // // }
-
-    // float3 color = diffuse * albedo;
-    // return half4(color, 1);
 }
 
 #endif

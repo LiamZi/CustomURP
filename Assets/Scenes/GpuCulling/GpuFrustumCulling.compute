@@ -1,0 +1,54 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+
+uint _instanceCount;
+float4 _planes[6];
+StructuredBuffer<float4x4> _input;
+AppendStructuredBuffer<float4x4> _cullResult;
+
+bool IsOutsidePlane(float4 plane, float3 pos)
+{
+    if(dot(plane.xyz, pos) + plane.w > 0) return true;
+
+    return false;
+}
+
+
+[numthreads(64,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if(id.x >= _instanceCount) return;
+
+    float4x4 data = _input[id.x];
+
+    float3 boundMin = float3(-1.5, 0, -1.5);
+    float3 boundMax = float3(1.5, 7, 1.5);
+    float4 boundVerts[8];
+    boundVerts[0] = mul(data, float4(boundMin, 1));
+    boundVerts[1] = mul(data, float4(boundMax, 1));
+    boundVerts[2] = mul(data, float4(boundMax.x, boundMax.y, boundMin.z, 1.0));
+    boundVerts[3] = mul(data, float4(boundMax.x, boundMin.y, boundMax.z, 1.0));
+    boundVerts[4] = mul(data, float4(boundMax.x, boundMin.y, boundMin.z, 1.0));
+    boundVerts[5] = mul(data, float4(boundMin.x, boundMax.y, boundMin.z, 1.0));
+    boundVerts[6] = mul(data, float4(boundMin.x, boundMax.y, boundMin.z, 1.0));
+    boundVerts[7] = mul(data, float4(boundMin.x, boundMin.y, boundMax.z, 1.0));
+    
+    for(int i = 0; i < 6; ++i)
+    {
+        for(int j = 0; j < 8; ++j)
+        {
+            float3 boundPos = boundVerts[j].xyz;
+            if(!IsOutsidePlane(_planes[i], boundPos))
+            {
+                break;
+            }
+
+            if(j == 7) return;
+        }
+    }
+
+    _cullResult.Append(data);
+}

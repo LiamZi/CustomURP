@@ -139,8 +139,8 @@
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\AssetsUtils\AssetsPath.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\Views\PendingChanges\PendingChangesSelection.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\UI\UIElements\LoadingSpinner.cs" />
-     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\Views\Diff\DiffTreeView.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\AutoRefresh.cs" />
+     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\Views\Diff\DiffTreeView.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\UI\StatusBar\StatusBar.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\AssetOverlays\AssetStatus.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\AssetMenu\ProjectViewAssetSelection.cs" />

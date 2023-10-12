@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Custom_RP.Runtime.Interfaces.Components
+namespace CustomURP
 {
     public class ClusterCommandBuffer
     {
