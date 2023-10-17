@@ -1,3 +1,6 @@
+#ifndef __SHADER_LIBRARY_COMPUTE_SHADER_GPU_FRUSTUM_CULLING_COMPUTE__
+#define __SHADER_LIBRARY_COMPUTE_SHADER_GPU_FRUSTUM_CULLING_COMPUTE__
+
 #include "Common.hlsl"
 #include "Procedural.hlsl"
 
@@ -123,4 +126,7 @@ void ClearOcclustionData(uint id : SV_DISPATCHTHREADID)
 {
     
 }
+
+#endif
+
 

@@ -33,6 +33,8 @@ CBUFFER_START(UnityPerDraw)
 CBUFFER_END
 
 
+
+
 //TODO: do not write those in unity cbuffer.
 
 // CBUFFER_START(UnityPerFrame)
@@ -44,11 +46,25 @@ CBUFFER_END
     float4x4 glstate_matrix_projection;
 // CBUFFER_END
 
-float3 _WorldSpaceCameraPos;
-float4 unity_OrthoParams;
-float4 _ProjectionParams;
-float4 _ScreenParams;
-float4 _ZBufferParams;
+CBUFFER_START(UnityPerCamera)
+    float4 _Time;
+    float4 _SinTime;
+    float4 _CosTime;
+    float4 unity_DeltaTime;
 
+#if !defined(USING_STEREO_MATRICES)
+    float3 _WorldSpaceCameraPos;
+#endif
+
+    float4 unity_OrthoParams;
+    float4 _ProjectionParams;
+    float4 _ScreenParams;
+    float4 _ZBufferParams;
+
+#if defined(STEREO_CUBEMAP_RENDER_ON)
+//x-component is the half stereo separation value, which a positive for right eye and negative for left eye. The y,z,w components are unused.
+float4 unity_HalfStereoSeparation;
+#endif
+CBUFFER_END
 
 #endif

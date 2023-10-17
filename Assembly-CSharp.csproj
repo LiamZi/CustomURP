@@ -78,7 +78,7 @@
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Components.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\mergetool.ja.txt" />
-     <None Include="Assets\Custom RP\ShaderLibrary\GpuFrustumCulling.compute" />
+     <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\GpuFrustumCulling.compute" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\images.zh-Hans.txt" />
      <Folder Include="Assets\Custom RP\Utility" />
      <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />
@@ -261,6 +261,7 @@
      <Folder Include="Library\PackageCache\com.unity.mathematics@1.1.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\FileSystemWatcherLicense.txt" />
      <Folder Include="Library\PackageCache\com.unity.modules.androidjni@1.0.0" />
+     <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\GrassCulling.compute" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Gizmos" />
      <None Include="Library\PackageCache\com.unity.modules.audio@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\cm-help.ko.txt" />
@@ -302,7 +303,7 @@
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Tests" />
      <None Include="Assets\Custom RP\Shaders\Lit.shader" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_Properties.cginc" />
-     <None Include="Assets\Scenes\GpuCulling\GpuFrustumCulling.compute" />
+     <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\FrustumCulling.compute" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.core@10.10.1\Tests" />
      <Folder Include="Assets\Custom RP\Core" />
      <Folder Include="Assets\Scenes\BakeLightScene\BakedLightScene" />
@@ -350,6 +351,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\workspaceserver.ja.txt" />
      <None Include="Assets\Custom RP\ShaderLibrary\Lighting.hlsl" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\mergetool.ko.txt" />
+     <Folder Include="Assets\Custom RP\ShaderLibrary\ComputeShader" />
      <Folder Include="Assets\Resources\Prefabs" />
      <None Include="Assets\Scenes\FrustumCulling\InstancedShader.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\localization\clientcommon.ko.txt" />

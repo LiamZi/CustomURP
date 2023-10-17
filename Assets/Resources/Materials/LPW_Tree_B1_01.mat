@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LPW_Tree_B1_01
-  m_Shader: {fileID: 4800000, guid: aa39e15a9f5d0ed47aa0951572b2dc9e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 28bf578ae05040fd9964299e3324b27e, type: 3}
   m_ShaderKeywords: _ENABLEHORIZONTALBENDING_ON _ENABLEHORIZONTALMOVEMENT_ON _ENABLEMAINBENDING_ON
-    _ENABLEVERTICALBENDING_ON _ENABLEVERTICALMOVEMENT_ON
+    _ENABLEVERTICALBENDING_ON _ENABLEVERTICALMOVEMENT_ON _RECEIVE_SHADOWS _SHADOWS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,11 +20,19 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -44,12 +52,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: 225da740038919f4ca9eaff413945956, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
         m_Texture: {fileID: 2800000, guid: 325d48ff66bae3245b768b66049c7718, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -65,10 +81,21 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Amplitude: 1.5
+    - _AmplitudeOffset: 2
     - _BumpScale: 1
+    - _Clipping: 0
     - _Cutoff: 0.5
+    - _DefaultBending: 0
+    - _DetailAlbedo: 1
+    - _DetailMapToggle: 0
     - _DetailNormalMapScale: 1
+    - _DetailNormalScale: 1
+    - _DetailSmoothness: 1
     - _DstBlend: 0
+    - _Frequency: 1.1
+    - _FrequencyOffset: 0
+    - _Fresnel: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -82,19 +109,32 @@ Material:
     - _MBWindBlend: 0
     - _MBWindDir: 90
     - _MBWindDirOffset: 63
+    - _MaskMapToggle: 0
+    - _MaxHeight: 10
     - _Metallic: 0
     - _Mode: 0
+    - _NormalMapToggle: 0
+    - _NormalScale: 1
+    - _Occlusion: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Phase: 1
+    - _PremulAlpha: 0
+    - _ReceiveShadows: 1
+    - _Shadows: 0
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _WindDir: 0
+    - _WindDirOffset: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoisePannerSpeed: {r: 0.08, g: 0.04, b: 0, a: 0}
     - _NoiseTextureTilling: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

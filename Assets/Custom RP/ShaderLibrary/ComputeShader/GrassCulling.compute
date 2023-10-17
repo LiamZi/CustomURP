@@ -1,0 +1,145 @@
+#ifndef __SHADER_LIBRARY_COMPUTE_SHADER_GRASS_CULLING_COMPUTE__
+#define __SHADER_LIBRARY_COMPUTE_SHADER_GRASS_CULLING_COMPUTE__
+
+#pragma kernel CSMain
+
+//The Minimum boundingbox point
+static float3 _boundMin = float3(-0.2f, 0.0f, -0.3f);
+//The Maximum boundingbox point
+static float3 _boundMax = float3(0.2f, 0.5f, 0.3f);
+
+uint _count;
+uint _depthTextureSize;
+bool _isOGL;
+float4x4 _vpMatrix;
+
+StructuredBuffer<float4x4> _grassMatrixBuffer;
+AppendStructuredBuffer<float4x4> _cullResultBuffer;
+Texture2D _hizTexture;
+
+
+bool IsInClipSpace(float4 clipSpacePos)
+{
+    if(_isOGL)
+    {
+        return clipSpacePos.x > -clipSpacePos.w && clipSpacePos.x < clipSpacePos.w &&
+            clipSpacePos.y > -clipSpacePos.w && clipSpacePos.y < clipSpacePos.w &&
+            clipSpacePos.z > -clipSpacePos.w && clipSpacePos.z < clipSpacePos.w;
+    }
+    else
+    {
+        return  clipSpacePos.x > -clipSpacePos.w && clipSpacePos.x < clipSpacePos.w &&
+            clipSpacePos.y > -clipSpacePos.w && clipSpacePos.y < clipSpacePos.w &&
+            clipSpacePos.z > 0 && clipSpacePos.z < clipSpacePos.w;
+    }
+}
+
+[numthreads(64, 1, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    if(id.x > _count) return;
+
+    float4x4 worldMatrix = _grassMatrixBuffer[id.x];
+    float4x4 mvpMatrix = mul(_vpMatrix, worldMatrix);
+
+    float4 boundVerts[8];
+    boundVerts[0] = float4(_boundMin, 1);
+    boundVerts[1] = float4(_boundMax, 1);
+    boundVerts[2] = float4(_boundMax.x, _boundMax.y, _boundMin.z, 1);
+    boundVerts[3] = float4(_boundMax.x, _boundMin.y, _boundMax.z, 1);
+    boundVerts[4] = float4(_boundMax.x, _boundMin.y, _boundMin.z, 1);
+    boundVerts[5] = float4(_boundMin.x, _boundMax.y, _boundMax.z, 1);
+    boundVerts[6] = float4(_boundMin.x, _boundMax.y, _boundMin.z, 1);
+    boundVerts[7] = float4(_boundMin.x, _boundMin.y, _boundMax.z, 1);
+
+    float minX = 1, minY = 1, minZ = 1, maxX = -1, maxY = -1, maxZ = -1;
+
+    bool isInClipSpace = false;
+
+    for(int i = 0; i < 8; i++)
+    {
+        float4 clipSpacePos = mul(mvpMatrix, boundVerts[i]);
+        if(!isInClipSpace && IsInClipSpace((clipSpacePos)))
+        {
+            isInClipSpace = true;
+        }
+
+        float3 ndc = clipSpacePos.xyz / clipSpacePos.w;
+        if(minX > ndc.x) minX = ndc.x;
+        if(minY > ndc.y) minY = ndc.y;
+        if(minZ > ndc.z) minZ = ndc.z;
+        if(maxX < ndc.x) maxX = ndc.x;
+        if(maxY < ndc.y) maxY = ndc.y;
+        if(maxZ < ndc.z) maxZ = ndc.z;
+    }
+
+    if(!isInClipSpace) return;
+
+    float2 uvLeftBottom = float2(minX, minX) * 0.5f + 0.5f;
+    float2 uvRightTop = float2(maxX, maxY) * 0.5f + 0.5f;
+
+    float depth = maxZ;
+
+    if(_isOGL)
+    {
+        depth = minZ;
+        depth =depth * 0.5f + 0.5f;
+    }
+
+    uint mipmapLevel = (uint)clamp(_depthTextureSize * 2 / log2(max(maxX - minX, maxY - minY)), 0, log2(_depthTextureSize) - 4);
+    uint size = _depthTextureSize / (1 << mipmapLevel);
+
+    uint2 pixelLeftBottom = uint2(clamp(uvLeftBottom.x * size, 0, size - 1), clamp(uvLeftBottom.y * size , 0, size -1));
+    uint2 pixelRightTop = uint2(clamp(uvRightTop.y * size, 0, size - 1), clamp(uvRightTop.y * size, 0, size - 1));
+
+    float depthInTexture = _hizTexture.mips[mipmapLevel][pixelLeftBottom].r;
+    if(_isOGL)
+    {
+        if(pixelLeftBottom.x < pixelRightTop.x && pixelLeftBottom.y < pixelRightTop.y)
+        {
+            
+            depthInTexture = max(max(depthInTexture, _hizTexture.mips[mipmapLevel][pixelRightTop].r),
+                                max(_hizTexture.mips[mipmapLevel][int2(pixelLeftBottom.x, pixelRightTop.y)].r,
+                                    _hizTexture.mips[mipmapLevel][int2(pixelRightTop.x, pixelLeftBottom.y)].r));
+        }
+        else if(pixelLeftBottom.x < pixelRightTop.x)
+        {
+             depthInTexture = max(depthInTexture, _hizTexture.mips[mipmapLevel][int2(pixelRightTop.x, pixelLeftBottom.y)].r);
+        }
+        else if(pixelLeftBottom.y < pixelRightTop.y)
+        {
+            depthInTexture = max(depthInTexture, _hizTexture.mips[mipmapLevel][int2(pixelLeftBottom.x, pixelRightTop.y)].r);
+        }
+
+        if(depthInTexture < depth)
+        {
+            return;
+        }
+    }
+    else
+    {
+        if(pixelLeftBottom.x < pixelRightTop.x && pixelLeftBottom.y < pixelRightTop.y)
+        {
+            depthInTexture = min(min(depthInTexture, _hizTexture.mips[mipmapLevel][pixelRightTop].r),
+                min(_hizTexture.mips[mipmapLevel][int2(pixelLeftBottom.x, pixelRightTop.y)].r,
+                    _hizTexture.mips[mipmapLevel][int2(pixelRightTop.x, pixelLeftBottom.y)].r));
+        }
+        else if(pixelLeftBottom.x < pixelRightTop.x)
+        {
+            depthInTexture = min(depthInTexture, _hizTexture.mips[mipmapLevel][int2(pixelRightTop.x, pixelLeftBottom.y)].r);
+        }
+        else if(pixelLeftBottom.y < pixelRightTop.y)
+        {
+            depthInTexture = min(depthInTexture, _hizTexture.mips[mipmapLevel][int2(pixelLeftBottom.x, pixelRightTop.y)].r);
+        }
+
+        if(depthInTexture < depth)
+        {
+            return;
+        }
+    }
+
+    _cullResultBuffer.Append(worldMatrix);
+}
+
+#endif
