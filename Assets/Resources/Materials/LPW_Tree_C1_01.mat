@@ -110,7 +110,7 @@ Material:
     - _MBWindDir: 90
     - _MBWindDirOffset: 63
     - _MaskMapToggle: 0
-    - _MaxHeight: 6.5
+    - _MaxHeight: 10
     - _Metallic: 0.147
     - _Mode: 0
     - _NormalMapToggle: 0

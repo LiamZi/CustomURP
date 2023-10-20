@@ -6,9 +6,10 @@ using UnityEngine.Rendering;
 [Serializable]
 public class CameraSettings
 {
+    public bool _enabledHizDepth = false;
     public bool _copyColor = true;
     public bool _copyDepth = true;
-
+    
     [RenderingLayerMaskField]
     public int _renderingLayerMask = -1;
 
@@ -46,5 +47,7 @@ public class CameraSettings
     {
         return _renderScaleMode == RenderScaleMode.Inherit ? scale : _renderScaleMode == RenderScaleMode.Override ? _renderScale : scale * _renderScale;
     }
-    
+
+    // public bool _enabledHiz = false;
+
 };

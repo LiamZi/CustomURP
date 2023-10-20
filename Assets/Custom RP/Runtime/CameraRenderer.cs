@@ -18,14 +18,7 @@ public partial class CameraRenderer
     private Camera _camera;
 
     private const string _bufferName = "Render Camera Buffer";
-
-    //private CommandBuffer _commandBuffer = new CommandBuffer
-    //{
-    //    name = _bufferName, 
-    //};
-
-    //private CustomURP.CommnadBufferManager _CommandBufferManager = new CustomURP.CommnadBufferManager();
-
+    
     private CullingResults _cullingResults;
     private Lighting _lighting = new Lighting();
     private PostFXStack _postStack = new PostFXStack();
@@ -48,6 +41,7 @@ public partial class CameraRenderer
     private bool _isUseDepthTexture;
     private bool _isUseIntermediateBuffer;
     private bool _isUseScaledRendering;
+    private bool _isUseHiz;
 
     static CameraSettings _defaultCameraSettings = new CameraSettings();
 
@@ -63,34 +57,7 @@ public partial class CameraRenderer
 
     public const float _renderScaleMin = 0.1f;
     public const float _renderScaleMax = 2f;
-
-    // private bool _isEnabledDynamicBatch = false;
-    // public bool EnabledDynamicBatch
-    // {
-    //     get => _isEnabledDynamicBatch;
-    //     set => _isEnabledDynamicBatch = value;
-    // }
-
-    // private bool _isEnabledInstacing = false;
-    // public bool EnabledInstacing
-    // {
-    //     get => _isEnabledInstacing;
-    //     set => _isEnabledInstacing = value;
-    // }
-
-
-    // private static int _visibleLightColorsId = Shader.PropertyToID("_VisibleLightColors");
-    // private static int _visibleLightDirectionsOrPositionsId = Shader.PropertyToID("_VisibleLightDirectionsOrPositions");
-    // private static int _visibleLightAttenuationsId = Shader.PropertyToID("_VisibleLightAttenuations");
-    // private static int _visibleLightSpotDirectionsId = Shader.PropertyToID("_VisibleLightSpotsDirections");
-    // private static int _lightIndicesOffsetAndCountId = Shader.PropertyToID("unity_LightIndicesOffsetAndCount");
-
-
-    // private Vector4[] _visibleLightColors = new Vector4[MAX_VISIBLE_LIGHTS];
-    // private Vector4[] _visibleLightDirectionsOrPositions = new Vector4[MAX_VISIBLE_LIGHTS];
-    // private Vector4[] _visibleLightAttenuations = new Vector4[MAX_VISIBLE_LIGHTS];
-    // private Vector4[] _visibleLightSpotsDirections = new Vector4[MAX_VISIBLE_LIGHTS];
-
+    
     public CameraRenderer(Shader shader)
     {
         // _isEnabledDynamicBatch = isEnabledDynamicBatch;
@@ -98,6 +65,8 @@ public partial class CameraRenderer
         // QualitySettings.pixelLightCount = 8;
 
         //CommnadBufferManage GetTemporaryCB(_bufferName);
+        _isUseHiz = false;  
+        
         CommandBufferManager.Singleton.GetTemporaryCB(_bufferName);
 
         _material = CoreUtils.CreateEngineMaterial(shader);
@@ -110,7 +79,7 @@ public partial class CameraRenderer
         _missingTexture.SetPixel(0, 0, Color.white * 0.5f);
         _missingTexture.Apply(true, true);
 
-
+       
     }
 
     public void Render(ScriptableRenderContext context, Camera camera, 
@@ -133,6 +102,15 @@ public partial class CameraRenderer
 			_isUseColorTexture = cameraBufferSetting._copyColor && cameraSettings._copyColor;
 			_isUseDepthTexture = cameraBufferSetting._copyDepth && cameraSettings._copyDepth;
 		}
+
+        if (cameraSettings._enabledHizDepth)
+        {
+            _isUseHiz = true;
+            if (crpCamera.HizDepth == null)
+            {
+                crpCamera.HizDepth = new CustomPipeline.HizDepthGenerator();
+            }
+        }
 
         if(cameraSettings._overridePostFx)
         {
@@ -171,6 +149,7 @@ public partial class CameraRenderer
         CommandBufferManager.Singleton.Get(_sampleName).Buffer.SetGlobalVector(_bufferSizeId, new Vector4(1f / _bufferSize.x, 1f / _bufferSize.y, _bufferSize.x, _bufferSize.y));
         ExcuteBuffer();
 
+        
         _lighting.Setup(context, _cullingResults, shadowSettings, 
                     useLightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
 
@@ -184,10 +163,11 @@ public partial class CameraRenderer
 
         Setup();
         DrawVisibleGeometry(useDynamicBatching, useGPUInstanceing, useLightsPerObject, cameraSettings._renderingLayerMask);
+        
         DrawUnsupportedShaders();
         // DrawGizmos();
         DrawGizmosBeforeFX();
-
+        
         if(_postStack.IsActive)
         {
             _postStack.Render(_colorAttachmentId);
@@ -197,6 +177,11 @@ public partial class CameraRenderer
             // Draw(_colorAttachmentId, BuiltinRenderTextureType.CameraTarget);
             DrawFinal(cameraSettings._finalBlendMode);
             ExcuteBuffer();
+        }
+        
+        if (cameraSettings._enabledHizDepth)
+        {
+            crpCamera.HizDepth.Setup(context, camera);
         }
         
         DrawGizmosAfterFX();
@@ -221,9 +206,7 @@ public partial class CameraRenderer
             {
                 flags = CameraClearFlags.Color;
             }
-
             
-
             buffer.GetTemporaryRT(_colorAttachmentId, _bufferSize.x, 
                                 _bufferSize.y, 32, FilterMode.Bilinear, 
                                 _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
@@ -319,10 +302,10 @@ public partial class CameraRenderer
 
     void ExcuteBuffer()
     {
-        var buffer = CommandBufferManager.Singleton.Get(_sampleName).Buffer;
+        var cmd = CommandBufferManager.Singleton.Get(_sampleName).Buffer;
         //_context.ExecuteCommandBuffer(_commandBuffer);
-        _context.ExecuteCommandBuffer(buffer);
-        buffer.Clear();
+        _context.ExecuteCommandBuffer(cmd);
+        cmd.Clear();
     }
 
     bool Cull(float maxShadowDistance)
@@ -413,71 +396,6 @@ public partial class CameraRenderer
         ExcuteBuffer();
     }
 
-
-    void ConfigureLights()
-    {
-        // for(int i = 0; i < _cullingResults.visibleLights.Length; ++i)
-        // {
-        //     if(i == MAX_VISIBLE_LIGHTS) { break; }
-
-        //     VisibleLight light = _cullingResults.visibleLights[i];
-        //     _visibleLightColors[i] = light.finalColor;
-
-        //     Vector4 attenuation = Vector4.zero;
-        //     attenuation.w = 1f;
-
-        //     if(light.lightType == LightType.Directional)
-        //     {
-        //         Vector4 v = light.localToWorldMatrix.GetColumn(2);
-        //         v.x = -v.x;
-        //         v.y = -v.y;
-        //         v.z = -v.z;
-        //         _visibleLightDirectionsOrPositions[i] = v;
-        //     }
-        //     else
-        //     {
-        //         _visibleLightDirectionsOrPositions[i] = light.localToWorldMatrix.GetColumn(3);
-        //         attenuation.x = 1f / Mathf.Max(light.range * light.range, 0.000001f);
-
-        //         if(light.lightType == LightType.Spot)
-        //         {
-        //             Vector4 v = light.localToWorldMatrix.GetColumn(2);
-        //             v.x = -v.x;
-        //             v.y = -v.y;
-        //             v.z = -v.z;
-        //             _visibleLightSpotsDirections[i] = v;
-
-        //             float outerRad = Mathf.Deg2Rad * 0.5f * light.spotAngle;
-        //             float outerCos = Mathf.Cos(outerRad);
-        //             float outerTan = Mathf.Tan(outerRad);
-        //             float innerCos = Mathf.Cos(Mathf.Atan(46f / 64f * outerTan));
-        //             float angleRange = Mathf.Max(innerCos - outerCos, 0.001f);
-        //             attenuation.z = 1f / angleRange;
-        //             attenuation.w = -outerCos *  attenuation.z;
-        //         }
-        //     }   
-
-        //     _visibleLightAttenuations[i] = attenuation;
-        // }
-
-
-        // if(_cullingResults.visibleLights.Length > MAX_VISIBLE_LIGHTS)
-        // {
-        //     var lightIndices = _cullingResults.GetLightIndexMap(Allocator.Temp);
-        //     for(int i = MAX_VISIBLE_LIGHTS; i < _cullingResults.visibleLights.Length; ++i)
-        //     {
-        //         lightIndices[i] = -1;
-        //     }
-        //     _cullingResults.SetLightIndexMap(lightIndices);
-        // }
-
-
-        // for(; i < MAX_VISIBLE_LIGHTS; ++i)
-        // {
-        //     _visibleLightColors[i] = Color.clear;
-        // }
-    }
-
     public void Dispose()
     {
         CoreUtils.Destroy(_material);
@@ -503,8 +421,16 @@ public partial class CameraRenderer
             {
                 buffer.ReleaseTemporaryRT(_depthTextureId);
             }
+        }
 
-           
+
+        if (_isUseHiz)
+        {
+           var crpCamera = _camera.GetComponent<CustomRenderPipelineCamera>();
+           if (crpCamera)
+           {
+               crpCamera.HizDepth.OnDestroy();
+           }
         }
 
         // CommandBufferManager.Singleton.Clear();
