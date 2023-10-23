@@ -1,6 +1,8 @@
 #ifndef __SHADER_LIBRARY_COMPUTE_SHADER_GRASS_CULLING_COMPUTE__
 #define __SHADER_LIBRARY_COMPUTE_SHADER_GRASS_CULLING_COMPUTE__
 
+#pragma enable_d3d11_debug_symbols
+
 #pragma kernel CSMain
 
 //The Minimum boundingbox point
@@ -34,7 +36,7 @@ bool IsInClipSpace(float4 clipSpacePos)
     }
 }
 
-[numthreads(64, 1, 1)]
+[numthreads(640, 1, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
     if(id.x > _count) return;

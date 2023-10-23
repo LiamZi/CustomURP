@@ -3,7 +3,7 @@
 
 TEXTURE2D(_HizMap);
 SAMPLER(sampler_HizMap);
-float4 __HizMap_TexelSize;
+float4 _HizMap_TexelSize;
 
 struct VertexInput
 {
@@ -20,7 +20,7 @@ struct VertexOutput
 inline float CalculatorMipmapDepth(float2 uv)
 {
     float4 depth;
-    float offset = __HizMap_TexelSize.x / 2;
+    float offset = _HizMap_TexelSize.x / 2;
     depth.x = SAMPLE_TEXTURE2D(_HizMap, sampler_HizMap, uv);
     depth.y = SAMPLE_TEXTURE2D(_HizMap, sampler_HizMap, uv + float2(0, offset));
     depth.z = SAMPLE_TEXTURE2D(_HizMap, sampler_HizMap, uv + float2(offset, 0));

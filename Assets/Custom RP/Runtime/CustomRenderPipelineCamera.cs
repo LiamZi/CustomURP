@@ -11,8 +11,6 @@ public class CustomRenderPipelineCamera : MonoBehaviour
 
     [SerializeField] CustomPipeline.HizDepthGenerator _hizDepthGenerator = default;
     public CameraSettings Setting => _settings ?? (_settings = new CameraSettings());
-    
-    
 
     [NotNull]
     public CustomPipeline.HizDepthGenerator HizDepth
@@ -21,4 +19,5 @@ public class CustomRenderPipelineCamera : MonoBehaviour
 
         set => _hizDepthGenerator = value ?? throw new ArgumentNullException(nameof(value));
     }
+    
 };

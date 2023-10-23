@@ -2,6 +2,7 @@
 {
     Properties 
     {
+        [Toggle(_GPU_RESULT)] _GPU_RESULT ("Gpu Result", Float) = 0
         _BaseMap("Texture", 2D) = "white" {}
         _BaseColor("Color", Color) = (1, 1, 1, 1)
         _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
@@ -79,6 +80,7 @@
             #pragma shader_feature _NORMAL_MAP
             #pragma shader_feature _MASK_MAP
             #pragma shader_feature _DETAIL_MAP
+            #pragma shader_feature _GPU_RESULT
             #pragma multi_compile _ _DIRECTIONAL_PCF3 _DIRECTIONAL_PCF5 _DIRECTIONAL_PCF7
             #pragma multi_compile _ _OTHER_PCF3 _OTHER_PCF5 _OTHER_PCF7
             #pragma multi_compile _ _CASCADE_BLEND_SOFT _CASCADE_BLEND_DITHER

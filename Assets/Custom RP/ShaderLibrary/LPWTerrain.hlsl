@@ -8,7 +8,7 @@
 #include "GI.hlsl"
 #include "Lighting.hlsl"
 
-#ifdef UNITY_INSTANCING_ENABLED
+#if defined(_GPU_RESULT)
     StructuredBuffer<float4x4> positionBuffer;
 #endif
 
@@ -73,15 +73,14 @@ VertexOutput vert(VertexInput input, uint instanceID : SV_InstanceID)
     UNITY_TRANSFER_INSTANCE_ID(input, o)
     TRANSFER_GI_DATA(input, o);
     
-#ifdef UNITY_INSTANCING_ENABLED
+#ifdef _GPU_RESULT
     unity_ObjectToWorld = positionBuffer[instanceID];
     unity_WorldToObject = unity_ObjectToWorld;
     unity_WorldToObject._14_24_34 *= -1;
     unity_WorldToObject._11_22_33 = 1.0f / unity_WorldToObject._11_22_33;
-#else
-    float3 worldPos = mul(unity_ObjectToWorld, float4(0, 0, 0, 1)).xyz;
 #endif
     
+    float3 worldPos = mul(unity_ObjectToWorld, float4(0, 0, 0, 1)).xyz;
     float2 worldSpaceUVs = float2(worldPos.x, worldPos.z);
     float offset = 0.1 * _Time.y * _NoisePannerSpeed;
     

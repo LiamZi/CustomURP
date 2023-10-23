@@ -63,6 +63,7 @@
      <Compile Include="Assets\Custom RP\Utility\HizDepth.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.cs" />
      <Compile Include="Assets\Custom RP\Core\CameraTool.cs" />
+     <Compile Include="Assets\Scenes\GpuCulling\GrassGenerator.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraSettings.cs" />
      <Compile Include="Assets\Custom RP\Runtime\RenderingLayerMaskFieldAttributePropertyAttribute.cs" />
      <Compile Include="Assets\Custom RP\Logic\SceneController.cs" />

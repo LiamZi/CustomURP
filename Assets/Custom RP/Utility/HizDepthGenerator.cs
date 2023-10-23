@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering;
+using Object = UnityEngine.Object;
 
 namespace CustomPipeline
 {
@@ -16,7 +17,7 @@ namespace CustomPipeline
         private RenderTexture _texture;
         private int _textureSize = 0;
         private Material _material;
-        private const RenderTextureFormat _format = RenderTextureFormat.Default;
+        private const RenderTextureFormat _format = RenderTextureFormat.RHalf;
         private int _shaderID;
         private const string _cmdName = "HizDepth";
         private Camera _camera;
@@ -36,7 +37,7 @@ namespace CustomPipeline
             }
         }
 
-        public void Setup(ScriptableRenderContext context, Camera camera)
+        public void Setup(ScriptableRenderContext context, Camera camera, ref RenderTexture depthTexture)
         {
             _context = context;
             _camera = camera;
@@ -45,12 +46,12 @@ namespace CustomPipeline
             _camera.depthTextureMode |= DepthTextureMode.Depth;
             _shaderID = Shader.PropertyToID("_CameraDepthTexture");
         
-            Initialization();
+            Initialization(ref depthTexture);
 
             OnPostRender();
         }
         
-        void Initialization()
+        void Initialization(ref RenderTexture depthTexture)
         {
             if (_texture != null) return;
 
@@ -59,125 +60,67 @@ namespace CustomPipeline
                 name = _cmdName
             };
             
-            _texture = new RenderTexture(TextureSize, TextureSize, 0, _format);
-            // _texture = _cmd.GetTemporaryRT(TextureSize, TextureSize, 0)
-            _texture.autoGenerateMips = false;
-            _texture.useMipMap = true;
-            _texture.filterMode = FilterMode.Point;
-            _texture.Create();
+            // _texture = new RenderTexture(TextureSize, TextureSize, 0, _format);
+            _texture = depthTexture;
+            // _texture.width = TextureSize;
+            // _texture.height = TextureSize;
+
             
         }
         
         public void OnPostRender()
         {
+
             int w = _texture.width;
             int mipmapLevel = 0;
-        
-            // RenderTexture currentTexture = null;
-            // int currentTextureID = Shader.PropertyToID("_HizMap");
-            // int preRenderTextureId = -1;
-            // RenderTexture preRenderTexture = null;
-            bool isCopyCameraDepth = false;
-            RenderTexture tempMipMapTexture = null;
-        
+
+            RenderTexture current = null;
+            RenderTexture preTex = null;
+
             while (w > 8)
             {
-                // _cmd.GetTemporaryRT(currentTextureID, w, w, 0, FilterMode.Point, _format);
-                tempMipMapTexture = RenderTexture.GetTemporary(w, w, 0, _format);
-                // if (isCopyCameraDepth == false)
-                // {
-                //     _cmd.Blit(Shader.GetGlobalTexture(_shaderID), currentTextureID);
-                //     _context.ExecuteCommandBuffer(_cmd);
-                //     _cmd.Clear();
-                //     isCopyCameraDepth = true;   
-                // }
-                // else
-                // {
-                //     _cmd.Blit(currentTextureID, tempMipMapTexture, _material);
-                //     _context.ExecuteCommandBuffer(_cmd);
-                //     _cmd.Clear();
-                //     // RenderTexture.ReleaseTemporary(tempMipMapTexture);
-                // }
-                
-                _cmd.Blit(Shader.GetGlobalTexture(_shaderID), tempMipMapTexture);
-                // _cmd.CopyTexture(currentTextureID, 0, 0, _texture, 0, mipmapLevel, _material);
-                //
-                _context.ExecuteCommandBuffer(_cmd);
-                _cmd.Clear();
-                
-                Graphics.CopyTexture(tempMipMapTexture, 0, 0, _texture, 0, mipmapLevel);
+                current = RenderTexture.GetTemporary(w, w, 0, _format);
+                current.filterMode = FilterMode.Point;
 
+                if (preTex == null)
+                {
+                    Graphics.Blit(Shader.GetGlobalTexture(_shaderID), current);
+                }
+                else
+                {
+                    _material.SetTexture("_HizMap", preTex);
+                    Graphics.Blit(preTex, current, _material);
+                    RenderTexture.ReleaseTemporary(preTex);
+                }
                 
-                
-                
-                
-                // _cmd.CopyTexture(tempMipMapTexture, 0, 0, _texture, 0, mipmapLevel);
-                // _context.ExecuteCommandBuffer(_cmd);
-                // _cmd.Clear();
-                // _cmd.ReleaseTemporaryRT(currentTextureID);
-                // RenderTexture.ReleaseTemporary(tempMipMapTexture);
-                // // currentTexture = RenderTexture.GetTemporary(w, w, 0, _format);
-                // _cmd.GetTemporaryRT(currentTextureID, w, w, 0, FilterMode.Point, _format);
-                // // _cmd.SetRenderTarget(currentTexture);
-                //
-                // // currentTexture = _cmd.GetTemporaryRT("")
-                // // currentTexture.filterMode = FilterMode.Point;
-                // if (preRenderTextureId == -1)
-                // {
-                //     _cmd.Blit(Shader.GetGlobalTexture(_shaderID), currentTextureID);
-                //     _context.ExecuteCommandBuffer(_cmd);
-                //     _cmd.Clear();
-                //     // _cmd.Blit(Shader.GetGlobalTexture(_shaderID), currentTexture.id);
-                //     // Graphics.Blit(Shader.GetGlobalTexture(_shaderID), currentTexture);
-                // }
-                // else
-                // {
-                //     // Graphics.Blit(preRenderTexture, currentTexture, _material);
-                //     // _material.SetTexture("_BaseMap", preRenderTexture);
-                //     _cmd.Blit(preRenderTextureId, currentTextureID, _material);
-                //     _context.ExecuteCommandBuffer(_cmd);
-                //     _cmd.Clear();
-                //     // RenderTexture.ReleaseTemporary(preRenderTexture);
-                //
-                // }
-                //
-                // // Graphics.CopyTexture(currentTexture, 0, 0, _texture, 0, mipmapLevel);
-                // _cmd.CopyTexture(currentTextureID, 0, 0, _texture, 0, mipmapLevel);
-                // _context.ExecuteCommandBuffer(_cmd);
-                // _cmd.Clear();
-                // // preRenderTexture = currentTexture;
-                //
-                // // var tex = Shader.GetGlobalTexture(currentTextureID);
-                // // preRenderTexture = new RenderTexture(tex);
-                // preRenderTextureId = currentTextureID;
-                
-                
-                
+                Graphics.CopyTexture(current, 0, 0, _texture, 0, mipmapLevel);
+                preTex = current;
                 w /= 2;
                 mipmapLevel++;
             }
-            
-            int width = _texture.width;
-            int height = _texture.height;
-            var saveTex = new Texture2D(_texture.width, _texture.height, TextureFormat.RGBAFloat, true);
-            RenderTexture.active = _texture;
-            saveTex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
-            saveTex.Apply();
-            byte[] vs = saveTex.EncodeToPNG();
-                
-            string path = @"E:\"+ "abc" + w + ".png";
-            FileStream fileStream = new FileStream(path, FileMode.Create, FileAccess.Write);
-            fileStream.Write(vs, 0, vs.Length);
-            fileStream.Dispose();
-            fileStream.Close();
-            
-            // RenderTexture.ReleaseTemporary(preRenderTexture);
         }
         
         public void OnDestroy()
         {
-            _texture?.Release();
-            RenderTexture.DestroyImmediate(_texture);
+            // _texture?.Release();
+            // RenderTexture.Destroy(_texture);
+        }
+
+        public void SaveToFile(ref RenderTexture current, string name, bool mipChain = false)
+        {
+            int width = current.width;
+            int height = current.height;
+            var saveTex = new Texture2D(width, height, TextureFormat.RGBAFloat, mipChain);
+            RenderTexture.active = current;
+            saveTex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+            saveTex.Apply();
+            byte[] vs = saveTex.EncodeToPNG();
+                        
+            string path = @"E:\"+ "abc" + name + ".png";
+            FileStream fileStream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            fileStream.Write(vs, 0, vs.Length);
+            fileStream.Dispose();
+            fileStream.Close();
         }
     };
 };
