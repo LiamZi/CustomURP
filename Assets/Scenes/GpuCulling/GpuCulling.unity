@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _grassMesh: {fileID: 4300000, guid: 2b44582523d7fdf48ae9a30dd4e38897, type: 3}
   _subMeshIndex: 0
-  _material: {fileID: 2100000, guid: 63cf1ecc5ea195c41bd5c0904c7d2d2b, type: 2}
+  _material: {fileID: 2100000, guid: 652b4cdf8dd8301499ee0253a8d62c6e, type: 2}
   _grassCountPerRaw: 300
   _compute: {fileID: 7200000, guid: a9a51c618bb1455b8a400560ff5e9684, type: 3}
 --- !u!1 &251375442
@@ -364,7 +364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498479174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.71, z: -15.68}
+  m_LocalPosition: {x: 0, y: 3.98, z: -15.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
