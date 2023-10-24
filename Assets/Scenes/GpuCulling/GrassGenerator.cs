@@ -109,6 +109,7 @@ namespace CustomURP
         private void Update()
         {
             var texture = _Hiz.Texture;
+            if (texture == null) return;
             // _Hiz.SaveToFile(ref texture, "GrassGenerator");
             _compute.SetTexture(_kernel, _hizTextureId, texture);
             _compute.SetMatrix(_vpMatrixID, GL.GetGPUProjectionMatrix(_camera.projectionMatrix, false) * _camera.worldToCameraMatrix);

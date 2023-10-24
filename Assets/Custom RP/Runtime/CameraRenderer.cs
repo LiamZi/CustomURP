@@ -10,6 +10,7 @@ using Unity.Collections;
 using TMPro;
 using System;
 using CustomURP;
+using CommandBuffer = UnityEngine.Rendering.CommandBuffer;
 
 public partial class CameraRenderer
 {
@@ -42,7 +43,7 @@ public partial class CameraRenderer
     private bool _isUseIntermediateBuffer;
     private bool _isUseScaledRendering;
     private bool _isUseHiz;
-    private RenderTexture _HizTexture = null;
+    // private RenderTexture _HizTexture = null;
 
     static CameraSettings _defaultCameraSettings = new CameraSettings();
 
@@ -79,13 +80,6 @@ public partial class CameraRenderer
 
         _missingTexture.SetPixel(0, 0, Color.white * 0.5f);
         _missingTexture.Apply(true, true);
-
-        _HizTexture = new RenderTexture(1024, 1024, 0, RenderTextureFormat.RHalf);
-        _HizTexture.autoGenerateMips = false;
-        _HizTexture.useMipMap = true;
-        _HizTexture.filterMode = FilterMode.Point;
-        _HizTexture.Create();
-       
     }
 
     public void Render(ScriptableRenderContext context, Camera camera, 
@@ -112,16 +106,6 @@ public partial class CameraRenderer
         if (cameraSettings._enabledHizDepth)
         {
             _isUseHiz = true;
-            if (_HizTexture)
-            {
-                _HizTexture.Release();
-                RenderTexture.DestroyImmediate(_HizTexture);
-                _HizTexture = new RenderTexture(1024, 1024, 0, RenderTextureFormat.RHalf);
-                _HizTexture.autoGenerateMips = false;
-                _HizTexture.useMipMap = true;
-                _HizTexture.filterMode = FilterMode.Point;
-                _HizTexture.Create();
-            }
         }
 
         if(cameraSettings._overridePostFx)
@@ -175,6 +159,10 @@ public partial class CameraRenderer
 
         Setup();
         DrawVisibleGeometry(useDynamicBatching, useGPUInstanceing, useLightsPerObject, cameraSettings._renderingLayerMask);
+        if (cameraSettings._enabledHizDepth)
+        {
+            crpCamera.HizDepth.Setup(context, camera);
+        }
         
         DrawUnsupportedShaders();
         // DrawGizmos();
@@ -191,10 +179,7 @@ public partial class CameraRenderer
             ExcuteBuffer();
         }
         
-        if (cameraSettings._enabledHizDepth)
-        {
-            crpCamera.HizDepth.Setup(context, camera, ref _HizTexture);
-        }
+
         
         DrawGizmosAfterFX();
 
@@ -412,6 +397,15 @@ public partial class CameraRenderer
     {
         CoreUtils.Destroy(_material);
         CoreUtils.Destroy(_missingTexture);
+        
+        if (_isUseHiz)
+        {
+           var crpCamera = _camera.GetComponent<CustomRenderPipelineCamera>();
+           if (crpCamera)
+           {
+               crpCamera.HizDepth.OnDestroy();
+           }
+        }
     }
 
     void Cleanup()
@@ -434,17 +428,6 @@ public partial class CameraRenderer
                 buffer.ReleaseTemporaryRT(_depthTextureId);
             }
         }
-        
-        // if (_isUseHiz)
-        // {
-        //    var crpCamera = _camera.GetComponent<CustomRenderPipelineCamera>();
-        //    if (crpCamera)
-        //    {
-        //        crpCamera.HizDepth.OnDestroy();
-        //    }
-        // }
-
-        // CommandBufferManager.Singleton.Clear();
     }
 
 }

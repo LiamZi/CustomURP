@@ -17,9 +17,9 @@ namespace CustomPipeline
         private RenderTexture _texture;
         private int _textureSize = 0;
         private Material _material;
-        private const RenderTextureFormat _format = RenderTextureFormat.RHalf;
+        private const RenderTextureFormat _format = RenderTextureFormat.Default;
         private int _shaderID;
-        private const string _cmdName = "HizDepth";
+        private const string _cmdName = "Hiz Depth";
         private Camera _camera;
         private ScriptableRenderContext _context;
 
@@ -37,7 +37,7 @@ namespace CustomPipeline
             }
         }
 
-        public void Setup(ScriptableRenderContext context, Camera camera, ref RenderTexture depthTexture)
+        public void Setup(ScriptableRenderContext context, Camera camera)
         {
             _context = context;
             _camera = camera;
@@ -46,12 +46,12 @@ namespace CustomPipeline
             _camera.depthTextureMode |= DepthTextureMode.Depth;
             _shaderID = Shader.PropertyToID("_CameraDepthTexture");
         
-            Initialization(ref depthTexture);
+            Initialization();
 
             OnPostRender();
         }
         
-        void Initialization(ref RenderTexture depthTexture)
+        void Initialization()
         {
             if (_texture != null) return;
 
@@ -61,49 +61,51 @@ namespace CustomPipeline
             };
             
             // _texture = new RenderTexture(TextureSize, TextureSize, 0, _format);
-            _texture = depthTexture;
-            // _texture.width = TextureSize;
-            // _texture.height = TextureSize;
-
-            
+            _texture = RenderTexture.GetTemporary(TextureSize, TextureSize, 0, _format);
+            _texture.filterMode = FilterMode.Point;
+            _texture.useMipMap = true;
+            _texture.autoGenerateMips = false;
+            _texture.hideFlags = HideFlags.HideAndDontSave;
+            _texture.Create();
+            // _destId = new RenderTargetIdentifier(_texture);
         }
         
         public void OnPostRender()
         {
-
+            if (_cmd == null) return;
+            
             int w = _texture.width;
             int mipmapLevel = 0;
-
-            RenderTexture current = null;
-            RenderTexture preTex = null;
-
+            
+            RenderTargetIdentifier destId = new RenderTargetIdentifier(_texture);
             while (w > 8)
             {
-                current = RenderTexture.GetTemporary(w, w, 0, _format);
+                RenderTexture current = RenderTexture.GetTemporary(w, w, 0, _format);
                 current.filterMode = FilterMode.Point;
-
-                if (preTex == null)
-                {
-                    Graphics.Blit(Shader.GetGlobalTexture(_shaderID), current);
-                }
-                else
-                {
-                    _material.SetTexture("_HizMap", preTex);
-                    Graphics.Blit(preTex, current, _material);
-                    RenderTexture.ReleaseTemporary(preTex);
-                }
+                RenderTargetIdentifier currId = new RenderTargetIdentifier(current);
                 
-                Graphics.CopyTexture(current, 0, 0, _texture, 0, mipmapLevel);
-                preTex = current;
+                var srcTexture = Shader.GetGlobalTexture(_shaderID);
+                if(srcTexture == null) break;
+                var srcId = new RenderTargetIdentifier(srcTexture);
+                _material.SetTexture("_HizMap", srcTexture);
+                _cmd.Blit(srcId, currId, _material);
+                _cmd.CopyTexture(currId, 0, 0, destId, 0, mipmapLevel);
+                RenderTexture.ReleaseTemporary(current);
+
                 w /= 2;
                 mipmapLevel++;
             }
+            
+            _context.ExecuteCommandBuffer(_cmd);
+            _cmd.Clear();
+            
+            // SaveToFile(ref _texture, "111");
         }
         
         public void OnDestroy()
         {
-            // _texture?.Release();
-            // RenderTexture.Destroy(_texture);
+            _texture?.Release();
+            RenderTexture.DestroyImmediate(_texture);
         }
 
         public void SaveToFile(ref RenderTexture current, string name, bool mipChain = false)
