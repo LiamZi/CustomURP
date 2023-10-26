@@ -2,7 +2,6 @@
 {
     Properties 
     {
-        [Toggle(_GPU_RESULT)] _GPU_RESULT ("Gpu Result", Float) = 0
         _BaseMap("Texture", 2D) = "white" {}
         _BaseColor("Color", Color) = (1, 1, 1, 1)
         _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
@@ -40,7 +39,9 @@
         [HideInInspector] _MainTex("Texture for Lightmap", 2D) = "white" {}
         [HideInInspector] _Color("Color for Lightmap", Color) = (0.5, 0.5, 0.5, 1.0)
         
-        [Header(Windy Zone)][Space]_DefaultBending("Default Bending", Float) = 0
+        [Header(Windy Zone)][Space]
+        [Toggle(_ENABLED_WINDZONE)] _ENABLED_WINDZONE ("Enabled WindZone", Float) = 0
+        [Space]_DefaultBending("Default Bending", Float) = 0
         [Space]_Amplitude("Amplitude", Float) = 1.5
         _AmplitudeOffset("Amplitude Offset", Float) = 2
         [Space]_Frequency("Frequency", Float) = 1.10
@@ -52,6 +53,8 @@
         [NoScaleOffset][Header(World Space Noise)][Space]_NoiseTexture("Noise Texture", 2D) = "bump" {}
         _NoiseTextureTilling("Noise Tilling - Static (XY), Animated (ZW)", Vector) = (1, 1, 1, 1)
         _NoisePannerSpeed("Noise Panner Speed", Vector) = (0.05, 0.03, 0, 0)
+        
+        [Toggle(_GPU_RESULT)] _GPU_RESULT ("Gpu Result", Float) = 0
     }
 
     SubShader
@@ -81,6 +84,7 @@
             #pragma shader_feature _MASK_MAP
             #pragma shader_feature _DETAIL_MAP
             #pragma shader_feature _GPU_RESULT
+            #pragma shader_feature _ENABLED_WINDZONE
             #pragma multi_compile _ _DIRECTIONAL_PCF3 _DIRECTIONAL_PCF5 _DIRECTIONAL_PCF7
             #pragma multi_compile _ _OTHER_PCF3 _OTHER_PCF5 _OTHER_PCF7
             #pragma multi_compile _ _CASCADE_BLEND_SOFT _CASCADE_BLEND_DITHER
@@ -95,10 +99,7 @@
 
             #pragma vertex vert
             #pragma fragment frag
-
-             
             
-
             #include "../ShaderLibrary/LPWTerrain.hlsl"
             ENDHLSL
         }
@@ -114,7 +115,8 @@
             // #pragma shader_feature _CLIPPING
             #pragma multi_compile_instancing
             #pragma shader_feature _ _SHADOWS_CLIP _SHADOWS_DITHER
-            #pragma multi_compile _ LOD_FADE_CROSSFADE LOD_FADE_PERCENTAGE 
+            #pragma multi_compile _ LOD_FADE_CROSSFADE LOD_FADE_PERCENTAGE
+            
             // #pragma multi_compile _ LOD_FADE_CROSSFADE
 
             #pragma vertex ShadowCasterVert

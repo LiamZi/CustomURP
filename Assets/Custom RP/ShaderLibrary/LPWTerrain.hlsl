@@ -82,6 +82,8 @@ VertexOutput vert(VertexInput input, uint instanceID : SV_InstanceID)
     
     float3 worldPos = mul(unity_ObjectToWorld, float4(0, 0, 0, 1)).xyz;
     float2 worldSpaceUVs = float2(worldPos.x, worldPos.z);
+    
+#if defined(_ENABLED_WINDZONE)
     float offset = 0.1 * _Time.y * _NoisePannerSpeed;
     
     float4 animateWorldNoise = SAMPLE_TEXTURE2D_LOD(_NoiseTexture, sampler_point_clamp, float2(worldSpaceUVs * _NoiseTextureTilling.zw + offset), 0);
@@ -108,6 +110,7 @@ VertexOutput vert(VertexInput input, uint instanceID : SV_InstanceID)
     
     input.positionOS.xyz += localVertexOffset;
     input.positionOS.w = 1;
+#endif
     
     // float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
     float3 positionWS = mul(unity_ObjectToWorld, float4(input.positionOS.xyz, 1.0));

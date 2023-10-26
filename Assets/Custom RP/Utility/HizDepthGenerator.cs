@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using Object = UnityEngine.Object;
 
 namespace CustomPipeline
@@ -22,6 +23,7 @@ namespace CustomPipeline
         private const string _cmdName = "Hiz Depth";
         private Camera _camera;
         private ScriptableRenderContext _context;
+        public ScriptableRenderContext Context => _context;
 
         private CommandBuffer _cmd = null;
         public int TextureSize
@@ -30,7 +32,14 @@ namespace CustomPipeline
             {
                 if (_textureSize == 0)
                 {
-                    _textureSize = Mathf.NextPowerOfTwo(Mathf.Max(Screen.width, Screen.height));
+                    var width = Screen.width;
+                    var height = Screen.height;
+                    if (width >= 1024 || height >= 1024)
+                    {
+                        width = 512;
+                        height = 512;
+                    }
+                    _textureSize = Mathf.NextPowerOfTwo(Mathf.Max(width, height));
                 }
 
                 return _textureSize;

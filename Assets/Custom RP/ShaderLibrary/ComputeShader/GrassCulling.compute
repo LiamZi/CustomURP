@@ -54,10 +54,11 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     boundVerts[6] = float4(_boundMin.x, _boundMax.y, _boundMin.z, 1);
     boundVerts[7] = float4(_boundMin.x, _boundMin.y, _boundMax.z, 1);
 
+    
     float minX = 1, minY = 1, minZ = 1, maxX = -1, maxY = -1, maxZ = -1;
-
+    
     bool isInClipSpace = false;
-
+    
     for(int i = 0; i < 8; i++)
     {
         float4 clipSpacePos = mul(mvpMatrix, boundVerts[i]);
@@ -65,7 +66,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
         {
             isInClipSpace = true;
         }
-
+    
         float3 ndc = clipSpacePos.xyz / clipSpacePos.w;
         if(minX > ndc.x) minX = ndc.x;
         if(minY > ndc.y) minY = ndc.y;
@@ -74,27 +75,28 @@ void CSMain(uint3 id : SV_DispatchThreadID)
         if(maxY < ndc.y) maxY = ndc.y;
         if(maxZ < ndc.z) maxZ = ndc.z;
     }
-
+    
     if(!isInClipSpace) return;
-
-    float2 uvLeftBottom = float2(minX, minX) * 0.5f + 0.5f;
+    
+    float2 uvLeftBottom = float2(minX, minY) * 0.5f + 0.5f;
     float2 uvRightTop = float2(maxX, maxY) * 0.5f + 0.5f;
-
+    
     float depth = maxZ;
-
+    
     if(_isOGL)
     {
         depth = minZ;
         depth =depth * 0.5f + 0.5f;
     }
-
+    // //
     uint mipmapLevel = (uint)clamp(_depthTextureSize * 2 / log2(max(maxX - minX, maxY - minY)), 0, log2(_depthTextureSize) - 4);
     uint size = _depthTextureSize / (1 << mipmapLevel);
-
+    //
     uint2 pixelLeftBottom = uint2(clamp(uvLeftBottom.x * size, 0, size - 1), clamp(uvLeftBottom.y * size , 0, size -1));
     uint2 pixelRightTop = uint2(clamp(uvRightTop.y * size, 0, size - 1), clamp(uvRightTop.y * size, 0, size - 1));
-
+    //
     float depthInTexture = _hizTexture.mips[mipmapLevel][pixelLeftBottom].r;
+    
     if(_isOGL)
     {
         if(pixelLeftBottom.x < pixelRightTop.x && pixelLeftBottom.y < pixelRightTop.y)
@@ -112,7 +114,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
         {
             depthInTexture = max(depthInTexture, _hizTexture.mips[mipmapLevel][int2(pixelLeftBottom.x, pixelRightTop.y)].r);
         }
-
+    
         if(depthInTexture < depth)
         {
             return;
@@ -134,13 +136,13 @@ void CSMain(uint3 id : SV_DispatchThreadID)
         {
             depthInTexture = min(depthInTexture, _hizTexture.mips[mipmapLevel][int2(pixelLeftBottom.x, pixelRightTop.y)].r);
         }
-
-        if(depthInTexture < depth)
+    
+        if(depthInTexture > depth)
         {
             return;
         }
     }
-
+    
     _cullResultBuffer.Append(worldMatrix);
 }
 
