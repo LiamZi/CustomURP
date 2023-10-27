@@ -6,13 +6,56 @@
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CameraRenderer.Editor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CameraRenderer.Editor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CameraRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CameraRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/GrassCulling.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/GrassCulling.compute" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/HizDepthGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/HizDepthGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/LPW_Flower_A1_01.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/LPW_Flower_A1_01.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/CmdManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/CmdManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/LPWTerrain.shader.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/LPWTerrain.shader.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New Terrain.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New Terrain.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/LPW_Grass_A1_01.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/LPW_Grass_A1_01.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/LPW_Tree_A1_01.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/LPW_Tree_A1_01.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/LPW_Tree_C1_01.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/LPW_Tree_C1_01.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Grass_A1_40cm_01.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Grass_A1_40cm_01.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Grass_A1_50cm_01.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Grass_A1_50cm_01.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Ground_A1_100x100_01.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Ground_A1_100x100_01.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Ground_A1_100x100_02.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Ground_A1_100x100_02.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Rock_Boulder_A1_01.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Models/LPW_Rock_Boulder_A1_01.fbx.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GpuCulling/GpuCulling.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GpuCulling/GpuCulling.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GpuCulling/GrassGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GpuCulling/GrassGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.CollabProxy.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.CollabProxy.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Mathematics.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Mathematics.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Mathematics.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Mathematics.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.PlasticSCM.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.PlasticSCM.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipeline.Universal.ShaderLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipeline.Universal.ShaderLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Runtime.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Runtime.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Core.ShaderLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Core.ShaderLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Runtime.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Runtime.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Shaders.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Shaders.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Rider.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Rider.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Searcher.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Searcher.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.ShaderGraph.Utilities.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.ShaderGraph.Utilities.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.TextMeshPro.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.TextMeshPro.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.TextMeshPro.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.TextMeshPro.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Timeline.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Timeline.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Timeline.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Timeline.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.VSCode.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.VSCode.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.VisualStudio.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.VisualStudio.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnityEditor.TestRunner.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UnityEditor.TestRunner.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnityEditor.UI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UnityEditor.UI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnityEngine.TestRunner.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UnityEngine.TestRunner.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnityEngine.UI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UnityEngine.UI.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +66,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityCG.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityInstancing.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/7a2c134242574696b1b60dc2458f071013ea00/47/bf8b7004/020000E6.il" root0="SKIP_HIGHLIGHTING" />
@@ -33,16 +78,19 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/02/fd767718/MeshRenderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/05/b6c35549/DrawingSettings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/0c/3f5c1135/RenderTargetIdentifier.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/20/1b51427c/ComputeQueueType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/38/9f167cb5/ComputeBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/3e/9457529c/CommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/47/c94c1e1e/Graphics.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/5b/a2926806/Shader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/65/37bb453b/RenderPipelineAsset.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/6e/395ddd2f/ShaderTagId.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/7b/b1e91495/ScriptableRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/7f/e7547c8f/Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/82/abe6df2b/RenderTexture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/84/f95022e2/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/a0/479abe14/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/c4/5aa4640c/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/c8/4c44b88f/ComputeShader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/d0/70ba297a/CullingResults.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/d1/1229dcc1/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
@@ -52,7 +100,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/21/c0fbea03/HostView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/42/c74bffd8/PlayModeView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/d1/c8263b01/GameView.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/fd/63a58726/DockArea.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/fd/63a58726/DockArea.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aff03bdeeedd4e8db13d465465f3c24f3800/64/e58a342c/NativeInputSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c4f1d441c2b4449eb0f388da11d4462a7000/05/d7a9a16c/SendMouseEvents.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Github/Unity-MPipeline-Framework/Assets/Scripts/MPipeline Core/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
@@ -178,7 +226,9 @@
       <workItem from="1697179743613" duration="10296000" />
       <workItem from="1697427052759" duration="39619000" />
       <workItem from="1697616465792" duration="18331000" />
-      <workItem from="1698029193711" duration="40121000" />
+      <workItem from="1698029193711" duration="43651000" />
+      <workItem from="1698215131281" duration="15571000" />
+      <workItem from="1698310874767" duration="15982000" />
     </task>
     <servers />
   </component>
@@ -208,65 +258,65 @@
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CameraRenderer.cs</url>
-          <line>100</line>
+          <line>98</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CameraRenderer.cs" initialLine="100" containingFunctionPresentation="构造函数 'CameraRenderer'">
             <startOffsets>
-              <option value="4026" />
+              <option value="3967" />
             </startOffsets>
             <endOffsets>
-              <option value="4046" />
+              <option value="3987" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/CommnadBufferManager.cs</url>
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/CmdManager.cs</url>
           <line>60</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Interfaces\CommnadBufferManager.cs" initialLine="56" containingFunctionPresentation="方法 'GetTemporaryCB'">
             <startOffsets>
-              <option value="1289" />
+              <option value="1198" />
             </startOffsets>
             <endOffsets>
-              <option value="1326" />
+              <option value="1226" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CameraRenderer.cs</url>
-          <line>116</line>
+          <line>114</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CameraRenderer.cs" initialLine="120" containingFunctionPresentation="方法 'Render'">
             <startOffsets>
-              <option value="4609" />
+              <option value="4550" />
             </startOffsets>
             <endOffsets>
-              <option value="4633" />
+              <option value="4574" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/CommnadBufferManager.cs</url>
-          <line>77</line>
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/CmdManager.cs</url>
+          <line>78</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Interfaces\CommnadBufferManager.cs" initialLine="74" containingFunctionPresentation="方法 'First'">
             <startOffsets>
-              <option value="1660" />
+              <option value="1630" />
             </startOffsets>
             <endOffsets>
-              <option value="1681" />
+              <option value="1651" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/CommnadBufferManager.cs</url>
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/CmdManager.cs</url>
           <line>45</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Interfaces\CommnadBufferManager.cs" initialLine="42" containingFunctionPresentation="方法 'Clear'">
             <startOffsets>
-              <option value="986" />
+              <option value="912" />
             </startOffsets>
             <endOffsets>
-              <option value="1000" />
+              <option value="926" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="14" />

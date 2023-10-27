@@ -26,8 +26,8 @@ MonoBehaviour:
     _copyColorReflection: 0
     _copyDepth: 1
     _copyDepthReflection: 0
-    _renderScale: 1.33
-    _bicubicRescaling: 0
+    _renderScale: 1
+    _bicubicRescaling: 2
     _fxaa:
       _enabled: 1
       _fixedThreshold: 0.0833

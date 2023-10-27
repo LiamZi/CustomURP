@@ -8,35 +8,35 @@ using UnityEngine.Rendering;
 
 namespace CustomURP
 {
-    public class CommandBufferManager
+    public class CmdManager
     {
-        private static CommandBufferManager _sharedInstance = null;
+        private static CmdManager _sharedInstance = null;
 
         private List<Command> _list = new List<Command>();
 
-        private CommandBufferManager()
+        private CmdManager()
         {
             
         }
 
-        public static CommandBufferManager Singleton
+        public static CmdManager Singleton
         {
             get 
             {
                 if (_sharedInstance == null)
                 {
-                    _sharedInstance = new CommandBufferManager();
+                    _sharedInstance = new CmdManager();
                 }
                 return _sharedInstance;
             }
         }
 
-        public void Add(CommandBuffer cb)
+        public void Add(Command cb)
         {
             _list.Add(cb);
         }
 
-        public void Remove(CommandBuffer cb)
+        public void Remove(Command cb)
         {
             _list.Remove(cb);
         }
@@ -65,13 +65,7 @@ namespace CustomURP
 
         public Command Get(string name)
         {
-            // foreach(var cb in _list)
-            // {
-            //     if(cb.Name == name) return cb;
-            // }
             return _list.Find(cmd => { return cmd.Name.Equals(name); });
-
-            // return null;
         }
 
         public Command First()

@@ -15,6 +15,8 @@ namespace CustomURP
         public int _grassCountPerRaw = 300;
         private HizDepthGenerator _Hiz;
         public ComputeShader _compute;
+        private Command _cmd = null;
+        private ScriptableRenderContext _context;
 
         private int _grassCount;
         private int _kernel;
@@ -30,13 +32,19 @@ namespace CustomURP
         private int _vpMatrixID;
         private int _posBufferID;
         private int _hizTextureId;
+        private const string _cmdName = "Grass Generator";
 
         void Start()
         {
+            _cmd = CmdManager.Singleton.Exists(_cmdName) ? CmdManager.Singleton.Find(_cmdName) : CmdManager.Singleton.GetTemporaryCMD(_cmdName);
+            
             _grassCount = _grassCountPerRaw * _grassCountPerRaw;
             _camera = Camera.main;
-            if(_camera) _Hiz = _camera.GetComponent<CustomRenderPipelineCamera>().HizDepth;
-
+            if (_camera)
+            {
+                _Hiz = _camera.GetComponent<CustomRenderPipelineCamera>().HizDepth;
+            }
+            
             if (_grassMesh != null)
             {
                 _args[0] = _grassMesh.GetIndexCount(_subMeshIndex);
@@ -119,7 +127,10 @@ namespace CustomURP
             _material.SetBuffer(_posBufferID, _cullResult);
             
             ComputeBuffer.CopyCount(_cullResult, _argsBuffer, sizeof(uint));
-            Graphics.DrawMeshInstancedIndirect(_grassMesh, _subMeshIndex, _material, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), _argsBuffer);
+            // Graphics.DrawMeshInstancedIndirect(_grassMesh, _subMeshIndex, _material, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), _argsBuffer);
+            _cmd.Cmd.DrawMeshInstancedIndirect(_grassMesh, _subMeshIndex, _material, 0, _argsBuffer);
+            // _context.ExecuteCommandBuffer(_cmd);
+            // _cmd.Clear();
         }
 
         private void OnDisable()

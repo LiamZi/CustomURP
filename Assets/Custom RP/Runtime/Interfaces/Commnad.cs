@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -38,9 +39,9 @@ namespace CustomURP
             _cmd.Clear();
         }
 
-        public void ExecuteAsync(ScriptableRenderContext context)
+        public void ExecuteAsync(ScriptableRenderContext context, ComputeQueueType type)
         {
-            context.ExecuteCommandBufferAsync(_cmd);
+            context.ExecuteCommandBufferAsync(_cmd, type);
             _cmd.Clear();
         }
         
@@ -50,7 +51,7 @@ namespace CustomURP
             set { _name = value; }
         }
         
-        public UnityEngine.Rendering.CommandBuffer Buffer => _cmd;
+        public UnityEngine.Rendering.CommandBuffer Cmd => _cmd;
 
     };
 

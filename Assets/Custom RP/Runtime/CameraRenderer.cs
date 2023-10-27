@@ -67,7 +67,7 @@ public partial class CameraRenderer
         // QualitySettings.pixelLightCount = 8;
         _isUseHiz = false;  
         
-        CommandBufferManager.Singleton.GetTemporaryCMD(_bufferName);
+        CmdManager.Singleton.GetTemporaryCMD(_bufferName);
 
         _material = CoreUtils.CreateEngineMaterial(shader);
         _missingTexture = new Texture2D(1, 1) 
@@ -138,9 +138,9 @@ public partial class CameraRenderer
         }
 
         //_commandBuffer.BeginSample(_sampleName);
-        CommandBufferManager.Singleton.BeginSample(_sampleName);
+        CmdManager.Singleton.BeginSample(_sampleName);
 
-        CommandBufferManager.Singleton.Get(_sampleName).Buffer.SetGlobalVector(_bufferSizeId, new Vector4(1f / _bufferSize.x, 1f / _bufferSize.y, _bufferSize.x, _bufferSize.y));
+        CmdManager.Singleton.Get(_sampleName).Cmd.SetGlobalVector(_bufferSizeId, new Vector4(1f / _bufferSize.x, 1f / _bufferSize.y, _bufferSize.x, _bufferSize.y));
         ExcuteBuffer();
 
         
@@ -153,10 +153,16 @@ public partial class CameraRenderer
                     postFXSettings, cameraSettings._keepAlpha,  _isUseHDR, colorLUTResolution, 
                     cameraSettings._finalBlendMode, cameraBufferSetting._bicubicRescaling, cameraBufferSetting._fxaa);
 
-        CommandBufferManager.Singleton.EndSample(_sampleName);
+        CmdManager.Singleton.EndSample(_sampleName);
 
         Setup();
         DrawVisibleGeometry(useDynamicBatching, useGPUInstanceing, useLightsPerObject, cameraSettings._renderingLayerMask);
+        
+        var grassCmd =  CmdManager.Singleton.Get("Grass Generator");
+        if (grassCmd != null)
+        {
+            grassCmd.Execute(_context);
+        }
         
         if (cameraSettings._enabledHizDepth)
         {
@@ -192,7 +198,7 @@ public partial class CameraRenderer
 
         _isUseIntermediateBuffer = _isUseScaledRendering || _isUseColorTexture || _isUseDepthTexture || _postStack.IsActive;
 
-        var buffer = CommandBufferManager.Singleton.Get(_sampleName).Buffer;
+        var buffer = CmdManager.Singleton.Get(_sampleName).Cmd;
 
         if (_isUseIntermediateBuffer)
         {
@@ -264,13 +270,7 @@ public partial class CameraRenderer
 
         };
 
-       var grassCmd =  CommandBufferManager.Singleton.Get("Grass Generator");
-       if (grassCmd != null)
-       {
-           // _context.ExecuteCommandBuffer(grassCmd.Buffer);
-           // grassCmd.
-           grassCmd.Execute(_context);
-       }
+
 
        drawingSettings.SetShaderPassName(1, _litShaderTagId);
        
@@ -295,14 +295,14 @@ public partial class CameraRenderer
     void Submit()
     {
         //_commandBuffer.EndSample(_sampleName);
-        CommandBufferManager.Singleton.EndSample(_sampleName);
+        CmdManager.Singleton.EndSample(_sampleName);
         ExcuteBuffer();
         _context.Submit();
     }
 
     void ExcuteBuffer()
     {
-        var cmd = CommandBufferManager.Singleton.Get(_sampleName).Buffer;
+        var cmd = CmdManager.Singleton.Get(_sampleName).Cmd;
         //_context.ExecuteCommandBuffer(_commandBuffer);
         _context.ExecuteCommandBuffer(cmd);
         cmd.Clear();
@@ -323,7 +323,7 @@ public partial class CameraRenderer
 
     void Draw(RenderTargetIdentifier from, RenderTargetIdentifier to, bool isDepth = false)
     {
-        var buffer = CommandBufferManager.Singleton.Get(_sampleName).Buffer;
+        var buffer = CmdManager.Singleton.Get(_sampleName).Cmd;
         buffer.SetGlobalTexture(_sourceTextureId, from);
         buffer.SetRenderTarget(to, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
         buffer.DrawProcedural(Matrix4x4.identity, _material, isDepth ? 1 : 0, MeshTopology.Triangles, 3);
@@ -331,7 +331,7 @@ public partial class CameraRenderer
 
     void DrawFinal(CameraSettings.FinalBlendMode finalBlendMode)
     {
-        var buffer = CommandBufferManager.Singleton.Get(_sampleName).Buffer;
+        var buffer = CmdManager.Singleton.Get(_sampleName).Cmd;
         buffer.SetGlobalFloat(_srcBlendId, (float)finalBlendMode._source);
         buffer.SetGlobalFloat(_dstBlendId, (float)finalBlendMode._destiantion);
         buffer.SetGlobalTexture(_sourceTextureId, _colorAttachmentId);
@@ -348,7 +348,7 @@ public partial class CameraRenderer
 
     void CopyAttachments()
     {
-        var buffer = CommandBufferManager.Singleton.Get(_sampleName).Buffer;
+        var buffer = CmdManager.Singleton.Get(_sampleName).Cmd;
         if (_isUseColorTexture)
         {
             buffer.GetTemporaryRT(_colorTextureId, _bufferSize.x, 
@@ -417,7 +417,7 @@ public partial class CameraRenderer
         // if(_postStack.IsActive)
         if(_isUseIntermediateBuffer)
         {
-            var buffer = CommandBufferManager.Singleton.Get(_sampleName).Buffer;
+            var buffer = CmdManager.Singleton.Get(_sampleName).Cmd;
             buffer.ReleaseTemporaryRT(_colorAttachmentId);
             buffer.ReleaseTemporaryRT(_depthAttachmentId);
 
