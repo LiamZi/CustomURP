@@ -21,14 +21,7 @@ namespace CustomURP
 
         public static CmdManager Singleton
         {
-            get 
-            {
-                if (_sharedInstance == null)
-                {
-                    _sharedInstance = new CmdManager();
-                }
-                return _sharedInstance;
-            }
+            get { return _sharedInstance ??= new CmdManager(); }
         }
 
         public void Add(Command cb)
@@ -43,6 +36,11 @@ namespace CustomURP
 
         public void Clear()
         {
+            foreach (var cmd in _list)
+            {
+                cmd.Destroy();
+            }
+            
             _list.Clear();
         }
 
@@ -56,7 +54,7 @@ namespace CustomURP
             return _list.Contains(cb);
         }
 
-        public Command GetTemporaryCMD(string name = "")
+        public Command GetTemporaryCmd(string name = "")
         {
             var cmd = new Command(name);
             _list.Add(cmd);
@@ -88,32 +86,22 @@ namespace CustomURP
 
         public void BeginSample(string name)
         {
-            foreach (var cb in _list)
-            {
-                if(cb.Name == name)
-                {
-                    cb.BeginSample();
-                }
-            }
+            var cmd = _list.Find(cmd => { return cmd.Name.Equals(name); });
+            if(cmd != null) cmd.BeginSample();
         }
 
         public void EndSample()
         {
             foreach(var cb in _list)
             {
-                cb.EndSampler();
+                cb.EndSample();
             }
         }
 
         public void EndSample(string name)
         {
-            foreach (var cb in _list)
-            {
-               if(cb.Name == name)
-                {
-                    cb.EndSampler();
-                }
-            }
+            var cmd = _list.Find(cmd => { return cmd.Name.Equals(name); });
+            if(cmd != null) cmd.EndSample();
         }
 
         public Command Find(string name)

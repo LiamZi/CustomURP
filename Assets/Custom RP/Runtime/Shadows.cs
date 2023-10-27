@@ -1,13 +1,14 @@
+using CustomURP;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class Shadows
 {
-    const string _bufferName = "Shadows";
+    const string _passName = "Shadows";
 
-    CommandBuffer _commandBuffer = new CommandBuffer{ name = _bufferName };
-
+    // CommandBuffer _commandBuffer = new CommandBuffer{ name = _bufferName };
+    private CustomURP.Command _cmd = null;
     ScriptableRenderContext _context;
 
     CullingResults _cullingResults;
@@ -97,12 +98,15 @@ public class Shadows
         _shadowedDirectinnalLightCount = 0;
         _useShadowMask = false;
         _shadowedOtherLightCount = 0;
+        // _cmd = CmdManager.Singleton.GetTemporaryCmd(_passName);
+        _cmd = CmdManager.Singleton.Exists(_passName) ? CmdManager.Singleton.Get(_passName) : CmdManager.Singleton.GetTemporaryCmd(_passName);
     }
 
     void ExcuteBuffer()
     {
-        _context.ExecuteCommandBuffer(_commandBuffer);
-        _commandBuffer.Clear();
+        // _context.ExecuteCommandBuffer(_cmd);
+        _cmd.Execute(_context);
+        // _cmd.Clear();
     }
 
     public Vector4 ReserveDirectinalShadows(Light light, int visibleLightIndex)
@@ -188,7 +192,7 @@ public class Shadows
         }
         else
         {
-            _commandBuffer.GetTemporaryRT(_dirShadowAtlasId, 1, 1, 32, FilterMode.Bilinear, RenderTextureFormat.Shadowmap);
+            _cmd.Cmd.GetTemporaryRT(_dirShadowAtlasId, 1, 1, 32, FilterMode.Bilinear, RenderTextureFormat.Shadowmap);
         }
 
         if(_shadowedOtherLightCount > 0)
@@ -197,17 +201,17 @@ public class Shadows
         }
         else
         {
-            _commandBuffer.SetGlobalTexture(_otherShadwAtlasId, _dirShadowAtlasId);
+            _cmd.Cmd.SetGlobalTexture(_otherShadwAtlasId, _dirShadowAtlasId);
         }
 
-        _commandBuffer.BeginSample(_bufferName);
+        _cmd.BeginSample();
         SetKeywords(_shadowMaskKeywords, _useShadowMask ? QualitySettings.shadowmaskMode == ShadowmaskMode.Shadowmask ? 0 : 1 : -1);
-        _commandBuffer.SetGlobalInt(_cascadCountId, _shadowedDirectinnalLightCount > 0 ? _settings._directional._cascadeCount : 0);
+        _cmd.Cmd.SetGlobalInt(_cascadCountId, _shadowedDirectinnalLightCount > 0 ? _settings._directional._cascadeCount : 0);
         
         float f = 1f - _settings._directional._cascadeFade;
-        _commandBuffer.SetGlobalVector(_shadowDistanceFadeId, new Vector4(1f / _settings._maxDistance, 1f / _settings._distanceFade, 1f / (1f - f * f)));
-        _commandBuffer.SetGlobalVector(_shadowAtlasSizeId, _atlasSize);
-        _commandBuffer.EndSample(_bufferName);
+        _cmd.Cmd.SetGlobalVector(_shadowDistanceFadeId, new Vector4(1f / _settings._maxDistance, 1f / _settings._distanceFade, 1f / (1f - f * f)));
+        _cmd.Cmd.SetGlobalVector(_shadowAtlasSizeId, _atlasSize);
+        _cmd.EndSample();
         ExcuteBuffer();
     }
 
@@ -217,11 +221,11 @@ public class Shadows
         _atlasSize.x = atlasSize;
         _atlasSize.y = 1f / atlasSize;
 
-        _commandBuffer.GetTemporaryRT(_dirShadowAtlasId, atlasSize, atlasSize, 32, FilterMode.Bilinear, RenderTextureFormat.Shadowmap);
-        _commandBuffer.SetRenderTarget(_dirShadowAtlasId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
-        _commandBuffer.ClearRenderTarget(true, false, Color.clear);
-        _commandBuffer.SetGlobalFloat(_shadowPancakingId, 1f);
-        _commandBuffer.BeginSample(_bufferName);
+        _cmd.Cmd.GetTemporaryRT(_dirShadowAtlasId, atlasSize, atlasSize, 32, FilterMode.Bilinear, RenderTextureFormat.Shadowmap);
+        _cmd.Cmd.SetRenderTarget(_dirShadowAtlasId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
+        _cmd.Cmd.ClearRenderTarget(true, false, Color.clear);
+        _cmd.Cmd.SetGlobalFloat(_shadowPancakingId, 1f);
+        _cmd.BeginSample();
         ExcuteBuffer();
 
         int tiles = _shadowedDirectinnalLightCount * _settings._directional._cascadeCount;
@@ -235,16 +239,16 @@ public class Shadows
         }
 
         // _commandBuffer.SetGlobalInt(_cascadCountId, _settings._directional._cascadeCount);
-        _commandBuffer.SetGlobalVectorArray(_cascadCullingSphererId, _cascadCullingSpheres);
-        _commandBuffer.SetGlobalVectorArray(_cascadDataId, _cascadData);
-        _commandBuffer.SetGlobalMatrixArray(_dirShadowMatricesId, _dirShadowMatrices);
+        _cmd.Cmd.SetGlobalVectorArray(_cascadCullingSphererId, _cascadCullingSpheres);
+        _cmd.Cmd.SetGlobalVectorArray(_cascadDataId, _cascadData);
+        _cmd.Cmd.SetGlobalMatrixArray(_dirShadowMatricesId, _dirShadowMatrices);
         // float f = 1f - _settings._directional._cascadeFade;
         // _commandBuffer.SetGlobalVector(_shadowDistanceFadeId, new Vector4(1f / _settings._maxDistance, 1f / _settings._distanceFade, 1f / (1f - f * f)));
         
         SetKeywords(_directionalFilterKeywords, (int)_settings._directional._filter - 1);
         SetKeywords(_cascadeBlendKeywords, (int)_settings._directional._cascadblendMode - 1);
         // _commandBuffer.SetGlobalVector(_shadowAtlasSizeId, new Vector4(atlasSize, 1f / atlasSize));
-        _commandBuffer.EndSample(_bufferName);
+        _cmd.EndSample();
         
         ExcuteBuffer();
     }
@@ -278,11 +282,11 @@ public class Shadows
             // _dirShadowMatrices[titleIndex] = ConvertToAtlasMatrix(projectMatrix * viewMatrix, SetTileViewport(titleIndex, split, atlasSize), tileScale);
             _dirShadowMatrices[titleIndex] = ConvertToAtlasMatrix(projectMatrix * viewMatrix, SetTileViewport(titleIndex, split, atlasSize), tileScale);
             
-            _commandBuffer.SetViewProjectionMatrices(viewMatrix, projectMatrix);
-            _commandBuffer.SetGlobalDepthBias(0f, light._slopeScaleBias);
+            _cmd.Cmd.SetViewProjectionMatrices(viewMatrix, projectMatrix);
+            _cmd.Cmd.SetGlobalDepthBias(0f, light._slopeScaleBias);
             ExcuteBuffer();
             _context.DrawShadows(ref shadowSettings);
-            _commandBuffer.SetGlobalDepthBias(0f, 0f);
+            _cmd.Cmd.SetGlobalDepthBias(0f, 0f);
         }
     }
 
@@ -293,11 +297,11 @@ public class Shadows
         _atlasSize.z = atlasSize;
         _atlasSize.w = 1f / atlasSize;
 
-        _commandBuffer.GetTemporaryRT(_otherShadwAtlasId, atlasSize, atlasSize, 32, FilterMode.Bilinear, RenderTextureFormat.Shadowmap);
-        _commandBuffer.SetRenderTarget(_otherShadwAtlasId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
-        _commandBuffer.ClearRenderTarget(true, false, Color.clear);
-        _commandBuffer.SetGlobalFloat(_shadowPancakingId, 0f);
-        _commandBuffer.BeginSample(_bufferName);
+        _cmd.Cmd.GetTemporaryRT(_otherShadwAtlasId, atlasSize, atlasSize, 32, FilterMode.Bilinear, RenderTextureFormat.Shadowmap);
+        _cmd.Cmd.SetRenderTarget(_otherShadwAtlasId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
+        _cmd.Cmd.ClearRenderTarget(true, false, Color.clear);
+        _cmd.Cmd.SetGlobalFloat(_shadowPancakingId, 0f);
+        _cmd.BeginSample();
         ExcuteBuffer();
 
         int tiles = _shadowedOtherLightCount;
@@ -319,11 +323,11 @@ public class Shadows
            
         }
 
-        _commandBuffer.SetGlobalMatrixArray(_otherShadowMatricesId, _otherShadowMatrices);
-        _commandBuffer.SetGlobalVectorArray(_otherShadowTilesId, _otherShadowTiles);
+        _cmd.Cmd.SetGlobalMatrixArray(_otherShadowMatricesId, _otherShadowMatrices);
+        _cmd.Cmd.SetGlobalVectorArray(_otherShadowTilesId, _otherShadowTiles);
     
         SetKeywords(_otherFilterKeywords, (int)_settings._other._filter - 1);
-        _commandBuffer.EndSample(_bufferName);
+        _cmd.EndSample();
         
         ExcuteBuffer();
     }
@@ -349,11 +353,11 @@ public class Shadows
 
 
         _otherShadowMatrices[index] = ConvertToAtlasMatrix(projectionMatrix * viewMatrix, offset, tileScale);
-        _commandBuffer.SetViewProjectionMatrices(viewMatrix, projectionMatrix);
-        _commandBuffer.SetGlobalDepthBias(0f, light._slopeScaleBias);
+        _cmd.Cmd.SetViewProjectionMatrices(viewMatrix, projectionMatrix);
+        _cmd.Cmd.SetGlobalDepthBias(0f, light._slopeScaleBias);
         ExcuteBuffer();
         _context.DrawShadows(ref shadowSettings);
-        _commandBuffer.SetGlobalDepthBias(0f, 0f);
+        _cmd.Cmd.SetGlobalDepthBias(0f, 0f);
     }
 
 
@@ -392,11 +396,11 @@ public class Shadows
 
 
             _otherShadowMatrices[tileIndex] = ConvertToAtlasMatrix(projectionMatrix * viewMatrix, offset, tileScale);
-            _commandBuffer.SetViewProjectionMatrices(viewMatrix, projectionMatrix);
-            _commandBuffer.SetGlobalDepthBias(0f, light._slopeScaleBias);
+            _cmd.Cmd.SetViewProjectionMatrices(viewMatrix, projectionMatrix);
+            _cmd.Cmd.SetGlobalDepthBias(0f, light._slopeScaleBias);
             ExcuteBuffer();
             _context.DrawShadows(ref shadowSettings);
-            _commandBuffer.SetGlobalDepthBias(0f, 0f);
+            _cmd.Cmd.SetGlobalDepthBias(0f, 0f);
         }
      
     }
@@ -409,11 +413,11 @@ public class Shadows
         {
             if(i == enablendIndex)
             {
-                _commandBuffer.EnableShaderKeyword(keywords[i]);
+                _cmd.Cmd.EnableShaderKeyword(keywords[i]);
             }
             else
             {
-                _commandBuffer.DisableShaderKeyword(keywords[i]);
+                _cmd.Cmd.DisableShaderKeyword(keywords[i]);
             }
         }
     }
@@ -432,17 +436,17 @@ public class Shadows
     Vector2 SetTileViewport(int index, int split, int tileSize)
     {
         Vector2 offset = new Vector2(index % split, index / split);
-        _commandBuffer.SetViewport(new Rect(offset.x * tileSize, offset.y * tileSize, tileSize, tileSize));
+        _cmd.Cmd.SetViewport(new Rect(offset.x * tileSize, offset.y * tileSize, tileSize, tileSize));
         return offset;
     }
 
     public void Clearup()
     {
-        _commandBuffer.ReleaseTemporaryRT(_dirShadowAtlasId);
+        _cmd.Cmd.ReleaseTemporaryRT(_dirShadowAtlasId);
 
         if(_shadowedOtherLightCount > 0)
         {
-            _commandBuffer.ReleaseTemporaryRT(_otherShadwAtlasId);
+            _cmd.Cmd.ReleaseTemporaryRT(_otherShadwAtlasId);
         }
 
         ExcuteBuffer();

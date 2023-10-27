@@ -9,7 +9,7 @@ namespace CustomURP
     public class Command
     {
         private string _name;
-        private UnityEngine.Rendering.CommandBuffer _cmd;
+        private UnityEngine.Rendering.CommandBuffer _cmd = null;
 
         public Command(string name)
         {
@@ -28,7 +28,7 @@ namespace CustomURP
             _cmd.BeginSample(_name);
         }
 
-        public void EndSampler()
+        public void EndSample()
         {
             _cmd.EndSample(_name);
         }
@@ -36,13 +36,19 @@ namespace CustomURP
         public void Execute(ScriptableRenderContext context)
         {
             context.ExecuteCommandBuffer(_cmd);
+            // _cmd.Clear();
+            Clear();
+        }
+
+        public void Clear()
+        {
             _cmd.Clear();
         }
 
         public void ExecuteAsync(ScriptableRenderContext context, ComputeQueueType type)
         {
             context.ExecuteCommandBufferAsync(_cmd, type);
-            _cmd.Clear();
+            Clear();
         }
         
         public string Name
@@ -52,6 +58,12 @@ namespace CustomURP
         }
         
         public UnityEngine.Rendering.CommandBuffer Cmd => _cmd;
+
+        public void Destroy()
+        {
+            // _cmd.Clear();
+            _cmd.Dispose();
+        }
 
     };
 

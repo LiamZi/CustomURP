@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CustomURP;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
@@ -83,5 +84,6 @@ public partial class CustomRenderPipeline : RenderPipeline
         base.Dispose(disposing);
         DisposeForEditor();
         _renderer.Dispose();
+        CustomURP.CmdManager.Singleton.Clear();
     }
 }
