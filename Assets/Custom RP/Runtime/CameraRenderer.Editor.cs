@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Profiling;
 using CustomURP;
+using CommandBuffer = CustomURP.CommandBuffer;
 
 public partial class CameraRenderer
 {
@@ -74,14 +75,19 @@ public partial class CameraRenderer
     partial void PrepareBuffer()
     {
         Profiler.BeginSample("Editor Only");
-        //_commandBuffer.name = _sampleName = _camera.name;
-        //CommandBufferManager.Singleton.Get(_sampleName).Name = _camera.name;
-        var buffer = CommandBufferManager.Singleton.Get(_sampleName);
-        if (buffer == null)
+
+        CommandBuffer buffer = null;
+        var isExists = CommandBufferManager.Singleton.Exists(_sampleName);
+        if (isExists)
         {
-            buffer = CommandBufferManager.Singleton.First();
-            
+            buffer = CommandBufferManager.Singleton.Get(_sampleName);
         }
+        else
+        {
+            isExists = CommandBufferManager.Singleton.Exists(_bufferName);
+            buffer = isExists ? CommandBufferManager.Singleton.Get(_bufferName) : CommandBufferManager.Singleton.GetTemporaryCMD(_bufferName);
+        }
+        
         buffer.Name = _sampleName = _camera.name;
         Profiler.EndSample();
     }

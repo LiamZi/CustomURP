@@ -12,7 +12,7 @@ namespace CustomURP
     {
         private static CommandBufferManager _sharedInstance = null;
 
-        private List<CommandBuffer> _list = new List<CommandBuffer>();
+        private List<Command> _list = new List<Command>();
 
         private CommandBufferManager()
         {
@@ -46,39 +46,40 @@ namespace CustomURP
             _list.Clear();
         }
 
-        public List<CommandBuffer> GetAll()
+        public List<Command> GetAll()
         {
             return _list;
         }
 
-        public bool Has(CommandBuffer cb)
+        public bool Has(Command cb)
         {
             return _list.Contains(cb);
         }
 
-        public CommandBuffer GetTemporaryCB(string name = "")
+        public Command GetTemporaryCMD(string name = "")
         {
-            var buffer = new CommandBuffer(name);
-            _list.Add(buffer);
-            return buffer;
+            var cmd = new Command(name);
+            _list.Add(cmd);
+            return cmd;
         }
 
-        public CommandBuffer Get(string name)
+        public Command Get(string name)
         {
-            foreach(var cb in _list)
-            {
-                if(cb.Name == name) return cb;
-            }
+            // foreach(var cb in _list)
+            // {
+            //     if(cb.Name == name) return cb;
+            // }
+            return _list.Find(cmd => { return cmd.Name.Equals(name); });
 
-            return null;
+            // return null;
         }
 
-        public CommandBuffer First()
+        public Command First()
         {
             return _list.First();
         }
 
-        public CommandBuffer Last()
+        public Command Last()
         {
             return _list.Last();
         }
@@ -119,6 +120,16 @@ namespace CustomURP
                     cb.EndSampler();
                 }
             }
+        }
+
+        public Command Find(string name)
+        {
+            return _list.Find(cmd => { return cmd.Name.Equals(name); });
+        }
+
+        public bool Exists(string name)
+        {
+            return _list.Exists(cmd => { return cmd.Name.Equals(name); });
         }
     }
 

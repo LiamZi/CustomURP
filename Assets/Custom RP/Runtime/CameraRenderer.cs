@@ -65,11 +65,9 @@ public partial class CameraRenderer
         // _isEnabledDynamicBatch = isEnabledDynamicBatch;
         // _isEnabledInstacing = isEnabledInstancing;
         // QualitySettings.pixelLightCount = 8;
-
-        //CommnadBufferManage GetTemporaryCB(_bufferName);
         _isUseHiz = false;  
         
-        CommandBufferManager.Singleton.GetTemporaryCB(_bufferName);
+        CommandBufferManager.Singleton.GetTemporaryCMD(_bufferName);
 
         _material = CoreUtils.CreateEngineMaterial(shader);
         _missingTexture = new Texture2D(1, 1) 
@@ -159,6 +157,7 @@ public partial class CameraRenderer
 
         Setup();
         DrawVisibleGeometry(useDynamicBatching, useGPUInstanceing, useLightsPerObject, cameraSettings._renderingLayerMask);
+        
         if (cameraSettings._enabledHizDepth)
         {
             crpCamera.HizDepth.Setup(context, camera);
@@ -178,8 +177,6 @@ public partial class CameraRenderer
             DrawFinal(cameraSettings._finalBlendMode);
             ExcuteBuffer();
         }
-        
-
         
         DrawGizmosAfterFX();
 
@@ -267,7 +264,13 @@ public partial class CameraRenderer
 
         };
 
-       
+       var grassCmd =  CommandBufferManager.Singleton.Get("Grass Generator");
+       if (grassCmd != null)
+       {
+           // _context.ExecuteCommandBuffer(grassCmd.Buffer);
+           // grassCmd.
+           grassCmd.Execute(_context);
+       }
 
        drawingSettings.SetShaderPassName(1, _litShaderTagId);
        

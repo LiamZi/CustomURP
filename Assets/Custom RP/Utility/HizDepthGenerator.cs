@@ -15,7 +15,7 @@ namespace CustomPipeline
     {
         public Shader _depthTextureShader; 
         public RenderTexture Texture => _texture;
-        private RenderTexture _texture;
+        private RenderTexture _texture = null;
         private int _textureSize = 0;
         private Material _material;
         private const RenderTextureFormat _format = RenderTextureFormat.Default;
@@ -69,14 +69,12 @@ namespace CustomPipeline
                 name = _cmdName
             };
             
-            // _texture = new RenderTexture(TextureSize, TextureSize, 0, _format);
             _texture = RenderTexture.GetTemporary(TextureSize, TextureSize, 0, _format);
             _texture.filterMode = FilterMode.Point;
             _texture.useMipMap = true;
             _texture.autoGenerateMips = false;
             _texture.hideFlags = HideFlags.HideAndDontSave;
             _texture.Create();
-            // _destId = new RenderTargetIdentifier(_texture);
         }
         
         public void OnPostRender()
