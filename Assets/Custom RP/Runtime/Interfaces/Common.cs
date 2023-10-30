@@ -4,18 +4,24 @@
     {
         public enum Pass
         {
-            Normal = 0,
+            Default = 0,
             Before,
+            Normal,
             After,
             Async,
+            Max
         };
 
        public enum RenderType
        {
-           Normal = 0,
+           Default = 0,
+           Depth,
+           Normal,
            Light,
            Shadow,
-           Post
+           Post, 
+           Compute,
+           Max
        };
     }
 }
