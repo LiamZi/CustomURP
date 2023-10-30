@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 using System.Threading;
 using System;
-
+using System.Data;
 
 namespace CustomURP
 {
@@ -22,15 +22,25 @@ namespace CustomURP
         private AutoResetEvent _restEvent;
         private Thread _thread;
         private bool _isReady = false;
+        private ScriptableRenderContext _context;
         
         private CmdManager()
         {
             
             _thread = new Thread(Tick);
+            //Initialization();
         }
 
-        private void Initialization()
+        private void Initialization(ref ScriptableRenderContext context)
         {
+            if (_context == null)
+            {
+                Debug.Log("<color=#FF0000>CmdManger Initialization failed. Becuase the render context should be not null. </color>");
+                return;
+            }
+
+            _context = context;
+
             for (var i = Common.Pass.Default; i < Common.Pass.Max; ++i)
             {
                 _cmdPool.Add((Common.Pass)i, new List<Command>());
@@ -47,16 +57,17 @@ namespace CustomURP
 
         public void Add(Command cb)
         {
-            var renderList = _cmdPool[cb.Pass];
-            if (renderList != null)
-            {
-                renderList.Add(cb);
-            }
-            else
-            {
-                renderList = new List<Command> { cb };
-                _cmdPool[cb.Pass] = renderList;
-            }
+            _Add(ref cb);
+            //var renderList = _cmdPool[cb.Pass];
+            //if (renderList != null)
+            //{
+            //    renderList.Add(cb);
+            //}
+            //else
+            //{
+            //    renderList = new List<Command> { cb };
+            //    _cmdPool[cb.Pass] = renderList;
+            //}
         }
 
         public void Remove(Command cb)
@@ -74,7 +85,11 @@ namespace CustomURP
         {
             foreach (var pair in _cmdPool)
             {
-                // cmd.Destroy();
+                foreach (var cmd in pair.Value)
+                {
+                    cmd.Clear();
+                }
+                pair.Value.Clear();
             }
             
             _cmdPool.Clear();
@@ -95,16 +110,7 @@ namespace CustomURP
         public Command GetTemporaryCmd(Common.Pass pass)
         {
             var cmd = new Command(pass);
-            var renderList = _cmdPool[pass];
-            if (renderList != null)
-            {
-                renderList.Add(cmd);
-            }
-            else
-            {
-                renderList = new List<Command>() { cmd };
-                _cmdPool[pass] = renderList;
-            }
+            _Add(ref cmd);
 
             return cmd;
         }
@@ -112,73 +118,133 @@ namespace CustomURP
         public Command GetTemporaryCmd(Common.Pass pass, Common.RenderType type)
         {
             var cmd = new Command(pass, type);
-            _cmdPool.Add(cmd);
+            //_cmdPool.Add(cmd);
+            _Add(ref cmd);
             return cmd;
         }
 
         public Command GetTemporaryCmd(Common.Pass pass, Common.RenderType type, string name)
         {
             var cmd = new Command(pass, type, name);
-            _cmdPool.Add(cmd);
+            _Add(ref cmd);
             return cmd;
         }
+
+        private void _Add(ref Command cmd)
+        {
+            var renderList = _cmdPool[cmd.Pass];
+            if (renderList != null)
+            {
+                renderList.Add(cmd);
+                //Sort.QuickSort(renderList, 0, renderList.Count - 1);
+                renderList.Sort((x, y) => x.Type.CompareTo(y.Type));
+            }
+            else
+            {
+                renderList = new List<Command>() { cmd };
+                renderList.Sort((x, y) => x.Type.CompareTo(y.Type));
+                _cmdPool[cmd.Pass] = renderList;
+            }
+        }
        
-        public Command Get(string name)
+        public Command Get(Common.Pass pass, string name)
         {
-            return _cmdPool.Find(cmd => { return cmd.Name.Equals(name); });
+            var renderList = _cmdPool[pass];
+            if (pass >= Common.Pass.Max && (renderList == null || renderList.Count <= 0)) return null;
+            return renderList.Find(cmd  => cmd.Name == name);
+            //return _cmdPool.Find(cmd => { return cmd.Name.Equals(name); });
         }
 
-        public Command First()
+        public Command First(Common.Pass pass)
         {
-            return _cmdPool.First();
-        }
-
-        public Command Last()
-        {
-            return _cmdPool.Last();
-        }
-
-        public void BeginSample()
-        {
-            foreach (var cb in _cmdPool)
+            //return _cmdPool.First();
+            var renderList = _cmdPool[pass];
+            if (pass < Common.Pass.Max && (renderList == null || renderList.Count <= 0))
             {
-                cb.BeginSample();
+                var cmd = new Command(pass);
+                Add(cmd);
+                return cmd;
             }
+
+            return renderList.First();
         }
 
-        public void BeginSample(string name)
+        public Command Last(Common.Pass pass)
         {
-            var cmd = _list.Find(cmd => { return cmd.Name.Equals(name); });
-            if(cmd != null) cmd.BeginSample();
-        }
-
-        public void EndSample()
-        {
-            foreach(var cb in _list)
+            var renderList = _cmdPool[pass];
+            if (pass < Common.Pass.Max && (renderList == null || renderList.Count <= 0))
             {
-                cb.EndSample();
+                var cmd = new Command(pass);
+                Add(cmd);
+                return cmd;
             }
+
+            return renderList.Last();
         }
 
-        public void EndSample(string name)
+        //public void BeginSample()
+        //{
+        //    foreach (var cb in _cmdPool)
+        //    {
+        //        cb.BeginSample();
+        //    }
+        //}
+
+        //public void BeginSample(string name)
+        //{
+        //    var cmd = _list.Find(cmd => { return cmd.Name.Equals(name); });
+        //    if(cmd != null) cmd.BeginSample();
+        //}
+
+        //public void EndSample()
+        //{
+        //    foreach(var cb in _list)
+        //    {
+        //        cb.EndSample();
+        //    }
+        //}
+
+        //public void EndSample(string name)
+        //{
+        //    var cmd = _list.Find(cmd => { return cmd.Name.Equals(name); });
+        //    if(cmd != null) cmd.EndSample();
+        //}
+
+        public Command Find(Common.Pass pass, string name)
         {
-            var cmd = _list.Find(cmd => { return cmd.Name.Equals(name); });
-            if(cmd != null) cmd.EndSample();
+            //return _list.Find(cmd => { return cmd.Name.Equals(name); });
+            var renderList = _cmdPool[pass];
+            if (pass >= Common.Pass.Max && (renderList == null || renderList.Count <= 0)) return null;
+            return renderList.Find(cmd => cmd.Name == name);
         }
 
-        public Command Find(string name)
+        public bool Exists(Common.Pass pass, string name)
         {
-            return _list.Find(cmd => { return cmd.Name.Equals(name); });
-        }
-
-        public bool Exists(string name)
-        {
-            return _list.Exists(cmd => { return cmd.Name.Equals(name); });
+            var renderList = _cmdPool[pass];
+            if (pass >= Common.Pass.Max && (renderList == null || renderList.Count <= 0)) return false;
+            return renderList.Exists(cmd => cmd.Name == name);
+            //return _list.Exists(cmd => { return cmd.Name.Equals(name); });
         }
 
         private void Tick()
         {
             if (!_isReady) return;
+
+            _restEvent.WaitOne();
+            foreach (var cmdList in _cmdPool)
+            {
+                foreach (var cmd in cmdList.Value)
+                {
+                    if (cmd.Async)
+                    {
+                        cmd.ExecuteAsync(_context);
+                    }
+                    else
+                    {
+                        cmd.Execute(_context);
+                    }
+                }
+            }
         }
     }
 

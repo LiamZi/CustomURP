@@ -12,16 +12,17 @@ namespace CustomURP
         private Common.RenderType _type;
         private string _name;
         private UnityEngine.Rendering.CommandBuffer _cmd = null;
+        private bool _isAsync = false;
+        private ComputeQueueType _computeQueueType = ComputeQueueType.Default;
 
 
-        
         public Command(Common.Pass pass)
         {
             _pass = pass;
             _type = Common.RenderType.Normal;
-            _cmd = new UnityEngine.Rendering.CommandBuffer() {};
+            _cmd = new UnityEngine.Rendering.CommandBuffer() { };
         }
-        
+
 
         public Command(UnityEngine.Rendering.CommandBuffer cmd, Common.Pass pass)
         {
@@ -36,7 +37,7 @@ namespace CustomURP
             _type = type;
             _cmd = new UnityEngine.Rendering.CommandBuffer() { };
         }
-        
+
         public Command(Common.Pass pass = Common.Pass.Normal, Common.RenderType type = Common.RenderType.Normal, string name = "Render Camera Buffer")
         {
             _pass = pass;
@@ -75,12 +76,12 @@ namespace CustomURP
             _cmd.Clear();
         }
 
-        public void ExecuteAsync(ScriptableRenderContext context, ComputeQueueType type)
+        public void ExecuteAsync(ScriptableRenderContext context)
         {
-            context.ExecuteCommandBufferAsync(_cmd, type);
+            context.ExecuteCommandBufferAsync(_cmd, _computeQueueType);
             Clear();
         }
-        
+
         public string Name
         {
             get { return _name; }
@@ -90,12 +91,28 @@ namespace CustomURP
         public Common.Pass Pass
         {
             get { return _pass; }
-            
+
             set { _pass = value; }
         }
-        
-        
-        
+
+        public Common.RenderType Type
+        {
+            get { return _type; }
+            set { _type = value; }
+        }
+
+        public bool Async
+        {
+            get { return _isAsync; }
+            set { _isAsync = value; }
+        }
+
+        public ComputeQueueType QueueType
+        {
+            get { return _computeQueueType; }
+            set { _computeQueueType = value; }
+        }
+
         public UnityEngine.Rendering.CommandBuffer Cmd => _cmd;
 
         public void Destroy()
