@@ -455,13 +455,13 @@
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Legacy\PBRMasterNode1.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Artistic\Normal\NormalStrengthNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Artistic\Normal\NormalFromTextureNode.cs" />
+     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Interfaces\IMayRequireViewDirection.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Math\Round\RoundNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Input\Texture\TextureStackNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Graphs\VirtualTextureInputMaterialSlot.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Math\Range\ClampNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Input\Texture\Texture2DAssetNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Processors\GenerationUtils.cs" />
-     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Interfaces\IMayRequireViewDirection.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Interfaces\GenerationMode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Artistic\Adjustment\ChannelMixerNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Inspector\PropertyDrawers\Vector3PropertyDrawer.cs" />
@@ -1030,16 +1030,16 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.47f1c1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Plastic.Newtonsoft.Json">
-     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Plastic.Antlr3.Runtime">
-     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
      </Reference>
      <Reference Include="unityplastic">
-     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Plastic.Antlr3.Runtime">
+     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="log4netPlastic">
-     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
      </Reference>
      <Reference Include="ICSharpCode.NRefactory">
      <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.render-pipelines.core@10.10.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>

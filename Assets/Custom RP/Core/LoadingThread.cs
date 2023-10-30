@@ -16,22 +16,22 @@ namespace Core
         };
 
         public static LoadingCommandQueue CommandQueue { get; private set; }
-        public static LoadingThread _Instance { get; private set; }
         private static List<Command> _Commands = new List<Command>();
         private List<Command> _localCommands =new List<Command>();
         private AutoResetEvent _restEvent;
         private Thread _thread;
         private bool _isRunning;
+        private static LoadingThread _sharedInstance = null;
 
-        public LoadingThread GetInstance()
+        public static LoadingThread Singleton()
         {
-            if(_Instance == null)
+            if(_sharedInstance == null)
             {
-                _Instance = new LoadingThread();
-                _Instance.Init();
+                _sharedInstance = new LoadingThread();
+                _sharedInstance.Init();
             }
 
-            return _Instance;
+            return _sharedInstance;
         }
 
         private void Init()
@@ -48,7 +48,7 @@ namespace Core
             lock(_Commands)
             {
                 _Commands.Add(new Command{ _src = src, _func = func });
-                _Instance._restEvent.Set();
+                _sharedInstance._restEvent.Set();
             }
         }
 
@@ -81,11 +81,11 @@ namespace Core
 
         public void Dispose()
         {
-            _Instance = null;
             _isRunning = false;
             _restEvent.Set();
             _thread.Join();
             _restEvent.Dispose();
+            _sharedInstance = null;
         }
     };
 };

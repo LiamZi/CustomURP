@@ -8,18 +8,48 @@ namespace CustomURP
 {
     public class Command
     {
+        private Common.Pass _pass;
+        private Common.RenderType _type;
         private string _name;
         private UnityEngine.Rendering.CommandBuffer _cmd = null;
 
-        public Command(string name)
+
+        
+        public Command(Common.Pass pass)
         {
+            _pass = pass;
+            _type = Common.RenderType.Normal;
+            _cmd = new UnityEngine.Rendering.CommandBuffer() {};
+        }
+        
+
+        public Command(UnityEngine.Rendering.CommandBuffer cmd, Common.Pass pass)
+        {
+            _pass = pass;
+            _cmd = cmd;
+            _type = Common.RenderType.Normal;
+        }
+
+        public Command(Common.Pass pass = Common.Pass.Normal, Common.RenderType type = Common.RenderType.Normal)
+        {
+            _pass = pass;
+            _type = type;
+            _cmd = new UnityEngine.Rendering.CommandBuffer() { };
+        }
+        
+        public Command(Common.Pass pass = Common.Pass.Normal, Common.RenderType type = Common.RenderType.Normal, string name = "Render Camera Buffer")
+        {
+            _pass = pass;
+            _type = type;
             _name = name;
             _cmd = new UnityEngine.Rendering.CommandBuffer() { name = _name };
         }
 
-        public Command(UnityEngine.Rendering.CommandBuffer buffer, string name) 
+        public Command(UnityEngine.Rendering.CommandBuffer cmd, Common.Pass pass, Common.RenderType type, string name)
         {
-            _cmd = buffer;
+            _pass = pass;
+            _type = type;
+            _cmd = cmd;
             _name = name;
         }
 
@@ -56,6 +86,15 @@ namespace CustomURP
             get { return _name; }
             set { _name = value; }
         }
+
+        public Common.Pass Pass
+        {
+            get { return _pass; }
+            
+            set { _pass = value; }
+        }
+        
+        
         
         public UnityEngine.Rendering.CommandBuffer Cmd => _cmd;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using static PostFXSettings;
 
-public partial class PostFXStack 
+public partial class PostPass 
 {
     const string _bufferName = "Post Fx";
     const string _fxaaQualityLowKeyWord = "FXAA_QUALITY_LOW";
@@ -89,7 +89,7 @@ public partial class PostFXStack
 
     CameraBufferSettings.BicubicRescalingMode _isBicubicRescaling;
 
-    public PostFXStack()
+    public PostPass()
     {
         _bloomPyramidId = Shader.PropertyToID("_BloomPyramid0");
         for(int i = 1; i < _maxBloomPyramidLevels * 2; ++i)

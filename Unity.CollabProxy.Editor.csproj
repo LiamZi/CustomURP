@@ -41,9 +41,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\Toolbar\ToolbarButton.cs" />
-     <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\Toolbar\Unity.CollabProxy.Editor.asmdef" />
-     <Folder Include="Library\PackageCache\com.unity.collab-proxy@2.0.1\Editor\PlasticSCM\Toolbar" />
+     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Editor\PlasticSCM\Toolbar\ToolbarButton.cs" />
+     <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Editor\PlasticSCM\Toolbar\Unity.CollabProxy.Editor.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Editor\PlasticSCM\Toolbar" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.47f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
@@ -291,16 +291,16 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.47f1c1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Plastic.Newtonsoft.Json">
-     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Plastic.Antlr3.Runtime">
-     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
      </Reference>
      <Reference Include="unityplastic">
-     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Plastic.Antlr3.Runtime">
+     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="log4netPlastic">
-     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+     <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
      </Reference>
      <Reference Include="ICSharpCode.NRefactory">
      <HintPath>D:\LocalProjects\CustomURP\Library\PackageCache\com.unity.render-pipelines.core@10.10.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>

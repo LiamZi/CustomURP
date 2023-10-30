@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-partial class PostFXStack
+partial class PostPass
 {
     partial void ApplySceneViewState();
 

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 
 namespace CustomURP
@@ -11,12 +13,14 @@ namespace CustomURP
     public class CmdManager
     {
         private static CmdManager _sharedInstance = null;
-
-        private List<Command> _list = new List<Command>();
-
+        
+        private Dictionary<Common.Pass, List<Command>> _cmdPool;
+        private LoadingThread _thread = null;
+        
+        
         private CmdManager()
         {
-            
+            _thread = LoadingThread.Singleton();
         }
 
         public static CmdManager Singleton
@@ -26,59 +30,76 @@ namespace CustomURP
 
         public void Add(Command cb)
         {
-            _list.Add(cb);
+            _cmdPool.Add(cb.Pass, cb);
         }
 
         public void Remove(Command cb)
         {
-            _list.Remove(cb);
+            _cmdPool.Remove(cb);
         }
 
         public void Clear()
         {
-            foreach (var cmd in _list)
+            foreach (var pair in _cmdPool)
             {
-                cmd.Destroy();
+                // cmd.Destroy();
+                
             }
             
-            _list.Clear();
+            
+            _cmdPool.Clear();
         }
 
         public List<Command> GetAll()
         {
-            return _list;
+            // return _cmdPool;
+            
         }
 
         public bool Has(Command cb)
         {
-            return _list.Contains(cb);
+            // return _cmdPool.Contains(cb);
         }
 
-        public Command GetTemporaryCmd(string name = "")
+        public Command GetTemporaryCmd(Common.Pass pass)
         {
-            var cmd = new Command(name);
-            _list.Add(cmd);
+            var cmd = new Command(pass);
+            _cmdPool.Add(cmd);
             return cmd;
         }
 
+        public Command GetTemporaryCmd(Common.Pass pass, Common.RenderType type)
+        {
+            var cmd = new Command(pass, type);
+            _cmdPool.Add(cmd);
+            return cmd;
+        }
+
+        public Command GetTemporaryCmd(Common.Pass pass, Common.RenderType type, string name)
+        {
+            var cmd = new Command(pass, type, name);
+            _cmdPool.Add(cmd);
+            return cmd;
+        }
+       
         public Command Get(string name)
         {
-            return _list.Find(cmd => { return cmd.Name.Equals(name); });
+            return _cmdPool.Find(cmd => { return cmd.Name.Equals(name); });
         }
 
         public Command First()
         {
-            return _list.First();
+            return _cmdPool.First();
         }
 
         public Command Last()
         {
-            return _list.Last();
+            return _cmdPool.Last();
         }
 
         public void BeginSample()
         {
-            foreach (var cb in _list)
+            foreach (var cb in _cmdPool)
             {
                 cb.BeginSample();
             }

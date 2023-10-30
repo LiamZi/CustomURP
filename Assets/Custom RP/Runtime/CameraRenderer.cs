@@ -21,8 +21,8 @@ public partial class CameraRenderer
     private const string _bufferName = "Render Camera Buffer";
     
     private CullingResults _cullingResults;
-    private Lighting _lighting = new Lighting();
-    private PostFXStack _postStack = new PostFXStack();
+    private LightingPass _LightingPass = new LightingPass();
+    private PostPass _postStack = new PostPass();
 
     // static int _frameBufferId = Shader.PropertyToID("_CameraFrameBuffer");
     static int _colorAttachmentId = Shader.PropertyToID("_CameraColorAttachment");
@@ -144,10 +144,10 @@ public partial class CameraRenderer
         CmdManager.Singleton.Get(_sampleName).Cmd.SetGlobalVector(_bufferSizeId, new Vector4(1f / _bufferSize.x, 1f / _bufferSize.y, _bufferSize.x, _bufferSize.y));
         ExcuteBuffer();
 
-        
-        _lighting.Setup(context, _cullingResults, shadowSettings, 
-                    useLightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
 
+        var maskLayer = cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1;
+        LightPassInit(shadowSettings, useLightsPerObject, maskLayer);
+        
         cameraBufferSetting._fxaa._enabled &= cameraSettings._allowFXAA;
 
         _postStack.Setup(context, camera, _bufferSize, 
@@ -155,7 +155,7 @@ public partial class CameraRenderer
                     cameraSettings._finalBlendMode, cameraBufferSetting._bicubicRescaling, cameraBufferSetting._fxaa);
 
         CmdManager.Singleton.EndSample(_sampleName);
-        // Debug.Log("End sample name " + _sampleName);
+        // Debug.Log("<color=#ffff00><size=20><b><i>我是变形金刚</i></b></size></color>");
 
         Setup();
         DrawVisibleGeometry(useDynamicBatching, useGPUInstanceing, useLightsPerObject, cameraSettings._renderingLayerMask);
@@ -190,7 +190,7 @@ public partial class CameraRenderer
         DrawGizmosAfterFX();
 
         Cleanup();
-        // _lighting.Clearup();
+        // _LightingPass.Clearup();
         Submit();
     }
 
@@ -293,6 +293,11 @@ public partial class CameraRenderer
        filteringSettings.renderQueueRange = RenderQueueRange.transparent;
        
        _context.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
+    }
+
+    void LightPassInit(ShadowSettings shadowSettings, bool useLightsPerObject, int renderLayerMask)
+    {
+        _LightingPass.Setup(_context, _cullingResults, shadowSettings, useLightsPerObject, renderLayerMask);
     }
 
     void Submit()
@@ -416,7 +421,7 @@ public partial class CameraRenderer
 
     void Cleanup()
     {
-        _lighting.Clearup();
+        _LightingPass.Clearup();
         // if(_postStack.IsActive)
         if(_isUseIntermediateBuffer)
         {

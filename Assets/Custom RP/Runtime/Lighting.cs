@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 
-public class Lighting
+public class LightingPass
 {
     const string _bufferName = "Lighting";
 
