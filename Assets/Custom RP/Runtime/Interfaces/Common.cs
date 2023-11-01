@@ -28,7 +28,7 @@ namespace CustomURP
         };
     };
 
-    public class Sort : IComparable<Sort>
+    public class Sort
     {
         public static void QuickSort(List<int> list, int left, int right)
         {
@@ -61,11 +61,6 @@ namespace CustomURP
             list[i] = temp;
             QuickSort(list, i + 1, right);
             QuickSort(list, left, i - 1);
-        }
-
-        public int CompareTo(Command left, Command right)
-        {
-            return left.Type < right.Type ? 0 : 1;
         }
     }
 }

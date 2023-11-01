@@ -21,8 +21,8 @@ public partial class CameraRenderer
     private const string _bufferName = "Render Camera Buffer";
     
     private CullingResults _cullingResults;
-    private Lighting _lighting = new Lighting();
-    private PostFXStack _postStack = new PostFXStack();
+    private LightingPass _lightingPass = new LightingPass();
+    private PostPass _postPass = new PostPass();
 
     // static int _frameBufferId = Shader.PropertyToID("_CameraFrameBuffer");
     static int _colorAttachmentId = Shader.PropertyToID("_CameraColorAttachment");
@@ -144,12 +144,12 @@ public partial class CameraRenderer
         ExcuteBuffer();
 
         
-        _lighting.Setup(context, _cullingResults, shadowSettings, 
+        _lightingPass.Setup(context, _cullingResults, shadowSettings, 
                     useLightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
 
         cameraBufferSetting._fxaa._enabled &= cameraSettings._allowFXAA;
 
-        _postStack.Setup(context, camera, _bufferSize, 
+        _postPass.Setup(context, camera, _bufferSize, 
                     postFXSettings, cameraSettings._keepAlpha,  _isUseHDR, colorLUTResolution, 
                     cameraSettings._finalBlendMode, cameraBufferSetting._bicubicRescaling, cameraBufferSetting._fxaa);
 
@@ -173,9 +173,9 @@ public partial class CameraRenderer
         // DrawGizmos();
         DrawGizmosBeforeFX();
         
-        if(_postStack.IsActive)
+        if(_postPass.IsActive)
         {
-            _postStack.Render(_colorAttachmentId);
+            _postPass.Render(_colorAttachmentId);
         }
         else if(_isUseIntermediateBuffer)
         {
@@ -187,7 +187,7 @@ public partial class CameraRenderer
         DrawGizmosAfterFX();
 
         Cleanup();
-        // _lighting.Clearup();
+        // _lightingPass.Clearup();
         Submit();
     }
 
@@ -196,7 +196,7 @@ public partial class CameraRenderer
         _context.SetupCameraProperties(_camera);
         CameraClearFlags flags = _camera.clearFlags;
 
-        _isUseIntermediateBuffer = _isUseScaledRendering || _isUseColorTexture || _isUseDepthTexture || _postStack.IsActive;
+        _isUseIntermediateBuffer = _isUseScaledRendering || _isUseColorTexture || _isUseDepthTexture || _postPass.IsActive;
 
         var buffer = CmdManager.Singleton.Get(_sampleName).Cmd;
 
@@ -413,8 +413,8 @@ public partial class CameraRenderer
 
     void Cleanup()
     {
-        _lighting.Clearup();
-        // if(_postStack.IsActive)
+        _lightingPass.Clearup();
+        // if(postPass.IsActive)
         if(_isUseIntermediateBuffer)
         {
             var buffer = CmdManager.Singleton.Get(_sampleName).Cmd;

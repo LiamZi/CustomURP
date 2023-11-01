@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scenes\GpuCulling\TreeGenerator.cs" />
-     <Compile Include="Assets\Custom RP\Runtime\PostFXStack.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\PostPass.cs" />
      <Compile Include="Assets\Scenes\MeshBall.cs" />
      <Compile Include="Assets\Custom RP\Utility\PipelineShaders.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Common.cs" />
@@ -57,7 +57,7 @@
      <Compile Include="Assets\Custom RP\Runtime\ReinterpretExtensions.cs" />
      <Compile Include="Assets\Scenes\HUD.cs" />
      <Compile Include="Assets\Custom RP\Runtime\PostFXStack.Editor.cs" />
-     <Compile Include="Assets\Custom RP\Runtime\Lighting.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\LightingPass.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipeline.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Shadows.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\CmdManager.cs" />

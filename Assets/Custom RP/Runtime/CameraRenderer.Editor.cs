@@ -109,7 +109,7 @@ public partial class CameraRenderer
     {
         if(Handles.ShouldRenderGizmos())
         {
-            if(_postStack.IsActive)
+            if(_postPass.IsActive)
             {
                 Draw(_depthAttachmentId, BuiltinRenderTextureType.CameraTarget, true);
                 ExcuteBuffer();
