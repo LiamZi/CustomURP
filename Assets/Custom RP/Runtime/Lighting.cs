@@ -47,13 +47,11 @@ public class LightingPass
         this._cullingResults = cull;
 
         _commandBuffer.BeginSample(_bufferName);
-        // Debug.Log("Light Begin Sample name " + _bufferName);
         // SetupDirectionalLight();
         _shadows.Setup(context, cull, shadowSettings);
         SetupLights(useLightsPerObject, renderingLayerMask);
         _shadows.Render();
         _commandBuffer.EndSample(_bufferName);
-        // Debug.Log("Light End Sample name " + _bufferName);
         context.ExecuteCommandBuffer(_commandBuffer);
         _commandBuffer.Clear();
     }

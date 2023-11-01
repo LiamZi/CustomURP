@@ -36,7 +36,7 @@ namespace CustomURP
 
         void Start()
         {
-            _cmd = CmdManager.Singleton.Exists(_cmdName) ? CmdManager.Singleton.Find(_cmdName) : CmdManager.Singleton.GetTemporaryCmd(_cmdName);
+            _cmd = CmdManager.Singleton.Exists(_cmdName) ? CmdManager.Singleton.Find(_cmdName) : CmdManager.Singleton.GetTemporaryCMD(_cmdName);
             
             _grassCount = _grassCountPerRaw * _grassCountPerRaw;
             _camera = Camera.main;

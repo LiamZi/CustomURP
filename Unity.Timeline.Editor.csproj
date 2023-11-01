@@ -93,8 +93,8 @@
      <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Editor\Signals\SignalEmitterEditor.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Editor\State\ISequenceState.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Editor\Window\Modes\TimelineDisabledMode.cs" />
-     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Editor\Utilities\StyleManager.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Editor\Window\TimelineWindow_Gui.cs" />
+     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Editor\Utilities\StyleManager.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Editor\Window\TimelineWindow_TimeCursor.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Editor\Analytics\TimelineAnalytics.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Editor\treeview\TimelineDragging.cs" />

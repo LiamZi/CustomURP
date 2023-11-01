@@ -45,6 +45,7 @@
      <Compile Include="Assets\Custom RP\Runtime\PostFXStack.cs" />
      <Compile Include="Assets\Scenes\MeshBall.cs" />
      <Compile Include="Assets\Custom RP\Utility\PipelineShaders.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Common.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipelineAsset.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Commnad.cs" />
      <Compile Include="Assets\Custom RP\Runtime\ShadowSettings.cs" />
@@ -79,7 +80,6 @@
      <Compile Include="Assets\Scenes\FrustumCulling\CullTool.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Components.cs" />
-     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Common.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\GpuFrustumCulling.compute" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\clientcommon.ja.txt" />

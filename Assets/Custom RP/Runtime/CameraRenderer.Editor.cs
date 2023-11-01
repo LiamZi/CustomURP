@@ -85,7 +85,7 @@ public partial class CameraRenderer
         else
         {
             isExists = CmdManager.Singleton.Exists(_bufferName);
-            buffer = isExists ? CmdManager.Singleton.Get(_bufferName) : CmdManager.Singleton.GetTemporaryCmd(_bufferName);
+            buffer = isExists ? CmdManager.Singleton.Get(_bufferName) : CmdManager.Singleton.GetTemporaryCMD(_bufferName);
         }
         
         buffer.Name = _sampleName = _camera.name;
