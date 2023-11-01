@@ -10,6 +10,8 @@ namespace CustomURP
     {
         private string _name;
         private UnityEngine.Rendering.CommandBuffer _cmd;
+        private ScriptableRenderContext _context;
+        private CustomRenderPipelineAsset _asset;
 
         public Command(string name)
         {
@@ -49,6 +51,18 @@ namespace CustomURP
         {
             get { return _name; }
             set { _name = value; }
+        }
+
+        public ScriptableRenderContext Context
+        {
+            get { return _context; }
+            set { _context = value; }
+        }
+
+        public CustomRenderPipelineAsset Asset
+        {
+            get { return _asset; }
+            set { _asset = value; }
         }
         
         public UnityEngine.Rendering.CommandBuffer Cmd => _cmd;

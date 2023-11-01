@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Core;
 using CustomURP;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 

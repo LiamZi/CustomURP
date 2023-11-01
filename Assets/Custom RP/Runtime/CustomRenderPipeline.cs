@@ -27,6 +27,11 @@ public partial class CustomRenderPipeline : RenderPipeline
 
     public CustomRenderPipeline(CustomRenderPipelineAsset asset)
     {
+        RenderPipelineManager.beginFrameRendering += BeginFrameRendering;
+        RenderPipelineManager.beginCameraRendering += BeginCameraRendering;
+        RenderPipelineManager.endCameraRendering += EndCameraRendering;
+        RenderPipelineManager.endFrameRendering += EndFrameRendering;
+        
         GraphicsSettings.lightsUseLinearIntensity = true;
         this._useDynamicBatching = asset.DynamicBatching;
         this._cameraBufferSettings = asset.CameraBuffer;
@@ -44,12 +49,36 @@ public partial class CustomRenderPipeline : RenderPipeline
         InitializeForEditor();
     }
 
+    private new void BeginFrameRendering(ScriptableRenderContext context, Camera[] cameras)
+    {
+        Debug.Log("BeginFrameRendering");
+    }
+
+    private new void BeginCameraRendering(ScriptableRenderContext context, Camera camera)
+    {
+        Debug.Log("BeginCameraRendering");
+    }
+    
+    private new void EndCameraRendering(ScriptableRenderContext context, Camera camera)
+    {
+        Debug.Log("EndCameraRendering");
+    }
+    
+    private new void EndFrameRendering(ScriptableRenderContext context, Camera[] cameras)
+    {
+        Debug.Log("EndFrameRendering");
+    }
 
     public CustomRenderPipeline(CameraBufferSettings cameraBufferSettings, bool isEnabledDynamicBatch, 
                             bool isEnabledInstancing, bool useSRPBatcher, bool useLightsPerObject, 
                             ShadowSettings shadowSettings, PostFXSettings postFXSettings, int colorLUTResolution , 
                             Shader cameraRendererShader)
     {
+        RenderPipelineManager.beginFrameRendering += BeginFrameRendering;
+        RenderPipelineManager.beginCameraRendering += BeginCameraRendering;
+        RenderPipelineManager.endCameraRendering += EndCameraRendering;
+        RenderPipelineManager.endFrameRendering += EndFrameRendering;
+        
         GraphicsSettings.lightsUseLinearIntensity = true;
         this._useDynamicBatching = isEnabledDynamicBatch;
         this._useGPUInstanceing = isEnabledInstancing;
@@ -70,12 +99,18 @@ public partial class CustomRenderPipeline : RenderPipeline
 
     protected override void Render(ScriptableRenderContext context, Camera[] cameras)
     {
+        BeginFrameRendering(context, cameras);
+        
         foreach(Camera camera in cameras)
         {
+            BeginCameraRendering(context, camera);
             _renderer.Render(context, camera, _cameraBufferSettings,
                     _useDynamicBatching, _useGPUInstanceing, 
                     _useLightsPerObject, _shadowSettings, _postFXSettings, _colorLUTResolution);
+            EndCameraRendering(context, camera);
         }
+
+        EndFrameRendering(context, cameras);
     }
 
     protected override void Dispose(bool disposing)
@@ -83,5 +118,9 @@ public partial class CustomRenderPipeline : RenderPipeline
         base.Dispose(disposing);
         DisposeForEditor();
         _renderer.Dispose();
+        RenderPipelineManager.beginFrameRendering -= BeginFrameRendering;
+        RenderPipelineManager.beginCameraRendering -= BeginCameraRendering;
+        RenderPipelineManager.endCameraRendering -= EndCameraRendering;
+        RenderPipelineManager.endFrameRendering -= EndFrameRendering;
     }
 }

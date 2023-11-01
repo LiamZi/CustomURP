@@ -30,7 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
@@ -59,6 +59,7 @@
      <Compile Include="Assets\Custom RP\Runtime\PostFXStack.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\LightingPass.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipeline.Editor.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\CoreAction.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Shadows.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\CmdManager.cs" />
      <Compile Include="Assets\Scenes\FrustumCulling\DrawCube.cs" />
@@ -80,6 +81,7 @@
      <Compile Include="Assets\Scenes\FrustumCulling\CullTool.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Components.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\GeometryAction.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\GpuFrustumCulling.compute" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\clientcommon.ja.txt" />
@@ -240,6 +242,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\guihelp.zh-Hans.txt" />
      <Folder Include="Library\PackageCache\com.unity.modules.particlesystem@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\differences.es.txt" />
+     <Folder Include="Assets\Custom RP\Runtime\Interfaces\Actions" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\commontypes.en.txt" />
      <None Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.22\ValidationExceptions.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\differences.ja.txt" />
