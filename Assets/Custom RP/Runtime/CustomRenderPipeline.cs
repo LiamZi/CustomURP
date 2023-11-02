@@ -51,22 +51,22 @@ public partial class CustomRenderPipeline : RenderPipeline
 
     private new void BeginFrameRendering(ScriptableRenderContext context, Camera[] cameras)
     {
-        Debug.Log("BeginFrameRendering");
+        // Debug.Log("BeginFrameRendering");
     }
 
     private new void BeginCameraRendering(ScriptableRenderContext context, Camera camera)
     {
-        Debug.Log("BeginCameraRendering");
+        // Debug.Log("BeginCameraRendering");
     }
     
     private new void EndCameraRendering(ScriptableRenderContext context, Camera camera)
     {
-        Debug.Log("EndCameraRendering");
+        // Debug.Log("EndCameraRendering");
     }
     
     private new void EndFrameRendering(ScriptableRenderContext context, Camera[] cameras)
     {
-        Debug.Log("EndFrameRendering");
+        // Debug.Log("EndFrameRendering");
     }
 
     public CustomRenderPipeline(CameraBufferSettings cameraBufferSettings, bool isEnabledDynamicBatch, 

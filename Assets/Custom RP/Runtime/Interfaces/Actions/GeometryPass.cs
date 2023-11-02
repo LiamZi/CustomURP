@@ -6,8 +6,8 @@ using UnityEngine.Rendering;
 
 namespace CustomURP
 {
-    [CreateAssetMenu(menuName = "Custom URP/Actions/Geometry")]
-    public unsafe sealed class GeometryAction : CoreAction
+    [CreateAssetMenu(menuName = "Custom URP/Pass/Geometry")]
+    public unsafe sealed class GeometryPass : CoreAction
     {
         protected override void Initialization(CustomRenderPipelineAsset asset)
         {

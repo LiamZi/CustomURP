@@ -10,6 +10,8 @@ using UnityEngine.Rendering;
 
 public partial class CustomRenderPipelineAsset : RenderPipelineAsset
 {
+    public CoreAction[] _availiableActions;
+    
     [SerializeField]
     bool _dynamicBatching = true;
 

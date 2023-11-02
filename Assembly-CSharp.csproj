@@ -30,7 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
@@ -45,6 +45,7 @@
      <Compile Include="Assets\Custom RP\Runtime\PostPass.cs" />
      <Compile Include="Assets\Scenes\MeshBall.cs" />
      <Compile Include="Assets\Custom RP\Utility\PipelineShaders.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\GeometryPass.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Common.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipelineAsset.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Commnad.cs" />
@@ -59,7 +60,7 @@
      <Compile Include="Assets\Custom RP\Runtime\PostFXStack.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\LightingPass.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipeline.Editor.cs" />
-     <Compile Include="Assets\Custom RP\Runtime\Interfaces\CoreAction.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\CoreAction.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Shadows.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\CmdManager.cs" />
      <Compile Include="Assets\Scenes\FrustumCulling\DrawCube.cs" />
@@ -70,9 +71,11 @@
      <Compile Include="Assets\Custom RP\Runtime\CameraSettings.cs" />
      <Compile Include="Assets\Custom RP\Runtime\RenderingLayerMaskFieldAttributePropertyAttribute.cs" />
      <Compile Include="Assets\Custom RP\Logic\SceneController.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\LightPass.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraBufferSettings.cs" />
      <Compile Include="Assets\Custom RP\Core\LoadingThread.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\PostProcessPass.cs" />
      <Compile Include="Assets\Custom RP\Utility\HizDepthGenerator.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.Editor.cs" />
      <Compile Include="Assets\Custom RP\Utility\ShaderParams.cs" />
@@ -81,7 +84,6 @@
      <Compile Include="Assets\Scenes\FrustumCulling\CullTool.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Components.cs" />
-     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\GeometryAction.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\GpuFrustumCulling.compute" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\clientcommon.ja.txt" />
