@@ -41,6 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Custom RP\Core\IUnsafeIterator.cs" />
+     <Compile Include="Assets\Custom RP\Core\UnsafeHashMap.Iterator.cs" />
      <Compile Include="Assets\Scenes\GpuCulling\TreeGenerator.cs" />
      <Compile Include="Assets\Custom RP\Runtime\PostPass.cs" />
      <Compile Include="Assets\Scenes\MeshBall.cs" />
@@ -324,7 +326,6 @@
      <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\FrustumCulling.compute" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.core@10.10.1\Tests" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\i3.zh-Hans.txt" />
-     <Folder Include="Assets\Custom RP\Core" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\configurehelper.en.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\plastic-gui.zh-Hans.txt" />
      <Folder Include="Assets\Scenes\BakeLightScene\BakedLightScene" />
