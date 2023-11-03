@@ -30,7 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
@@ -84,6 +84,11 @@
      <Compile Include="Assets\Scenes\FrustumCulling\CullTool.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Components.cs" />
+     <Compile Include="Assets\Custom RP\Core\UnsafeBuffer.cs" />
+     <Compile Include="Assets\Custom RP\Core\UnsafeHashMap.cs" />
+     <Compile Include="Assets\Custom RP\Core\UnsafeHashCollection.cs" />
+     <Compile Include="Assets\Custom RP\Core\Native.cs" />
+     <Compile Include="Assets\Custom RP\Core\Assert.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\GpuFrustumCulling.compute" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\clientcommon.ja.txt" />
