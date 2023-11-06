@@ -1,14 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using Core;
 using CustomURP;
 using Unity.Collections;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-[CreateAssetMenu(menuName = "Rendering/Custom Render Pipeline AAA")]
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+public class RenderingTypeAttribute : Attribute
+{
+    public CustomRenderPipelineAsset.CameraRenderType _path { get; private set; }
 
-public partial class CustomRenderPipelineAsset : RenderPipelineAsset
+    public RenderingTypeAttribute(CustomRenderPipelineAsset.CameraRenderType type)
+    {
+        this._path = type;
+    }
+}
+
+[CreateAssetMenu(menuName = "Rendering/Custom Render Pipeline AAA")]
+public unsafe partial class CustomRenderPipelineAsset : RenderPipelineAsset
 {
     public CoreAction[] _availiableActions;
     
@@ -115,6 +128,12 @@ public partial class CustomRenderPipelineAsset : RenderPipelineAsset
     public LoadingThread _loadingThread;
 
     public CustomPipeline.PipelineShaders _pipelineShaders = new CustomPipeline.PipelineShaders();
+    public CoreAction[][] _actions { get; private set; }
+
+    public enum CameraRenderType
+    {
+        Forward
+    };
 
     
     protected override RenderPipeline CreatePipeline()
@@ -123,5 +142,61 @@ public partial class CustomRenderPipelineAsset : RenderPipelineAsset
         return _pipeline;
     }
 
+    private static NativeArray<UIntPtr> GetPaths()
+    {
+        UnsafeList* sets = UnsafeList.Allocate<UIntPtr>(10);
+        UnsafeList* typeSets = UnsafeList.Allocate<int>(10);
+        FieldInfo[] infos = typeof(Actions).GetFields();
 
+        foreach (var i in infos)
+        {
+            var tmp = i.GetCustomAttribute(typeof(RenderingTypeAttribute)) as RenderingTypeAttribute;
+            if (tmp != null && i.FieldType == typeof(Type[]))
+            {
+                UnsafeList.Add(sets, new UIntPtr(CustomPipeline.UnsafeUtility.GetPtr(i)));
+                UnsafeList.Add(typeSets, (int)tmp._path);
+            }
+        }
+
+        var count = UnsafeList.Count(sets);
+        NativeArray<UIntPtr> paths = new NativeArray<UIntPtr>(count, Allocator.Temp);
+        for (int i = 0; i < count; ++i)
+        {
+            var index = UnsafeList.Get<int>(typeSets, i);
+            var value = UnsafeList.Get<UIntPtr>(sets, i);
+            paths[index] = value;
+        }
+
+        return paths;
+    }
+    
+    public void SetRenderingData()
+    {
+        NativeArray<UIntPtr> paths = GetPaths();
+        _actions = new CoreAction[paths.Length][];
+        Dictionary<Type, CoreAction> actionsDict = new Dictionary<Type, CoreAction>(_availiableActions.Length);
+
+        foreach (var i in _availiableActions)
+        {
+            actionsDict.Add(i.GetType(), i);
+        }
+
+        for (int i = 0; i < paths.Length; ++i)
+        {
+            FieldInfo info = CustomPipeline.UnsafeUtility.GetObject<FieldInfo>(paths[i].ToPointer());
+            Type[] t = info.GetValue(null) as Type[];
+            _actions[i] = GetAllActions(t, actionsDict);
+        }
+    }
+
+    public static CoreAction[] GetAllActions(Type[] types, Dictionary<Type, CoreAction> dict)
+    {
+        CoreAction[] actions = new CoreAction[types.Length];
+        for (int i = 0; i < actions.Length; ++i)
+        {
+            actions[i] = dict[types[i]];
+        }
+
+        return actions;
+    }
 }

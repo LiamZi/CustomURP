@@ -37,7 +37,8 @@ namespace CustomURP
             if (left >= right) return;
 
             int i, j, temp;
-            i = left; j = right;
+            i = left;
+            j = right;
             temp = list[left];
             while (i != j)
             {
@@ -51,7 +52,7 @@ namespace CustomURP
                     i++;
                 }
 
-                if(i < j)
+                if (i < j)
                 {
                     int t = list[i];
                     list[i] = list[j];
@@ -64,5 +65,7 @@ namespace CustomURP
             QuickSort(list, i + 1, right);
             QuickSort(list, left, i - 1);
         }
-    }
+    };
+    
+    
 }

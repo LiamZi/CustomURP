@@ -11,4 +11,6 @@ namespace CustomPipeline
         public static readonly int _SourceTex = Shader.PropertyToID("_SourceTex");
         public static readonly int _DestTex = Shader.PropertyToID("_DestTex");
     };
+    
+
 };

@@ -199,10 +199,10 @@
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Channel\SwizzleNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Input\Matrix\Matrix4Node.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Collections\AssetCollection.cs" />
+     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Collections\FieldCollection.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Math\Trigonometry\DegreesToRadiansNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Math\Range\RemapNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Attributes\SGPropertyDrawerAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Collections\FieldCollection.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Graphs\BooleanShaderProperty.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Procedural\Shape\RectangleNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\GuidEncoder.cs" />
@@ -228,11 +228,11 @@
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\UV\TriplanarNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Inspector\PropertyDrawers\EnumPropertyDrawer.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Descriptors\FieldDescriptor.cs" />
-     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Descriptors\IncludeDescriptor.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Util\Documentation.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Input\Matrix\Matrix2Node.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Descriptors\BlockFieldDescriptor.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Math\Derivative\DDXNode.cs" />
+     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Descriptors\IncludeDescriptor.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Inspector\PropertyDrawers\DropdownPropertyDrawer.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Manipulators\Scrollable.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Enumerations\ZTest.cs" />
