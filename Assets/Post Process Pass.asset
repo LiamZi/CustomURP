@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d2e5137c884f4b8653b627ddb40dd8, type: 3}
   m_Name: Post Process Pass
   m_EditorClassIdentifier: 
+  _isEnabled: 1

@@ -131,19 +131,17 @@ namespace Core
             return *(T*)((byte*)entry + collection->_keyOffset);
         }
 
-        public static Entry* Find<T>(UnsafeHashCollection* collection, T value, int valueHash)
-            where T : unmanaged, IEquatable<T>
-        {
-            var bucketHead = collection->_buckets[valueHash % collection->_enteries._length];
+        public static Entry* Find<T>(UnsafeHashCollection* collection, T value, int valueHash) where T : unmanaged, IEquatable<T> {
+            var index = Math.Abs(valueHash) % collection->_enteries._length;
+            var bucketHead = collection->_buckets[index];
 
-            while (bucketHead != null)
-            {
-                if (bucketHead->_hash == valueHash && value.Equals(*(T*)((byte*)bucketHead + collection->_keyOffset)))
+            while (bucketHead != null) {
+                var tmp = *(T*)((byte*)bucketHead + collection->_keyOffset);
+                if (bucketHead->_hash == valueHash && value.Equals(tmp))
                 {
                     return bucketHead;
                 }
-                else
-                {
+                else {
                     bucketHead = bucketHead->_next;
                 }
             }

@@ -85,7 +85,7 @@ namespace Core
             _restEvent.Set();
             _thread.Join();
             _restEvent.Dispose();
-            _sharedInstance = null;
+            // _sharedInstance = null;
         }
     };
 };

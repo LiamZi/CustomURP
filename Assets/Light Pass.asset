@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9700e6c4d1344309a915e112bbf9d63f, type: 3}
   m_Name: Light Pass
   m_EditorClassIdentifier: 
+  _isEnabled: 1

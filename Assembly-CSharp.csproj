@@ -41,7 +41,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Custom RP\Utility\GraphicsUtility.cs" />
      <Compile Include="Assets\Custom RP\Utility\UnsafeUtility.cs" />
      <Compile Include="Assets\Custom RP\Core\UnsafeCollections\UnsafeBuffer.cs" />
      <Compile Include="Assets\Scenes\GpuCulling\TreeGenerator.cs" />
@@ -76,11 +75,12 @@
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.cs" />
      <Compile Include="Assets\Custom RP\Core\UnsafeCollections\Native.cs" />
      <Compile Include="Assets\Custom RP\Core\CameraTool.cs" />
+     <Compile Include="Assets\Custom RP\Utility\DeviceUtility.cs" />
      <Compile Include="Assets\Scenes\GpuCulling\GrassGenerator.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraSettings.cs" />
      <Compile Include="Assets\Custom RP\Core\UnsafeCollections\UnsafeArrary.cs" />
      <Compile Include="Assets\Custom RP\Runtime\RenderingLayerMaskFieldAttributePropertyAttribute.cs" />
-     <Compile Include="Assets\Custom RP\Logic\SceneController.cs" />
+     <Compile Include="Assets\Custom RP\Logic\Scene.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\LightPass.cs" />
      <Compile Include="Assets\Custom RP\Core\UnsafeCollections\IUnsafeIterator.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" />
@@ -100,6 +100,7 @@
      <Folder Include="Assets" />
      <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\GpuFrustumCulling.compute" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\clientcommon.ja.txt" />
+     <Folder Include="Assets\Custom RP\Utility" />
      <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.render-pipelines.universal@10.10.1\package.json" />
      <Folder Include="Assets\Scenes\MultipleCameraScene" />

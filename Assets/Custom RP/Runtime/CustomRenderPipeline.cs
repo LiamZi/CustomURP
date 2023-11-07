@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Core;
-using Custom_RP.Logic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Collections;
+using UnityEditor.SearchService;
 
 
 public unsafe partial class CustomRenderPipeline : RenderPipeline
@@ -33,11 +33,13 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
     int _colorLUTResolution;
 
-    public CustomRenderPipelineAsset _resources;
+    public CustomRenderPipelineAsset _asset;
     private static unsafe Core.UnsafeHashMap* _actions = null;
     private static List<CustomRenderPipelineCamera> _preFrameCamera = new List<CustomRenderPipelineCamera>(10);
     private static List<CustomRenderPipelineCamera> _renderCamera = new List<CustomRenderPipelineCamera>(20);
     private static List<CustomRenderPipelineCamera> _endFrameCamera = new List<CustomRenderPipelineCamera>(10);
+    private static UnsafeList *_delayingReleaseRenderTarget;
+    private CustomPipeline.Scene _scene = null;
 
     public CustomRenderPipeline(CustomRenderPipelineAsset asset)
     {
@@ -46,7 +48,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         RenderPipelineManager.endCameraRendering += EndCameraRendering;
         RenderPipelineManager.endFrameRendering += EndFrameRendering;
 
-        this._resources = asset;
+        this._asset = asset;
 
         GraphicsSettings.lightsUseLinearIntensity = true;
         this._useDynamicBatching = asset.DynamicBatching;
@@ -60,21 +62,33 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         GraphicsSettings.lightsUseLinearIntensity = true;
         this._indirectSettings = asset.IndirectSettings;
 
-        if (_resources._loadingThread == null)
+        if (_asset._loadingThread == null)
         {
-            _resources._loadingThread = LoadingThread.Singleton();
+            _asset._loadingThread = LoadingThread.Singleton();
         }
 
-        SceneController.Awake(_resources);
-
+        _scene = new CustomPipeline.Scene(_asset);
+        _scene.Awake();
+        
         if (_actions == null)
         {
-            _actions = UnsafeHashMap.Allocate<ulong, int>(_resources._availiableActions.Length);
+            _actions = UnsafeHashMap.Allocate<ulong, int>(_asset._availiableActions.Length);
         }
         
-        _resources.SetRenderingData();
-        var actions = _resources._actions;
-        CustomPipeline.GraphicsUtility.SetPlatform();
+        _asset.SetRenderingData();
+        var actions = _asset._actions;
+        CustomPipeline.DeviceUtility.SetPlatform();
+
+        for (int i = 0; i < _asset._availiableActions.Length; ++i)
+        {
+            var action = _asset._availiableActions[i];
+            var p = new UIntPtr(CustomPipeline.UnsafeUtility.GetPtr(action.GetType()));
+            UnsafeHashMap.Add(_actions, p.ToUInt64(), i);
+            action.Prepare();
+            action.Initialization(_asset);
+        }
+
+        _delayingReleaseRenderTarget = UnsafeList.Allocate<int>(20);
 
         _renderer = new CameraRenderer(asset.DefaultShader);
 
@@ -148,6 +162,32 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
+        if (_actions != null)
+        {
+            UnsafeHashMap.Free(_actions);
+            _actions = null;
+        }
+
+        if (_delayingReleaseRenderTarget != null)
+        {
+            UnsafeList.Free(_delayingReleaseRenderTarget);
+            _delayingReleaseRenderTarget = null;
+        }
+
+        if (_scene != null)
+        {
+            _scene.Dispose();
+        }
+        
+        _asset._loadingThread.Dispose();
+
+        for (int i = 0; i < _asset._availiableActions.Length; ++i)
+        {
+            var action = _asset._availiableActions[i];
+            if(action != null) continue;
+            action.Dispose();
+        }
+        
         DisposeForEditor();
         _renderer.Dispose();
         RenderPipelineManager.beginFrameRendering -= BeginFrameRendering;

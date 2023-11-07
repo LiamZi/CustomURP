@@ -6,14 +6,15 @@ namespace CustomURP
     [CreateAssetMenu(menuName = "Custom URP/Pass/PostProcessPass")]
     public unsafe sealed class PostProcessPass : CoreAction
     {
-        protected override void Initialization(CustomRenderPipelineAsset asset)
+        protected internal override void Initialization(CustomRenderPipelineAsset asset)
         {
-            
+            base.InspectDependActions();
+            _isInitialized = true;
         }
 
-        protected override void Dispose()
+        protected internal override void Dispose()
         {
-            
+            base.Dispose();
         }
 
         public override void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
@@ -24,6 +25,11 @@ namespace CustomURP
         public override void BeginFrameRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             base.BeginFrameRendering(camera, ref cmd);
+        }
+        
+        public override bool InspectProperty()
+        {
+            return true;
         }
     }
 }

@@ -5,44 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeArrary.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeArrary.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeArray.Iterator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeArray.Iterator.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeList.Iterator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeList.Iterator.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeList.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeList.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/GraphicsUtility.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/GraphicsUtility.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/UnsafeUtility.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/UnsafeUtility.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/CustomURP/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/CustomURP/v17/.suo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/CustomURP/v17/fileList.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/CustomURP/v17/fileList.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/Assert.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/Assert.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/Assert.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/Assert.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/IUnsafeIterator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/IUnsafeIterator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/IUnsafeIterator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/IUnsafeIterator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/Native.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/Native.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/Native.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/Native.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeBuffer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeBuffer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeBuffer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeBuffer.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeHashCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeHashCollection.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeHashMap.Iterator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.Iterator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeHashMap.Iterator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.Iterator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeHashMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeHashMap.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/LoadingThread.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/LoadingThread.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/SceneController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/SceneController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CoreAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CoreAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Common.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Common.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CustomURP.sln" beforeDir="false" afterPath="$PROJECT_DIR$/CustomURP.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/LightPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/LightPass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/PostProcessPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/PostProcessPass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/GraphicsUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/DeviceUtility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/GraphicsUtility.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/DeviceUtility.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Geometry Pass.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Geometry Pass.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Light Pass.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Light Pass.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Post Process Pass.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Post Process Pass.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +34,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityCG.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityInstancing.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/7a2c134242574696b1b60dc2458f071013ea00/47/bf8b7004/020000E6.il" root0="SKIP_HIGHLIGHTING" />
@@ -61,10 +46,14 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1e112811079b4e7098e7b50a689fba71c5600/bc/9aa0e1bd/IMGUIContainer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/a5/bc6b4713/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/c6/b1b41dd7/CustomAttributeExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/da/1572eb80/UIntPtr.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/02/ddfff9e8/ISerializable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/15/f2d24e3d/String.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/17/8a497b29/Random.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/2a/c5c16f01/ValueType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/31/c899f05e/Void.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/38/d620fea2/UIntPtr.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/79/52244653/StringComparison.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/ac/8edf735a/IntPtr.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/b9/97521975/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/c2/07172819/Type.cs" root0="SKIP_HIGHLIGHTING" />
@@ -91,6 +80,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/86/9103e68d/UnsafeUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/87/8ebf775d/NativeArrayOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/a0/479abe14/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b7/783405d9/RenderPipelineManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/c4/5aa4640c/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/c8/4c44b88f/ComputeShader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/d0/70ba297a/CullingResults.cs" root0="SKIP_HIGHLIGHTING" />
@@ -154,7 +144,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="独立播放器.Start Unity">
+  <component name="RunManager" selected="附加到 Unity 编辑器.附加到 Unity 编辑器">
     <configuration name="启动 Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2020.3.47f1c1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath D:\LocalProjects\CustomURP -debugCodeOptimization" />
@@ -189,7 +179,7 @@
     </configuration>
     <configuration name="附加到 Unity 编辑器" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
-      <option name="listenPortForConnections" value="false" />
+      <option name="listenPortForConnections" value="true" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
@@ -247,7 +237,8 @@
       <workItem from="1698310874767" duration="15982000" />
       <workItem from="1698824812177" duration="9509000" />
       <workItem from="1698839009323" duration="9583000" />
-      <workItem from="1699236957501" duration="22876000" />
+      <workItem from="1699236957501" duration="37831000" />
+      <workItem from="1699351405822" duration="5081000" />
     </task>
     <servers />
   </component>
@@ -263,19 +254,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs</url>
-          <line>113</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipeline.cs" initialLine="50" containingFunctionPresentation="构造函数 'CustomRenderPipeline'">
-            <startOffsets>
-              <option value="4010" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4059" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CameraRenderer.cs</url>
           <line>98</line>
@@ -321,30 +299,17 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs</url>
-          <line>174</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" initialLine="174" containingFunctionPresentation="方法 'SetRenderingData'">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs</url>
+          <line>141</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\UnsafeCollections\UnsafeHashMap.cs" initialLine="141" containingFunctionPresentation="方法 'Add'">
             <startOffsets>
-              <option value="4173" />
+              <option value="5344" />
             </startOffsets>
             <endOffsets>
-              <option value="4213" />
+              <option value="5382" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs</url>
-          <line>187</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" initialLine="187" containingFunctionPresentation="方法 'SetRenderingData'">
-            <startOffsets>
-              <option value="4715" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4759" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="21" />
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

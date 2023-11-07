@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433dcf97c6054efdb772b1ef6b873ae0, type: 3}
   m_Name: Geometry Pass
   m_EditorClassIdentifier: 
+  _isEnabled: 1

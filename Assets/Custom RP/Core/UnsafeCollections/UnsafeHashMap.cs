@@ -70,6 +70,7 @@ namespace Core
                 map = Native.MallocAndClear<UnsafeHashMap>();
                 map->_collection._buckets = (UnsafeHashCollection.Entry**)Native.MallocAndClear(
                     sizeof(UnsafeHashCollection.Entry**) * capacity, sizeof(UnsafeHashCollection.Entry**));
+
                 UnsafeBuffer.InitDynamic(&map->_collection._enteries, capacity, entryStride + keyStride + valueStride);
             }
 
@@ -87,7 +88,7 @@ namespace Core
             {
                 UnsafeHashCollection.Free(&map->_collection);
             }
-            
+
             Native.Free(map);
         }
 
@@ -130,7 +131,10 @@ namespace Core
             var entry = UnsafeHashCollection.Find<K>(&map->_collection, key, hash);
             if (entry == null)
             {
+                // insert new entry for key
                 entry = UnsafeHashCollection.Insert<K>(&map->_collection, key, hash);
+
+                // assign value to entry
                 *(V*)GetValue(map, entry) = value;
             }
             else

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Core;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -9,14 +10,17 @@ namespace CustomURP
     [CreateAssetMenu(menuName = "Custom URP/Pass/Geometry")]
     public unsafe sealed class GeometryPass : CoreAction
     {
-        protected override void Initialization(CustomRenderPipelineAsset asset)
+        protected internal override void Initialization(CustomRenderPipelineAsset asset)
         {
             // throw new System.NotImplementedException();
+            
+            InspectDependActions();
+            _isInitialized = true;
         }
 
-        protected override void Dispose()
+        protected internal override void Dispose()
         {
-            // throw new System.NotImplementedException();
+            base.Dispose();
         }
 
         public override void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
@@ -28,8 +32,11 @@ namespace CustomURP
         {
             base.BeginFrameRendering(camera, ref cmd);
         }
-        
-        
+
+        public override bool InspectProperty()
+        {
+            return true;
+        }
     }
     
 }

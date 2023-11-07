@@ -5,11 +5,16 @@ using UnityEngine;
 using Unity.Collections;
 using UnityEngine.Rendering;
 
-namespace Custom_RP.Logic
+namespace CustomPipeline
 {
     public unsafe class Scene
     {
-        public void Awake(CustomRenderPipelineAsset asset)
+        private CustomRenderPipelineAsset _asset;
+        public Scene(CustomRenderPipelineAsset asset)
+        {
+            _asset = asset;
+        }
+        public void Awake()
         {
             
         }
