@@ -4,20 +4,15 @@ using UnityEngine.Rendering;
 
 namespace CustomPipeline
 {
-    public static class GraphicsUtility
+    public static class DeviceUtility
     {
-        private static bool _isD3D = true;
-        
-        public static bool Platform
-        {
-            get { return _isD3D; }
-        }
-        
+        public static bool Platform { get; private set; } = true;
+
         [System.Runtime.CompilerServices.MethodImpl(
             System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static void SetPlatform()
         {
-            _isD3D = SystemInfo.graphicsDeviceVersion.IndexOf("Direct3D", StringComparison.Ordinal) > -1;
+            Platform = SystemInfo.graphicsDeviceVersion.IndexOf("Direct3D", StringComparison.Ordinal) > -1;
         }
     };
 }

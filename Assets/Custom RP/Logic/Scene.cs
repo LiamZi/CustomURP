@@ -7,9 +7,14 @@ using UnityEngine.Rendering;
 
 namespace Custom_RP.Logic
 {
-    public static class SceneController
+    public unsafe class Scene
     {
-        public static void Awake(CustomRenderPipelineAsset asset)
+        public void Awake(CustomRenderPipelineAsset asset)
+        {
+            
+        }
+
+        public void Dispose()
         {
             
         }
