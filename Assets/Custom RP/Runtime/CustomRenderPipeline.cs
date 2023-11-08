@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Core;
+using CustomURP;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
@@ -35,11 +36,34 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
     public CustomRenderPipelineAsset _asset;
     private static unsafe Core.UnsafeHashMap* _actions = null;
-    private static List<CustomRenderPipelineCamera> _preFrameCamera = new List<CustomRenderPipelineCamera>(10);
-    private static List<CustomRenderPipelineCamera> _renderCamera = new List<CustomRenderPipelineCamera>(20);
-    private static List<CustomRenderPipelineCamera> _endFrameCamera = new List<CustomRenderPipelineCamera>(10);
+    private static List<CustomRenderPipelineCameraSet> _preFrameCamera = new List<CustomRenderPipelineCameraSet>(10);
+    private static List<CustomRenderPipelineCameraSet> _renderCamera = new List<CustomRenderPipelineCameraSet>(20);
+    private static List<CustomRenderPipelineCameraSet> _endFrameCamera = new List<CustomRenderPipelineCameraSet>(10);
     private static UnsafeList *_delayingReleaseRenderTarget;
     private CustomPipeline.Scene _scene = null;
+
+    public CoreAction GetAction(Type type)
+    {
+        var key = new UIntPtr(CustomPipeline.UnsafeUtility.GetPtr(type));
+        if (UnsafeHashMap.TryGetValue(_actions, key.ToUInt64(), out ulong value))
+        {
+            return _asset._availiableActions[value];
+        }
+
+        return null;
+    }
+
+    public T GetAction<T>()  where T : CoreAction
+    {
+        Type type = typeof(T);
+        var key = new UIntPtr(CustomPipeline.UnsafeUtility.GetPtr(type));
+        if (UnsafeHashMap.TryGetValue(_actions, key.ToUInt64(), out ulong value))
+        {
+            return _asset._availiableActions[value] as T;
+        }
+
+        return null;
+    }
 
     public CustomRenderPipeline(CustomRenderPipelineAsset asset)
     {
@@ -82,8 +106,8 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         for (int i = 0; i < _asset._availiableActions.Length; ++i)
         {
             var action = _asset._availiableActions[i];
-            var p = new UIntPtr(CustomPipeline.UnsafeUtility.GetPtr(action.GetType()));
-            UnsafeHashMap.Add(_actions, p.ToUInt64(), i);
+            var key = new UIntPtr(CustomPipeline.UnsafeUtility.GetPtr(action.GetType()));
+            UnsafeHashMap.Add(_actions, key.ToUInt64(), i);
             action.Prepare();
             action.Initialization(_asset);
         }
@@ -95,24 +119,24 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         InitializeForEditor();
     }
 
-    private new void BeginFrameRendering(ScriptableRenderContext context, Camera[] cameras)
+    private void BeginFrameRendering(ScriptableRenderContext context, Camera[] cameras)
     {
         // Debug.Log("BeginFrameRendering");
     }
 
-    private new void BeginCameraRendering(ScriptableRenderContext context, Camera camera)
+    private void BeginCameraRendering(ScriptableRenderContext context, Camera camera)
     {
         // Debug.Log("BeginCameraRendering");
     }
 
-    private new void EndCameraRendering(ScriptableRenderContext context, Camera camera)
+    private void EndCameraRendering(ScriptableRenderContext context, Camera camera)
     {
         // Debug.Log("EndCameraRendering");
     }
 
-    private new void EndFrameRendering(ScriptableRenderContext context, Camera[] cameras)
+    private void EndFrameRendering(ScriptableRenderContext context, Camera[] cameras)
     {
-        // Debug.Log("EndFrameRendering");
+        Debug.Log("EndFrameRendering");
     }
 
     public CustomRenderPipeline(CameraBufferSettings cameraBufferSettings, bool isEnabledDynamicBatch,
@@ -146,9 +170,74 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     protected override void Render(ScriptableRenderContext context, Camera[] cameras)
     {
         BeginFrameRendering(context, cameras);
+        _renderCamera.Clear();
+        CustomRenderPipelineCamera.Initialized();
 
         foreach (Camera camera in cameras)
         {
+            CustomRenderPipelineCameraSet cameraSet;
+
+            if (!UnsafeHashMap.TryGetValue(CustomRenderPipelineCamera.CameraMap, camera.gameObject.GetInstanceID(),
+                    out ulong ppCameraPtr))
+            {
+                if (!camera.TryGetComponent(out cameraSet._ppCamera))
+                {
+#if UNITY_EDITOR
+                    if (camera.cameraType == CameraType.SceneView)
+                    {
+                        cameraSet._isEditor = true;
+                        // var eulerAngle = camera.transform.eulerAngles;
+                        // eulerAngle.z = 0;
+                        // camera.transform.eulerAngles = eulerAngle;
+                        if (!Camera.main ||
+                            !(cameraSet._ppCamera = Camera.main.GetComponent<CustomRenderPipelineCamera>()))
+                        {
+                            continue;
+                        }
+
+
+                    }
+                    else if (camera.cameraType == CameraType.Game)
+                    {
+                        cameraSet._isEditor = false;
+                        cameraSet._ppCamera = camera.gameObject.AddComponent<CustomRenderPipelineCamera>();
+                    }
+                    else
+                    {
+                        continue;
+                    }
+#else
+                    cameraSet._isEditor = false;
+                    cameraSet._ppCamera = camera.gameObject.AddComponent<CustomRenderPipelineCamera>();
+#endif
+                }
+                else
+                {
+                    cameraSet._isEditor = false;
+                    cameraSet._ppCamera.Add();
+                }
+            }
+            else
+            {
+                cameraSet._isEditor = false;
+                cameraSet._ppCamera =
+                    CustomPipeline.UnsafeUtility.GetObject<CustomRenderPipelineCamera>((void*)ppCameraPtr);
+            }
+
+            cameraSet._camera = camera;
+            cameraSet._ppCamera._camera = camera;
+            //TODO : Move call camera before frame rendering to pipeline Manager's beforeframerendering function;
+            // cameraSet._ppCamera.beforeFrameRendering();
+            _renderCamera.Add(cameraSet);
+        }
+
+        var size = _asset._actions.Length;
+        bool* propertyFlags = stackalloc bool[size];
+        bool needSubmit = false;
+        Native.MemClear(propertyFlags, size);
+        
+        foreach (var camera in cameras)       
+        {   
             BeginCameraRendering(context, camera);
             _renderer.Render(context, camera, _cameraBufferSettings,
                 _useDynamicBatching, _useGPUInstanceing,

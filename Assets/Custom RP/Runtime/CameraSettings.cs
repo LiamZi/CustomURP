@@ -49,5 +49,12 @@ public class CameraSettings
     }
 
     // public bool _enabledHiz = false;
-
 };
+
+public struct CustomRenderPipelineCameraSet
+{
+    public Camera _camera;
+    public CustomRenderPipelineCamera _ppCamera;
+    public bool _isEditor;
+};
+
