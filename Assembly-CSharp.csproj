@@ -81,6 +81,7 @@
      <Compile Include="Assets\Custom RP\Core\UnsafeCollections\UnsafeArrary.cs" />
      <Compile Include="Assets\Custom RP\Runtime\RenderingLayerMaskFieldAttributePropertyAttribute.cs" />
      <Compile Include="Assets\Custom RP\Logic\Scene.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\GeometryPass.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\LightPass.cs" />
      <Compile Include="Assets\Custom RP\Core\UnsafeCollections\IUnsafeIterator.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" />

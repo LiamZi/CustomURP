@@ -144,14 +144,14 @@ public partial class CameraRenderer
         ExcuteBuffer();
 
         
-        _lightingPass.Setup(context, _cullingResults, shadowSettings, 
-                    useLightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
-
-        cameraBufferSetting._fxaa._enabled &= cameraSettings._allowFXAA;
-
-        _postPass.Setup(context, camera, _bufferSize, 
-                    postFXSettings, cameraSettings._keepAlpha,  _isUseHDR, colorLUTResolution, 
-                    cameraSettings._finalBlendMode, cameraBufferSetting._bicubicRescaling, cameraBufferSetting._fxaa);
+        // _lightingPass.Setup(context, _cullingResults, shadowSettings, 
+        //             useLightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
+        //
+        // cameraBufferSetting._fxaa._enabled &= cameraSettings._allowFXAA;
+        //
+        // _postPass.Setup(context, camera, _bufferSize, 
+        //             postFXSettings, cameraSettings._keepAlpha,  _isUseHDR, colorLUTResolution, 
+        //             cameraSettings._finalBlendMode, cameraBufferSetting._bicubicRescaling, cameraBufferSetting._fxaa);
 
         CmdManager.Singleton.EndSample(_sampleName);
 
@@ -170,20 +170,20 @@ public partial class CameraRenderer
         }
         
         DrawUnsupportedShaders();
-        // DrawGizmos();
+        DrawGizmos();
         DrawGizmosBeforeFX();
         
-        if(_postPass.IsActive)
-        {
-            _postPass.Render(_colorAttachmentId);
-        }
-        else if(_isUseIntermediateBuffer)
-        {
-            // Draw(_colorAttachmentId, BuiltinRenderTextureType.CameraTarget);
-            DrawFinal(cameraSettings._finalBlendMode);
-            ExcuteBuffer();
-        }
-        
+        // if(_postPass.IsActive)
+        // {
+        //     _postPass.Render(_colorAttachmentId);
+        // }
+        // else if(_isUseIntermediateBuffer)
+        // {
+        //     // Draw(_colorAttachmentId, BuiltinRenderTextureType.CameraTarget);
+        DrawFinal(cameraSettings._finalBlendMode);
+        ExcuteBuffer();
+        // }
+        //
         DrawGizmosAfterFX();
 
         Cleanup();
@@ -413,7 +413,7 @@ public partial class CameraRenderer
 
     void Cleanup()
     {
-        _lightingPass.Clearup();
+        // _lightingPass.Clearup();
         // if(postPass.IsActive)
         if(_isUseIntermediateBuffer)
         {

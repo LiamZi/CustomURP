@@ -9,6 +9,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Collections;
+using Unity.Jobs;
 using UnityEditor.SearchService;
 
 
@@ -22,7 +23,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     bool _useLightsPerObject;
 
     // bool _useHDR;
-    CameraBufferSettings _cameraBufferSettings;
+    public static CameraBufferSettings _cameraBufferSettings;
     ShadowSettings _shadowSettings;
     PostFXSettings _postFXSettings;
     Core.IndirectSettings _indirectSettings;
@@ -41,6 +42,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     private static List<CustomRenderPipelineCameraSet> _endFrameCamera = new List<CustomRenderPipelineCameraSet>(10);
     private static UnsafeList *_delayingReleaseRenderTarget;
     private CustomPipeline.Scene _scene = null;
+    public static bool Editor { get; private set; }
 
     public CoreAction GetAction(Type type)
     {
@@ -76,7 +78,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
         GraphicsSettings.lightsUseLinearIntensity = true;
         this._useDynamicBatching = asset.DynamicBatching;
-        this._cameraBufferSettings = asset.CameraBuffer;
+        _cameraBufferSettings = asset.CameraBuffer;
         this._useGPUInstanceing = asset.GPUInstancing;
         this._useLightsPerObject = asset.LightsPerObject;
         this._shadowSettings = asset.Shadows;
@@ -136,7 +138,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
     private void EndFrameRendering(ScriptableRenderContext context, Camera[] cameras)
     {
-        Debug.Log("EndFrameRendering");
+        // Debug.Log("EndFrameRendering");
     }
 
     public CustomRenderPipeline(CameraBufferSettings cameraBufferSettings, bool isEnabledDynamicBatch,
@@ -156,7 +158,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         this._shadowSettings = shadowSettings;
         this._postFXSettings = postFXSettings;
         // this._useHDR = isEnabledHDR;
-        this._cameraBufferSettings = cameraBufferSettings;
+        _cameraBufferSettings = cameraBufferSettings;
         this._colorLUTResolution = colorLUTResolution;
 
         GraphicsSettings.useScriptableRenderPipelineBatching = useSRPBatcher;
@@ -226,8 +228,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
             cameraSet._camera = camera;
             cameraSet._ppCamera._camera = camera;
-            //TODO : Move call camera before frame rendering to pipeline Manager's beforeframerendering function;
-            // cameraSet._ppCamera.beforeFrameRendering();
+            cameraSet._ppCamera.BeforeFrameRending();
             _renderCamera.Add(cameraSet);
         }
 
@@ -236,16 +237,64 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         bool needSubmit = false;
         Native.MemClear(propertyFlags, size);
         
-        foreach (var camera in cameras)       
-        {   
-            BeginCameraRendering(context, camera);
-            _renderer.Render(context, camera, _cameraBufferSettings,
-                _useDynamicBatching, _useGPUInstanceing,
-                _useLightsPerObject, _shadowSettings, _postFXSettings, _colorLUTResolution);
-            EndCameraRendering(context, camera);
+        foreach (var camera in  _renderCamera)
+        {
+            Editor = camera._isEditor;
+            // BeginCameraRendering(context, camera);
+            Render(camera._ppCamera, ref context, propertyFlags);
         }
+    
+        // cameraSet._ppCamera._ppCamera.AfterFrameRendering();
+        // EndFrameRendering(context, cameras);
 
-        EndFrameRendering(context, cameras);
+        foreach (var camera in _renderCamera)
+        {
+            camera._ppCamera.AfterFrameRendering();
+        }
+    }
+
+    private void Render(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context, bool* propertyFlags)
+    {
+        camera.BeforeCameraRendering();
+        
+        camera.OnEnable();
+        context.SetupCameraProperties(camera._camera);
+        var path = camera._renderingType;
+        var collect = _asset._actions[(int)path];
+        
+#if UNITY_EDITOR
+        if (!propertyFlags[(int)path])
+        {
+            propertyFlags[(int)path] = true;
+            foreach (var i in collect)
+            {
+                if (!i.InspectProperty())
+                {
+                    i.Initialization(_asset);
+                }
+            }
+        }
+#endif
+
+        foreach (var i in collect)
+        {
+            if (!i.Enabled) continue;
+            i.BeginRendering(camera);
+            i.Tick(camera);
+            i.EndRendering(camera);
+        }
+        
+        // _renderer.Render(context, camera._camera, _cameraBufferSettings, _useDynamicBatching, _useGPUInstanceing,
+            // _useLightsPerObject, _shadowSettings, _postFXSettings, _colorLUTResolution);
+
+        var iters = UnsafeList.GetIterator<int>(_delayingReleaseRenderTarget);
+        foreach (var i in iters)
+        {
+            //TODO: release delaying rt at the frame end.
+            // RenderTexture.ReleaseTemporary();
+        }
+        
+        camera.AfterCameraRendering();
     }
 
     protected override void Dispose(bool disposing)

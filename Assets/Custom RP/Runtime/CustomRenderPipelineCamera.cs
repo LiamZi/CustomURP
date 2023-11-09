@@ -30,11 +30,14 @@ public unsafe sealed class CustomRenderPipelineCamera : MonoBehaviour
     public float3 _frustumMaxPoint { get; private set; } = Vector3.zero;
     public float[] _layerCullDistance = new float[32];
     public UnsafeList* _frustumArray = null;
+
+    public CustomRenderPipelineAsset.CameraRenderType _renderingType =
+        CustomRenderPipelineAsset.CameraRenderType.Forward;
    
     public void ResetMatrix()
     {
         Camera camera = GetComponent<Camera>();
-        camera.orthographic = !camera.orthographic;
+        // camera.orthographic = !camera.orthographic;
         camera.ResetCullingMatrix();
         camera.ResetProjectionMatrix();
         camera.ResetStereoProjectionMatrices();
@@ -45,6 +48,11 @@ public unsafe sealed class CustomRenderPipelineCamera : MonoBehaviour
     public static UnsafeHashMap* CameraMap
     {
         get { return _cameraMap; }
+    }
+
+    public void OnEnable()
+    {
+        ResetMatrix();
     }
 
     public static void Initialized()
@@ -65,4 +73,23 @@ public unsafe sealed class CustomRenderPipelineCamera : MonoBehaviour
         }
     }
 
+    public void BeforeFrameRending()
+    {
+        
+    }
+
+    public void AfterFrameRendering()
+    {
+        
+    }
+
+    public void BeforeCameraRendering()
+    {
+        
+    }
+
+    public void AfterCameraRendering()
+    {
+        
+    }
 };

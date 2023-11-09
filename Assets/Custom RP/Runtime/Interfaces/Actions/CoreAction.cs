@@ -68,17 +68,17 @@ namespace CustomURP
         }
 
         protected internal abstract void Initialization(CustomRenderPipelineAsset asset);
-
-        public virtual void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
+        
+        public virtual void Tick(CustomRenderPipelineCamera camera)
         {
         }
 
-        public virtual void BeginFrameRendering(CustomRenderPipelineCamera camera, ref Command cmd)
+        public virtual void BeginRendering(CustomRenderPipelineCamera camera)
         {
 
         }
 
-        public virtual void EndFrameRendering(CustomRenderPipelineCamera camera, ref Command cmd)
+        public virtual void EndRendering(CustomRenderPipelineCamera camera)
         {
             
         }
@@ -121,5 +121,6 @@ namespace CustomURP
             typeof(PostProcessPass),
         };
     };
+    
 
 }
