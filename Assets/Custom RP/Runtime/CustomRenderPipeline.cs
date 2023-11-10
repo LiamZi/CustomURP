@@ -104,6 +104,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         _asset.SetRenderingData();
         var actions = _asset._actions;
         CustomPipeline.DeviceUtility.SetPlatform();
+        CustomPipeline.MiscUtility.Initialization();
 
         for (int i = 0; i < _asset._availiableActions.Length; ++i)
         {
@@ -116,7 +117,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
         _delayingReleaseRenderTarget = UnsafeList.Allocate<int>(20);
 
-        _renderer = new CameraRenderer(asset.DefaultShader);
+        // _renderer = new CameraRenderer(asset.DefaultShader);
 
         InitializeForEditor();
     }
@@ -164,7 +165,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         GraphicsSettings.useScriptableRenderPipelineBatching = useSRPBatcher;
         GraphicsSettings.lightsUseLinearIntensity = true;
         // _renderer = new CameraRenderer(isEnabledDynamicBatch, isEnabledInstancing);
-        _renderer = new CameraRenderer(cameraRendererShader);
+        // _renderer = new CameraRenderer(cameraRendererShader);
 
         InitializeForEditor();
     }
@@ -278,10 +279,11 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
         foreach (var i in collect)
         {
+            // var i = collect[0];
             if (!i.Enabled) continue;
-            i.BeginRendering(camera);
-            i.Tick(camera);
-            i.EndRendering(camera);
+            i.BeginRendering(camera, ref context);
+            i.Tick(camera, ref context);
+            i.EndRendering(camera, ref context);
         }
         
         // _renderer.Render(context, camera._camera, _cameraBufferSettings, _useDynamicBatching, _useGPUInstanceing,
@@ -327,7 +329,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         }
         
         DisposeForEditor();
-        _renderer.Dispose();
+        // _renderer.Dispose();
         RenderPipelineManager.beginFrameRendering -= BeginFrameRendering;
         RenderPipelineManager.beginCameraRendering -= BeginCameraRendering;
         RenderPipelineManager.endCameraRendering -= EndCameraRendering;

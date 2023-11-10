@@ -61,6 +61,7 @@
      <Compile Include="Assets\Custom RP\Core\IndirectSettings.cs" />
      <Compile Include="Assets\Custom RP\Runtime\ReinterpretExtensions.cs" />
      <Compile Include="Assets\Scenes\HUD.cs" />
+     <Compile Include="Assets\Custom RP\Utility\MiscUtility.cs" />
      <Compile Include="Assets\Custom RP\Runtime\PostFXStack.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\LightingPass.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipeline.Editor.cs" />

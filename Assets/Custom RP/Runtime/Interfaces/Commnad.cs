@@ -50,7 +50,10 @@ namespace CustomURP
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { 
+                _name = value;
+                _cmd.name = value;
+            }
         }
 
         public ScriptableRenderContext Context

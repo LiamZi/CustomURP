@@ -2,6 +2,7 @@
 using System.Collections;
 using Core;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace CustomURP
 {
@@ -13,6 +14,8 @@ namespace CustomURP
         protected bool _isInitialized;
         protected UnsafeList* _dependedActions;
         protected UnsafeList* _dependingActions;
+        protected CustomRenderPipelineCamera _camera;
+        protected ScriptableRenderContext _context;
 
         public bool Enabled
         {
@@ -69,16 +72,18 @@ namespace CustomURP
 
         protected internal abstract void Initialization(CustomRenderPipelineAsset asset);
         
-        public virtual void Tick(CustomRenderPipelineCamera camera)
+        public virtual void Tick(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
         {
+            _context = context;
+            _camera = camera;
         }
 
-        public virtual void BeginRendering(CustomRenderPipelineCamera camera)
+        public virtual void BeginRendering(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
         {
 
         }
 
-        public virtual void EndRendering(CustomRenderPipelineCamera camera)
+        public virtual void EndRendering(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
         {
             
         }

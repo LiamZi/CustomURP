@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace CustomURP
 {
@@ -17,19 +18,19 @@ namespace CustomURP
             base.Dispose();
         }
 
-        public override void Tick(CustomRenderPipelineCamera camera)
+        public override void Tick(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
         {
-            base.Tick(camera);
+            base.Tick(camera, ref context);
         }
 
-        public override void BeginRendering(CustomRenderPipelineCamera camera)
+        public override void BeginRendering(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
         {
-            base.BeginRendering(camera);
+            base.BeginRendering(camera, ref context);
         }
         
-        public override void EndRendering(CustomRenderPipelineCamera camera)
+        public override void EndRendering(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
         {
-            base.EndRendering(camera);
+            base.EndRendering(camera, ref context);
         }
         
         public override bool InspectProperty()
