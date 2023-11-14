@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Custom Render Pipeline Asset
   m_EditorClassIdentifier: 
   _availiableActions:
-  - {fileID: 11400000, guid: 84359f0c06519714aa82d83ba5aff57e, type: 2}
   - {fileID: 11400000, guid: 0d07f4ff0e1bb384887902bb827345d3, type: 2}
+  - {fileID: 11400000, guid: 84359f0c06519714aa82d83ba5aff57e, type: 2}
   - {fileID: 11400000, guid: 586db97b2ddaa044ebeda571c1fb8b49, type: 2}
+  - {fileID: 11400000, guid: 944e76e9ea140aa4da0cf694af73264b, type: 2}
   _dynamicBatching: 1
   _instancing: 1
   _useSRPBatcher: 1

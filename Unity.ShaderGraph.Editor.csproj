@@ -555,10 +555,10 @@
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\UV\ParallaxOcclusionMappingNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Views\StickyNote.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Legacy\GraphData0.cs" />
-     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Controls\IControlAttribute.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Nodes\Utility\Logic\AnyNode.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Manipulators\WindowDraggable.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Legacy\SpriteLitMasterNode1.cs" />
+     <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Controls\IControlAttribute.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Drawing\Inspector\PropertyDrawers\IntegerPropertyDrawer.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Generation\Processors\ShaderGeneratorNames.cs" />
      <Compile Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Editor\Data\Attributes\ContextFilterableAttribute.cs" />

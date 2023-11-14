@@ -30,7 +30,7 @@ public partial class CameraRenderer
         new ShaderTagId("VertexLMRGBM"),
         new ShaderTagId("VertexLM"),
     };
-
+    
     private static Material _errorMaterial;
 
     partial void DrawUnsupportedShaders()

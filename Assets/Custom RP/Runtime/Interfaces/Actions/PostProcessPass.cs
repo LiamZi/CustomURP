@@ -18,19 +18,19 @@ namespace CustomURP
             base.Dispose();
         }
 
-        public override void Tick(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
+        public override void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            base.Tick(camera, ref context);
+            base.Tick(camera, ref cmd);
         }
 
-        public override void BeginRendering(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
+        public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            base.BeginRendering(camera, ref context);
+            base.BeginRendering(camera, ref cmd);
         }
         
-        public override void EndRendering(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
+        public override void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            base.EndRendering(camera, ref context);
+            base.EndRendering(camera, ref cmd);
         }
         
         public override bool InspectProperty()

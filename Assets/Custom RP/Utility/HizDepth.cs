@@ -6,7 +6,7 @@ using Unity.Mathematics;
 
 using static Unity.Mathematics.math;
 
-namespace CustomPipeline
+namespace CustomURP
 {
     public struct HizDepth
     {

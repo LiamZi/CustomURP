@@ -12,6 +12,8 @@ namespace CustomPipeline
         public const float RTScaleMax = 2f;
         public static bool CopyTextureSupported = false;
         
+ 
+        
         public static void Initialization()
         {
             MissingTexture = new Texture2D(1, 1)

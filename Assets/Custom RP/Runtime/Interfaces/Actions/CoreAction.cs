@@ -15,7 +15,13 @@ namespace CustomURP
         protected UnsafeList* _dependedActions;
         protected UnsafeList* _dependingActions;
         protected CustomRenderPipelineCamera _camera;
-        protected ScriptableRenderContext _context;
+        protected Command _cmd;
+        protected CustomRenderPipelineAsset _asset;
+        protected bool _isUseHDR;
+        protected bool _isUseColorTexture;
+        protected bool _isUseDepthTexture;
+        protected bool _isUseIntermediateBuffer;
+        protected bool _isUseScaledRendering;
 
         public bool Enabled
         {
@@ -72,18 +78,19 @@ namespace CustomURP
 
         protected internal abstract void Initialization(CustomRenderPipelineAsset asset);
         
-        public virtual void Tick(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
+        public virtual void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            _context = context;
+            _cmd = cmd;
             _camera = camera;
         }
 
-        public virtual void BeginRendering(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
+        public virtual void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-
+            _cmd = cmd;
+            _camera = camera;
         }
 
-        public virtual void EndRendering(CustomRenderPipelineCamera camera, ref ScriptableRenderContext context)
+        public virtual void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             
         }
@@ -121,9 +128,10 @@ namespace CustomURP
         [RenderingType(CustomRenderPipelineAsset.CameraRenderType.Forward)]
         public static readonly Type[] _forwardRendering = 
         {
-            typeof(GeometryPass),
             typeof(LightPass),
+            typeof(GeometryPass),
             typeof(PostProcessPass),
+            typeof(CombinePass),
         };
     };
     

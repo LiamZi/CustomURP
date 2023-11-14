@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 450958529}
   - component: {fileID: 450958528}
   - component: {fileID: 450958527}
+  - component: {fileID: 450958530}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -387,6 +388,69 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 40.668, y: -23.892, z: 0}
+--- !u!114 &450958530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450958526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb7d912fc99e7043802be6bbb525edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings:
+    _enabledHizDepth: 0
+    _copyColor: 1
+    _copyDepth: 1
+    _renderingLayerMask: -1
+    _renderScaleMode: 0
+    _renderScale: 1
+    _maskLights: 0
+    _overridePostFx: 0
+    _postFXSettings: {fileID: 0}
+    _allowFXAA: 0
+    _keepAlpha: 0
+    _finalBlendMode:
+      _source: 1
+      _destiantion: 0
+  _hizDepthGenerator:
+    _depthTextureShader: {fileID: 0}
+  _layerCullDistance:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  _renderingType: 0
 --- !u!1001 &508865521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1395,7 +1459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7354945265538785346, guid: 5ed811fc80ab23742b25dc354bb41e20, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5951031
+      value: 0.126
       objectReference: {fileID: 0}
     - target: {fileID: 7354945265538785346, guid: 5ed811fc80ab23742b25dc354bb41e20, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1435,7 +1499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7354945265538785347, guid: 5ed811fc80ab23742b25dc354bb41e20, type: 3}
       propertyPath: m_AnimateCrossFading
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7354945265538785347, guid: 5ed811fc80ab23742b25dc354bb41e20, type: 3}
       propertyPath: m_LocalReferencePoint.x
@@ -1463,7 +1527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7354945265538785347, guid: 5ed811fc80ab23742b25dc354bb41e20, type: 3}
       propertyPath: m_LODs.Array.data[1].renderers.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7354945265538785347, guid: 5ed811fc80ab23742b25dc354bb41e20, type: 3}
       propertyPath: m_LODs.Array.data[1].screenRelativeHeight

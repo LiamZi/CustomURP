@@ -1,13 +1,14 @@
 using System;
 using Core;
 using CustomPipeline;
+using CustomURP;
 using JetBrains.Annotations;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 // [DisallowMultipleComponent, RequireComponent(typeof(Camera))]
-[ExecuteInEditMode, RequireComponent(typeof(Camera))]
+[ExecuteInEditMode, DisallowMultipleComponent, RequireComponent(typeof(Camera))]
 public unsafe sealed class CustomRenderPipelineCamera : MonoBehaviour
 {
     [SerializeField] CameraSettings _settings = default;
@@ -24,6 +25,7 @@ public unsafe sealed class CustomRenderPipelineCamera : MonoBehaviour
     }
 
     [NonSerialized] public Camera _camera;
+    [NonSerialized] public RenderTarget _renderTarget;
     public RenderTargetIdentifier _cameraRT = BuiltinRenderTextureType.CameraTarget;
     public static UnsafeHashMap* _cameraMap = null;
     public float3 _frustumMinPoint { get; private set; } = float3.zero;
@@ -50,8 +52,16 @@ public unsafe sealed class CustomRenderPipelineCamera : MonoBehaviour
         get { return _cameraMap; }
     }
 
-    public void OnEnable()
+    public void InitRenderTarget(ref Command cmd, CustomRenderPipelineAsset asset)
     {
+        if (!(_renderTarget is { _initialized: true }))
+        {
+            float renderScale = Setting.GetRenderScale(asset.CameraBuffer._renderScale);
+            bool useHDR = asset.CameraBuffer._allowHDR && _camera.allowHDR;
+
+            _renderTarget = new RenderTarget(ref cmd, _camera.cameraType, Setting, renderScale,
+                new int2(_camera.pixelWidth, _camera.pixelHeight), _camera.clearFlags, useHDR);
+        }
         ResetMatrix();
     }
 
@@ -71,6 +81,15 @@ public unsafe sealed class CustomRenderPipelineCamera : MonoBehaviour
         {
             _frustumArray = UnsafeList.Allocate<float4>(6, true);
         }
+    }
+
+    private void OnDisable()
+    {
+        if (_cameraMap != null)
+        {
+            UnsafeHashMap.Remove( _cameraMap, gameObject.GetInstanceID());
+        }
+        UnsafeList.Free(_frustumArray); 
     }
 
     public void BeforeFrameRending()

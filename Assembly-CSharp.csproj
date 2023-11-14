@@ -90,12 +90,14 @@
      <Compile Include="Assets\Custom RP\Runtime\CameraBufferSettings.cs" />
      <Compile Include="Assets\Custom RP\Core\LoadingThread.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\PostProcessPass.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\RenderTarget.cs" />
      <Compile Include="Assets\Custom RP\Core\UnsafeCollections\UnsafeHashMap.Iterator.cs" />
      <Compile Include="Assets\Custom RP\Utility\HizDepthGenerator.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.Editor.cs" />
      <Compile Include="Assets\Custom RP\Utility\ShaderParams.cs" />
      <Compile Include="Assets\Custom RP\Core\LoadingCommandQueue.cs" />
      <Compile Include="Assets\Custom RP\Runtime\PostFXSettings.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\CombinePass.cs" />
      <Compile Include="Assets\Scenes\FrustumCulling\CullTool.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Components.cs" />
@@ -128,6 +130,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\basecommands.en.txt" />
      <None Include="Library\PackageCache\com.unity.ugui@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\xdiff.ko.txt" />
+     <Folder Include="Assets\Forward Renderer" />
      <Folder Include="Library\PackageCache\com.unity.modules.xr@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\basecommands.es.txt" />
      <Folder Include="Assets\Scenes\ParticlesScene" />
@@ -401,6 +404,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\differences.zh-Hant.txt" />
      <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0" />
      <Folder Include="Assets\Scenes\SpotLightScene" />
+     <Folder Include="Assets\Deferred Renderer" />
      <None Include="Library\PackageCache\com.unity.modules.ui@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.ide.vscode@1.2.5\package.json" />
      <Reference Include="UnityEngine">

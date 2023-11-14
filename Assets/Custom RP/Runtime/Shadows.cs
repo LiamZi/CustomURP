@@ -174,10 +174,6 @@ public class Shadows
         _shadowedOtherLightCount = newLightCount;
 
         return data;
-        // return new Vector4(light.shadowStrength, _shadowedOtherLightCount++, 0f, lightBaking.occlusionMaskChannel);
-        // }
-
-        // return new Vector4(0f, 0f, 0f, -1f);
     }
 
     public void Render()
