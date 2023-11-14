@@ -5,48 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CombinePass.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CombinePass.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/RenderTarget.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/RenderTarget.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Deferred Renderer.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward Combine Pass.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward Combine Pass.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward Geometry Pass.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward Geometry Pass.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward Light Pass.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward Light Pass.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward Post Process Pass.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward Post Process Pass.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward PostFXSettings.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Forward Renderer/Forward PostFXSettings.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CameraRenderer.Editor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CameraRenderer.Editor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CoreAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CoreAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.Editor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.Editor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/LightPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/LightPass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/PostProcessPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/PostProcessPass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Shadows.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Shadows.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/HizDepth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/HizDepth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/MiscUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/MiscUtility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Geometry Pass.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Geometry Pass.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Light Pass.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Light Pass.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Post Process Pass.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Post Process Pass.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PostFXSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PostFXSettings.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LodScene/LodScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LodScene/LodScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +27,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1e112811079b4e7098e7b50a689fba71c5600/bc/9aa0e1bd/IMGUIContainer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/12/7c1efe4e/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/1d/455ba944/Array.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/8e/ba735e7c/Type.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/a5/bc6b4713/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/a9/1100b662/Void.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/b5/adac9bbe/ValueType.cs" root0="SKIP_HIGHLIGHTING" />
@@ -273,7 +233,7 @@
       <workItem from="1699351405822" duration="23528000" />
       <workItem from="1699498595978" duration="41423000" />
       <workItem from="1699842940962" duration="4187000" />
-      <workItem from="1699856353074" duration="38288000" />
+      <workItem from="1699856353074" duration="38746000" />
     </task>
     <servers />
   </component>
@@ -346,45 +306,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs</url>
-          <line>119</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipeline.cs" initialLine="119" containingFunctionPresentation="构造函数 'CustomRenderPipeline'">
-            <startOffsets>
-              <option value="4080" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4122" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="85" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs</url>
-          <line>174</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" initialLine="174" containingFunctionPresentation="方法 'SetRenderingData'">
-            <startOffsets>
-              <option value="4173" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4213" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs</url>
-          <line>193</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipelineAsset.cs" initialLine="193" containingFunctionPresentation="方法 'GetAllActions'">
-            <startOffsets>
-              <option value="4885" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4937" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="87" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

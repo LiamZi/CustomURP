@@ -43,6 +43,7 @@ namespace CustomURP
             // if (_shadows == null) return;
             _shadows.Render();
             _cmd.EndSampler();
+            _cmd.Name = "Light Pass End";
             _cmd.Execute();
             
             // _cmd.Submit();
@@ -51,8 +52,8 @@ namespace CustomURP
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             base.BeginRendering(camera, ref cmd);
-            _cmd.Name = "Light Pass Begin";
             if (!Cull(_asset.Shadows._maxDistance, ref cmd)) return;
+            _cmd.Name = "Light Pass Begin";
             _cmd.BeginSample();
             _shadows.Setup(_cmd.Context, _cullingResults, _asset.Shadows);
             CameraSettings cameraSettings = camera ? camera.Setting : new CameraSettings();
