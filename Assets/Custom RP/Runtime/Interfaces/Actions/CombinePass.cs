@@ -28,8 +28,8 @@ namespace CustomURP
         public override void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             // DrawFinal(cameraSettings._finalBlendMode);
-            _cmd.Execute();
-            Cleanup();
+            // _cmd.Execute();
+            // Cleanup();
         }
         
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)

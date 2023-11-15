@@ -9,6 +9,8 @@ namespace CustomURP
     {
         public int _colorAttachmentId;
         public int _depthAttachmentId;
+        public int _colorTextureId;
+        public int _depthTextureId;
         public bool _initialized;
         public bool _isUseIntermediateBuffer;
         public bool _isUseScaledRendering;
@@ -16,19 +18,29 @@ namespace CustomURP
         public bool _isUseDepthTexture;
         public int2 _size;
         public bool _isUseHDR;
+        public Color _backgroundColor;
+        
+        private Texture2D _lostTexture;
 
 
         public RenderTarget(ref Command cmd, CameraType type, CameraSettings cameraSettings,
             float renderScale, int2 pixelSize,
-            CameraClearFlags flags, bool useHDR)
+            CameraClearFlags flags, bool useHDR, Color backgroundColor)
         {
             _isUseScaledRendering = renderScale < 0.99f || renderScale > 1.01f;
             _isUseHDR = useHDR;
+            _backgroundColor = backgroundColor;
+            _lostTexture = new Texture2D(1, 1)
+            {
+                hideFlags = HideFlags.HideAndDontSave,
+                name = "Lost"
+            };
+            _lostTexture.SetPixel(0, 0, Color.white * 0.5f);
+            _lostTexture.Apply(true, true);
 
             SetRenderTextureSize(renderScale, pixelSize);
             SetUseColorTexAndDepthTex(type, cameraSettings);
             
-
             _isUseIntermediateBuffer = _isUseScaledRendering || _isUseColorTexture || _isUseDepthTexture;
             // CameraClearFlags flags = camera._camera.clearFlags;
             SetColorAndDepthAttachment(ref cmd, flags);
@@ -67,7 +79,7 @@ namespace CustomURP
                     Draw(ref cmd, _depthAttachmentId, ShaderParams._CameraDepthTextureId,  material, true);
                 }
                 
-                cmd.Execute();
+                // cmd.Execute();
             }
 
             if(!DeviceUtility.CopyTextureSupported)
@@ -95,6 +107,9 @@ namespace CustomURP
                 _isUseDepthTexture =
                     CustomRenderPipeline._cameraBufferSettings._copyDepth && cameraSettings._copyDepth;
             }
+
+            _colorTextureId = ShaderParams._CameraColorTextureId;
+            _depthTextureId = ShaderParams._CameraDepthTextureId;
         }
 
         private void SetRenderTextureSize(float renderScale, int2 pixelSize)
@@ -116,12 +131,19 @@ namespace CustomURP
 
         private void SetColorAndDepthAttachment(ref Command cmd, CameraClearFlags flags)
         {
+            var color = Shader.PropertyToID("_CameraColorAttachment");
+            var depth = Shader.PropertyToID("_CameraDepthAttachment");
+            _colorAttachmentId = color;
+            _depthAttachmentId = depth;
+            // _colorAttachmentId = ShaderParams._CameraColorAttachmentId;
+            // _depthAttachmentId = ShaderParams._CameraDepthAttachmentId;
+            
             if (_isUseIntermediateBuffer)
             {
-                // if (flags > CameraClearFlags.Color)
-                // {
-                //     flags = CameraClearFlags.Color;
-                // }
+                if (flags > CameraClearFlags.Color)
+                {
+                    flags = CameraClearFlags.Color;
+                }
 
                 cmd.GetTemporaryRT(_colorAttachmentId, _size.x, _size.y, 32, FilterMode.Bilinear,
                     _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
@@ -129,16 +151,22 @@ namespace CustomURP
                 cmd.GetTemporaryRT(_depthAttachmentId, _size.x, _size.y,
                     32, FilterMode.Point, RenderTextureFormat.Depth);
 
-                cmd.SetRenderTarget(_colorAttachmentId, RenderBufferLoadAction.DontCare,
+                cmd.Cmd.SetRenderTarget(_colorAttachmentId, RenderBufferLoadAction.DontCare,
                     RenderBufferStoreAction.Store, _depthAttachmentId,
                     RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
             }
-            
+
+            cmd.ClearRenderTarget(
+                flags <= CameraClearFlags.Depth,
+                flags <= CameraClearFlags.Color,
+                Color.magenta
+            );
+
             cmd.Name = "Render Target Init";
             cmd.BeginSample();
-            cmd.SetGlobalVector(ShaderParams._CamerabufferSizeId, new Vector4(1f / _size.x, 1f / _size.y, _size.x, _size.y));
+            cmd.SetGlobalTexture(_colorTextureId, _lostTexture);
+            cmd.SetGlobalTexture(_depthTextureId, _lostTexture);
             cmd.Execute();
-            cmd.EndSampler();
         }
         private void Draw(ref Command cmd, RenderTargetIdentifier from, RenderTargetIdentifier to, Material material, bool isDepth = false)
         {

@@ -52,15 +52,22 @@ public unsafe sealed class CustomRenderPipelineCamera : MonoBehaviour
         get { return _cameraMap; }
     }
 
-    public void InitRenderTarget(ref Command cmd, CustomRenderPipelineAsset asset)
+    public void InitRenderTarget(ref Command cmd, CustomRenderPipelineAsset asset, CustomRenderPipelineCamera camera)
     {
         if (!(_renderTarget is { _initialized: true }))
         {
             float renderScale = Setting.GetRenderScale(asset.CameraBuffer._renderScale);
             bool useHDR = asset.CameraBuffer._allowHDR && _camera.allowHDR;
 
+            CameraClearFlags clearFlags = _camera.clearFlags;
+            if (clearFlags > CameraClearFlags.Color)
+            {
+                clearFlags = CameraClearFlags.Color;
+            }
+            
             _renderTarget = new RenderTarget(ref cmd, _camera.cameraType, Setting, renderScale,
-                new int2(_camera.pixelWidth, _camera.pixelHeight), _camera.clearFlags, useHDR);
+                new int2(_camera.pixelWidth, _camera.pixelHeight), clearFlags, useHDR,
+                clearFlags == CameraClearFlags.Color ? _camera.backgroundColor.linear : Color.clear);
         }
         ResetMatrix();
     }

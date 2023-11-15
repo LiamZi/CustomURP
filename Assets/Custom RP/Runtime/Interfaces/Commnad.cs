@@ -119,6 +119,11 @@ namespace CustomURP
             _cmd.SetGlobalInt(nameID, value);
         }
 
+        public void SetGlobalFloat(int nameID, float value)
+        {
+            _cmd.SetGlobalFloat(nameID, value);
+        }
+
         public void SetGlobalVectorArray(int nameID, Vector4[] values)
         {
             _cmd.SetGlobalVectorArray(nameID, values);
@@ -190,6 +195,11 @@ namespace CustomURP
                 _name = value;
                 _cmd.name = value;
             }
+        }
+
+        public void ClearRenderTarget(bool clearDepth, bool clearColor, Color backgroundColor)
+        {
+            _cmd.ClearRenderTarget(clearDepth, clearColor, backgroundColor);
         }
 
         public ScriptableRenderContext Context
