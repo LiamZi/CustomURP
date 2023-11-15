@@ -50,9 +50,9 @@ namespace CustomURP
         public static readonly int _OtherLightDirectionsId = Shader.PropertyToID("_otherLightDirectionsAndMasks");
         public static readonly int _OtherLightSpotAnglesId = Shader.PropertyToID("_otherLightAngles");
         public static readonly int _OtherLightShadowDataId = Shader.PropertyToID("_otherLightShadowData");
-        
-        // public static readonly int _CameraColorAttachmentId = Shader.PropertyToID("_CameraColorAttachment");
-        // public static readonly int _CameraDepthAttachmentId = Shader.PropertyToID("_CameraDepthAttachment");
+
+        public static readonly int _CameraColorAttachmentId = Shader.PropertyToID("_CameraColorAttachment");
+        public static readonly int _CameraDepthAttachmentId = Shader.PropertyToID("_CameraDepthAttachment");
         public static readonly int _CameraColorTextureId = Shader.PropertyToID("_CameraColorTexture");
         public static readonly int _CameraDepthTextureId = Shader.PropertyToID("_CameraDepthTexture");
         public static readonly int _SourceTextureId = Shader.PropertyToID("_SourceTexture");

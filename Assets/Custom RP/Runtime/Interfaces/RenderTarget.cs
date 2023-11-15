@@ -7,20 +7,20 @@ namespace CustomURP
 {
     public sealed unsafe class RenderTarget
     {
-        public int _colorAttachmentId;
-        public int _depthAttachmentId;
-        public int _colorTextureId;
-        public int _depthTextureId;
-        public bool _initialized;
-        public bool _isUseIntermediateBuffer;
-        public bool _isUseScaledRendering;
-        public bool _isUseColorTexture;
-        public bool _isUseDepthTexture;
-        public int2 _size;
-        public bool _isUseHDR;
-        public Color _backgroundColor;
+        public int _colorAttachmentId = -1;
+        public int _depthAttachmentId = -1;
+        public int _colorTextureId = -1;
+        public int _depthTextureId = -1;
+        public bool _initialized = false;
+        public bool _isUseIntermediateBuffer = false;
+        public bool _isUseScaledRendering = false;
+        public bool _isUseColorTexture = false;
+        public bool _isUseDepthTexture = false;
+        public int2 _size = int2.zero;
+        public bool _isUseHDR = false;
+        public Color _backgroundColor = Color.clear;
         
-        private Texture2D _lostTexture;
+        private Texture2D _lostTexture = null;
 
 
         public RenderTarget(ref Command cmd, CameraType type, CameraSettings cameraSettings,
@@ -131,12 +131,12 @@ namespace CustomURP
 
         private void SetColorAndDepthAttachment(ref Command cmd, CameraClearFlags flags)
         {
-            var color = Shader.PropertyToID("_CameraColorAttachment");
-            var depth = Shader.PropertyToID("_CameraDepthAttachment");
-            _colorAttachmentId = color;
-            _depthAttachmentId = depth;
-            // _colorAttachmentId = ShaderParams._CameraColorAttachmentId;
-            // _depthAttachmentId = ShaderParams._CameraDepthAttachmentId;
+            //var color = Shader.PropertyToID("_CameraColorAttachment");
+            //var depth = Shader.PropertyToID("_CameraDepthAttachment");
+            //_colorAttachmentId = color;
+            //_depthAttachmentId = depth;
+             _colorAttachmentId = ShaderParams._CameraColorAttachmentId;
+             _depthAttachmentId = ShaderParams._CameraDepthAttachmentId;
             
             if (_isUseIntermediateBuffer)
             {
@@ -145,15 +145,31 @@ namespace CustomURP
                     flags = CameraClearFlags.Color;
                 }
 
-                cmd.GetTemporaryRT(_colorAttachmentId, _size.x, _size.y, 32, FilterMode.Bilinear,
-                    _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
+                //cmd.Cmd.GetTemporaryRT(_colorAttachmentId, _size.x, _size.y, 32, FilterMode.Bilinear,
+                //    _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
 
-                cmd.GetTemporaryRT(_depthAttachmentId, _size.x, _size.y,
-                    32, FilterMode.Point, RenderTextureFormat.Depth);
+                //cmd.Cmd.GetTemporaryRT(_depthAttachmentId, _size.x, _size.y,
+                //    32, FilterMode.Point, RenderTextureFormat.Depth);
 
-                cmd.Cmd.SetRenderTarget(_colorAttachmentId, RenderBufferLoadAction.DontCare,
-                    RenderBufferStoreAction.Store, _depthAttachmentId,
-                    RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
+                //cmd.Cmd.SetRenderTarget(_colorAttachmentId, RenderBufferLoadAction.DontCare,
+                //    RenderBufferStoreAction.Store, _depthAttachmentId,
+                //    RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
+
+                cmd.Cmd.GetTemporaryRT(
+                    _colorAttachmentId, _size.x, _size.y,
+                    0, FilterMode.Bilinear, _isUseHDR ?
+                        RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default
+                );
+                cmd.Cmd.GetTemporaryRT(
+                    _depthAttachmentId, _size.x, _size.y,
+                    32, FilterMode.Point, RenderTextureFormat.Depth
+                );
+                cmd.Cmd.SetRenderTarget(
+                    _colorAttachmentId,
+                    RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store,
+                    _depthAttachmentId,
+                    RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store
+                );
             }
 
             cmd.ClearRenderTarget(

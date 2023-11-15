@@ -40,8 +40,8 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     private static List<CustomRenderPipelineCameraSet> _preFrameCamera = new List<CustomRenderPipelineCameraSet>(10);
     private static List<CustomRenderPipelineCameraSet> _renderCamera = new List<CustomRenderPipelineCameraSet>(20);
     private static List<CustomRenderPipelineCameraSet> _endFrameCamera = new List<CustomRenderPipelineCameraSet>(10);
-    // private static UnsafeList *_delayReleaseRenderTarget;
-    private static List<int> _delayReleaseRenderTarget;
+     private static UnsafeList * _delayReleaseRenderTarget;
+    //private static List<int> _delayReleaseRenderTarget;
     private CustomPipeline.Scene _scene = null;
     public static Command _cmd; 
     public static CameraSettings _defaultCameraSettings = new CameraSettings();
@@ -50,8 +50,8 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
     public static void DelayReleaseRTAfterFrame(int renderTarget)
     {
-        // UnsafeList.Add(_delayReleaseRenderTarget, renderTarget); 
-        _delayReleaseRenderTarget.Add(renderTarget);
+         UnsafeList.Add(_delayReleaseRenderTarget, renderTarget); 
+        //_delayReleaseRenderTarget.Add(renderTarget);
     }
 
     public CoreAction GetAction(Type type)
@@ -126,8 +126,8 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
             action.Initialization(_asset);
         }
 
-        // _delayReleaseRenderTarget = UnsafeList.Allocate<int>(20);
-        _delayReleaseRenderTarget = new List<int>(20);
+        _delayReleaseRenderTarget = UnsafeList.Allocate<int>(20);
+        //_delayReleaseRenderTarget = new List<int>(20);
 
         // _renderer = new CameraRenderer(asset.DefaultShader);
 
@@ -153,17 +153,17 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     {
         // Debug.Log("EndFrameRendering");
         //TODO： Forward rendering has to submit here.
-        // if (_delayReleaseRenderTarget != null)
-        // {
-        //     var iters = UnsafeList.GetIterator<int>(_delayReleaseRenderTarget);
-        //     foreach (var i in iters)
-        //     {
-        //         //TODO: release delaying rt at the frame end.
-        //         _cmd.ReleaseTemporaryRT(i);
-        //     }
-        // }
-        //
-        // _cmd.Submit();
+         if (_delayReleaseRenderTarget != null)
+        {
+            var iters = UnsafeList.GetIterator<int>(_delayReleaseRenderTarget);
+            foreach (var i in iters)
+            {
+                //TODO: release delaying rt at the frame end.
+                _cmd.ReleaseTemporaryRT(i);
+            }
+        }
+
+        _cmd.Submit();
     }
 
     public CustomRenderPipeline(CameraBufferSettings cameraBufferSettings, bool isEnabledDynamicBatch,
@@ -287,8 +287,9 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     {
         camera.BeforeCameraRendering();
         
-        camera.InitRenderTarget(ref cmd, _asset, camera);
         cmd.Context.SetupCameraProperties(camera._camera);
+
+        camera.InitRenderTarget(ref cmd, _asset, camera);
         var path = camera._renderingType;
         var collect = _asset._actions[(int)path];
         
@@ -332,7 +333,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         camera.AfterCameraRendering();
 
         // _cmd.Execute();
-        // _cmd.Submit();
+         //_cmd.Submit();
     }
 
     protected override void Dispose(bool disposing)
