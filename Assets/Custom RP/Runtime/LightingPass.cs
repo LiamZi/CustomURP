@@ -68,11 +68,7 @@ public class LightingPass
             int newIndex = -1;
             VisibleLight visibleLight = visibleLights[i];
             Light light = visibleLight.light;
-            // if(visibleLight.lightType == LightType.Directional)
-            // {
-            //     SetupDirectionalLight(dirLightCount++, ref visibleLight);
-            //     if(dirLightCount >= MAX_VISIBLE_LIGHTS) break;
-            // }
+            
             if((light.renderingLayerMask & renderingLayerMask) != 0)
             {
                 switch(visibleLight.lightType)
