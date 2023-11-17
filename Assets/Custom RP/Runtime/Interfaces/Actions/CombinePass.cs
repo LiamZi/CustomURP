@@ -48,7 +48,7 @@ namespace CustomURP
             // if(postPass.IsActive)
             if(_isUseIntermediateBuffer)
             {
-                _cmd.Name = "Geometry Pass End";
+                // _cmd.Name = "Geometry Pass End";
                 
                 // CustomRenderPipeline.DelayReleaseRTAfterFrame(_colorAttachmentId);
                 // CustomRenderPipeline.DelayReleaseRTAfterFrame(_depthAttachmentId);

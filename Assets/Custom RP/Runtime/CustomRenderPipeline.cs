@@ -276,11 +276,13 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         }
 #endif
 
-        foreach (var i in collect)
+        // foreach (var i in collect)
+        for (var i = 0; i < 3; ++i)
         {
-            i.BeginRendering(camera, ref _cmd);
-            i.Tick(camera, ref _cmd);
-            i.EndRendering(camera, ref _cmd);
+            var a = collect[i];
+            a.BeginRendering(camera, ref _cmd);
+            a.Tick(camera, ref _cmd);
+            a.EndRendering(camera, ref _cmd);
         }
 
         // _renderer.Render(context, camera._camera, _cameraBufferSettings, _useDynamicBatching, _useGPUInstanceing,

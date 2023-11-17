@@ -16,8 +16,7 @@ namespace CustomURP
         partial void PrepareBuffer();
         partial void UnsupportedShaders();
         partial void DrawGizmos();
-        partial void DrawGizmosBeforeFX();
-        partial void DrawGizmosAfterFX();
+
 
 #if UNITY_EDITOR
         partial void PrepareForSceneWindow(CustomRenderPipelineCamera camera)
@@ -65,17 +64,6 @@ namespace CustomURP
                 _cmd.DrawGizmos(_camera._camera, GizmoSubset.PostImageEffects);
             }
         }
-
-        partial void DrawGizmosBeforeFX()
-        {
-            
-        }
-
-        partial void DrawGizmosAfterFX()
-        {
-            
-        }
-
 #endif
     };
 }

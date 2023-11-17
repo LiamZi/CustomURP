@@ -41,7 +41,7 @@ namespace CustomURP
             base.Tick(camera, ref cmd);
             _shadows.Render();
             _cmd.EndSampler();
-            _cmd.Name = "Light Pass End";
+            // _cmd.Name = "Light Pass End";
             _cmd.Execute();
         }
 
@@ -49,7 +49,7 @@ namespace CustomURP
         {
             base.BeginRendering(camera, ref cmd);
             if (!Cull(_asset.Shadows._maxDistance, ref cmd)) return;
-            _cmd.Name = "Light Pass Begin";
+            // _cmd.Name = "Light Pass Begin";
             _cmd.BeginSample();
             _shadows.Setup(_cmd.Context, _cullingResults, _asset.Shadows);
             var cameraSettings = camera ? camera.Setting : new CameraSettings();

@@ -25,7 +25,9 @@ namespace CustomURP
         public int2 _size            = int2.zero;
         public int  _sourceTextureId = 1;
 
-        public int _srcBlendId = -1;
+        public int           _srcBlendId = -1;
+        public RenderTexture _colorAttachmentTex;
+        public RenderTexture _depthAttachmentTex;
 
 
         public RenderTarget(ref Command cmd,         CameraType type, CameraSettings cameraSettings,
@@ -49,7 +51,7 @@ namespace CustomURP
             _isUseIntermediateBuffer = _isUseScaledRendering || _isUseColorTexture || _isUseDepthTexture;
             // CameraClearFlags flags = camera._camera.clearFlags;
             // SetColorAndDepthAttachment(ref cmd, flags);
-            SetColorAndDepthAttachment();
+            SetColorAndDepthAttachment(ref cmd, flags);
             _initialized = true;
         }
 
@@ -62,9 +64,9 @@ namespace CustomURP
                     _size.y, 0,
                     FilterMode.Bilinear, _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
                 if (DeviceUtility.CopyTextureSupported)
-                    cmd.CopyTexture(_colorAttachmentId, ShaderParams._CameraColorTextureId);
+                    cmd.CopyTexture(_colorAttachmentId, _colorTextureId);
                 else
-                    Draw(ref cmd, _colorAttachmentId, ShaderParams._CameraColorTextureId, material);
+                    Draw(ref cmd, _colorAttachmentId, _colorTextureId, material);
             }
 
             if (_isUseDepthTexture)
@@ -73,9 +75,9 @@ namespace CustomURP
                     32, FilterMode.Point, RenderTextureFormat.Depth);
 
                 if (DeviceUtility.CopyTextureSupported)
-                    cmd.CopyTexture(_depthAttachmentId, ShaderParams._CameraDepthTextureId);
+                    cmd.CopyTexture(_depthAttachmentId, _depthTextureId);
                 else
-                    Draw(ref cmd, _depthAttachmentId, ShaderParams._CameraDepthTextureId, material, true);
+                    Draw(ref cmd, _depthAttachmentId, _depthTextureId, material, true);
             }
 
             if (!DeviceUtility.CopyTextureSupported)
@@ -123,40 +125,49 @@ namespace CustomURP
             }
         }
 
-        private void SetColorAndDepthAttachment()
+        private void SetColorAndDepthAttachment(ref Command cmd, CameraClearFlags flags)
         {
             _colorAttachmentId = ShaderParams._CameraColorAttachmentId;
             _depthAttachmentId = ShaderParams._CameraDepthAttachmentId;
-            _bufferSizeId      = ShaderParams._CamerabufferSizeId;
-            _srcBlendId        = ShaderParams._CameraSrcBlendId;
-            _dstBlendId        = ShaderParams._CameraDstBlendId;
-            _sourceTextureId   = ShaderParams._SourceTextureId;
+            // _colorAttachmentId = new RenderTargetIdentifier(ShaderParams._CameraColorAttachmentId);
+            // _depthAttachmentId = new RenderTargetIdentifier(ShaderParams._CameraDepthAttachmentId);
+            _bufferSizeId    = ShaderParams._CamerabufferSizeId;
+            _srcBlendId      = ShaderParams._CameraSrcBlendId;
+            _dstBlendId      = ShaderParams._CameraDstBlendId;
+            _sourceTextureId = ShaderParams._SourceTextureId;
 
-
+            // var flags = _camera.clearFlags;
             // if (_isUseIntermediateBuffer)
             // {
-            //     if (flags > CameraClearFlags.Color)
-            //     {
-            //         flags = CameraClearFlags.Color;
-            //     }
-            //     
-            //     cmd.Cmd.GetTemporaryRT(
-            //         _colorAttachmentId, _size.x, _size.y,
-            //         0, FilterMode.Bilinear, _isUseHDR ?
-            //             RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default
-            //     );
-            //     cmd.Cmd.GetTemporaryRT(
-            //         _depthAttachmentId, _size.x, _size.y,
-            //         32, FilterMode.Point, RenderTextureFormat.Depth
-            //     );
-            //     cmd.Cmd.SetRenderTarget(
-            //         _colorAttachmentId,
-            //         RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store,
-            //         _depthAttachmentId,
-            //         RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store
-            //     );
+            //     if (flags > CameraClearFlags.Color) flags = CameraClearFlags.Color;
+
+                // cmd.GetTemporaryRT(
+                //     (int)_colorAttachmentId, _size.x, _size.y,
+                //     0, FilterMode.Bilinear, _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default
+                // );
+
+                // cmd.GetTemporaryRT(
+                //     (int)_depthAttachmentId, _size.x, _size.y,
+                //     32, FilterMode.Point, RenderTextureFormat.Depth
+                // );
+                // _colorAttachmentTex = RenderTexture.GetTemporary(_size.x, _size.y, 0,
+                //     _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
+                // _colorAttachmentTex.filterMode = FilterMode.Bilinear;
+                //
+                // _depthAttachmentTex = RenderTexture.GetTemporary(_size.x, _size.y, 32, RenderTextureFormat.Depth);
+                // _depthAttachmentTex.filterMode = FilterMode.Point;
+
+                // cmd.SetGlobalTexture(_colorAttachmentId, colorAttachmentTex);
+                // cmd.SetGlobalTexture(_depthAttachmentId, deptAttachmentTex);
+                //
+                // cmd.SetRenderTarget(
+                //     _colorAttachmentId,
+                //     RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store,
+                //     _depthAttachmentId,
+                //     RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store
+                // );
             // }
-            //
+
             // cmd.ClearRenderTarget(
             //     flags <= CameraClearFlags.Depth,
             //     flags <= CameraClearFlags.Color,

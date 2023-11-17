@@ -73,6 +73,7 @@
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\CmdManager.cs" />
      <Compile Include="Assets\Scenes\FrustumCulling\DrawCube.cs" />
      <Compile Include="Assets\Custom RP\Utility\HizDepth.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\PostProcessPass.Editor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\CameraRenderer.cs" />
      <Compile Include="Assets\Custom RP\Core\UnsafeCollections\Native.cs" />
      <Compile Include="Assets\Custom RP\Core\CameraTool.cs" />
