@@ -7,8 +7,6 @@ namespace CustomURP
     [CreateAssetMenu(menuName = "Custom URP/Pass/Geometry")]
     public sealed partial class GeometryPass : CoreAction
     {
-        // public const float renderScaleMin = 0.1f, renderScaleMax = 2f;
-
         private static ShaderTagId _customURPShaderTagId;
         private static ShaderTagId _litShaderTagId;
 

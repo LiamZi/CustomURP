@@ -130,6 +130,8 @@ public unsafe partial class CustomRenderPipelineAsset : RenderPipelineAsset
     public CustomPipeline.PipelineShaders _pipelineShaders = new CustomPipeline.PipelineShaders();
     public CoreAction[][] _actions { get; private set; }
 
+    public ClusterAction _clusterAction;
+
     public enum CameraRenderType
     {
         Forward

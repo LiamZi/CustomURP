@@ -1,6 +1,7 @@
 ﻿
 using System.Collections;
 using System.Collections.Generic;
+using CustomURP;
 using UnityEngine;
 using Unity.Collections;
 using UnityEngine.Rendering;
@@ -19,6 +20,13 @@ namespace CustomPipeline
         }
         public void Awake()
         {
+            int maxClusterCount = 0;
+            ClusterAction cluster = _asset._clusterAction;
+            if (Application.isPlaying && cluster)
+            {
+                //todo: init cluster
+            }
+            
             
         }
 
