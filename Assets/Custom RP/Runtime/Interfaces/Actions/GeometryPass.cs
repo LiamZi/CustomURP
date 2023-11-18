@@ -59,25 +59,6 @@ namespace CustomURP
             
             _cmd.EndSampler();
         }
-
-        private void Cleanup(CustomRenderPipelineCamera camera)
-        {
-            // lighting.Cleanup();
-            var rt = camera._renderTarget;
-            var useIntermediateBuffer = rt._isUseIntermediateBuffer;
-            var useColorTexture = rt._isUseColorTexture;
-            var useDepthTexture = rt._isUseDepthTexture;
-
-            if (useIntermediateBuffer)
-            {
-                CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorAttachmentId);
-                CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._depthAttachmentId);
-
-                if (useColorTexture) CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorTextureId);
-
-                if (useDepthTexture) CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._depthTextureId);
-            }
-        }
         
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
@@ -87,7 +68,7 @@ namespace CustomURP
         public override void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             base.EndRendering(camera, ref cmd);
-            Cleanup(camera);
+            //Cleanup(camera);
         }
 
         public override bool InspectProperty()

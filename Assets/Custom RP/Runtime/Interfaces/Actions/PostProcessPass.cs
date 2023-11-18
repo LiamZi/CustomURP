@@ -43,6 +43,8 @@ namespace CustomURP
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             base.BeginRendering(camera, ref cmd);
+            DrawGizmosBeforePostPass();
+
             if (_pass == null) return;
             var cameraSettings = camera.Setting;
             var useHDR         = _asset.CameraBuffer._allowHDR && camera._camera.allowHDR;
@@ -57,7 +59,7 @@ namespace CustomURP
             _pass.Setup(cmd.Context, camera._camera, bufferSize, settings,
                 cameraSettings._keepAlpha, useHDR, (int)_asset.ColorLUT, cameraSettings._finalBlendMode,
                 _asset.CameraBuffer._bicubicRescaling, _asset.CameraBuffer._fxaa);
-            DrawGizmosBeforePostPass();
+            
         }
 
         public override void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)

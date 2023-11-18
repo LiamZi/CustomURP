@@ -8,13 +8,13 @@ namespace CustomURP
     public sealed class RenderTarget
     {
         private readonly Texture2D _lostTexture;
-        public           Color     _backgroundColor   = Color.clear;
-        public           int       _bufferSizeId      = -1;
-        public           int       _colorAttachmentId = -1;
-        public           int       _colorTextureId    = -1;
-        public           int       _depthAttachmentId = -1;
-        public           int       _depthTextureId    = -1;
-        public           int       _dstBlendId        = -1;
+        public Color _backgroundColor = Color.clear;
+        public int _bufferSizeId = -1;
+        public int _colorAttachmentId = -1;
+        public int _colorTextureId = -1;
+        public int _depthAttachmentId = -1;
+        public int _depthTextureId = -1;
+        public int _dstBlendId = -1;
 
         public bool _initialized;
         public bool _isUseColorTexture;
@@ -22,25 +22,25 @@ namespace CustomURP
         public bool _isUseHDR;
         public bool _isUseIntermediateBuffer;
         public bool _isUseScaledRendering;
-        public int2 _size            = int2.zero;
-        public int  _sourceTextureId = 1;
+        public int2 _size = int2.zero;
+        public int _sourceTextureId = 1;
 
-        public int           _srcBlendId = -1;
+        public int _srcBlendId = -1;
         public RenderTexture _colorAttachmentTex;
         public RenderTexture _depthAttachmentTex;
 
 
-        public RenderTarget(ref Command cmd,         CameraType type, CameraSettings cameraSettings,
-            float                       renderScale, int2       pixelSize,
-            CameraClearFlags            flags,       bool       useHDR, Color backgroundColor)
+        public RenderTarget(ref Command cmd, CameraType type, CameraSettings cameraSettings,
+            float renderScale, int2 pixelSize,
+            CameraClearFlags flags, bool useHDR, Color backgroundColor)
         {
             _isUseScaledRendering = renderScale < 0.99f || renderScale > 1.01f;
-            _isUseHDR             = useHDR;
-            _backgroundColor      = backgroundColor;
+            _isUseHDR = useHDR;
+            _backgroundColor = backgroundColor;
             _lostTexture = new Texture2D(1, 1)
             {
                 hideFlags = HideFlags.HideAndDontSave,
-                name      = "Lost"
+                name = "Lost"
             };
             _lostTexture.SetPixel(0, 0, Color.white * 0.5f);
             _lostTexture.Apply(true, true);
@@ -115,8 +115,8 @@ namespace CustomURP
             if (_isUseScaledRendering)
             {
                 renderScale = Mathf.Clamp(renderScale, 0.1f, 2f);
-                _size.x     = (int)(pixelSize.x * renderScale);
-                _size.y     = (int)(pixelSize.y * renderScale);
+                _size.x = (int)(pixelSize.x * renderScale);
+                _size.y = (int)(pixelSize.y * renderScale);
             }
             else
             {
@@ -131,9 +131,9 @@ namespace CustomURP
             _depthAttachmentId = ShaderParams._CameraDepthAttachmentId;
             // _colorAttachmentId = new RenderTargetIdentifier(ShaderParams._CameraColorAttachmentId);
             // _depthAttachmentId = new RenderTargetIdentifier(ShaderParams._CameraDepthAttachmentId);
-            _bufferSizeId    = ShaderParams._CamerabufferSizeId;
-            _srcBlendId      = ShaderParams._CameraSrcBlendId;
-            _dstBlendId      = ShaderParams._CameraDstBlendId;
+            _bufferSizeId = ShaderParams._CamerabufferSizeId;
+            _srcBlendId = ShaderParams._CameraSrcBlendId;
+            _dstBlendId = ShaderParams._CameraDstBlendId;
             _sourceTextureId = ShaderParams._SourceTextureId;
 
             // var flags = _camera.clearFlags;
@@ -141,31 +141,31 @@ namespace CustomURP
             // {
             //     if (flags > CameraClearFlags.Color) flags = CameraClearFlags.Color;
 
-                // cmd.GetTemporaryRT(
-                //     (int)_colorAttachmentId, _size.x, _size.y,
-                //     0, FilterMode.Bilinear, _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default
-                // );
+            // cmd.GetTemporaryRT(
+            //     (int)_colorAttachmentId, _size.x, _size.y,
+            //     0, FilterMode.Bilinear, _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default
+            // );
 
-                // cmd.GetTemporaryRT(
-                //     (int)_depthAttachmentId, _size.x, _size.y,
-                //     32, FilterMode.Point, RenderTextureFormat.Depth
-                // );
-                // _colorAttachmentTex = RenderTexture.GetTemporary(_size.x, _size.y, 0,
-                //     _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
-                // _colorAttachmentTex.filterMode = FilterMode.Bilinear;
-                //
-                // _depthAttachmentTex = RenderTexture.GetTemporary(_size.x, _size.y, 32, RenderTextureFormat.Depth);
-                // _depthAttachmentTex.filterMode = FilterMode.Point;
+            // cmd.GetTemporaryRT(
+            //     (int)_depthAttachmentId, _size.x, _size.y,
+            //     32, FilterMode.Point, RenderTextureFormat.Depth
+            // );
+            // _colorAttachmentTex = RenderTexture.GetTemporary(_size.x, _size.y, 0,
+            //     _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
+            // _colorAttachmentTex.filterMode = FilterMode.Bilinear;
+            //
+            // _depthAttachmentTex = RenderTexture.GetTemporary(_size.x, _size.y, 32, RenderTextureFormat.Depth);
+            // _depthAttachmentTex.filterMode = FilterMode.Point;
 
-                // cmd.SetGlobalTexture(_colorAttachmentId, colorAttachmentTex);
-                // cmd.SetGlobalTexture(_depthAttachmentId, deptAttachmentTex);
-                //
-                // cmd.SetRenderTarget(
-                //     _colorAttachmentId,
-                //     RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store,
-                //     _depthAttachmentId,
-                //     RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store
-                // );
+            // cmd.SetGlobalTexture(_colorAttachmentId, colorAttachmentTex);
+            // cmd.SetGlobalTexture(_depthAttachmentId, deptAttachmentTex);
+            //
+            // cmd.SetRenderTarget(
+            //     _colorAttachmentId,
+            //     RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store,
+            //     _depthAttachmentId,
+            //     RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store
+            // );
             // }
 
             // cmd.ClearRenderTarget(
@@ -181,8 +181,7 @@ namespace CustomURP
             // cmd.Execute();
         }
 
-        private void Draw(ref Command cmd, RenderTargetIdentifier from, RenderTargetIdentifier to, Material material,
-            bool                      isDepth = false)
+        public void Draw(ref Command cmd, RenderTargetIdentifier from, RenderTargetIdentifier to, Material material, bool isDepth = false)
         {
             cmd.SetGlobalTexture(ShaderParams._SourceTextureId, from);
             cmd.SetRenderTarget(to, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);

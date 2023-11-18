@@ -110,8 +110,6 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
         GraphicsSettings.useScriptableRenderPipelineBatching = useSRPBatcher;
         GraphicsSettings.lightsUseLinearIntensity            = true;
-        // _renderer = new CameraRenderer(isEnabledDynamicBatch, isEnabledInstancing);
-        // _renderer = new CameraRenderer(cameraRendererShader);
 
         InitializeForEditor();
     }
@@ -123,7 +121,6 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     public static void DelayReleaseRTAfterFrame(int renderTarget)
     {
         UnsafeList.Add(_delayReleaseRenderTarget, renderTarget);
-        //_delayReleaseRenderTarget.Add(renderTarget);
     }
 
     public CoreAction GetAction(Type type)
@@ -147,19 +144,16 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
     private void BeginFrameRendering(ScriptableRenderContext context, Camera[] cameras)
     {
-        // Debug.Log("BeginFrameRendering");
         _renderCamera.Clear();
         CustomRenderPipelineCamera.Initialized();
     }
 
     private void BeginCameraRendering(ScriptableRenderContext context, Camera camera)
     {
-        // Debug.Log("BeginCameraRendering");
     }
 
     private void EndCameraRendering(ScriptableRenderContext context, Camera camera)
     {
-        // Debug.Log("EndCameraRendering");
     }
 
     private void EndFrameRendering(ScriptableRenderContext context, Camera[] cameras)
@@ -276,17 +270,13 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         }
 #endif
 
-        // foreach (var i in collect)
-        for (var i = 0; i < 3; ++i)
-        {
-            var a = collect[i];
-            a.BeginRendering(camera, ref _cmd);
-            a.Tick(camera, ref _cmd);
-            a.EndRendering(camera, ref _cmd);
-        }
+         foreach (var i in collect)
+         {
+            i.BeginRendering(camera, ref _cmd);
+            i.Tick(camera, ref _cmd);
+            i.EndRendering(camera, ref _cmd);
+         }
 
-        // _renderer.Render(context, camera._camera, _cameraBufferSettings, _useDynamicBatching, _useGPUInstanceing,
-        // _useLightsPerObject, _shadowSettings, _postFXSettings, _colorLUTResolution);
         camera.AfterCameraRendering();
     }
 

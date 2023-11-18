@@ -40,37 +40,28 @@ namespace CustomURP
         public override void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             base.EndRendering(camera, ref cmd);
+            Cleanup(camera);
         }
-        
-        void Cleanup()
+
+        private void Cleanup(CustomRenderPipelineCamera camera)
         {
-            // _lightingPass.Clearup();
-            // if(postPass.IsActive)
-            if(_isUseIntermediateBuffer)
+            // lighting.Cleanup();
+            var rt = camera._renderTarget;
+            var useIntermediateBuffer = rt._isUseIntermediateBuffer;
+            var useColorTexture = rt._isUseColorTexture;
+            var useDepthTexture = rt._isUseDepthTexture;
+
+            if (useIntermediateBuffer)
             {
-                // _cmd.Name = "Geometry Pass End";
-                
-                // CustomRenderPipeline.DelayReleaseRTAfterFrame(_colorAttachmentId);
-                // CustomRenderPipeline.DelayReleaseRTAfterFrame(_depthAttachmentId);
-                
-                if(_isUseColorTexture)
-                {
-                    // _cmd.Cmd.ReleaseTemporaryRT(_colorTextureId);
-                    // CustomRenderPipeline.DelayReleaseRTAfterFrame(_colorTextureId);
-                }
+                CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorAttachmentId);
+                CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._depthAttachmentId);
 
-                if(_isUseDepthTexture)
-                {
-                    // _cmd.Cmd.ReleaseTemporaryRT(_depthTextureId);
-                    // CustomRenderPipeline.DelayReleaseRTAfterFrame(_depthTextureId);
+                if (useColorTexture) CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorTextureId);
 
-                }
-                
-                // _cmd.Execute(_context);
-                // _cmd.Execute();
+                if (useDepthTexture) CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._depthTextureId);
             }
         }
-        
+
         void DrawFinal(CameraSettings.FinalBlendMode finalBlendMode)
         {
             // _cmd.Name = "Geometry Pass present";
