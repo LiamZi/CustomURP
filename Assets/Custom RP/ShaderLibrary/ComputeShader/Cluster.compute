@@ -1,0 +1,43 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel ClusterGridBuild
+
+#pragma exclude_renderers d3d9
+#pragma exclude_renderers d3d11_9x
+
+#include "../ClusterData.hlsl"
+
+float zNear;
+float zFar;
+
+
+[numthreads(CLUSTER_GRID_BUILD_NUMTHREADS_X, CLUSTER_GRID_BUILD_NUMTHREADS_Y, CLUSTER_GRID_BUILD_NUMTHREADS_Z)]
+void ClusterGridBuild (uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+
+    // Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+
+    const float3 eyePos = float3(0.0);
+
+    uint tileIndex = id.x + id.y * CLUSTER_GRID_BUILD_NUMTHREADS_X + id.z * (CLUSTER_GRID_BUILD_NUMTHREADS_X * CLUSTER_GRID_BUILD_NUMTHREADS_Y);
+    ScreenToView stv = _screenToView[tileIndex];
+    float4 maxPoint_SS = float4(float2(id.x + 1, id.y + 1) / stv.tileSizePx, -1.0, 1.0);
+    float4 minPoint_SS = float4(id.xy / stv.tileSizePx, -1.0, 1.0);
+
+    float3 maxPoint_VS = screen2View(maxPoint_SS).xyz;
+    float3 minPoint_VS = screen2View(minPoint_SS).xyz;
+
+    float tileNear = -zNear * pow(zFar / zNear, id.z / float(CLUSTER_GRID_BUILD_NUMTHREADS_Z));
+    float tileFar = -zNear * pow(zFar / zNear, (id.z + 1) / float(CLUSTER_GRID_BUILD_NUMTHREADS_Z));
+
+    float3 minPointNear = lineIntersectionToZPlane(eyePos, minPoint_VS, tileNear);
+    float3 minPointFar = lineIntersectionToZPlane(eyePos, minPoint_VS, tileFar);
+    float3 maxPointNear = lineIntersectionToZPlane(eyePos, maxPoint_VS, tileNear);
+    float3 maxPointFar = lineIntersectionToZPlane(eyePos, maxPoint_VS, tileFar);
+    
+    float3 minPointAABB = min(min(minPointNear, minPointFar), min(maxPointNear, maxPointFar));
+    float3 maxPointAABB = max(max(minPointNear, minPointFar), max(maxPointNear, maxPointFar));
+
+    _clusterAABB[tileIndex].minPoint = float4(minPointAABB, 0.0);
+    _clusterAABB[tileIndex].maxPoint = flaot4(maxPointAABB, 0.0);
+}

@@ -5,13 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterAction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterAction.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ClusterData.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ClusterData.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/Cluster.compute" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/Cluster.compute.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/GpuCulling/GpuCulling.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/GpuCulling/GpuCulling/LightingData.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/GpuCulling/GpuCulling/LightingData.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/GpuCulling/GpuCulling/ReflectionProbe-0.exr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/GpuCulling/GpuCulling/ReflectionProbe-0.exr.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterAction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/LightingData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/LightingData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/Lightmap-0_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/Lightmap-0_comp_light.exr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/Lightmap-0_comp_light.exr.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/Lightmap-0_comp_light.exr.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/Lightmap-0_comp_shadowmask.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/Lightmap-0_comp_shadowmask.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-0.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-0.exr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-0.exr.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-0.exr.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-1.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-1.exr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-1.exr.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-1.exr.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-2.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-2.exr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-2.exr.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-2.exr.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-3.exr.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/ReflectionProbe-3.exr.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +119,7 @@
     <setting file="file://$PROJECT_DIR$/../../Github/Unity-MPipeline-Framework/Assets/Scripts/MPipeline Core/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Github/Unity_Indirect-Rendering-With-Compute-Shaders/Assets/Scripts/Example.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/D3D11.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/GLES3.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/Common.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/CommonDeprecated.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/Packing.hlsl" root0="SKIP_HIGHLIGHTING" />
@@ -256,7 +275,9 @@
       <workItem from="1700016442716" duration="405000" />
       <workItem from="1700017093416" duration="29261000" />
       <workItem from="1700120775060" duration="25455000" />
-      <workItem from="1700207223848" duration="4716000" />
+      <workItem from="1700207223848" duration="7224000" />
+      <workItem from="1700447777210" duration="1317000" />
+      <workItem from="1700642566411" duration="12745000" />
     </task>
     <servers />
   </component>

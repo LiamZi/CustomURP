@@ -112,6 +112,7 @@
      <Folder Include="Assets\Scenes\MultipleCameraScene" />
      <None Include="Assets\Custom RP\Shaders\CameraRenderer.shader" />
      <None Include="Library\PackageCache\com.unity.modules.jsonserialize@1.0.0\package.json" />
+     <Folder Include="Assets\Scenes\GpuCulling\GpuCulling" />
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization" />
      <Folder Include="Library\PackageCache\com.unity.test-framework@1.1.33" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\i3.es.txt" />
@@ -257,6 +258,7 @@
      <None Include="Library\PackageCache\com.unity.modules.physics2d@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\guihelp.en.txt" />
      <None Include="Library\PackageCache\com.unity.modules.vr@1.0.0\package.json" />
+     <None Include="Assets\Custom RP\ShaderLibrary\ClusterData.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\ShadowCaster.hlsl" />
      <Folder Include="Library\PackageCache\com.unity.modules.uielements@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\i3.zh-Hant.txt" />
@@ -319,6 +321,7 @@
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.core@10.10.1" />
      <None Include="Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0\package.json" />
      <Folder Include="Library\PackageCache\com.unity.searcher@4.3.2\Tests" />
+     <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\Cluster.compute" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\semantic.en.txt" />
      <Folder Include="Assets\Custom RP\Logic" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\binmergetool.en.txt" />

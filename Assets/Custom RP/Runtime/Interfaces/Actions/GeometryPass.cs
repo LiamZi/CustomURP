@@ -17,6 +17,8 @@ namespace CustomURP
 
         private int2 _rtSize;
         private Texture2D missingTexture;
+        public const bool _useHiz = true;
+        
 
         protected internal override void Initialization(CustomRenderPipelineAsset asset)
         {
