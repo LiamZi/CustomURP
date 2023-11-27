@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329cfaeca1f449b0b0bdd573a51ddb4b, type: 3}
-  m_Name: Test Cluster Action
+  m_Script: {fileID: 11500000, guid: 6836c329786e4ea68ae79fa2079e5389, type: 3}
+  m_Name: ClusterShadingSettings
   m_EditorClassIdentifier: 
-  _isEnabled: 1
-  _maxClusterCount: 10000
-  _maxMaterialCount: 0
-  _materialPoolSize: 0
-  _clusterShading: {fileID: 7200000, guid: 6b73e3f1aaefb03438a8b870cedc1c9b, type: 3}
+  _clusterAction: {fileID: 11400000, guid: 3577d5cbc6c025a42b3b98fb96ade1ce, type: 2}

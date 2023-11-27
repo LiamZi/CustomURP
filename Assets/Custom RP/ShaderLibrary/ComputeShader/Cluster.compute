@@ -4,19 +4,13 @@
 #pragma exclude_renderers d3d9
 #pragma exclude_renderers d3d11_9x
 
-#include "../ClusterData.hlsl"
-
-float zNear;
-float zFar;
+#include "ClusterData.hlsl"
 
 
 [numthreads(CLUSTER_GRID_BUILD_NUMTHREADS_X, CLUSTER_GRID_BUILD_NUMTHREADS_Y, CLUSTER_GRID_BUILD_NUMTHREADS_Z)]
-void ClusterGridBuild (uint3 id : SV_DispatchThreadID)
+void ClusterGridBuild (CSInput input)
 {
-    // TODO: insert actual code here!
-
-    // Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
-
+    
     const float3 eyePos = float3(0.0);
 
     uint tileIndex = id.x + id.y * CLUSTER_GRID_BUILD_NUMTHREADS_X + id.z * (CLUSTER_GRID_BUILD_NUMTHREADS_X * CLUSTER_GRID_BUILD_NUMTHREADS_Y);
@@ -38,6 +32,38 @@ void ClusterGridBuild (uint3 id : SV_DispatchThreadID)
     float3 minPointAABB = min(min(minPointNear, minPointFar), min(maxPointNear, maxPointFar));
     float3 maxPointAABB = max(max(minPointNear, minPointFar), max(maxPointNear, maxPointFar));
 
-    _clusterAABB[tileIndex].minPoint = float4(minPointAABB, 0.0);
-    _clusterAABB[tileIndex].maxPoint = flaot4(maxPointAABB, 0.0);
+    _cluster_Grid_RW[tileIndex].minPoint = float4(minPointAABB, 0.0);
+    _cluster_Grid_RW[tileIndex].maxPoint = flaot4(maxPointAABB, 0.0);
+}
+
+
+
+[numthreads(CLUSTER_GRID_BUILD_NUMTHREADS_X, CLUSTER_GRID_BUILD_NUMTHREADS_Y, CLUSTER_GRID_BUILD_NUMTHREADS_Z)]
+void GridLightBuild(CSInput input)
+{
+    uint gridIndex = GridPos2GridIndex(input.dispatchThreadID);
+    uint visibleLightCount = 0;
+    uint visibleLightIndices[CLUSTER_MAX_LIGHTS_COUNT];
+
+    UNITY_LOOP
+    for(uint i = 0; i < _clusterLightCount; i++)
+    {
+        if(LightGridIntersection(i, gridIndex))
+        {
+            visibleLightIndices[visibleLightCount] = i;
+            visibleLightCount++;
+        }
+    }
+
+    GroupMemoryBarrierWithGroupSync();
+    uint offset;
+    InterlockedAdd(lightIndexOffset, visibleLightCount, offset);
+
+    UNITY_LOOP
+    for(uint index = 0; index < visibleLightCount; index++)
+    {
+        _cluster_LightIndex_RW[offset + index] = visibleLightIndices[index];
+    }
+
+    _cluster_GridIndex_RW[gridIndex] = enco
 }

@@ -101,6 +101,7 @@
      <Compile Include="Assets\Custom RP\Runtime\PostFXSettings.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\CombinePass.cs" />
      <Compile Include="Assets\Scenes\FrustumCulling\CullTool.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\ClusterShadingSettings.cs" />
      <Compile Include="Assets\Scenes\InstanceColor.cs" />
      <Compile Include="Assets\Custom RP\Runtime\Interfaces\Components.cs" />
      <Folder Include="Assets" />
@@ -130,6 +131,7 @@
      <None Include="Library\PackageCache\com.unity.modules.ai@1.0.0\package.json" />
      <None Include="Assets\Custom RP\ShaderLibrary\HizDepthGenerator.hlsl" />
      <Folder Include="Library\PackageCache\com.unity.modules.animation@1.0.0" />
+     <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\ClusterStruct.hlsl" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\basecommands.en.txt" />
      <None Include="Library\PackageCache\com.unity.ugui@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\xdiff.ko.txt" />
@@ -230,6 +232,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\workspaceserver.ko.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\images.en.txt" />
      <Folder Include="Library\PackageCache\com.unity.shadergraph@10.10.1\Tests" />
+     <None Include="Assets\Custom RP\ShaderLibrary\ComputeShader\ClusterData.hlsl" />
      <None Include="Library\PackageCache\com.unity.test-framework@1.1.33\package.json" />
      <None Include="Library\PackageCache\com.unity.timeline@1.4.8\ValidationExceptions.json" />
      <Folder Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0" />
@@ -258,7 +261,6 @@
      <None Include="Library\PackageCache\com.unity.modules.physics2d@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\guihelp.en.txt" />
      <None Include="Library\PackageCache\com.unity.modules.vr@1.0.0\package.json" />
-     <None Include="Assets\Custom RP\ShaderLibrary\ClusterData.hlsl" />
      <None Include="Assets\Custom RP\ShaderLibrary\ShadowCaster.hlsl" />
      <Folder Include="Library\PackageCache\com.unity.modules.uielements@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\i3.zh-Hant.txt" />

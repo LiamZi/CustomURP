@@ -10,6 +10,6 @@ namespace CustomPipeline
         public ComputeShader _gpuFrustumCulling;
         public ComputeShader _streamingShader;
         public ComputeShader HizLodShader;
-        public Shader _ClusterRenderShader;
+        public ComputeShader _ClusterRenderShader;
     };
 };

@@ -21,10 +21,11 @@ namespace CustomPipeline
         public void Awake()
         {
             int maxClusterCount = 0;
-            ClusterAction cluster = _asset._clusterAction;
+            ClusterAction cluster = _asset.ClusterShading._clusterAction;
             if (Application.isPlaying && cluster)
             {
                 //todo: init cluster
+                cluster.Initialization(_asset);
             }
             
             

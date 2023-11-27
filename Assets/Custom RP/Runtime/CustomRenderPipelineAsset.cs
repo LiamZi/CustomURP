@@ -127,10 +127,16 @@ public unsafe partial class CustomRenderPipelineAsset : RenderPipelineAsset
 
     public LoadingThread _loadingThread;
 
-    public CustomPipeline.PipelineShaders _pipelineShaders = new CustomPipeline.PipelineShaders();
+    public CustomPipeline.PipelineShaders _pipelineShaders = default;
     public CoreAction[][] _actions { get; private set; }
 
-    public ClusterAction _clusterAction;
+    [SerializeField]
+    ClusterShadingSettings _clusterShadingSettings = default;
+
+    public ClusterShadingSettings ClusterShading
+    {
+        get => _clusterShadingSettings;
+    }
 
     public enum CameraRenderType
     {
