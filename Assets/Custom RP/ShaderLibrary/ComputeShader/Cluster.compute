@@ -1,5 +1,9 @@
 // Each #kernel tells which function to compile; you can have many kernels
+#ifndef __SHADER_LIBRARY_COMPUTE_SHADER_CLUSTER_COMPUTE__
+#define __SHADER_LIBRARY_COMPUTE_SHADER_CLUSTER_COMPUTE__
+
 #pragma kernel ClusterGridBuild
+#pragma kernel GridLightBuild
 
 #pragma exclude_renderers d3d9
 #pragma exclude_renderers d3d11_9x
@@ -67,3 +71,5 @@ void GridLightBuild(CSInput input)
 
     _cluster_GridIndex_RW[gridIndex] = enco
 }
+
+#endif

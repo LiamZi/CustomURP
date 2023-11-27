@@ -37,7 +37,7 @@ float GridPos2GridIndex(uint3 pos)
 
 float PosSS2GridIndex(float3 posNDC)
 {
-    float zView = UNITY_MATRIX_P._m23 / (UNITY_MATRIX_P.m32 * posNDC.z - UNITY_MATRIX_P.m22);
+    float zView = UNITY_MATRIX_P._m23 / (UNITY_MATRIX_P._32 * posNDC.z - UNITY_MATRIX_P._m22);
     uint zTile = uint(max(log(-zView) * _cluster_Data.z + _cluster_Data.w , 0.0));
     uint2 xyTiles = uint2(posNDC.xy * _cluster_Data.xy);
 

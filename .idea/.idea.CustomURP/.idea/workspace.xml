@@ -5,25 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/ClusterShadingSettings.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/ClusterShadingSettings.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterShadingSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterShadingSettings.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterData.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterData.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ClusterData.hlsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ClusterData.hlsl.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/Cluster.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/Cluster.compute" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/PipelineShaders.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/PipelineShaders.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Test Cluster Action.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Test Cluster Action.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterData.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterData.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/FrustumCulling.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/FrustumCulling.compute" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,7 +258,7 @@
       <workItem from="1700447777210" duration="1317000" />
       <workItem from="1700642566411" duration="12745000" />
       <workItem from="1701052753790" duration="664000" />
-      <workItem from="1701054261943" duration="15706000" />
+      <workItem from="1701054261943" duration="16408000" />
     </task>
     <servers />
   </component>

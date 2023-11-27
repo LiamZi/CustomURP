@@ -1,4 +1,6 @@
 // Each #kernel tells which function to compile; you can have many kernels
+#ifndef __SHADER_LIBRARY_COMPUTE_SHADER_FRUSTUM_CULLING_COMPUTE
+#define __SHADER_LIBRARY_COMPUTE_SHADER_FRUSTUM_CULLING_COMPUTE
 #pragma kernel CSMain
 
 // Create a RenderTexture with enableRandomWrite flag and set it
@@ -52,3 +54,5 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 
     _cullResult.Append(data);
 }
+
+#endif
