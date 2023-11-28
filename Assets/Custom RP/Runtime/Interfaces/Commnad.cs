@@ -6,17 +6,20 @@ namespace CustomURP
     public class Command
     {
         private ScriptableRenderContext _context;
-        private string                  _name;
+        private string _name;
 
         public Command(string name)
         {
             _name = name;
-            Cmd   = new CommandBuffer { name = _name };
+            Cmd = new CommandBuffer
+            {
+                name = _name
+            };
         }
 
         public Command(CommandBuffer buffer, string name)
         {
-            Cmd   = buffer;
+            Cmd = buffer;
             _name = name;
         }
 
@@ -25,7 +28,7 @@ namespace CustomURP
             get => _name;
             set
             {
-                _name    = value;
+                _name = value;
                 Cmd.name = value;
             }
         }
@@ -80,7 +83,7 @@ namespace CustomURP
         }
 
         public void DrawRenderers(CullingResults cullingResults, ref DrawingSettings drawingSettings,
-            ref FilteringSettings                filteringSettings)
+            ref FilteringSettings filteringSettings)
         {
             _context.DrawRenderers(cullingResults, ref drawingSettings, ref filteringSettings);
         }
@@ -91,11 +94,11 @@ namespace CustomURP
         }
 
         public void GetTemporaryRT(
-            int                 nameID,
-            int                 width,
-            int                 height,
-            int                 depthBuffer,
-            FilterMode          filter,
+            int nameID,
+            int width,
+            int height,
+            int depthBuffer,
+            FilterMode filter,
             RenderTextureFormat format)
         {
             Cmd.GetTemporaryRT(nameID, width, height, depthBuffer, filter, format);
@@ -107,19 +110,19 @@ namespace CustomURP
         }
 
         public void SetRenderTarget(
-            RenderTargetIdentifier  color,
-            RenderBufferLoadAction  colorLoadAction,
+            RenderTargetIdentifier color,
+            RenderBufferLoadAction colorLoadAction,
             RenderBufferStoreAction colorStoreAction,
-            RenderTargetIdentifier  depth,
-            RenderBufferLoadAction  depthLoadAction,
+            RenderTargetIdentifier depth,
+            RenderBufferLoadAction depthLoadAction,
             RenderBufferStoreAction depthStoreAction)
         {
             Cmd.SetRenderTarget(color, colorLoadAction, colorStoreAction, depth, depthLoadAction, depthStoreAction);
         }
 
         public void SetRenderTarget(
-            RenderTargetIdentifier  rt,
-            RenderBufferLoadAction  loadAction,
+            RenderTargetIdentifier rt,
+            RenderBufferLoadAction loadAction,
             RenderBufferStoreAction storeAction)
         {
             Cmd.SetRenderTarget(rt, loadAction, storeAction);
@@ -171,34 +174,34 @@ namespace CustomURP
         }
 
         public void DrawProcedural(
-            Matrix4x4             matrix,
-            Material              material,
-            int                   shaderPass,
-            MeshTopology          topology,
-            int                   vertexCount,
-            int                   instanceCount,
+            Matrix4x4 matrix,
+            Material material,
+            int shaderPass,
+            MeshTopology topology,
+            int vertexCount,
+            int instanceCount,
             MaterialPropertyBlock properties)
         {
             Cmd.DrawProcedural(matrix, material, shaderPass, topology, vertexCount, instanceCount, properties);
         }
 
         public void DrawProcedural(
-            Matrix4x4    matrix,
-            Material     material,
-            int          shaderPass,
+            Matrix4x4 matrix,
+            Material material,
+            int shaderPass,
             MeshTopology topology,
-            int          vertexCount,
-            int          instanceCount)
+            int vertexCount,
+            int instanceCount)
         {
             Cmd.DrawProcedural(matrix, material, shaderPass, topology, vertexCount, instanceCount);
         }
 
         public void DrawProcedural(
-            Matrix4x4    matrix,
-            Material     material,
-            int          shaderPass,
+            Matrix4x4 matrix,
+            Material material,
+            int shaderPass,
             MeshTopology topology,
-            int          vertexCount)
+            int vertexCount)
         {
             Cmd.DrawProcedural(matrix, material, shaderPass, topology, vertexCount);
         }
@@ -212,5 +215,27 @@ namespace CustomURP
         {
             Cmd.ClearRenderTarget(clearDepth, clearColor, backgroundColor);
         }
-    }
+
+        public void SetComputeVectorParam(ComputeShader computeShader, int nameID, Vector4 val)
+        {
+            Cmd.SetComputeVectorParam(computeShader, nameID, val);
+        }
+
+        public void SetComputeFloatParam(ComputeShader computeShader, int nameID, float val)
+        {
+            Cmd.SetComputeFloatParam(computeShader, nameID, val);
+        }
+
+        public void SetComputeBufferParam(ComputeShader computeShader, int kernelIndex,
+                                                int nameID, ComputeBuffer buffer)
+        {
+            Cmd.SetComputeBufferParam(computeShader, kernelIndex, nameID, buffer);
+        }
+
+        public void DispatchCompute(ComputeShader computeShader, int kernelIndex,
+                                    int threadGroupsX, int threadGroupsY, int threadGroupsZ)
+        {
+            Cmd.DispatchCompute(computeShader, kernelIndex, threadGroupsX, threadGroupsY, threadGroupsZ);
+        }
+    };
 }

@@ -59,6 +59,17 @@ namespace CustomURP
         public static readonly int _CameraSrcBlendId = Shader.PropertyToID("_CameraSrcBlend");
         public static readonly int _CameraDstBlendId = Shader.PropertyToID("_CameraDstBlend");
         public static readonly int _CamerabufferSizeId = Shader.PropertyToID("_CameraBufferSize");
+
+        public static readonly int _clusterZFarId = Shader.PropertyToID("_cluster_zFar");
+        public static readonly int _clusterZNearId = Shader.PropertyToID("_cluster_zNear");
+        public static readonly int _clusterDataId = Shader.PropertyToID("_cluster_Data");
+        public static readonly int _clusterLightListId = Shader.PropertyToID("_screenToView");
+        public static readonly int _clusterLightCountId = Shader.PropertyToID("_clusterLightCount");
+        public static readonly int _clusterGridRWId = Shader.PropertyToID("_cluster_Grid_RW");
+        public static readonly int _clusterLightIndexRWId = Shader.PropertyToID("_cluster_LightIndex_RW");
+        public static readonly int _clusterLightIndexId = Shader.PropertyToID("_cluster_LightIndex");
+        public static readonly int _clusterGrirdLightRWId = Shader.PropertyToID("_cluster_GridIndex_RW");
+        public static readonly int _clusterGridLightId = Shader.PropertyToID("_cluster_GridIndex");
         
         public static ShaderTagId[] _LegacyShaderTagIdsagId =
         {

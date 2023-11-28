@@ -42,8 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Custom RP\Utility\UnsafeUtility.cs" />
-     <Compile Include="Assets\Custom RP\Runtime\ClusterAction.cs" />
      <Compile Include="Assets\Custom RP\Core\UnsafeCollections\UnsafeBuffer.cs" />
+     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\ClusterAction.cs" />
      <Compile Include="Assets\Scenes\GpuCulling\TreeGenerator.cs" />
      <Compile Include="Assets\Custom RP\Runtime\PostPass.cs" />
      <Compile Include="Assets\Scenes\MeshBall.cs" />
