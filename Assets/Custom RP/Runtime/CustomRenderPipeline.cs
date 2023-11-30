@@ -60,8 +60,9 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
         if (_asset._loadingThread == null) _asset._loadingThread = LoadingThread.Singleton();
 
-        _scene = new Scene(_asset);
+        if(_scene == null) _scene = new Scene(_asset);
         _scene.Awake();
+        // Scene.Awake();
 
         if (_actions == null) _actions = UnsafeHashMap.Allocate<ulong, int>(_asset._availiableActions.Length);
 
@@ -312,5 +313,10 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         RenderPipelineManager.beginCameraRendering -= BeginCameraRendering;
         RenderPipelineManager.endCameraRendering   -= EndCameraRendering;
         RenderPipelineManager.endFrameRendering    -= EndFrameRendering;
+    }
+
+    public Scene SceneController
+    {
+        get => _scene;
     }
 }

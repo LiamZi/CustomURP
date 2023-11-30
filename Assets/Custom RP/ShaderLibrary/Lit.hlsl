@@ -113,7 +113,6 @@ float4 frag(VertexOutput input) : SV_TARGET
 #if defined(_NORMAL_MAP)
     // surface.normal = NormalTangentToWorld(GetNormalTS(input.baseUV, input.detailUV), input.normalWS, input.tangentWS);
     surface.normal = NormalTangentToWorld(GetNormalTS(config), input.normalWS, input.tangentWS);
-    objectto
 
     surface.interpolatedNormal = input.normalWS;
 #else

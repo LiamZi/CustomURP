@@ -14,6 +14,7 @@ namespace CustomPipeline
         private int _clusterCount = 0;
         
         public bool _gpuDriven { get; private set; } = false;
+        ClusterAction _cluster = null;
         public Scene(CustomRenderPipelineAsset asset)
         {
             _asset = asset;
@@ -21,13 +22,33 @@ namespace CustomPipeline
         public void Awake()
         {
             int maxClusterCount = 0;
-            ClusterAction cluster = _asset.ClusterShading._clusterAction;
-            if (Application.isPlaying && cluster)
+            _cluster = _asset.ClusterShading._clusterAction;
+            if (Application.isPlaying && _cluster != null)
             {
                 //todo: init cluster
-                cluster.Initialization(_asset);
+                _cluster.Initialization(_asset);
             }
-            
+        }
+
+        public void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
+        {
+            if (Application.isPlaying && _cluster != null)
+            {
+                _cluster.BeginRendering(camera, ref cmd);
+            }
+        }
+
+
+        public void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
+        {
+            if (Application.isPlaying && _cluster != null && _cluster._isInited)
+            {
+                _cluster.DebugCluster(camera._camera);
+            }
+        }
+
+        public void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
+        {
             
         }
 

@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterAction.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/ClusterAction.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/Cluster.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/Cluster.compute" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterData.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterData.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Lit.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Lit.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Test Cluster Action.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Test Cluster Action.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +82,10 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/87/8ebf775d/NativeArrayOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/92/34db50fd/RenderTextureFormat.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/95/17e1bb5b/BuiltinRenderTextureType.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/9a/faa77c6f/GL.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/9b/b40cd208/FilterMode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/a0/479abe14/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/ac/6ea0948e/Debug.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/ad/54b9327c/CameraClearFlags.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b7/783405d9/RenderPipelineManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b8/05635dbe/Profiler.cs" root0="SKIP_HIGHLIGHTING" />
@@ -195,7 +198,7 @@
     </configuration>
     <configuration name="附加到 Unity 编辑器" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
-      <option name="listenPortForConnections" value="false" />
+      <option name="listenPortForConnections" value="true" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
@@ -266,7 +269,7 @@
       <workItem from="1700642566411" duration="12745000" />
       <workItem from="1701052753790" duration="664000" />
       <workItem from="1701054261943" duration="27296000" />
-      <workItem from="1701167927711" duration="2263000" />
+      <workItem from="1701167927711" duration="28129000" />
     </task>
     <servers />
   </component>
@@ -339,19 +342,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs</url>
-          <line>83</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Interfaces\Actions\ClusterAction.cs" initialLine="83" containingFunctionPresentation="方法 'BeginRendering'">
-            <startOffsets>
-              <option value="2982" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2999" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

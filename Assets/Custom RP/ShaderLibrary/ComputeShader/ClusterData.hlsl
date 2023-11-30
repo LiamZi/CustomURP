@@ -18,7 +18,7 @@ struct CSInput
 
 groupshared  uint lightIndexOffset = 0;
 
-StructuredBuffer<ScreenToView> _screenToView;
+StructuredBuffer<AdditionalLightData> _cluster_LightList;
 StructuredBuffer<uint> _cluster_LightIndex;
 StructuredBuffer<uint> _cluster_GridIndex;
 
@@ -77,8 +77,8 @@ float AABBCollsion(VolumeTileAABB light, VolumeTileAABB grid)
 
 bool LightGridIntersection(uint lightIndex, uint gridIndex)
 {
-    float4 min = _screenToView[lightIndex].minPoint;
-    float4 max = _screenToView[lightIndex].maxPoint;
+    float4 min = _cluster_LightList[lightIndex].minPoint;
+    float4 max = _cluster_LightList[lightIndex].maxPoint;
     VolumeTileAABB light;
     light.minPoint = min;
     light.maxPoint = max;
@@ -87,31 +87,31 @@ bool LightGridIntersection(uint lightIndex, uint gridIndex)
     return AABBCollsion(light, grid);
 }
 
-float4 clipToView(float4 clip, uint index)
-{
-    float4 view = _screenToView[index].inverseProjection * clip ;
-    view = view / view.w;
-    return view;
-}
+// float4 clipToView(float4 clip, uint index)
+// {
+//     float4 view = _cluster_LightList[index].inverseProjection * clip ;
+//     view = view / view.w;
+//     return view;
+// }
 
-float4 screen2View(float4 screen, uint index)
-{
-    //Convert to NDC
-    float2 texCoord = screen.xy * screen.yx;
+// float4 screen2View(float4 screen, uint index)
+// {
+//     //Convert to NDC
+//     float2 texCoord = screen.xy * screen.yx;
+//
+//     //Convert to clipSpace
+//     float4 clip = float4(float2(texCoord.x, texCoord.y) * 2.0 - 1.0, screen.z, screen.w);
+//     return clipToView(clip);
+// }
 
-    //Convert to clipSpace
-    float4 clip = float4(float2(texCoord.x, texCoord.y) * 2.0 - 1.0, screen.z, screen.w);
-    return clipToView(clip);
-}
-
-float3 lineIntersectionToZPlane(float3 A, float3 B, float zDistance)
-{
-    float3 normal = float3(0.0, 0.0, 1.0);
-    float3 ab = B - A;
-    float t = (zDistance - dot(normal, A)) / dot(normal.ab);
-    float3 result = A + t * ab;
-    return result;
-}
+// float3 lineIntersectionToZPlane(float3 A, float3 B, float zDistance)
+// {
+//     float3 normal = float3(0.0, 0.0, 1.0);
+//     float3 ab = B - A;
+//     float t = (zDistance - dot(normal, A)) / dot(normal.ab);
+//     float3 result = A + t * ab;
+//     return result;
+// }
 
 
 

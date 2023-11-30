@@ -21,6 +21,18 @@ struct ScreenToView
     uint padding3;
 };
 
+struct AdditionalLightData
+{
+    float3 PosWS;
+    float AttenuationCoef;
+    float3 Color;
+    float3 SpotDir;
+    float2 SpotAngle;
+    float4 minPoint;
+    float4 maxPoint; 
+    uint renderingLayerMask;
+};
+
 
 struct VolumeTileAABB
 {
@@ -32,5 +44,11 @@ float _cluster_zNear;
 float _cluster_zFar;
 float4 _cluster_Data;
 uint _clusterLightCount;
+
+int _directionalLightCount;
+float3 _directionalLightColor[CLUSTER_MAX_LIGHTS_COUNT];
+float4 _directionalLightDirectionAndMasks[CLUSTER_MAX_LIGHTS_COUNT];
+float4 _directionalLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
+float4 _otherLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
 
 #endif  

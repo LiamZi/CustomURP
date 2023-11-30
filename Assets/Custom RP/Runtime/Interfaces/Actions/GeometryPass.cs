@@ -55,7 +55,10 @@ namespace CustomURP
             _cmd.EndSampler();
 
             Setup(camera);
+            var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
+            scene.BeginRendering(camera, ref cmd);
             DrawVisibleGeometry(cameraSettings._renderingLayerMask);
+            scene.Tick(camera, ref cmd);
 
             UnsupportedShaders();
             

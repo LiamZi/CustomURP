@@ -75,6 +75,11 @@ public unsafe partial class CustomRenderPipelineAsset : RenderPipelineAsset
     
     private RenderPipeline _pipeline = null;
 
+    public RenderPipeline Pipeline
+    {
+        get => _pipeline;
+    }
+
     public CameraBufferSettings CameraBuffer
     {
         get => _cameraBuffer;

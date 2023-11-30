@@ -1,0 +1,6 @@
+#ifndef __Shader_LIBRARY_CLUSTER_LIGHT_HLSL__
+#define __Shader_LIBRARY_CLUSTER_LIGHT_HLSL__
+
+
+
+#endif
