@@ -139,6 +139,7 @@
      <Folder Include="Library\PackageCache\com.unity.modules.xr@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\basecommands.es.txt" />
      <Folder Include="Assets\Scenes\ParticlesScene" />
+     <None Include="Assets\Custom RP\ShaderLibrary\SpaceTransforms.hlsl" />
      <None Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\package.json" />
      <Folder Include="Library\PackageCache\com.unity.render-pipelines.universal@10.10.1\Textures\SMAA" />
      <Folder Include="Library\PackageCache\com.unity.ide.rider@3.0.26\Rider" />

@@ -33,6 +33,14 @@ struct AdditionalLightData
     uint renderingLayerMask;
 };
 
+struct Light
+{
+    float3 color;
+    float3 direction;
+    float attenuation;
+    uint renderingLayerMask;
+};
+
 
 struct VolumeTileAABB
 {

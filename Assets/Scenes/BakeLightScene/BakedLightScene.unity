@@ -907,7 +907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444898048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.43, y: 0, z: 0}
+  m_LocalPosition: {x: -34.43, y: -0.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2779,6 +2779,7 @@ GameObject:
   - component: {fileID: 1011858422}
   - component: {fileID: 1011858425}
   - component: {fileID: 1011858426}
+  - component: {fileID: 1011858427}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2886,6 +2887,69 @@ LightProbeProxyVolume:
   m_RefreshMode: 0
   m_QualityMode: 1
   m_DataFormat: 1
+--- !u!114 &1011858427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011858421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb7d912fc99e7043802be6bbb525edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings:
+    _enabledHizDepth: 0
+    _copyColor: 1
+    _copyDepth: 1
+    _renderingLayerMask: -1
+    _renderScaleMode: 0
+    _renderScale: 1
+    _maskLights: 0
+    _overridePostFx: 0
+    _postFXSettings: {fileID: 0}
+    _allowFXAA: 0
+    _keepAlpha: 0
+    _finalBlendMode:
+      _source: 1
+      _destiantion: 0
+  _hizDepthGenerator:
+    _depthTextureShader: {fileID: 0}
+  _layerCullDistance:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  _renderingType: 0
 --- !u!1 &1068458874
 GameObject:
   m_ObjectHideFlags: 0

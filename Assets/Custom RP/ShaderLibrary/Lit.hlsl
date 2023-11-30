@@ -108,6 +108,7 @@ float4 frag(VertexOutput input) : SV_TARGET
 
     Surface surface;
     surface.position = input.positionWS;
+    surface.positionCS = input.positionCS;
     // surface.normal = normalize(input.normalWS);
 
 #if defined(_NORMAL_MAP)
