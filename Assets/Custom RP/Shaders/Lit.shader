@@ -75,6 +75,7 @@ Shader "Custom RP/Lit"
             #pragma multi_compile _ LOD_FADE_CROSSFADE LOD_FADE_PERCENTAGE 
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ _LIGHTS_PER_OBJECT
+            #pragma multi_compile _ USE_CLUSTER_LIGHT
             // #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling

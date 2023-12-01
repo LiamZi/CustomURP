@@ -665,10 +665,6 @@
       <Project>{2887c91b-7940-306c-10b3-6ef392344d29}</Project>
       <Name>Unity.Mathematics</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{e5032980-5e12-7ffd-b3e0-82742aa94156}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{b90b3cdf-c6a6-9656-e971-56d7628be996}</Project>
       <Name>UnityEngine.UI</Name>

@@ -25,11 +25,10 @@ float3 GetLighting(Surface surface, BRDF brdf, GI gi)
 {
     ShadowData shadowData = GetShadowData(surface);
     shadowData.shadowMask = gi.shadowMask;
-    // return gi.shadowMask.shadows.rgb;
+    
 
     float3 color = IndirectBRDF(surface, brdf, gi.diffuse, gi.specular);
-    // float3 color = gi.diffuse * brdf.diffuse;
-    // float3 color = gi.diffuse;
+    
     for(int i = 0; i < GetDirectionalLightSize(); ++i)
     {
         Light light = GetDirectionalLight(i, surface, shadowData);
@@ -39,6 +38,18 @@ float3 GetLighting(Surface surface, BRDF brdf, GI gi)
         }
     }
 
+#if defined(USE_CLUSTER_LIGHT)
+    uint lightCount = GetAdditionalLightCount(surface);
+    for(uint i = 0; i < lightCount; i++)
+    {
+        Light light = GetOtherLight(i, surface, shadowData);
+        if(RenderingLayersOverlap(surface, light))
+        {
+            color += GetLighting(surface, brdf, light); 
+        }
+    }
+    
+#else
 #if defined(_LIGHTS_PER_OBJECT)
     for(int j = 0; j < min(unity_LightData.y, 8); ++j)
     {
@@ -61,7 +72,8 @@ float3 GetLighting(Surface surface, BRDF brdf, GI gi)
         }
     }
 #endif
-
+#endif
+    
     return color;
 }
 

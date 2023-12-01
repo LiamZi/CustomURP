@@ -231,11 +231,18 @@ namespace CustomURP
         {
             Cmd.SetComputeBufferParam(computeShader, kernelIndex, nameID, buffer);
         }
+        
+        public void SetComputeIntParam(ComputeShader computeShader, int nameID, int val)
+        {
+            Cmd.SetComputeIntParam(computeShader, nameID, val);
+        }
 
         public void DispatchCompute(ComputeShader computeShader, int kernelIndex,
                                     int threadGroupsX, int threadGroupsY, int threadGroupsZ)
         {
             Cmd.DispatchCompute(computeShader, kernelIndex, threadGroupsX, threadGroupsY, threadGroupsZ);
         }
+        
+        
     };
 }

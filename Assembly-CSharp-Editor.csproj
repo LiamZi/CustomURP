@@ -731,10 +731,6 @@
       <Project>{2329fa23-1556-ecb7-ef6f-5c25e43755a9}</Project>
       <Name>Unity.RenderPipelines.Core.Runtime</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{e5032980-5e12-7ffd-b3e0-82742aa94156}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
       <Project>{bcf1bd16-8a5f-85b0-2e19-7d0b1907872d}</Project>
       <Name>Unity.PlasticSCM.Editor</Name>

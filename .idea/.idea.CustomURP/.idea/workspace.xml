@@ -6,16 +6,39 @@
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/Cluster.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/Cluster.compute" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterData.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterData.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Lighting.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Lighting.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Lit.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Lit.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/Lit.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/Lit.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SpotLightScene/SpotLightScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SpotLightScene/SpotLightScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CustomURP.sln" beforeDir="false" afterPath="$PROJECT_DIR$/CustomURP.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.CollabProxy.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.CollabProxy.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Mathematics.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Mathematics.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Mathematics.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Mathematics.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.PlasticSCM.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.PlasticSCM.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipeline.Universal.ShaderLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipeline.Universal.ShaderLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Runtime.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Runtime.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Core.ShaderLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Core.ShaderLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Runtime.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Runtime.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Shaders.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Shaders.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Rider.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Rider.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Searcher.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Searcher.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.ShaderGraph.Utilities.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.ShaderGraph.Utilities.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.TextMeshPro.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.TextMeshPro.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.TextMeshPro.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.TextMeshPro.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Timeline.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Timeline.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.Timeline.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Timeline.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.VSCode.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.VSCode.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity.VisualStudio.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.VisualStudio.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +85,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/1b/239ecde3/Matrix4x4.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/20/1b51427c/ComputeQueueType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/2b/3c84f345/NativeSlice`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/2e/19944a6d/Vector4.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/38/9f167cb5/ComputeBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/3e/9457529c/CommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/3f/d2f63eda/SystemInfo.cs" root0="SKIP_HIGHLIGHTING" />
@@ -269,7 +293,8 @@
       <workItem from="1700642566411" duration="12745000" />
       <workItem from="1701052753790" duration="664000" />
       <workItem from="1701054261943" duration="27296000" />
-      <workItem from="1701167927711" duration="28129000" />
+      <workItem from="1701167927711" duration="36124000" />
+      <workItem from="1701400723450" duration="14119000" />
     </task>
     <servers />
   </component>

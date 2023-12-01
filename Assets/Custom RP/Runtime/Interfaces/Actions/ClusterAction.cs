@@ -26,13 +26,14 @@ namespace CustomURP
         
         struct AdditionalLightData
         {
-            float3 PosWS;
-            float AttenuationCoef;
-            float3 Color;
-            float3 SpotDir;
-            float2 SpotAngle;
-            float4 minPoint;
-            float4 maxPoint; 
+            public Vector4 minPoint;
+            public Vector4 maxPoint; 
+            public Vector3 PosWS;
+            public Vector3 Color;
+            public float AttenuationCoef;
+            public Vector3 SpotDir;
+            public uint renderingLayerMask;
+            public Vector2 SpotAngle;
         };
 
         
@@ -74,6 +75,13 @@ namespace CustomURP
         float _zFar;
         float _zNear;
         Vector4 _clusterData;
+        
+        private                 CullingResults _cullingResults;
+        private                 Shadows        _shadows;
+        private static readonly Vector4[]      _dirLightColors               = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
+        private static readonly Vector4[]      _dirLightDirectionsAndMasks   = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
+        private static readonly Vector4[]      _dirLightShadowData           = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
+        public static string UseClusterLightlist = "USE_CLUSTERED_LIGHTLIST";
         
         protected internal override void Initialization(CustomRenderPipelineAsset asset)
         {
@@ -127,10 +135,139 @@ namespace CustomURP
             _cmd.Cmd.Clear();
         }
 
-        private void BuildLightList(NativeArray<VisibleLight> visibleLights, CustomRenderPipelineCamera camera, bool useLightsPerObject, int renderingLayerMask)
+        private void BuildLightList(NativeArray<VisibleLight> visibleLights, CustomRenderPipelineCamera camera, ScriptableRenderContext context, bool useLightsPerObject, int renderingLayerMask)
         {
             var w2v = camera._camera.worldToCameraMatrix;
             // int mainIndex = get
+            var dirLightCount = 0;
+            var otherLightCount = 0;
+            var indexMap = useLightsPerObject ? _cullingResults.GetLightIndexMap(Allocator.Temp) : default;
+            var i = 0;
+            for (i = 0; i < visibleLights.Length; ++i)
+            {
+                if(otherLightCount == CLUSTER_MAX_LIGHTS_COUNT) continue;
+                
+                var newIndex = -1;
+                var visibleLight = visibleLights[i];
+                var light = visibleLight.light;
+                if ((light.renderingLayerMask & renderingLayerMask) != 0)
+                {
+                    switch (visibleLight.lightType)
+                    {
+                        case LightType.Directional:
+                        {
+                            if (dirLightCount < CLUSTER_MAX_LIGHTS_COUNT)
+                                SetupDirectionalLight(dirLightCount++, i, ref visibleLight, light);
+                        }
+                            break;
+                        case LightType.Point:
+                        {
+                            SetupPointLight(otherLightCount++, ref visibleLight, light, w2v);
+                        }
+                            break;
+                        case LightType.Spot:
+                        {
+                            SetupSpotLight(otherLightCount++, ref visibleLight, light, w2v);
+                        }
+                            break;
+                    }
+                }
+            }
+            Shader.DisableKeyword(LIGHTS_PER_OBJECT_KEYWORD);
+            _cmd.SetGlobalInt(ShaderParams._DirLightColorId, dirLightCount);
+            
+            if (dirLightCount > 0)
+            {
+                _cmd.SetGlobalVectorArray(ShaderParams._DirLightColorId,      _dirLightColors);
+                _cmd.SetGlobalVectorArray(ShaderParams._DirLightDirectionId,  _dirLightDirectionsAndMasks);
+                _cmd.SetGlobalVectorArray(ShaderParams._DirLightShadowDataId, _dirLightShadowData);
+            }
+
+            if (otherLightCount > 0)
+            {
+                _lightIndexBuffer.SetData(_lightListArray, 0, 0, otherLightCount);
+                _cmd.SetComputeIntParam(_clusterShading, ShaderParams._clusterLightCountId, otherLightCount);
+                context.ExecuteCommandBuffer(_cmd.Cmd);
+                _cmd.Cmd.Clear();
+            }
+        }
+        
+        private void SetupDirectionalLight(int index, int visibleIndex, ref VisibleLight visibleLight, Light light)
+        {
+            _dirLightColors[index] = visibleLight.finalColor;
+            var dirAndMask = -visibleLight.localToWorldMatrix.GetColumn(2);
+            dirAndMask.w = light.renderingLayerMask.ReinterpretAsFloat();
+
+            _dirLightDirectionsAndMasks[index] = dirAndMask;
+            _dirLightShadowData[index]         = _shadows.ReserveDirectinalShadows(light, visibleIndex);
+        }
+
+        void SetupPointLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView)
+        {
+            var rect = visibleLight.screenRect;
+            Vector4 minPoint = new Vector4();
+            Vector4 maxPoint = new Vector4();
+            Vector4 pos = visibleLight.localToWorldMatrix.GetColumn(3);
+            minPoint.x = rect.x;
+            minPoint.y = rect.y;
+            maxPoint.x = rect.x + rect.width;
+            maxPoint.y = rect.y + rect.height;
+            var lightPos = light.transform.position;
+            var z = Vector4.Dot(worldToView.GetRow(2), new Vector4(lightPos.x, lightPos.y, lightPos.z, 1.0f));
+            minPoint.z = z + visibleLight.range;
+            maxPoint.z = z - visibleLight.range;
+
+            _lightListArray[arrayIndex].minPoint = minPoint;
+            _lightListArray[arrayIndex].maxPoint = maxPoint;
+            _lightListArray[arrayIndex].PosWS = pos;
+            _lightListArray[arrayIndex].Color = (Vector4)visibleLight.finalColor;
+            _lightListArray[arrayIndex].AttenuationCoef = 1f / Mathf.Max(visibleLight.range * visibleLight.range, 0.0001f);
+            _lightListArray[arrayIndex].SpotAngle = new Vector2(0f, 1f);
+            _lightListArray[arrayIndex].SpotDir = Vector4.zero;
+        }
+
+        void SetupSpotLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView)
+        {
+            var rect = visibleLight.screenRect;
+            Vector4 minPoint = new Vector4();
+            Vector4 maxPoint = new Vector4();
+
+            minPoint.x = rect.x;
+            minPoint.y = rect.y;
+            maxPoint.x = rect.x + rect.width;
+            maxPoint.y = rect.y + rect.height;
+            var lightPos = light.transform.position;
+            var posZ = Vector4.Dot(worldToView.GetRow(2), new Vector4(lightPos.x, lightPos.y, lightPos.z, 1.0f));
+            var dir = light.transform.forward;
+            var dirV = worldToView * new Vector4(dir.x, dir.y, dir.z, 0.0f);
+            var zDir = Mathf.Sign(dirV.z);
+
+            var costheta = Mathf.Max(0.0001f, zDir * dirV.z);
+            var vertical = new Vector3(-dirV.x, -dirV.y, zDir / costheta - dirV.z);
+            vertical.Normalize();
+            var radius = Mathf.Tan(visibleLight.spotAngle / 2 * Mathf.Deg2Rad) * visibleLight.range;
+            var deltaZ = vertical.z * radius * zDir;
+            var dirVZ = dirV.z * visibleLight.range;
+
+            var z1 = posZ + dirVZ - deltaZ;
+            z1 = Mathf.Min(z1, posZ);
+            maxPoint.z = z1;
+            var z2 = posZ + dirVZ + deltaZ;
+            z2 = Mathf.Max(z2, posZ);
+            minPoint.z = z2;
+
+            Vector4 pos = visibleLight.localToWorldMatrix.GetColumn(3);
+            _lightListArray[arrayIndex].minPoint = minPoint;
+            _lightListArray[arrayIndex].maxPoint = maxPoint;
+            _lightListArray[arrayIndex].PosWS = pos;
+            _lightListArray[arrayIndex].Color = (Vector4)visibleLight.finalColor;
+            _lightListArray[arrayIndex].AttenuationCoef = 1f / Mathf.Max(visibleLight.range * visibleLight.range, 0.0001f);
+
+            float innerCos = Mathf.Cos(Mathf.Deg2Rad * 0.5f * light.innerSpotAngle);
+            float outerCos = Mathf.Cos(Mathf.Deg2Rad * 0.5f * light.spotAngle);
+            float angleRangeInv = 1f / Mathf.Max(innerCos - outerCos, 0.001f);
+            _lightListArray[arrayIndex].SpotAngle = new Vector4(angleRangeInv, -outerCos * angleRangeInv);
+            _lightListArray[arrayIndex].SpotDir = -visibleLight.localToWorldMatrix.GetColumn(2);
         }
 
         private void BuildGridLight(ScriptableRenderContext context)
@@ -144,6 +281,17 @@ namespace CustomURP
             _cmd.Cmd.BeginSample("LightGridBuild");
             _cmd.DispatchCompute(_clusterShading, _clusterGridBuildKernel, 1, 1, 1);
             _cmd.Cmd.EndSample("LightGridBuild");
+            context.ExecuteCommandBuffer(_cmd.Cmd);
+            _cmd.Cmd.Clear();
+        }
+
+        private void BindShaderConstant(ScriptableRenderContext context, CustomRenderPipelineCamera camera)
+        {
+            _cmd.Cmd.EnableShaderKeyword(UseClusterLightlist);
+            _cmd.Cmd.SetGlobalVector(ShaderParams._clusterDataId, _clusterData);
+            _cmd.Cmd.SetGlobalBuffer(ShaderParams._clusterLightListId, _lightListBuffer);
+            _cmd.Cmd.SetGlobalBuffer(ShaderParams._clusterLightIndexId, _lightListBuffer);
+            _cmd.Cmd.SetGlobalBuffer(ShaderParams._clusterGridLightId, _gridLightIndexBuffer);
             context.ExecuteCommandBuffer(_cmd.Cmd);
             _cmd.Cmd.Clear();
         }

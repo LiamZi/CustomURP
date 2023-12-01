@@ -23,14 +23,14 @@ struct ScreenToView
 
 struct AdditionalLightData
 {
-    float3 PosWS;
-    float AttenuationCoef;
-    float3 Color;
-    float3 SpotDir;
-    float2 SpotAngle;
     float4 minPoint;
     float4 maxPoint; 
+    float3 PosWS;
+    float3 Color;
+    float AttenuationCoef;
+    float3 SpotDir;
     uint renderingLayerMask;
+    float2 SpotAngle;
 };
 
 struct Light

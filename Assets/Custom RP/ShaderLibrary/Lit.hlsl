@@ -5,7 +5,12 @@
 // #include "LitInput.hlsl"
 #include "Surface.hlsl"
 #include "Shadows.hlsl"
+#if defined(USE_CLUSTER_LIGHT)
+#include "ClusterLight.hlsl"
+#else
 #include "Light.hlsl"
+#endif
+
 #include "BRDF.hlsl"
 #include "GI.hlsl"
 #include "Lighting.hlsl"

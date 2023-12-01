@@ -742,10 +742,6 @@
       <Project>{2329fa23-1556-ecb7-ef6f-5c25e43755a9}</Project>
       <Name>Unity.RenderPipelines.Core.Runtime</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{e5032980-5e12-7ffd-b3e0-82742aa94156}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{b90b3cdf-c6a6-9656-e971-56d7628be996}</Project>
       <Name>UnityEngine.UI</Name>
