@@ -183,7 +183,6 @@
      <Folder Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM" />
      <None Include="Assets\Custom RP\Shaders\UnlitOpaque.shader" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\workspaceserver.en.txt" />
-     <None Include="Library\PackageCache\com.unity.ugui@1.0.0\Editor\UnityEditor.UI.asmdef" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\cm-help.zh-Hans.txt" />
      <Folder Include="Assets\Scenes\BakeLightScene" />
      <Folder Include="Library\PackageCache\com.unity.modules.screencapture@1.0.0" />
@@ -212,7 +211,6 @@
      <None Include="Library\PackageCache\com.unity.render-pipelines.core@10.10.1\ValidationConfig.json" />
      <None Include="Library\PackageCache\com.unity.render-pipelines.core@10.10.1\package.json" />
      <Folder Include="Library\PackageCache\com.unity.modules.imageconversion@1.0.0" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Editor\UI" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\images.es.txt" />
      <Folder Include="Library\PackageCache\com.unity.modules.terrainphysics@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\configurehelper.zh-Hans.txt" />
@@ -222,7 +220,6 @@
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\ValidationExceptions.json" />
      <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequestassetbundle@1.0.0" />
      <None Include="Library\PackageCache\com.unity.shadergraph@10.10.1\package.json" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Editor\EventSystem" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\plastic-gui.en.txt" />
      <None Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0\package.json" />
      <None Include="Assets\Custom RP\Shaders\ParticlesUnlit.shader" />
@@ -360,7 +357,6 @@
      <Folder Include="Library\PackageCache\com.unity.modules.umbra@1.0.0" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\binmergetool.ko.txt" />
      <None Include="Assets\Scenes\FrustumCulling\FrustumCulling.compute" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Editor\UI\PropertyDrawers" />
      <None Include="Assets\Custom RP\ShaderLibrary\LitInput.hlsl" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\workspaceserver.zh-Hant.txt" />
      <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0" />
@@ -402,7 +398,6 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\semantic.ko.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\basecommands.zh-Hans.txt" />
      <None Include="Assets\Custom RP\ShaderLibrary\Lighting.hlsl" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Editor" />
      <Folder Include="Assets\Custom RP\ShaderLibrary\ComputeShader" />
      <Folder Include="Assets\Resources\Prefabs" />
      <None Include="Assets\Scenes\FrustumCulling\InstancedShader.shader" />
@@ -420,7 +415,6 @@
      <Folder Include="Assets\Scenes\SpotLightScene" />
      <Folder Include="Assets\Deferred Renderer" />
      <None Include="Library\PackageCache\com.unity.modules.ui@1.0.0\package.json" />
-     <Folder Include="Library\PackageCache\com.unity.ugui@1.0.0\Editor\Properties" />
      <None Include="Library\PackageCache\com.unity.ide.vscode@1.2.5\package.json" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.47f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
@@ -1062,6 +1056,10 @@
     <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
       <Project>{2329fa23-1556-ecb7-ef6f-5c25e43755a9}</Project>
       <Name>Unity.RenderPipelines.Core.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{e5032980-5e12-7ffd-b3e0-82742aa94156}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
       <Project>{bcf1bd16-8a5f-85b0-2e19-7d0b1907872d}</Project>

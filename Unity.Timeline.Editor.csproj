@@ -967,6 +967,10 @@
       <Project>{19ff1e2f-5271-d329-4e28-1aee74e4107b}</Project>
       <Name>Unity.Timeline</Name>
     </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{e5032980-5e12-7ffd-b3e0-82742aa94156}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{b90b3cdf-c6a6-9656-e971-56d7628be996}</Project>
       <Name>UnityEngine.UI</Name>

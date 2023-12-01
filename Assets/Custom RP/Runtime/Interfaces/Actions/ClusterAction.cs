@@ -81,7 +81,8 @@ namespace CustomURP
         private static readonly Vector4[]      _dirLightColors               = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
         private static readonly Vector4[]      _dirLightDirectionsAndMasks   = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
         private static readonly Vector4[]      _dirLightShadowData           = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
-        public static string UseClusterLightlist = "USE_CLUSTERED_LIGHTLIST";
+        private static readonly string UseClusterLightlist = "USE_CLUSTERED_LIGHTLIST";
+        private static readonly string LIGHTS_PER_OBJECT_KEYWORD = "_LIGHTS_PER_OBJECT";
         
         protected internal override void Initialization(CustomRenderPipelineAsset asset)
         {
