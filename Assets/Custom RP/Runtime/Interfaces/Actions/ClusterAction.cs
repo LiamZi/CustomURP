@@ -29,10 +29,10 @@ namespace CustomURP
             public Vector4 minPoint;
             public Vector4 maxPoint; 
             public Vector3 PosWS;
-            public Vector3 Color;
             public float AttenuationCoef;
-            public Vector3 SpotDir;
+            public Vector3 Color;
             public uint renderingLayerMask;
+            public Vector3 SpotDir;
             public Vector2 SpotAngle;
         };
 
