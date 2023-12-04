@@ -173,6 +173,21 @@ namespace CustomURP
             Cmd.SetGlobalTexture(nameID, value);
         }
 
+        public void SetGlobalBuffer(int nameID, ComputeBuffer value)
+        {
+            Cmd.SetGlobalBuffer(nameID, value);
+        }
+        
+        public void EnableShaderKeyword(string keyword)
+        {
+            Cmd.EnableShaderKeyword(keyword);
+        }
+
+        public void DisableShaderKeyword(string keyword)
+        {
+            Cmd.DisableShaderKeyword(keyword);
+        }
+        
         public void DrawProcedural(
             Matrix4x4 matrix,
             Material material,

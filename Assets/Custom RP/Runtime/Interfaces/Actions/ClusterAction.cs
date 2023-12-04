@@ -81,7 +81,7 @@ namespace CustomURP
         private static readonly Vector4[]      _dirLightColors               = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
         private static readonly Vector4[]      _dirLightDirectionsAndMasks   = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
         private static readonly Vector4[]      _dirLightShadowData           = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
-        private static readonly string UseClusterLightlist = "USE_CLUSTERED_LIGHTLIST";
+        private static readonly string UseClusterLightlist = "USE_CLUSTER_LIGHT";
         private static readonly string LIGHTS_PER_OBJECT_KEYWORD = "_LIGHTS_PER_OBJECT";
         
         protected internal override void Initialization(CustomRenderPipelineAsset asset)
@@ -90,9 +90,10 @@ namespace CustomURP
             {
                 throw new PlatformNotSupportedException("Compute Shader NOt Supported.");
             }
-            
+
+            _asset = asset;
             _clusterShading = asset._pipelineShaders._ClusterRenderShader;
-            _cmd = new Command("ClusterAction");
+            // _cmd = new Command("ClusterAction");
             _clusterGridBuildKernel = _clusterShading.FindKernel("ClusterGridBuild");
             _gridLightBuildKernel = _clusterShading.FindKernel("GridLightBuild");
 
@@ -103,40 +104,59 @@ namespace CustomURP
             _lightListBuffer = new ComputeBuffer(CLUSTER_MAX_LIGHTS_COUNT, sizeof(AdditionalLightData));
             _lightIndexBuffer = new ComputeBuffer(total * CLUSTER_MAX_LIGHTS_COUNT, sizeof(uint));
             _gridLightIndexBuffer = new ComputeBuffer(total, sizeof(uint));
+            
+            // _shadows = new Shadows();
 
         }
         
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            // _cmd = cmd;
             if (_isInited) return;
+            _cmd = cmd;
             _camera = camera;
+            
+            if (!Cull(_asset.Shadows._maxDistance, ref _cmd)) return;
 
             _zFar = camera._camera.farClipPlane;
             _zNear = camera._camera.nearClipPlane;
             var scale = _clusterSize.z / Mathf.Log(_zFar / _zNear);
             var bias = -_clusterSize.z * Mathf.Log(_zNear) / Mathf.Log(_zFar / _zNear);
             _clusterData = new Vector4(_clusterSize.x, _clusterSize.y, scale, bias);
+            // _shadows.Setup(_cmd.Context, _cullingResults, _asset.Shadows);
+            BuildGrid(camera, ref cmd);
 
-            BuildGrid(camera, cmd.Context);
-
-            _isInited = true;
+            // _isInited = true;
             // DebugCluster(camera._camera);
         }
 
-        private void BuildGrid(CustomRenderPipelineCamera camera, ScriptableRenderContext context)
+        public override void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            _cmd.SetComputeVectorParam(_clusterShading, ShaderParams._clusterDataId, _clusterData);
-            _cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZFarId, _zFar);
-            _cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZNearId, _zNear);
-            _cmd.SetComputeBufferParam(_clusterShading, _clusterGridBuildKernel, ShaderParams._clusterGridRWId, _gridBuffer);
-            _cmd.DispatchCompute(_clusterShading, _clusterGridBuildKernel, 1, 1, 1);
-            
-            context.ExecuteCommandBuffer(_cmd.Cmd);
-            _cmd.Cmd.Clear();
+            var cameraSettings = camera ? camera.Setting : new CameraSettings();
+            // _shadows.Render();
+            BuildLightList(_cullingResults.visibleLights, camera, ref cmd, _asset.LightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
+            BuildGridLight(ref cmd);
+            BindShaderConstant(ref cmd, camera);
         }
 
-        private void BuildLightList(NativeArray<VisibleLight> visibleLights, CustomRenderPipelineCamera camera, ScriptableRenderContext context, bool useLightsPerObject, int renderingLayerMask)
+        public override void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
+        {
+            
+        }
+
+        private void BuildGrid(CustomRenderPipelineCamera camera, ref Command cmd)
+        {
+            cmd.SetComputeVectorParam(_clusterShading, ShaderParams._clusterDataId, _clusterData);
+            cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZFarId, _zFar);
+            cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZNearId, _zNear);
+            cmd.SetComputeBufferParam(_clusterShading, _clusterGridBuildKernel, ShaderParams._clusterGridRWId, _gridBuffer);
+            cmd.DispatchCompute(_clusterShading, _clusterGridBuildKernel, 1, 1, 1);
+            
+            // context.ExecuteCommandBuffer(_cmd.Cmd);
+            // _cmd.Cmd.Clear();
+            cmd.Execute();
+        }
+
+        private void BuildLightList(NativeArray<VisibleLight> visibleLights, CustomRenderPipelineCamera camera, ref Command cmd, bool useLightsPerObject, int renderingLayerMask)
         {
             var w2v = camera._camera.worldToCameraMatrix;
             // int mainIndex = get
@@ -179,18 +199,20 @@ namespace CustomURP
             
             if (dirLightCount > 0)
             {
-                _cmd.SetGlobalVectorArray(ShaderParams._DirLightColorId,      _dirLightColors);
-                _cmd.SetGlobalVectorArray(ShaderParams._DirLightDirectionId,  _dirLightDirectionsAndMasks);
-                _cmd.SetGlobalVectorArray(ShaderParams._DirLightShadowDataId, _dirLightShadowData);
+                cmd.SetGlobalVectorArray(ShaderParams._DirLightColorId,      _dirLightColors);
+                cmd.SetGlobalVectorArray(ShaderParams._DirLightDirectionId,  _dirLightDirectionsAndMasks);
+                cmd.SetGlobalVectorArray(ShaderParams._DirLightShadowDataId, _dirLightShadowData);
             }
 
             if (otherLightCount > 0)
             {
                 _lightIndexBuffer.SetData(_lightListArray, 0, 0, otherLightCount);
-                _cmd.SetComputeIntParam(_clusterShading, ShaderParams._clusterLightCountId, otherLightCount);
-                context.ExecuteCommandBuffer(_cmd.Cmd);
-                _cmd.Cmd.Clear();
+                cmd.SetComputeIntParam(_clusterShading, ShaderParams._clusterLightCountId, otherLightCount);
             }
+            
+            // context.ExecuteCommandBuffer(_cmd.Cmd);
+            // _cmd.Cmd.Clear();
+            cmd.Execute();
         }
         
         private void SetupDirectionalLight(int index, int visibleIndex, ref VisibleLight visibleLight, Light light)
@@ -200,7 +222,7 @@ namespace CustomURP
             dirAndMask.w = light.renderingLayerMask.ReinterpretAsFloat();
 
             _dirLightDirectionsAndMasks[index] = dirAndMask;
-            _dirLightShadowData[index]         = _shadows.ReserveDirectinalShadows(light, visibleIndex);
+            // _dirLightShadowData[index]         = _shadows.ReserveDirectinalShadows(light, visibleIndex);
         }
 
         void SetupPointLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView)
@@ -271,30 +293,37 @@ namespace CustomURP
             _lightListArray[arrayIndex].SpotDir = -visibleLight.localToWorldMatrix.GetColumn(2);
         }
 
-        private void BuildGridLight(ScriptableRenderContext context)
+        private void BuildGridLight(ref Command cmd)
         {
-            _cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZFarId, _zFar);
-            _cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZNearId, _zNear);
-            _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterGridRWId, _gridBuffer);
-            _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightListId, _lightListBuffer);
-            _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightIndexRWId, _lightIndexBuffer);
-            _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterGridRWId, _gridLightIndexBuffer);
-            _cmd.Cmd.BeginSample("LightGridBuild");
-            _cmd.DispatchCompute(_clusterShading, _clusterGridBuildKernel, 1, 1, 1);
-            _cmd.Cmd.EndSample("LightGridBuild");
-            context.ExecuteCommandBuffer(_cmd.Cmd);
-            _cmd.Cmd.Clear();
+            cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZFarId, _zFar);
+            cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZNearId, _zNear);
+            cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterGridRWId, _gridBuffer);
+            cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightListId, _lightListBuffer);
+            cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightIndexRWId, _lightIndexBuffer);
+            cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterGridRWId, _gridLightIndexBuffer);
+            cmd.Name = "LightGridBuild";
+            cmd.BeginSample();
+            cmd.DispatchCompute(_clusterShading, _clusterGridBuildKernel, 1, 1, 1);
+            cmd.EndSampler();
+            // context.ExecuteCommandBuffer(_cmd.Cmd);
+            // _cmd.Cmd.Clear();
+            cmd.Execute();
         }
 
-        private void BindShaderConstant(ScriptableRenderContext context, CustomRenderPipelineCamera camera)
+        public void BindShaderConstant(ref Command cmd, CustomRenderPipelineCamera camera)
         {
-            _cmd.Cmd.EnableShaderKeyword(UseClusterLightlist);
-            _cmd.Cmd.SetGlobalVector(ShaderParams._clusterDataId, _clusterData);
-            _cmd.Cmd.SetGlobalBuffer(ShaderParams._clusterLightListId, _lightListBuffer);
-            _cmd.Cmd.SetGlobalBuffer(ShaderParams._clusterLightIndexId, _lightListBuffer);
-            _cmd.Cmd.SetGlobalBuffer(ShaderParams._clusterGridLightId, _gridLightIndexBuffer);
-            context.ExecuteCommandBuffer(_cmd.Cmd);
-            _cmd.Cmd.Clear();
+            var listBuffer = GetData<AdditionalLightData>(_lightListBuffer);
+            var indexBuffer = GetData<uint>(_lightIndexBuffer);
+            var gridIndexBuffer = GetData<uint>(_lightIndexBuffer);
+            
+            cmd.EnableShaderKeyword(UseClusterLightlist);
+            cmd.SetGlobalVector(ShaderParams._clusterDataId, _clusterData);
+            cmd.SetGlobalBuffer(ShaderParams._clusterLightListId, _lightListBuffer);
+            cmd.SetGlobalBuffer(ShaderParams._clusterLightIndexId, _lightIndexBuffer);
+            cmd.SetGlobalBuffer(ShaderParams._clusterGridLightId, _gridLightIndexBuffer);
+            // context.ExecuteCommandBuffer(_cmd.Cmd);
+            // _cmd.Cmd.Clear();
+            cmd.Execute();
         }
 
         public override bool InspectProperty()
@@ -376,6 +405,26 @@ namespace CustomURP
             Debug.DrawLine(box.p3, box.p1, color);
             Debug.DrawLine(box.p3, box.p2, color);
             Debug.DrawLine(box.p3, box.p7, color);
+        }
+        
+        private bool Cull(float maxShadowDistance, ref Command cmd)
+        {
+            if (_camera._camera.TryGetCullingParameters(out var p))
+            {
+                p.shadowDistance = Mathf.Min(maxShadowDistance, _camera._camera.farClipPlane);
+                _cullingResults  = _cmd.Context.Cull(ref p);
+                return true;
+            }
+
+            return false;
+        }
+        
+        unsafe T[] GetData<T>(ComputeBuffer buffer)
+        {
+            var count = buffer.count;
+            var data = new T[count];
+            buffer.GetData(data);
+            return data;
         }
         
     }

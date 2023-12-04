@@ -2,6 +2,8 @@
 #ifndef __SHADER_LIBRARY_COMPUTE_SHADER_CLUSTER_COMPUTE__
 #define __SHADER_LIBRARY_COMPUTE_SHADER_CLUSTER_COMPUTE__
 
+#pragma enable_d3d11_debug_symbols
+
 #pragma kernel ClusterGridBuild
 #pragma kernel GridLightBuild
 
@@ -26,30 +28,6 @@ void ClusterGridBuild (CSInput input)
 
     _cluster_Grid_RW[gridIndex].minPoint = minPoint;
     _cluster_Grid_RW[gridIndex].maxPoint = maxPoint;
-    
-    // const float3 eyePos = float3(0.0);
-    //
-    // uint tileIndex = id.x + id.y * CLUSTER_GRID_BUILD_NUMTHREADS_X + id.z * (CLUSTER_GRID_BUILD_NUMTHREADS_X * CLUSTER_GRID_BUILD_NUMTHREADS_Y);
-    // ScreenToView stv = _screenToView[tileIndex];
-    // float4 maxPoint_SS = float4(float2(id.x + 1, id.y + 1) / stv.tileSizePx, -1.0, 1.0);
-    // float4 minPoint_SS = float4(id.xy / stv.tileSizePx, -1.0, 1.0);
-    //
-    // float3 maxPoint_VS = screen2View(maxPoint_SS).xyz;
-    // float3 minPoint_VS = screen2View(minPoint_SS).xyz;
-    //
-    // float tileNear = -zNear * pow(zFar / zNear, id.z / float(CLUSTER_GRID_BUILD_NUMTHREADS_Z));
-    // float tileFar = -zNear * pow(zFar / zNear, (id.z + 1) / float(CLUSTER_GRID_BUILD_NUMTHREADS_Z));
-    //
-    // float3 minPointNear = lineIntersectionToZPlane(eyePos, minPoint_VS, tileNear);
-    // float3 minPointFar = lineIntersectionToZPlane(eyePos, minPoint_VS, tileFar);
-    // float3 maxPointNear = lineIntersectionToZPlane(eyePos, maxPoint_VS, tileNear);
-    // float3 maxPointFar = lineIntersectionToZPlane(eyePos, maxPoint_VS, tileFar);
-    //
-    // float3 minPointAABB = min(min(minPointNear, minPointFar), min(maxPointNear, maxPointFar));
-    // float3 maxPointAABB = max(max(minPointNear, minPointFar), max(maxPointNear, maxPointFar));
-    //
-    // _cluster_Grid_RW[tileIndex].minPoint = float4(minPointAABB, 0.0);
-    // _cluster_Grid_RW[tileIndex].maxPoint = flaot4(maxPointAABB, 0.0);
 }
 
 

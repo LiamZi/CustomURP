@@ -57,8 +57,9 @@ namespace CustomURP
             Setup(camera);
             var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
             scene.BeginRendering(camera, ref cmd);
-            DrawVisibleGeometry(cameraSettings._renderingLayerMask);
+           
             scene.Tick(camera, ref cmd);
+            DrawVisibleGeometry(cameraSettings._renderingLayerMask);
 
             UnsupportedShaders();
             
@@ -120,7 +121,8 @@ namespace CustomURP
 
             var filteringSettings =
                 new FilteringSettings(RenderQueueRange.opaque, renderingLayerMask: (uint)renderingLayerMask);
-
+            
+            // _cmd.EnableShaderKeyword("USE_CLUSTERED_LIGHTLIST");
             _cmd.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
 
             _cmd.DrawSkybox(_camera);

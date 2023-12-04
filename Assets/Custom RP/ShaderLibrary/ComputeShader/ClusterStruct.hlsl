@@ -54,9 +54,9 @@ float4 _cluster_Data;
 uint _clusterLightCount;
 
 int _directionalLightCount;
-float3 _directionalLightColor[CLUSTER_MAX_LIGHTS_COUNT];
-float4 _directionalLightDirectionAndMasks[CLUSTER_MAX_LIGHTS_COUNT];
-float4 _directionalLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
-float4 _otherLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
+float3 _cluster_directionalLightColor[CLUSTER_MAX_LIGHTS_COUNT];
+float4 _cluster_directionalLightDirectionAndMasks[CLUSTER_MAX_LIGHTS_COUNT];
+float4 _cluster_directionalLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
+float4 _cluster_otherLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
 
 #endif  

@@ -41,10 +41,13 @@ namespace CustomPipeline
 
         public void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            if (Application.isPlaying && _cluster != null && _cluster._isInited)
+            // if (Application.isPlaying && _cluster != null && _cluster._isInited)
+            if (Application.isPlaying && _cluster != null)
             {
-                _cluster.DebugCluster(camera._camera);
+                // _cluster.DebugCluster(camera._camera);
+                _cluster.Tick(camera, ref cmd); 
             }
+            
         }
 
         public void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
