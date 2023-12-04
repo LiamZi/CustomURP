@@ -26,10 +26,10 @@ struct AdditionalLightData
     float4 minPoint;
     float4 maxPoint; 
     float3 PosWS;
-    float3 Color;
     float AttenuationCoef;
-    float3 SpotDir;
+    float3 Color;
     uint renderingLayerMask;
+    float3 SpotDir;
     float2 SpotAngle;
 };
 
