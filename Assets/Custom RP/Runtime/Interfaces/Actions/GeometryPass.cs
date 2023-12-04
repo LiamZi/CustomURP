@@ -56,6 +56,8 @@ namespace CustomURP
 
             Setup(camera);
             var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
+            scene.SetClusterCullResult(ref _cullingResults);
+            
             scene.BeginRendering(camera, ref cmd);
            
             scene.Tick(camera, ref cmd);
@@ -88,6 +90,7 @@ namespace CustomURP
             {
                 p.shadowDistance = Mathf.Min(maxShadowDistance, _camera._camera.farClipPlane);
                 _cullingResults = _cmd.Context.Cull(ref p);
+                // Debug.Log("_culling results ptr : " + _cullingResults.GetHashCode());
                 return true;
             }
 

@@ -23,16 +23,25 @@ namespace CustomPipeline
         {
             int maxClusterCount = 0;
             _cluster = _asset.ClusterShading._clusterAction;
-            if (Application.isPlaying && _cluster != null)
+            // if (Application.isPlaying && _cluster != null)
+            if(_cluster != null)
             {
                 //todo: init cluster
                 _cluster.Initialization(_asset);
             }
         }
 
+        public void SetClusterCullResult(ref CullingResults results)
+        {
+            // if (Application.isPlaying && _cluster != null && !_cluster._isInited)
+            // {
+                _cluster.SetCullResult(ref results);
+            // }
+        }
         public void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            if (Application.isPlaying && _cluster != null)
+            // if (Application.isPlaying && _cluster != null && !_cluster._isInited)
+            if (_cluster != null && !_cluster._isInited)
             {
                 _cluster.BeginRendering(camera, ref cmd);
             }
@@ -42,7 +51,8 @@ namespace CustomPipeline
         public void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             // if (Application.isPlaying && _cluster != null && _cluster._isInited)
-            if (Application.isPlaying && _cluster != null)
+            // if (Application.isPlaying && _cluster != null )
+            if (_cluster != null && _cluster._isInited)
             {
                 // _cluster.DebugCluster(camera._camera);
                 _cluster.Tick(camera, ref cmd); 
