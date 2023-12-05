@@ -213,10 +213,11 @@ namespace CustomURP
             
             Shader.DisableKeyword(LIGHTS_PER_OBJECT_KEYWORD);
             
+            _cmd.SetGlobalInt(ShaderParams._clusterDirectionalLightCountId, dirLightCount);
             
             if (dirLightCount > 0)
             {
-                _cmd.SetGlobalInt(ShaderParams._clusterDirectionalLightCountId, dirLightCount);
+               
                 
                 // _cmd.SetGlobalVectorArray(ShaderParams._clusterDirectionalLightColorId,      _dirLightColors);
                 // _cmd.SetGlobalVectorArray(ShaderParams._clusterDirectionalLightDirAndMasksId,  _dirLightDirectionsAndMasks);

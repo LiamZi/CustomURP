@@ -271,10 +271,10 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         }
 #endif
 
-         foreach (var i in collect)
-         // for(var j = 1; j <= 3; j++)
+         // foreach (var i in collect)
+         for(var j = 1; j <= 3; j++)
          { 
-             // var i = collect[j]; 
+             var i = collect[j]; 
              i.BeginRendering(camera, ref _cmd); 
              i.Tick(camera, ref _cmd); 
              i.EndRendering(camera, ref _cmd);

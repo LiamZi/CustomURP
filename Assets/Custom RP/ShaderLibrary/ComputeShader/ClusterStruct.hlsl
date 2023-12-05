@@ -38,12 +38,11 @@ struct VolumeTileAABB
 };
     
 CBUFFER_START(ClusterStruct)
+float4 _cluster_Data;
 float _cluster_zFar;
 float _cluster_zNear;
-float4 _cluster_Data;
 uint _clusterLightCount;
 uint _cluster_directionalLightCount;
-
 
 //float3 _cluster_directionalLightColor[CLUSTER_MAX_DIR_LIGHTS_COUNT];
 //float4 _cluster_directionalLightDirectionAndMasks[CLUSTER_MAX_DIR_LIGHTS_COUNT];

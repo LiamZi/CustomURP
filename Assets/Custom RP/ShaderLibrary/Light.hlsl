@@ -30,7 +30,12 @@ struct Light
 
 int GetDirectionalLightSize()
 {
-    return _directionalLightCount;
+    #if defined(USE_CLUSTER_LIGHT)
+        return _cluster_directionalLightCount;
+    #else
+        return _directionalLightCount;
+    #endif
+   
 }
 
 int GetOtherLightSize()
