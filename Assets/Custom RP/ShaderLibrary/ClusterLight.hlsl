@@ -29,13 +29,21 @@ uint GetAdditionalLightCount(Surface surface)
     return count;
 }
 
-OtherShadowData GetOtherShadowData(int index)
+// OtherShadowData GetOtherShadowData(int index)
+OtherShadowData GetOtherShadowData(AdditionalLightData light)
 {
     OtherShadowData data;
-    data.strength = _cluster_otherLightShadowData[index].x;
-    data.tileIndex = _cluster_otherLightShadowData[index].y;
-    data.shadowMaskChannel = _cluster_otherLightShadowData[index].w;
-    data.isPoint = _cluster_otherLightShadowData[index].z == 1.0;
+    // data.strength = _cluster_otherLightShadowData[index].x;
+    // data.tileIndex = _cluster_otherLightShadowData[index].y;
+    // data.shadowMaskChannel = _cluster_otherLightShadowData[index].w;
+    // data.isPoint = _cluster_otherLightShadowData[index].z == 1.0;
+    // data.lightPositionWS = 0.0;
+    // data.spotDirectionWS = 0.0;
+    // data.lightDirectionWS = 0.0;
+    data.strength = light.ShadowData.x;
+    data.tileIndex = light.ShadowData.y;
+    data.shadowMaskChannel = light.ShadowData.w;
+    data.isPoint = light.ShadowData.z == 1.0;
     data.lightPositionWS = 0.0;
     data.spotDirectionWS = 0.0;
     data.lightDirectionWS = 0.0;
@@ -86,7 +94,8 @@ Light GetOtherLight(int index, Surface surface, ShadowData shadowData)
     float3 spotDirection = otherData.SpotDir.xyz;
     light.renderingLayerMask = asuint(otherData.renderingLayerMask);
     float spotAttenuation = Square(saturate(dot(spotDirection, light.direction) * spotAngles.x + spotAngles.y));
-    OtherShadowData otherShadowData = GetOtherShadowData(index);
+    // OtherShadowData otherShadowData = GetOtherShadowData(index);
+    OtherShadowData otherShadowData = GetOtherShadowData(otherData);
     otherShadowData.lightPositionWS = otherData.PosWS;
     otherShadowData.lightDirectionWS = light.direction;
     otherShadowData.spotDirectionWS = spotDirection;

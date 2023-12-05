@@ -28,12 +28,15 @@ namespace CustomURP
         {
             public Vector4 minPoint;
             public Vector4 maxPoint; 
+            public Vector4 dirAndMask;
+            public Vector4 ShadowData;
             public Vector3 PosWS;
             public float AttenuationCoef;
             public Vector3 Color;
             public uint renderingLayerMask;
             public Vector3 SpotDir;
             public Vector2 SpotAngle;
+
         };
 
         
@@ -239,6 +242,7 @@ namespace CustomURP
 
             _dirLightDirectionsAndMasks[index] = dirAndMask;
             // _dirLightShadowData[index]         = _shadows.ReserveDirectinalShadows(light, visibleIndex);
+            _dirLightShadowData[index] = Vector4.zero;
         }
 
         void SetupPointLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView)
@@ -263,6 +267,8 @@ namespace CustomURP
             _lightListArray[arrayIndex].AttenuationCoef = 1f / Mathf.Max(visibleLight.range * visibleLight.range, 0.0001f);
             _lightListArray[arrayIndex].SpotAngle = new Vector2(0f, 1f);
             _lightListArray[arrayIndex].SpotDir = Vector4.zero;
+            _lightListArray[arrayIndex].dirAndMask = new Vector4(0, 0, 0, light.renderingLayerMask.ReinterpretAsFloat());
+            _lightListArray[arrayIndex].ShadowData = Vector4.zero;
         }
 
         void SetupSpotLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView)
@@ -311,17 +317,6 @@ namespace CustomURP
 
         private void BuildGridLight()
         {
-            // var grids = GetData<VolumeTileAABB>(_gridBuffer);
-            // foreach (var grid in grids)
-            // {
-            //     Debug.Log("BuildGridLight grid min point : " + grid.minPoint.ToString() + " max point : " + grid.maxPoint.ToString());
-            // }
-            // var lights = GetData<AdditionalLightData>(_lightListBuffer);
-            // foreach (var i in lights)
-            // {
-            //     Debug.Log("BuildGridLight lights : " + i.ToString());
-            // }
-            
             _cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZFarId, _zFar);
             _cmd.SetComputeFloatParam(_clusterShading, ShaderParams._clusterZNearId, _zNear);
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterGridRWId, _gridBuffer);
@@ -337,9 +332,9 @@ namespace CustomURP
 
         public void BindShaderConstant()
         {
-            var listBuffer = GetData<AdditionalLightData>(_lightListBuffer);
-            var indexBuffer = GetData<uint>(_lightIndexBuffer);
-            var gridIndexBuffer = GetData<uint>(_lightIndexBuffer);
+            // var listBuffer = GetData<AdditionalLightData>(_lightListBuffer);
+            // var indexBuffer = GetData<uint>(_lightIndexBuffer);
+            // var gridIndexBuffer = GetData<uint>(_lightIndexBuffer);
             
             _cmd.EnableShaderKeyword(UseClusterLightlist);
             _cmd.SetGlobalVector(ShaderParams._clusterDataId, _clusterData);

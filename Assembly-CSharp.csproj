@@ -251,6 +251,7 @@
      <None Include="Library\PackageCache\com.unity.modules.particlesystem@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\clientcommon.zh-Hant.txt" />
      <Folder Include="Assets\Resources\Models" />
+     <Folder Include="Assets\Scenes\ClusterScene\ClusterScene" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.0.5\Lib\Editor\PlasticSCM\Localization\commontypes.es.txt" />
      <Folder Include="Assets\Scenes\FrustumCulling" />
      <Folder Include="Assets\Resources\Textures" />

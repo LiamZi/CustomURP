@@ -11,7 +11,9 @@
 struct AdditionalLightData
 {
     float4 minPoint;
-    float4 maxPoint; 
+    float4 maxPoint;
+    float4 dirAndMask;
+    float4 ShadowData;
     float3 PosWS;
     float AttenuationCoef;
     float3 Color;
@@ -46,7 +48,7 @@ uint _cluster_directionalLightCount;
 //float3 _cluster_directionalLightColor[CLUSTER_MAX_DIR_LIGHTS_COUNT];
 //float4 _cluster_directionalLightDirectionAndMasks[CLUSTER_MAX_DIR_LIGHTS_COUNT];
 //float4 _cluster_directionalLightShadowData[CLUSTER_MAX_DIR_LIGHTS_COUNT];
-float4 _cluster_otherLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
+// float4 _cluster_otherLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
 
 CBUFFER_END
 
