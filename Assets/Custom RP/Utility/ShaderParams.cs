@@ -71,6 +71,13 @@ namespace CustomURP
         public static readonly int _clusterGrirdLightRWId = Shader.PropertyToID("_cluster_GridIndex_RW");
         public static readonly int _clusterGridLightId = Shader.PropertyToID("_cluster_GridIndex");
         
+        public static readonly int _clusterDirectionalLightCountId = Shader.PropertyToID("_cluster_directionalLightCount");
+        public static readonly int _clusterDirectionalLightColorId = Shader.PropertyToID("_cluster_directionalLightColor");
+        public static readonly int _clusterDirectionalLightDirAndMasksId = Shader.PropertyToID("_cluster_directionalLightDirectionAndMasks");
+        public static readonly int _clusterDirectionalLightShadowDataId = Shader.PropertyToID("_cluster_directionalLightShadowData");
+        public static readonly int _clusterOtherLightShadowDataId = Shader.PropertyToID("_cluster_otherLightShadowData");
+
+        
         public static ShaderTagId[] _LegacyShaderTagIdsagId =
         {
             new ShaderTagId("Always"),

@@ -59,7 +59,8 @@ void GridLightBuild(CSInput input)
         _cluster_LightIndex_RW[offset + index] = visibleLightIndices[index];
     }
 
-    _cluster_GridIndex_RW[gridIndex] = EncodeLightIndex(offset, visibleLightCount);
+    uint val =  EncodeLightIndex(offset, visibleLightCount);
+    _cluster_GridIndex_RW[gridIndex] = val;
 }
 
 #endif

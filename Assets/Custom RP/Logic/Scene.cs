@@ -41,7 +41,8 @@ namespace CustomPipeline
         public void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             // if (Application.isPlaying && _cluster != null && !_cluster._isInited)
-            if (_cluster != null && !_cluster._isInited)
+            // if (_cluster != null && !_cluster._isInited)
+            if(_cluster != null)
             {
                 _cluster.BeginRendering(camera, ref cmd);
             }
@@ -52,7 +53,8 @@ namespace CustomPipeline
         {
             // if (Application.isPlaying && _cluster != null && _cluster._isInited)
             // if (Application.isPlaying && _cluster != null )
-            if (_cluster != null && _cluster._isInited)
+            // if (_cluster != null && _cluster._isInited)
+            if(_cluster != null)
             {
                 // _cluster.DebugCluster(camera._camera);
                 _cluster.Tick(camera, ref cmd); 

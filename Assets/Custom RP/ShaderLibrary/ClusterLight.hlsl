@@ -10,7 +10,7 @@ uint _cluster_offset;
 
 int GetDirectionalLightSize()
 {
-    return _directionalLightCount;
+    return _cluster_directionalLightCount;
 }
 
 
@@ -43,28 +43,32 @@ OtherShadowData GetOtherShadowData(int index)
     return data;
 }
 
-DirectinalShadowData GetClusterDirectionalShadowData(int index, ShadowData shadowData)
-{
-    DirectinalShadowData data;
-    // data.strength =  _directionalLightShadowData[index].x * shadowData.strength;
-    data.strength =  _cluster_otherLightShadowData[index].x;
-
-    data.tileIndex =  _cluster_otherLightShadowData[index].y + shadowData.cascadeIndex;
-    data.normalBias = _cluster_otherLightShadowData[index].z;
-    data.shadowMaskChannel = _cluster_otherLightShadowData[index].w;
-    return data;
-}
+// DirectinalShadowData GetClusterDirectionalShadowData(int index, ShadowData shadowData)
+// {
+//     DirectinalShadowData data;
+//     // data.strength =  _directionalLightShadowData[index].x * shadowData.strength;
+//     data.strength =  _cluster_otherLightShadowData[index].x;
+//
+//     data.tileIndex =  _cluster_otherLightShadowData[index].y + shadowData.cascadeIndex;
+//     data.normalBias = _cluster_otherLightShadowData[index].z;
+//     data.shadowMaskChannel = _cluster_otherLightShadowData[index].w;
+//     return data;
+// }
 
 
 Light GetDirectionalLight(int index, Surface surface, ShadowData shadowData)
 {
     Light light;
-    light.color = _cluster_directionalLightColor[index].rgb;
-    light.direction = _cluster_directionalLightDirectionAndMasks[index].xyz;
-    light.renderingLayerMask = asuint(_cluster_directionalLightDirectionAndMasks[index].w);
-    DirectinalShadowData dirShadowData = GetClusterDirectionalShadowData(index, shadowData);
-    light.attenuation = GetDirectionalShadowAttenuation(dirShadowData, shadowData, surface);
+    // light.color = _cluster_directionalLightColor[index].rgb;
+    // light.direction = _cluster_directionalLightDirectionAndMasks[index].xyz;
+    // light.renderingLayerMask = asuint(_cluster_directionalLightDirectionAndMasks[index].w);
+    // DirectinalShadowData dirShadowData = GetClusterDirectionalShadowData(index, shadowData);
+    // light.attenuation = GetDirectionalShadowAttenuation(dirShadowData, shadowData, surface);
     // light.attenuation = shadowData.cascadeIndex * 0.25;
+    light.color = float3(0.5, 0.0, 0.0);
+    light.direction = float3(0.0, 1.0, 0.0);
+    light.renderingLayerMask = 1;
+    light.attenuation = 0.25;
     return light;
 }
 

@@ -2,24 +2,11 @@
 #define __SHADER_LIBRARY_COMPUTE_SHADER_CLUSTER_STRUCT_HLSL__
 
 #define CLUSTER_MAX_LIGHTS_COUNT (255)
+#define CLUSTER_MAX_DIR_LIGHTS_COUNT (4)
 #define CLUSTER_GRID_BUILD_NUMTHREADS_X (8)
 #define CLUSTER_GRID_BUILD_NUMTHREADS_Y (4)
 #define CLUSTER_GRID_BUILD_NUMTHREADS_Z (16)
 
-struct ScreenToView
-{
-    float4x4 inverseProjection;
-    uint tileSizeX;
-    uint tileSizeY;
-    uint tileSizeZ;
-    uint padding1;
-    float2 tileSizePx;
-    float2 viewPxSize;
-    float scale;
-    float bias;
-    uint padding2;
-    uint padding3;
-};
 
 struct AdditionalLightData
 {
@@ -47,16 +34,20 @@ struct VolumeTileAABB
     float4 minPoint;
     float4 maxPoint;
 };
-
-float _cluster_zNear;
+    
+CBUFFER_START(ClusterStruct)
 float _cluster_zFar;
+float _cluster_zNear;
 float4 _cluster_Data;
 uint _clusterLightCount;
+uint _cluster_directionalLightCount;
 
-int _directionalLightCount;
-float3 _cluster_directionalLightColor[CLUSTER_MAX_LIGHTS_COUNT];
-float4 _cluster_directionalLightDirectionAndMasks[CLUSTER_MAX_LIGHTS_COUNT];
-float4 _cluster_directionalLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
+
+//float3 _cluster_directionalLightColor[CLUSTER_MAX_DIR_LIGHTS_COUNT];
+//float4 _cluster_directionalLightDirectionAndMasks[CLUSTER_MAX_DIR_LIGHTS_COUNT];
+//float4 _cluster_directionalLightShadowData[CLUSTER_MAX_DIR_LIGHTS_COUNT];
 float4 _cluster_otherLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
+
+CBUFFER_END
 
 #endif  

@@ -257,7 +257,10 @@ namespace CustomURP
         {
             Cmd.DispatchCompute(computeShader, kernelIndex, threadGroupsX, threadGroupsY, threadGroupsZ);
         }
-        
-        
+
+        public void Release()
+        {
+            Cmd.Release();
+        }
     };
 }

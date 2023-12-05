@@ -4,9 +4,9 @@
 // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 #include  "../Common.hlsl"
 
-CBUFFER_START(ClusterStruct)
+
 #include "ClusterStruct.hlsl"
-CBUFFER_END
+
 
 struct CSInput
 {
@@ -71,7 +71,7 @@ float AABBCollsion(VolumeTileAABB light, VolumeTileAABB grid)
 {
     bool x = light.minPoint.x <= grid.maxPoint.x && light.maxPoint.x >= grid.minPoint.x;
     bool y = light.minPoint.y <= grid.maxPoint.y && light.maxPoint.y >= grid.minPoint.y;
-    bool z = light.minPoint.z <= grid.maxPoint.z && light.maxPoint.z >= grid.minPoint.z;
+    bool z = light.minPoint.z >= grid.maxPoint.z && light.maxPoint.z <= grid.minPoint.z;
     return x && y && z;
 }
 

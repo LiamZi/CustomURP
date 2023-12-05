@@ -288,6 +288,7 @@
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Textures" />
      <Folder Include="Library\PackageCache\com.unity.modules.tilemap@1.0.0" />
      <Folder Include="Assets\Custom RP\Runtime" />
+     <Folder Include="Assets\Scenes\ClusterScene" />
      <None Include="Assets\Custom RP\ShaderLibrary\Unlit.hlsl" />
      <Folder Include="Library\PackageCache\com.unity.modules.ui@1.0.0" />
      <None Include="Assets\Custom RP\ShaderLibrary\Light.hlsl" />
