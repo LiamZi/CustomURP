@@ -19,7 +19,7 @@ namespace CustomURP
             _isInitialized =   true;
         }
 
-        protected internal override void Dispose()
+        public override void Dispose()
         {
             base.Dispose();
         }

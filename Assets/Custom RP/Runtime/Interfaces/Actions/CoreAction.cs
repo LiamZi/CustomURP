@@ -105,7 +105,7 @@ namespace CustomURP
            
         }
 
-        protected internal virtual void Dispose()
+        public virtual void Dispose()
         {
             if (_dependedActions != null)
             {

@@ -31,7 +31,7 @@ namespace CustomURP
             _shadows       = new Shadows();
         }
 
-        protected internal override void Dispose()
+        public override void Dispose()
         {
             base.Dispose();
         }
