@@ -21,7 +21,7 @@ void ClusterGridBuild (CSInput input)
     uint gridIndex = GridPos2GridIndex(input.dispatchThreadID);
     //
     float tileNear = -_cluster_zNear * pow(_cluster_zFar / _cluster_zNear, input.dispatchThreadID.z / (float) LIGHTING_CLUSTER_Z_SLICE);
-    float tileFar = -_cluster_zNear * pow(_cluster_zFar / _cluster_zNear, (input.dispatchThreadID + 1) / (float)LIGHTING_CLUSTER_Z_SLICE);
+    float tileFar = -_cluster_zNear * pow(_cluster_zFar / _cluster_zNear, (input.dispatchThreadID.z + 1) / (float)LIGHTING_CLUSTER_Z_SLICE);
     //
     float4 minPoint = float4((input.dispatchThreadID.xy / _cluster_Data.xy), tileNear, 1.0);
     float4 maxPoint = float4((input.dispatchThreadID.xy + 1) / _cluster_Data.xy, tileFar, 1.0);
