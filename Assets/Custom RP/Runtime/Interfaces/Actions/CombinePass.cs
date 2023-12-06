@@ -53,8 +53,8 @@ namespace CustomURP
 
             if (useIntermediateBuffer)
             {
-                CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorAttachmentId);
-                CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._depthAttachmentId);
+                // CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorAttachmentId);
+                // CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._depthAttachmentId);
 
                 if (useColorTexture) CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorTextureId);
 

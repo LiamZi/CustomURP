@@ -109,7 +109,6 @@ namespace CustomURP
             _lightListBuffer = new ComputeBuffer(CLUSTER_MAX_LIGHTS_COUNT, sizeof(AdditionalLightData));
             _lightIndexBuffer = new ComputeBuffer(total * CLUSTER_MAX_LIGHTS_COUNT, sizeof(uint));
             _gridLightIndexBuffer = new ComputeBuffer(total, sizeof(uint));
-            
             // _shadows = new Shadows();
 
         }
@@ -125,10 +124,10 @@ namespace CustomURP
             var scale = _clusterSize.z / Mathf.Log(_zFar / _zNear);
             var bias = -_clusterSize.z * Mathf.Log(_zNear) / Mathf.Log(_zFar / _zNear);
             _clusterData = new Vector4(_clusterSize.x, _clusterSize.y, scale, bias);
-            // _shadows.Setup(_cmd.Context, _cullingResults, _asset.Shadows);
+            // _shadows.Setup(cmd.Context, _cullingResults, _asset.Shadows);
             BuildGrid();
 
-            // _isInited = true;
+            _isInited = true;
             // DebugCluster(camera._camera);
         }
 
@@ -138,6 +137,7 @@ namespace CustomURP
             _camera = camera;
             
             var cameraSettings = camera ? camera.Setting : new CameraSettings();
+            // _shadows.Render();
             BuildLightList(_asset.LightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
             BuildGridLight();
             BindShaderConstant();
@@ -192,12 +192,12 @@ namespace CustomURP
                             break;
                         case LightType.Point:
                         {
-                            SetupPointLight(otherLightCount++, ref visibleLight, light, w2v);
+                            SetupPointLight(otherLightCount++, ref visibleLight, light, w2v, i);
                         }
                             break;
                         case LightType.Spot:
                         {
-                            SetupSpotLight(otherLightCount++, ref visibleLight, light, w2v);
+                            SetupSpotLight(otherLightCount++, ref visibleLight, light, w2v, i );
                         }
                             break;
                     }
@@ -237,7 +237,7 @@ namespace CustomURP
             _dirLightShadowData[index] = Vector4.zero;
         }
 
-        void SetupPointLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView)
+        void SetupPointLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView, int visibleIndex)
         {
             var rect = visibleLight.screenRect;
             Vector4 minPoint = new Vector4();
@@ -260,11 +260,10 @@ namespace CustomURP
             _lightListArray[arrayIndex].SpotAngle = new Vector2(0f, 1f);
             _lightListArray[arrayIndex].SpotDir = Vector4.zero;
             _lightListArray[arrayIndex].dirAndMask = new Vector4(0, 0, 0, light.renderingLayerMask.ReinterpretAsFloat());
-            _lightListArray[arrayIndex].ShadowData = Vector4.zero;
-            
+            // _lightListArray[arrayIndex].ShadowData = _shadows.ReserveOtherShadows(light, visibleIndex);
         }
 
-        void SetupSpotLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView)
+        void SetupSpotLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView, int visibleIndex)
         {
             var rect = visibleLight.screenRect;
             Vector4 minPoint = new Vector4();
@@ -309,6 +308,7 @@ namespace CustomURP
             var dirAndMask = -visibleLight.localToWorldMatrix.GetColumn(2);
             dirAndMask.w = light.renderingLayerMask.ReinterpretAsFloat();
             _lightListArray[arrayIndex].dirAndMask = dirAndMask;
+            // _lightListArray[arrayIndex].ShadowData = _shadows.ReserveOtherShadows(light, visibleIndex);
         }
 
         private void BuildGridLight()
@@ -319,27 +319,23 @@ namespace CustomURP
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightListId, _lightListBuffer);
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightIndexRWId, _lightIndexBuffer);
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterGrirdLightRWId, _gridLightIndexBuffer);
-            _cmd.BeginSample();
+            // _cmd.BeginSample();
             _cmd.DispatchCompute(_clusterShading, _gridLightBuildKernel, 1, 1, 1);
-            _cmd.EndSampler();
+            // _cmd.EndSampler();
             
             _cmd.Execute();
         }
 
         public void BindShaderConstant()
         {
-            // var listBuffer = GetData<AdditionalLightData>(_lightListBuffer);
-            // var indexBuffer = GetData<uint>(_lightIndexBuffer);
-            // var gridIndexBuffer = GetData<uint>(_lightIndexBuffer);
-            
             _cmd.EnableShaderKeyword(UseClusterLightlist);
             _cmd.SetGlobalVector(ShaderParams._clusterDataId, _clusterData);
             _cmd.SetGlobalBuffer(ShaderParams._clusterLightListId, _lightListBuffer);
             _cmd.SetGlobalBuffer(ShaderParams._clusterLightIndexId, _lightIndexBuffer);
             _cmd.SetGlobalBuffer(ShaderParams._clusterGridLightId, _gridLightIndexBuffer);
-            _cmd.BeginSample();
+            // _cmd.BeginSample();
             _cmd.Execute();
-            _cmd.EndSampler();
+            // _cmd.EndSampler();
         }
 
         public override bool InspectProperty()
@@ -356,7 +352,6 @@ namespace CustomURP
             
             Matrix4x4 viewMatrix = Camera.main.worldToCameraMatrix;
             Matrix4x4 projMatrix = GL.GetGPUProjectionMatrix(camera.projectionMatrix, false);
-            // Matrix4x4 projMatrix = _camera._camera.projectionMatrix;
             Matrix4x4 vpMatrix = projMatrix * viewMatrix;
             Matrix4x4 vpMatrixInv = vpMatrix.inverse;
             

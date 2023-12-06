@@ -46,13 +46,13 @@ namespace CustomURP
             PrepareForSceneWindow(camera);
             if (!Cull(_asset.Shadows._maxDistance, ref cmd)) return;
 
-            _cmd.BeginSample();
+            // _cmd.BeginSample();
             _cmd.SetGlobalVector(camera._renderTarget._bufferSizeId, new Vector4(
                 1f / camera._renderTarget._size.x, 1f / camera._renderTarget._size.y,
                 camera._renderTarget._size.x, camera._renderTarget._size.y
             ));
             _cmd.Execute();
-            _cmd.EndSampler();
+            // _cmd.EndSampler();
 
             Setup(camera);
             var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
@@ -64,7 +64,7 @@ namespace CustomURP
 
             UnsupportedShaders();
             
-            _cmd.EndSampler();
+            // _cmd.EndSampler();
         }
         
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
