@@ -13,26 +13,26 @@
 #include "ClusterData.hlsl"
 
 
-[numthreads(CLUSTER_GRID_BUILD_NUMTHREADS_X, CLUSTER_GRID_BUILD_NUMTHREADS_Y, CLUSTER_GRID_BUILD_NUMTHREADS_Z)]
+[numthreads(CLUSTER_GRID_BUILD_NUMTHREADS_X, CLUSTER_GRID_BUILD_NUMTHREADS_Y, LIGHTING_CLUSTER_Z_SLICE)]
 void ClusterGridBuild (CSInput input)
 {
 
     uint batch = _cluster_Data.x / CLUSTER_GRID_BUILD_NUMTHREADS_X;
     uint gridIndex = GridPos2GridIndex(input.dispatchThreadID);
-
-    float tileNear = _cluster_zNear * pow(_cluster_zFar / _cluster_zNear, input.dispatchThreadID.z / (float) CLUSTER_GRID_BUILD_NUMTHREADS_Z);
-    float tileFar = _cluster_zNear * pow(_cluster_zFar / _cluster_zNear, (input.dispatchThreadID + 1) / (float)CLUSTER_GRID_BUILD_NUMTHREADS_Z);
-
+    //
+    float tileNear = -_cluster_zNear * pow(_cluster_zFar / _cluster_zNear, input.dispatchThreadID.z / (float) LIGHTING_CLUSTER_Z_SLICE);
+    float tileFar = -_cluster_zNear * pow(_cluster_zFar / _cluster_zNear, (input.dispatchThreadID + 1) / (float)LIGHTING_CLUSTER_Z_SLICE);
+    //
     float4 minPoint = float4((input.dispatchThreadID.xy / _cluster_Data.xy), tileNear, 1.0);
     float4 maxPoint = float4((input.dispatchThreadID.xy + 1) / _cluster_Data.xy, tileFar, 1.0);
-
+    //
     _cluster_Grid_RW[gridIndex].minPoint = minPoint;
     _cluster_Grid_RW[gridIndex].maxPoint = maxPoint;
 }
 
 
 
-[numthreads(CLUSTER_GRID_BUILD_NUMTHREADS_X, CLUSTER_GRID_BUILD_NUMTHREADS_Y, CLUSTER_GRID_BUILD_NUMTHREADS_Z)]
+[numthreads(CLUSTER_GRID_BUILD_NUMTHREADS_X, CLUSTER_GRID_BUILD_NUMTHREADS_Y, LIGHTING_CLUSTER_Z_SLICE)]
 void GridLightBuild(CSInput input)
 {
     uint gridIndex = GridPos2GridIndex(input.dispatchThreadID);

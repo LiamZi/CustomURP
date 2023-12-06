@@ -83,8 +83,8 @@ namespace CustomURP
         private                 CullingResults _cullingResults;
         private                 Shadows        _shadows;
         private static readonly Vector4[]      _dirLightColors               = new Vector4[CLUSTER_MAX_DIR_LIGHTS_COUNT];
-        private static readonly Vector4[]      _dirLightDirectionsAndMasks   = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
-        private static readonly Vector4[]      _dirLightShadowData           = new Vector4[CLUSTER_MAX_LIGHTS_COUNT];
+        private static readonly Vector4[]      _dirLightDirectionsAndMasks   = new Vector4[CLUSTER_MAX_DIR_LIGHTS_COUNT];
+        private static readonly Vector4[]      _dirLightShadowData           = new Vector4[CLUSTER_MAX_DIR_LIGHTS_COUNT];
         private static readonly string UseClusterLightlist = "USE_CLUSTER_LIGHT";
         private static readonly string LIGHTS_PER_OBJECT_KEYWORD = "_LIGHTS_PER_OBJECT";
         
@@ -217,15 +217,19 @@ namespace CustomURP
             
             if (dirLightCount > 0)
             {
-               
-                
-                // _cmd.SetGlobalVectorArray(ShaderParams._clusterDirectionalLightColorId,      _dirLightColors);
-                // _cmd.SetGlobalVectorArray(ShaderParams._clusterDirectionalLightDirAndMasksId,  _dirLightDirectionsAndMasks);
-                // _cmd.SetGlobalVectorArray(ShaderParams._clusterDirectionalLightShadowDataId, _dirLightShadowData);
+                _cmd.SetGlobalVectorArray(ShaderParams._clusterDirectionalLightColorId,      _dirLightColors);
+                _cmd.SetGlobalVectorArray(ShaderParams._clusterDirectionalLightDirAndMasksId,  _dirLightDirectionsAndMasks);
+                _cmd.SetGlobalVectorArray(ShaderParams._clusterDirectionalLightShadowDataId, _dirLightShadowData);
             }
             
             if (otherLightCount > 0)
             {
+                // foreach (var l in _lightListArray)
+                // for(var j = 0; j < _lightListArray.Length; ++j)
+                // {
+                //     var l = _lightListArray[j];
+                //     Debug.Log("other light list index :" + j + " min : " + l.minPoint.ToString() +" max: " + l.maxPoint.ToString() + " Color : " +l.Color.ToString() + " pos:  " + l.PosWS );
+                // }
                 _lightListBuffer.SetData(_lightListArray, 0, 0, otherLightCount);
                 _cmd.SetComputeIntParam(_clusterShading, ShaderParams._clusterLightCountId, otherLightCount);
             }
@@ -270,6 +274,7 @@ namespace CustomURP
             _lightListArray[arrayIndex].SpotDir = Vector4.zero;
             _lightListArray[arrayIndex].dirAndMask = new Vector4(0, 0, 0, light.renderingLayerMask.ReinterpretAsFloat());
             _lightListArray[arrayIndex].ShadowData = Vector4.zero;
+            
         }
 
         void SetupSpotLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView)
@@ -314,6 +319,9 @@ namespace CustomURP
             float angleRangeInv = 1f / Mathf.Max(innerCos - outerCos, 0.001f);
             _lightListArray[arrayIndex].SpotAngle = new Vector4(angleRangeInv, -outerCos * angleRangeInv);
             _lightListArray[arrayIndex].SpotDir = -visibleLight.localToWorldMatrix.GetColumn(2);
+            var dirAndMask = -visibleLight.localToWorldMatrix.GetColumn(2);
+            dirAndMask.w = light.renderingLayerMask.ReinterpretAsFloat();
+            _lightListArray[arrayIndex].dirAndMask = dirAndMask;
         }
 
         private void BuildGridLight()

@@ -32,7 +32,7 @@ Shader "Custom RP/Lit"
 
 
         [Toggle(_PREMULTIPLY_ALPHA)] _PremulAlpha ("Premultiply Alpha", Float) = 0
-
+        
         [Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend ("Src Blend", Float) = 1
         [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Dst Blend", Float) = 0
         [Enum(Off, 0, On, 1)] _ZWrite ("Z Write", Float) = 1
@@ -40,7 +40,9 @@ Shader "Custom RP/Lit"
         [HideInInspector] _MainTex("Texture for Lightmap", 2D) = "white" {}
         [HideInInspector] _Color("Color for Lightmap", Color) = (0.5, 0.5, 0.5, 1.0)
 
-
+        [Header(Cluster Debugging Light Settings)]
+        [Toggle(_Clusters)] _Clusters ("Display light count per cluster", Float) = 0
+        [Toggle(_Slices)] _Slices ("Display depth Slices", Float) = 0
     }
 
     SubShader

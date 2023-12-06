@@ -5,7 +5,7 @@
 #define CLUSTER_MAX_DIR_LIGHTS_COUNT (4)
 #define CLUSTER_GRID_BUILD_NUMTHREADS_X (8)
 #define CLUSTER_GRID_BUILD_NUMTHREADS_Y (4)
-#define CLUSTER_GRID_BUILD_NUMTHREADS_Z (16)
+#define LIGHTING_CLUSTER_Z_SLICE (16)
 
 
 struct AdditionalLightData
@@ -44,9 +44,9 @@ float _cluster_zNear;
 uint _clusterLightCount;
 uint _cluster_directionalLightCount;
 
-//float3 _cluster_directionalLightColor[CLUSTER_MAX_DIR_LIGHTS_COUNT];
-//float4 _cluster_directionalLightDirectionAndMasks[CLUSTER_MAX_DIR_LIGHTS_COUNT];
-//float4 _cluster_directionalLightShadowData[CLUSTER_MAX_DIR_LIGHTS_COUNT];
+float3 _cluster_directionalLightColor[CLUSTER_MAX_DIR_LIGHTS_COUNT];
+float4 _cluster_directionalLightDirectionAndMasks[CLUSTER_MAX_DIR_LIGHTS_COUNT];
+float4 _cluster_directionalLightShadowData[CLUSTER_MAX_DIR_LIGHTS_COUNT];
 // float4 _cluster_otherLightShadowData[CLUSTER_MAX_LIGHTS_COUNT];
 
 CBUFFER_END

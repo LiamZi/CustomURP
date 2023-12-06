@@ -30,29 +30,31 @@ RWStructuredBuffer<uint> _cluster_Active_RW;
 
 float GridPos2GridIndex(uint3 pos)
 {
-    uint index = pos.x + pos.y * _cluster_Data.x + pos.z * _cluster_Data.x * _cluster_Data.y;
-    return index;
+    // uint index = pos.x + pos.y * _cluster_Data.x + pos.z * _cluster_Data.x * _cluster_Data.y;
+    // return index;
+    uint gridIndex = pos.x + pos.y * _cluster_Data.x + pos.z * _cluster_Data.x * _cluster_Data.y;
+    return gridIndex;
 }
 
 
 float PosSS2GridIndex(float3 posNDC)
 {
-    float zView = UNITY_MATRIX_P._m23 / (UNITY_MATRIX_P._32 * posNDC.z - UNITY_MATRIX_P._m22);
-    uint zTile = uint(max(log(-zView) * _cluster_Data.z + _cluster_Data.w , 0.0));
+    float zView = UNITY_MATRIX_P._m23 / (UNITY_MATRIX_P._m32 * posNDC.z - UNITY_MATRIX_P._m22);
+    uint zTile = uint(max(log(-zView) * _cluster_Data.z + _cluster_Data.w, 0.0));
     uint2 xyTiles = uint2(posNDC.xy * _cluster_Data.xy);
-
+    
     return GridPos2GridIndex(uint3(xyTiles, zTile));
 }
 
-void DecodeLightIndex(uint data, out uint start , out uint count)
+void DecodeLightIndex(uint data, out uint start, out uint count)
 {
     count = data >> 24;
     start = data & 0xffffff;
 }
 
-uint EncodeLightIndex(uint start, uint count)
+uint EncodeLightIndex(uint start,uint count)
 {
-    return start | (count<< 24);
+    return start | (count << 24);
 }
 
 

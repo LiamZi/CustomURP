@@ -3,16 +3,16 @@
 
 #include  "Common.hlsl"
 
-float3 ScreenToNDC(float3 pos)
+float3 ScreenToNDC(float3 screenPos)
 {
-    float3 ndc = float3(pos.xy / _ScreenParams.xy, pos.z);
+    float3 posNDC = float3(screenPos.xy / _ScreenParams.xy, screenPos.z);
 #if UNITY_UV_STARTS_AT_TOP
-    if(!(_ProjectionParams.x < 0))
+    if (!(_ProjectionParams.x < 0))
     {
-        ndc.y = 1 - ndc.y;
+        posNDC.y = 1 - posNDC.y;
     }
 #endif
-    return ndc;
+    return posNDC;
 }
 
 #endif
