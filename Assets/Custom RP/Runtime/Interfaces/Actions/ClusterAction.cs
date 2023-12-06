@@ -161,13 +161,6 @@ namespace CustomURP
             _cmd.SetComputeBufferParam(_clusterShading, _clusterGridBuildKernel, ShaderParams._clusterGridRWId, _gridBuffer);
             _cmd.DispatchCompute(_clusterShading, _clusterGridBuildKernel, 1, 1, 1);
             _cmd.Execute();
-            
-            // var grids = GetData<VolumeTileAABB>(_gridBuffer);
-            // foreach (var grid in grids)
-            // {
-            //     Debug.Log("BuildGrid grid min point : " + grid.minPoint.ToString() + " max point : " + grid.maxPoint.ToString());
-            // }
-            
         }
 
         private void BuildLightList(bool useLightsPerObject, int renderingLayerMask)
@@ -224,12 +217,6 @@ namespace CustomURP
             
             if (otherLightCount > 0)
             {
-                // foreach (var l in _lightListArray)
-                // for(var j = 0; j < _lightListArray.Length; ++j)
-                // {
-                //     var l = _lightListArray[j];
-                //     Debug.Log("other light list index :" + j + " min : " + l.minPoint.ToString() +" max: " + l.maxPoint.ToString() + " Color : " +l.Color.ToString() + " pos:  " + l.PosWS );
-                // }
                 _lightListBuffer.SetData(_lightListArray, 0, 0, otherLightCount);
                 _cmd.SetComputeIntParam(_clusterShading, ShaderParams._clusterLightCountId, otherLightCount);
             }
