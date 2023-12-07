@@ -15,6 +15,7 @@ namespace CustomPipeline
         
         public bool _gpuDriven { get; private set; } = false;
         ClusterAction _cluster = null;
+        public ClusterAction Cluster { get => _cluster; set { _cluster = value; } }
         public Scene(CustomRenderPipelineAsset asset)
         {
             _asset = asset;
@@ -34,15 +35,16 @@ namespace CustomPipeline
         public void SetClusterCullResult(ref CullingResults results)
         {
             // if (Application.isPlaying && _cluster != null && !_cluster._isInited)
-            // {
+            if(_cluster != null && _cluster._isInited)
+            {
                 _cluster.SetCullResult(ref results);
-            // }
+            }
         }
         public void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             // if (Application.isPlaying && _cluster != null && !_cluster._isInited)
-            // if (_cluster != null && !_cluster._isInited)
-            if(_cluster != null)
+            if (_cluster != null && !_cluster._isInited)
+            // if(_cluster != null)
             {
                 _cluster.BeginRendering(camera, ref cmd);
             }
@@ -53,8 +55,8 @@ namespace CustomPipeline
         {
             // if (Application.isPlaying && _cluster != null && _cluster._isInited)
             // if (Application.isPlaying && _cluster != null )
-            // if (_cluster != null && _cluster._isInited)
-            if(_cluster != null)
+            if (_cluster != null && _cluster._isInited)
+            // if(_cluster != null)
             {
                 // _cluster.DebugCluster(camera._camera);
                 _cluster.Tick(camera, ref cmd); 

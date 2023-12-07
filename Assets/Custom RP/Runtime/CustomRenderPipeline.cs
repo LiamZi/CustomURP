@@ -272,7 +272,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 #endif
 
          // foreach (var i in collect)
-         for(var j = 1; j <= 3; j++)
+         for(var j = 1; j <= 2; j++)
          { 
              var i = collect[j]; 
              i.BeginRendering(camera, ref _cmd); 
@@ -286,6 +286,14 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
+        
+        var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
+        var cluster = scene.Cluster;
+        if (cluster != null)
+        {
+            cluster.Dispose();
+        }
+        
         if (_actions != null)
         {
             UnsafeHashMap.Free(_actions);

@@ -30,6 +30,8 @@ RWStructuredBuffer<uint> _cluster_Active_RW;
 
 float GridPos2GridIndex(uint3 pos)
 {
+    // uint index = pos.x + pos.y * _cluster_Data.x + pos.z * _cluster_Data.x * _cluster_Data.y;
+    // return index;
     uint gridIndex = pos.x + pos.y * _cluster_Data.x + pos.z * _cluster_Data.x * _cluster_Data.y;
     return gridIndex;
 }

@@ -20,7 +20,7 @@ namespace CustomURP
             return true;
         }
 
-        protected internal override void Dispose()
+        public override void Dispose()
         {
             base.Dispose();
         }
