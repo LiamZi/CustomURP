@@ -127,7 +127,7 @@ namespace CustomURP
             // _shadows.Setup(cmd.Context, _cullingResults, _asset.Shadows);
             BuildGrid();
 
-            _isInited = true;
+            // _isInited = true;
             // DebugCluster(camera._camera);
         }
 
@@ -221,9 +221,9 @@ namespace CustomURP
                 _cmd.SetComputeIntParam(_clusterShading, ShaderParams._clusterLightCountId, otherLightCount);
             }
             
-             // _cmd.BeginSample();
+             //_cmd.BeginSample();
              _cmd.Execute();
-             // _cmd.EndSampler();
+             //_cmd.EndSampler();
         }
         
         private void SetupDirectionalLight(int index, int visibleIndex, ref VisibleLight visibleLight, Light light)
@@ -319,9 +319,9 @@ namespace CustomURP
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightListId, _lightListBuffer);
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightIndexRWId, _lightIndexBuffer);
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterGrirdLightRWId, _gridLightIndexBuffer);
-            // _cmd.BeginSample();
+            //_cmd.BeginSample();
             _cmd.DispatchCompute(_clusterShading, _gridLightBuildKernel, 1, 1, 1);
-            // _cmd.EndSampler();
+            //_cmd.EndSampler();
             
             _cmd.Execute();
         }
@@ -333,9 +333,9 @@ namespace CustomURP
             _cmd.SetGlobalBuffer(ShaderParams._clusterLightListId, _lightListBuffer);
             _cmd.SetGlobalBuffer(ShaderParams._clusterLightIndexId, _lightIndexBuffer);
             _cmd.SetGlobalBuffer(ShaderParams._clusterGridLightId, _gridLightIndexBuffer);
-            // _cmd.BeginSample();
+            //_cmd.BeginSample();
             _cmd.Execute();
-            // _cmd.EndSampler();
+            //_cmd.EndSampler();
         }
 
         public override bool InspectProperty()
@@ -438,9 +438,15 @@ namespace CustomURP
             return data;
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
-            _cmd.Release();
+            base.Dispose();
+
+            if(_lightListBuffer != null) _lightListBuffer.Release();
+            if(_gridBuffer != null) _gridBuffer.Release();
+            if(_lightIndexBuffer != null) _lightIndexBuffer.Release();
+            if(_gridLightIndexBuffer != null) _gridLightIndexBuffer.Release();
+            if(_cmd != null) _cmd.Release();
         }
         
     }
