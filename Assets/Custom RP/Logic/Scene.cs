@@ -35,7 +35,7 @@ namespace CustomPipeline
         public void SetClusterCullResult(ref CullingResults results)
         {
             // if (Application.isPlaying && _cluster != null && !_cluster._isInited)
-            if(_cluster != null && _cluster._isInited)
+            if(_cluster != null)
             {
                 _cluster.SetCullResult(ref results);
             }

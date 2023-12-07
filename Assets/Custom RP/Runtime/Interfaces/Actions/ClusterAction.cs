@@ -81,7 +81,7 @@ namespace CustomURP
         Vector4 _clusterData;
         
         private                 CullingResults _cullingResults;
-        private                 Shadows        _shadows;
+        private                 Shadows        _shadows = null;
         private static readonly Vector4[]      _dirLightColors               = new Vector4[CLUSTER_MAX_DIR_LIGHTS_COUNT];
         private static readonly Vector4[]      _dirLightDirectionsAndMasks   = new Vector4[CLUSTER_MAX_DIR_LIGHTS_COUNT];
         private static readonly Vector4[]      _dirLightShadowData           = new Vector4[CLUSTER_MAX_DIR_LIGHTS_COUNT];
@@ -99,6 +99,8 @@ namespace CustomURP
             _asset = asset;
             _clusterShading = asset._pipelineShaders._ClusterRenderShader;
             _cmd = new Command("ClusterAction");
+            _shadows = new Shadows();
+            
             _clusterGridBuildKernel = _clusterShading.FindKernel("ClusterGridBuild");
             _gridLightBuildKernel = _clusterShading.FindKernel("GridLightBuild");
 
@@ -109,8 +111,6 @@ namespace CustomURP
             _lightListBuffer = new ComputeBuffer(CLUSTER_MAX_LIGHTS_COUNT, sizeof(AdditionalLightData));
             _lightIndexBuffer = new ComputeBuffer(total * CLUSTER_MAX_LIGHTS_COUNT, sizeof(uint));
             _gridLightIndexBuffer = new ComputeBuffer(total, sizeof(uint));
-            // _shadows = new Shadows();
-
         }
         
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
@@ -124,7 +124,7 @@ namespace CustomURP
             var scale = _clusterSize.z / Mathf.Log(_zFar / _zNear);
             var bias = -_clusterSize.z * Mathf.Log(_zNear) / Mathf.Log(_zFar / _zNear);
             _clusterData = new Vector4(_clusterSize.x, _clusterSize.y, scale, bias);
-            // _shadows.Setup(cmd.Context, _cullingResults, _asset.Shadows);
+         
             BuildGrid();
 
             _isInited = true;
@@ -133,14 +133,20 @@ namespace CustomURP
 
         public override void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
+            if (!_isInited) return;
             _cmd.Context = cmd.Context;
             _camera = camera;
             
             var cameraSettings = camera ? camera.Setting : new CameraSettings();
-            // _shadows.Render();
+            _shadows.Setup(cmd.Context, _cullingResults, _asset.Shadows);
             BuildLightList(_asset.LightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
             BuildGridLight();
             BindShaderConstant();
+            
+            _shadows.Render();
+            
+            // _shadows.Clearup();
+            
         }
 
         public override void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
@@ -221,9 +227,9 @@ namespace CustomURP
                 _cmd.SetComputeIntParam(_clusterShading, ShaderParams._clusterLightCountId, otherLightCount);
             }
             
-             _cmd.BeginSample();
+             // _cmd.BeginSample();
              _cmd.Execute();
-             _cmd.EndSampler();
+             // _cmd.EndSampler();
         }
         
         private void SetupDirectionalLight(int index, int visibleIndex, ref VisibleLight visibleLight, Light light)
@@ -233,8 +239,8 @@ namespace CustomURP
             dirAndMask.w = light.renderingLayerMask.ReinterpretAsFloat();
 
             _dirLightDirectionsAndMasks[index] = dirAndMask;
-            // _dirLightShadowData[index]         = _shadows.ReserveDirectinalShadows(light, visibleIndex);
-            _dirLightShadowData[index] = Vector4.zero;
+            _dirLightShadowData[index] = _shadows.ReserveDirectinalShadows(light, visibleIndex);
+            // _dirLightShadowData[index] = Vector4.zero;
         }
 
         void SetupPointLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView, int visibleIndex)
@@ -260,7 +266,7 @@ namespace CustomURP
             _lightListArray[arrayIndex].SpotAngle = new Vector2(0f, 1f);
             _lightListArray[arrayIndex].SpotDir = Vector4.zero;
             _lightListArray[arrayIndex].dirAndMask = new Vector4(0, 0, 0, light.renderingLayerMask.ReinterpretAsFloat());
-            // _lightListArray[arrayIndex].ShadowData = _shadows.ReserveOtherShadows(light, visibleIndex);
+            _lightListArray[arrayIndex].ShadowData = _shadows.ReserveOtherShadows(light, visibleIndex);
         }
 
         void SetupSpotLight(int arrayIndex, ref VisibleLight visibleLight, Light light, Matrix4x4 worldToView, int visibleIndex)
@@ -308,7 +314,7 @@ namespace CustomURP
             var dirAndMask = -visibleLight.localToWorldMatrix.GetColumn(2);
             dirAndMask.w = light.renderingLayerMask.ReinterpretAsFloat();
             _lightListArray[arrayIndex].dirAndMask = dirAndMask;
-            // _lightListArray[arrayIndex].ShadowData = _shadows.ReserveOtherShadows(light, visibleIndex);
+            _lightListArray[arrayIndex].ShadowData = _shadows.ReserveOtherShadows(light, visibleIndex);
         }
 
         private void BuildGridLight()
@@ -319,9 +325,9 @@ namespace CustomURP
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightListId, _lightListBuffer);
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterLightIndexRWId, _lightIndexBuffer);
             _cmd.SetComputeBufferParam(_clusterShading, _gridLightBuildKernel, ShaderParams._clusterGrirdLightRWId, _gridLightIndexBuffer);
-            _cmd.BeginSample();
+            // _cmd.BeginSample();
             _cmd.DispatchCompute(_clusterShading, _gridLightBuildKernel, 1, 1, 1);
-            _cmd.EndSampler();
+            // _cmd.EndSampler();
             
             _cmd.Execute();
         }
@@ -333,9 +339,9 @@ namespace CustomURP
             _cmd.SetGlobalBuffer(ShaderParams._clusterLightListId, _lightListBuffer);
             _cmd.SetGlobalBuffer(ShaderParams._clusterLightIndexId, _lightIndexBuffer);
             _cmd.SetGlobalBuffer(ShaderParams._clusterGridLightId, _gridLightIndexBuffer);
-            _cmd.BeginSample();
+            // _cmd.BeginSample();
             _cmd.Execute();
-            _cmd.EndSampler();
+            // _cmd.EndSampler();
         }
 
         public override bool InspectProperty()
@@ -445,6 +451,7 @@ namespace CustomURP
             if(_lightIndexBuffer != null) _lightIndexBuffer.Release();
             if(_gridBuffer != null) _gridBuffer.Release();
             if(_gridBuffer != null) _gridLightIndexBuffer.Release();
+            if(_shadows != null) _shadows.Clearup();
             _cmd.Release();
             
         }

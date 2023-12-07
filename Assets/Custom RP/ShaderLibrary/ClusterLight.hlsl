@@ -87,7 +87,7 @@ Light GetDirectionalLight(int index, Surface surface, ShadowData shadowData)
     DirectinalShadowData dirShadowData = GetClusterDirectionalShadowData(index, shadowData);
     light.attenuation = GetDirectionalShadowAttenuation(dirShadowData, shadowData, surface);
     // light.attenuation = shadowData.cascadeIndex * 0.25;
-    light.attenuation = 1.0;
+    // light.attenuation = 1.0;
     return light;
 }
 
@@ -111,11 +111,11 @@ Light GetOtherLight(int index, Surface surface, ShadowData shadowData)
     otherShadowData.lightPositionWS = otherData.PosWS;
     otherShadowData.lightDirectionWS = light.direction;
     otherShadowData.spotDirectionWS = spotDirection;
-    // light.attenuation = GetOtherShadowAttenuation(otherShadowData, shadowData, surface) * spotAttenuation * rangeAttenuation / distanceSqr;
+    light.attenuation = GetOtherShadowAttenuation(otherShadowData, shadowData, surface) * spotAttenuation * rangeAttenuation / distanceSqr;
     // light.attenuation = 0.1;
-    float distanceAttenuation = Square(max(0, 1 - Square(distanceSqr * otherData.AttenuationCoef)));
-    float attenuation = distanceAttenuation * rcp(distanceSqr) * spotAttenuation;
-    light.attenuation = attenuation;
+    // float distanceAttenuation = Square(max(0, 1 - Square(distanceSqr * otherData.AttenuationCoef)));
+    // float attenuation = distanceAttenuation * rcp(distanceSqr) * spotAttenuation;
+    // light.attenuation = attenuation;
     return light;
 }
 

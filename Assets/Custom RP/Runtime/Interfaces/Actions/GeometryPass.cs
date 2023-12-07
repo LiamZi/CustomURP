@@ -53,15 +53,14 @@ namespace CustomURP
             ));
             _cmd.Execute();
             // _cmd.EndSampler();
-
-            Setup(camera);
+            
             var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
             scene.SetClusterCullResult(ref _cullingResults);
             scene.BeginRendering(camera, ref cmd);
             scene.Tick(camera, ref cmd);
             
+            Setup(camera);
             DrawVisibleGeometry(cameraSettings._renderingLayerMask);
-
             UnsupportedShaders();
             
             // _cmd.EndSampler();
@@ -184,11 +183,11 @@ namespace CustomURP
                 flags == CameraClearFlags.Color ? camera._camera.backgroundColor.linear : Color.clear
             );
             _cmd.Name = "Geometry pass";
-            _cmd.BeginSample();
+            // _cmd.BeginSample();
             _cmd.SetGlobalTexture(rt._colorTextureId, missingTexture);
             _cmd.SetGlobalTexture(rt._depthTextureId, missingTexture);
             _cmd.Execute();
-            _cmd.EndSampler();
+            // _cmd.EndSampler();
         }
     }
 }

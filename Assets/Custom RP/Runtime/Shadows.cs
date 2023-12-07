@@ -173,13 +173,13 @@ public class Shadows
             RenderOtherShadows();
         else
             _commandBuffer.SetGlobalTexture(_otherShadwAtlasId, _dirShadowAtlasId);
-
+        
         _commandBuffer.BeginSample(_bufferName);
         SetKeywords(_shadowMaskKeywords,
             _useShadowMask ? QualitySettings.shadowmaskMode == ShadowmaskMode.Shadowmask ? 0 : 1 : -1);
         _commandBuffer.SetGlobalInt(_cascadCountId,
             _shadowedDirectinnalLightCount > 0 ? _settings._directional._cascadeCount : 0);
-
+        
         var f = 1f - _settings._directional._cascadeFade;
         _commandBuffer.SetGlobalVector(_shadowDistanceFadeId,
             new Vector4(1f / _settings._maxDistance, 1f / _settings._distanceFade, 1f / (1f - f * f)));
