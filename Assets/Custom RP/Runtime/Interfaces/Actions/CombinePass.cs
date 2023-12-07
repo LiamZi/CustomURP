@@ -20,7 +20,7 @@ namespace CustomURP
             return true;
         }
 
-        public override void Dispose()
+        protected internal override void Dispose()
         {
             base.Dispose();
         }
@@ -53,8 +53,8 @@ namespace CustomURP
 
             if (useIntermediateBuffer)
             {
-                 //CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorAttachmentId);
-                 //CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._depthAttachmentId);
+                CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorAttachmentId);
+                CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._depthAttachmentId);
 
                 if (useColorTexture) CustomRenderPipeline.DelayReleaseRTAfterFrame(rt._colorTextureId);
 

@@ -64,7 +64,7 @@ namespace CustomURP
 
             UnsupportedShaders();
             
-            // _cmd.EndSampler();
+            _cmd.EndSampler();
         }
         
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
