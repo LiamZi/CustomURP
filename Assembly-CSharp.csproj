@@ -66,6 +66,7 @@
     <Compile Include="Assets\Custom RP\Runtime\PostFXStack.Editor.cs" />
     <Compile Include="Assets\Custom RP\Runtime\LightingPass.cs" />
     <Compile Include="Assets\Custom RP\Runtime\CustomRenderPipeline.Editor.cs" />
+    <Compile Include="Assets\Scenes\Rotation.cs" />
     <Compile Include="Assets\Custom RP\Core\UnsafeCollections\UnsafeList.Iterator.cs" />
     <Compile Include="Assets\Custom RP\Runtime\Interfaces\Actions\CoreAction.cs" />
     <Compile Include="Assets\Custom RP\Core\UnsafeCollections\UnsafeArray.Iterator.cs" />

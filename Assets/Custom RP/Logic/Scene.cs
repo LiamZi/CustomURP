@@ -69,6 +69,14 @@ namespace CustomPipeline
             
         }
 
+        public void CleanClusterShadow()
+        {
+            if (_cluster)
+            {
+                _cluster.CleanShadows();
+            }
+        }
+
         public void Dispose()
         {
             if (_cluster)

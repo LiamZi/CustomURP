@@ -227,9 +227,9 @@ namespace CustomURP
                 _cmd.SetComputeIntParam(_clusterShading, ShaderParams._clusterLightCountId, otherLightCount);
             }
             
-             // _cmd.BeginSample();
+             _cmd.BeginSample();
              _cmd.Execute();
-             // _cmd.EndSampler();
+             _cmd.EndSampler();
         }
         
         private void SetupDirectionalLight(int index, int visibleIndex, ref VisibleLight visibleLight, Light light)
