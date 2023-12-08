@@ -23,7 +23,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     public static  CameraSettings _defaultCameraSettings = new CameraSettings();
 
     //private static List<int> _delayReleaseRenderTarget;
-    private readonly Scene _scene;
+    private Scene _scene;
 
     public CustomRenderPipelineAsset _asset;
 
@@ -159,6 +159,11 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
     private void EndFrameRendering(ScriptableRenderContext context, Camera[] cameras)
     {
+        var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
+        var cluster = scene.Cluster;
+        if (cluster != null) cluster.CleanShadows();
+        
+        
         //TODO： Forward rendering has to submit here.
         if (_delayReleaseRenderTarget != null)
         {
@@ -167,7 +172,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
                 //TODO: release delaying rt at the frame end.
                 _cmd.ReleaseTemporaryRT(i);
         }
-
+        
         _cmd.Context.Submit();
     }
 
@@ -286,12 +291,11 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-        
-        var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
-        var cluster = scene.Cluster;
-        if (cluster != null)
+
+        if (_scene != null)
         {
-            cluster.Dispose();
+            _scene.Dispose();
+            _scene = null;
         }
         
         if (_actions != null)
@@ -299,15 +303,13 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
             UnsafeHashMap.Free(_actions);
             _actions = null;
         }
-
+        
         if (_delayReleaseRenderTarget != null)
         {
             UnsafeList.Free(_delayReleaseRenderTarget);
             _delayReleaseRenderTarget = null;
         }
-
-        if (_scene != null) _scene.Dispose();
-
+        
         _asset._loadingThread.Dispose();
 
         for (var i = 0; i < _asset._availiableActions.Length; ++i)

@@ -71,7 +71,11 @@ namespace CustomPipeline
 
         public void Dispose()
         {
-            
+            if (_cluster)
+            {
+                _cluster.Dispose();
+                _cluster = null;
+            }
         }
 
         public void SetState()

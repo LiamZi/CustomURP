@@ -444,6 +444,11 @@ namespace CustomURP
             return data;
         }
 
+        public void CleanShadows()
+        {
+            if(_shadows != null) _shadows.Clearup();
+        }
+
         public void Dispose()
         {
             _isInited = false;
@@ -451,9 +456,8 @@ namespace CustomURP
             if(_lightIndexBuffer != null) _lightIndexBuffer.Release();
             if(_gridBuffer != null) _gridBuffer.Release();
             if(_gridBuffer != null) _gridLightIndexBuffer.Release();
-            if(_shadows != null) _shadows.Clearup();
-            _cmd.Release();
-            
+           
+            // _cmd.Release();
         }
         
     }

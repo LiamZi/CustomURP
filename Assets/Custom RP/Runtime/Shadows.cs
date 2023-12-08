@@ -90,6 +90,8 @@ public class Shadows
 
     private void ExcuteBuffer()
     {
+        if (_context == null || _commandBuffer == null) return;
+        
         _context.ExecuteCommandBuffer(_commandBuffer);
         _commandBuffer.Clear();
     }
@@ -407,12 +409,10 @@ public class Shadows
     public void Clearup()
     {
         _commandBuffer.ReleaseTemporaryRT(_dirShadowAtlasId);
-        // CustomRenderPipeline.DelayReleaseRTAfterFrame(_dirShadowAtlasId);
-
         if (_shadowedOtherLightCount > 0)
+        {
             _commandBuffer.ReleaseTemporaryRT(_otherShadwAtlasId);
-        // CustomRenderPipeline.DelayReleaseRTAfterFrame(_otherShadwAtlasId);
-
+        }
         ExcuteBuffer();
     }
 

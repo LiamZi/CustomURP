@@ -19,7 +19,6 @@ namespace Core
         {
             return Allocate(capacity, sizeof(T), fixedSize);
         }
-
         public static UnsafeList* Allocate(int capacity, int stride, bool fixedSize = false)
         {
             Assert.Check(capacity > 0);
