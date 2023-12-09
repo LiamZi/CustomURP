@@ -40,5 +40,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 *.csproj
-*..user
+*.user
 *.sln
+
