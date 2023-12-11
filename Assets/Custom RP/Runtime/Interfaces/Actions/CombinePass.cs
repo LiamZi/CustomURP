@@ -40,7 +40,7 @@ namespace CustomURP
         public override void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             base.EndRendering(camera, ref cmd);
-            Cleanup(camera);
+            // Cleanup(camera);
         }
 
         private void Cleanup(CustomRenderPipelineCamera camera)

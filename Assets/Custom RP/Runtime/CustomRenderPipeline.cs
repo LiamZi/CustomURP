@@ -277,7 +277,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 #endif
 
          // foreach (var i in collect)
-         for(var j = 1; j <= 2; j++)
+         for(var j = 1; j < collect.Length; j++)
          { 
              var i = collect[j]; 
              i.BeginRendering(camera, ref _cmd); 
@@ -295,7 +295,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         if (_scene != null)
         {
             _scene.Dispose();
-            _scene = null;
+            // _scene = null;
         }
         
         if (_actions != null)
