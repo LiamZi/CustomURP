@@ -3,6 +3,9 @@
 
 #include "SkyBoxFunctions.hlsl"
 
+static const float PI2 = PI * 2;
+static const float halfPI = PI * 0.5;
+
 struct VertexInput
 {
     float4 positionOS : POSITION;
@@ -35,12 +38,15 @@ VertexOutput vert(VertexInput input)
 
 half4 frag(VertexOutput input) : SV_Target
 {
-    float3 positionWS = normalize(input.positionOS);
-    float2 sphereUV = float2(atan2(positionWS.x, positionWS.z) / TWO_PI, asin(positionWS.y) / HALF_PI);
+    float3 normalizePosWS = normalize(input.positionOS);
+    // float2 sphereUV = float2(atan2(normalizePosWS.x, normalizePosWS.z) / TWO_PI, asin(positionWS.y) / HALF_PI);
+    // float2 sphereUV = float2(atan2(normalizePosWS.x, normalizePosWS.z) / TWO_PI, asin(normalizePosWS.y) / HALF_PI);
+    float2 sphereUV = float2(atan2(normalizePosWS.x, normalizePosWS.z) / PI2, asin(normalizePosWS.y) / halfPI);
 
+    
     //This is sun's algorithm comes from unity.
-    half4 sun = CalcSunAttenuation(positionWS, -_SunDirectionWS) * _SunIntensity * _SunColor;
-    half4 scattering = smoothstep(0.5, 1.5, dot(positionWS, -_SunDirectionWS.xyz)) * _SunColor * _ScatteringIntensity;
+    half4 sun = CalcSunAttenuation(normalizePosWS, -_SunDirectionWS) * _SunIntensity * _SunColor;
+    half4 scattering = smoothstep(0.5, 1.5, dot(normalizePosWS, -_SunDirectionWS.xyz)) * _SunColor * _ScatteringIntensity;
     half scatteringInstensity = max(0.15, smoothstep(0.6, 0.0, -_SunDirectionWS.y));
     scattering *= scatteringInstensity;
     
@@ -52,10 +58,10 @@ half4 frag(VertexOutput input) : SV_Target
     star = saturate(star * star * star * 3) * _StarIntensity;
 
     // half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(positionWS, -_MoonDirectionWS.xyz));
-    half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(positionWS, -_MoonDirectionWS.xyz));
+    half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(normalizePosWS, -_MoonDirectionWS.xyz));
 
     // half4 moonScattering = smoothstep(0.97, 1.3, dot(positionWS, -_MoonDirectionWS.xyz));
-    half4 moonScattering = smoothstep(0.97, 1.3, dot(positionWS, -_MoonDirectionWS.xyz));
+    half4 moonScattering = smoothstep(0.97, 1.3, dot(normalizePosWS, -_MoonDirectionWS.xyz));
 
     // moon = (moon * _MoonIntensity + moonScattering * 0.8) * _MoonColor;
     moon = (moon * _MoonIntensity + moonScattering * 0.8) * _MoonColor;
