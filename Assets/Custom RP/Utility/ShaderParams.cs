@@ -76,6 +76,20 @@ namespace CustomURP
         public static readonly int _clusterDirectionalLightDirAndMasksId = Shader.PropertyToID("_cluster_directionalLightDirectionAndMasks");
         public static readonly int _clusterDirectionalLightShadowDataId = Shader.PropertyToID("_cluster_directionalLightShadowData");
         public static readonly int _clusterOtherLightShadowDataId = Shader.PropertyToID("_cluster_otherLightShadowData");
+        
+        
+        public static readonly int _skyGradientTex = Shader.PropertyToID("_SkyGradientTex");
+        public static readonly int _starIntensity = Shader.PropertyToID("_StarIntensity");
+        public static readonly int _milkyWayIntensity = Shader.PropertyToID("_MilkywayIntensity");
+        public static readonly int _sunDirectionWS = Shader.PropertyToID("_SunDirectionWS");
+        public static readonly int _moonDreictinWS = Shader.PropertyToID("_MoonDirectionWS");
+        public static readonly int _starTex = Shader.PropertyToID("_StarTex");
+        public static readonly int _moonTex = Shader.PropertyToID("_MoonTex");
+        public static readonly int _moonWorld2Local = Shader.PropertyToID("_MoonWorld2Obj");
+        public static readonly int _milkyWayWorld2Local = Shader.PropertyToID("_MilkyWayWorld2Local");
+        public static readonly int _scatteringIntensity = Shader.PropertyToID("_ScatteringIntensity");
+        public static readonly int _sunIntensity = Shader.PropertyToID("_SunIntensity");
+        
 
         
         public static ShaderTagId[] _LegacyShaderTagIdsagId =

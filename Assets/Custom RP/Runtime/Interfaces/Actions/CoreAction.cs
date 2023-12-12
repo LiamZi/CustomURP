@@ -118,6 +118,8 @@ namespace CustomURP
                 UnsafeList.Free(_dependingActions);
                 _dependingActions = null;
             }
+            
+            _isInitialized = false;
         }
 
         public abstract bool InspectProperty();

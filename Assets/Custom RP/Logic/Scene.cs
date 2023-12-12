@@ -43,7 +43,7 @@ namespace CustomPipeline
         public void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             // if (Application.isPlaying && _cluster != null && !_cluster._isInited)
-            if (_cluster != null && !_cluster._isInited)
+            if (_cluster != null && _cluster.Enabled)
             // if(_cluster != null)
             {
                 _cluster.BeginRendering(camera, ref cmd);
@@ -55,7 +55,7 @@ namespace CustomPipeline
         {
             // if (Application.isPlaying && _cluster != null && _cluster._isInited)
             // if (Application.isPlaying && _cluster != null )
-            if (_cluster != null && _cluster._isInited)
+            if (_cluster != null && _cluster.Enabled)
             // if(_cluster != null)
             {
                 // _cluster.DebugCluster(camera._camera);
@@ -71,7 +71,7 @@ namespace CustomPipeline
 
         public void CleanClusterShadow()
         {
-            if (_cluster)
+            if (_cluster && _cluster.Enabled)
             {
                 _cluster.CleanShadows();
             }
@@ -82,7 +82,7 @@ namespace CustomPipeline
             if (_cluster)
             {
                 _cluster.Dispose();
-                _cluster = null;
+                // _cluster = null;
             }
         }
 

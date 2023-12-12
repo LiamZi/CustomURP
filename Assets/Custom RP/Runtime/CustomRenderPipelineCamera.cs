@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Core;
 using CustomPipeline;
 using CustomURP;
@@ -14,6 +15,7 @@ using UnityEngine.Rendering;
 public sealed unsafe class CustomRenderPipelineCamera : MonoBehaviour
 {
     public static            UnsafeHashMap* _cameraMap = null;
+    // public static Dictionary<int, ulong> _cameraMap = Nullable;
     [SerializeField] private CameraSettings _settings;
 
     [SerializeField] private HizDepthGenerator      _hizDepthGenerator;
@@ -43,19 +45,32 @@ public sealed unsafe class CustomRenderPipelineCamera : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_cameraMap != null) UnsafeHashMap.Remove(_cameraMap, gameObject.GetInstanceID());
+        // if (_cameraMap != null)
+        // {
+        //     UnsafeHashMap.Remove(_cameraMap, gameObject.GetInstanceID());
+        // }
+        // UnsafeList.Free(_frustumArray);
+    }
+
+    public void OnDestroy()
+    {
+        if (_cameraMap != null)
+        {
+            UnsafeHashMap.Remove(_cameraMap, gameObject.GetInstanceID());
+        }
         UnsafeList.Free(_frustumArray);
     }
 
     public void ResetMatrix()
     {
-        var camera = GetComponent<Camera>();
-        // camera.orthographic = !camera.orthographic;
-        camera.ResetCullingMatrix();
-        camera.ResetProjectionMatrix();
-        camera.ResetStereoProjectionMatrices();
-        camera.ResetStereoViewMatrices();
-        camera.ResetWorldToCameraMatrix();
+        // var camera = GetComponent<Camera>();
+        // if(camera == null) return;
+        // // camera.orthographic = !camera.orthographic;
+        // camera.ResetCullingMatrix();
+        // camera.ResetProjectionMatrix();
+        // camera.ResetStereoProjectionMatrices();
+        // camera.ResetStereoViewMatrices();
+        // camera.ResetWorldToCameraMatrix();
     }
 
     public void InitRenderTarget(ref Command cmd, CustomRenderPipelineAsset asset, CustomRenderPipelineCamera camera)

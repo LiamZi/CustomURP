@@ -14,11 +14,11 @@ namespace Core
             Used = 2,
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Auto)]
         public unsafe struct Entry
         {
-            public const int ALIGNMENT = 8;
             public Entry* _next;
+            public const int ALIGNMENT = 8;
             public int _hash;
             public EntryState _state;
         };

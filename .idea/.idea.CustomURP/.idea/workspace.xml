@@ -5,39 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyBox.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyBox.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeDataController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeDataController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxFunctions.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxFunctions.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/NewUnlitShader.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/NewUnlitShader.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Cloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Cloud.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/MilkyWayRamp3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/MilkyWayRamp3.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Moon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Moon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Stars.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Stars.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/checker-map_tho.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/checker-map_tho.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/SkyBoxScene.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/SkyBoxScene.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time12.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time12.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time15.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time15.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time18.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time18.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time21.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time21.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time6.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time6.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time9.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time9.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp-Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/CustomURP/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/CustomURP/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/CustomURP/v17/fileList.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/CustomURP/v17/fileList.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CombinePass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CombinePass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CoreAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CoreAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Common.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Common.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/ClusterScene/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ClusterScene/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.CollabProxy.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.CollabProxy.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.Mathematics.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Mathematics.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.Mathematics.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Mathematics.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.PlasticSCM.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.PlasticSCM.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.RenderPipeline.Universal.ShaderLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipeline.Universal.ShaderLibrary.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Runtime.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Core.Runtime.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Core.ShaderLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Core.ShaderLibrary.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Runtime.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Runtime.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Shaders.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.RenderPipelines.Universal.Shaders.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.Rider.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Rider.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.Searcher.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Searcher.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.ShaderGraph.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.ShaderGraph.Utilities.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.ShaderGraph.Utilities.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.TextMeshPro.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.TextMeshPro.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.TextMeshPro.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.TextMeshPro.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.Timeline.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Timeline.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.Timeline.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.Timeline.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.VSCode.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.VSCode.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Unity.VisualStudio.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Unity.VisualStudio.Editor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UnityEditor.TestRunner.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UnityEditor.TestRunner.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UnityEditor.UI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UnityEditor.UI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UnityEngine.TestRunner.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UnityEngine.TestRunner.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UnityEngine.UI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/UnityEngine.UI.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,20 +86,29 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityCG.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityInstancing.cginc" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/af/840997c7/UIntPtr.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/2a/dc893e7e/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/58/03b09f95/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b0/9fbed331/ScriptableRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b8/14625f43/RenderPipelineManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/d8/8beb914b/DynamicGI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/e3/e3a7b1d1/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/e6/c9109dbc/RenderPipelineAsset.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/f5/d837e8a0/Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/44/5b6dbf2f/PlayModeView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Github/Unity-MPipeline-Framework/Assets/Scripts/MPipeline Core/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Github/Unity_Indirect-Rendering-With-Compute-Shaders/Assets/Scripts/Example.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CombinePass.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Shadows.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/D3D11.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/GLES3.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/Common.hlsl" root0="SKIP_HIGHLIGHTING" />
@@ -78,8 +118,10 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/Random.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/SpaceTransforms.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/UnityInstancing.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/ShaderLibrary/Core.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/ShaderLibrary/Lighting.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/ShaderLibrary/ShaderGraphFunctions.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/ShaderLibrary/ShaderVariablesFunctions.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/ShaderLibrary/Shadows.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/ShaderLibrary/UnityGBuffer.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/Shaders/BakedLit.shader" root0="SKIP_HIGHLIGHTING" />
@@ -117,31 +159,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.3895631&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;附加到 Unity 编辑器.附加到 Unity 编辑器.executor&quot;: &quot;Debug&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.3895631",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true",
+    "附加到 Unity 播放器.AndroidPlayer(Xiaomi M2011K2C).executor": "Debug",
+    "附加到 Unity 编辑器.附加到 Unity 编辑器.executor": "Debug"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="附加到 Unity 编辑器.附加到 Unity 编辑器">
     <configuration name="启动 Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2020.3.47f1c1\Editor\Unity.exe" />
@@ -195,14 +238,31 @@
       </option>
       <method v="2" />
     </configuration>
+    <configuration name="AndroidPlayer(Xiaomi M2011K2C)" type="UnityPlayer" factoryName="UnityAttachToPlayer" temporary="true">
+      <option name="androidPackageUid" value="10426" />
+      <option name="deviceId" value="509f86cc" />
+      <option name="deviceName" value="Xiaomi M2011K2C" />
+      <option name="host" value="127.0.0.1" />
+      <option name="packageName" value="com.GPU.CustomURP" />
+      <option name="playerId" value="AndroidADBPlayer(509f86cc)" />
+      <option name="playerInstanceId" value="com.GPU.CustomURP" />
+      <option name="port" value="56058" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="独立播放器.Start Unity" />
       <item itemvalue="独立播放器.Unit Tests (batch mode)" />
       <item itemvalue="独立播放器.单元测试(批处理模式)" />
       <item itemvalue="独立播放器.启动 Unity" />
+      <item itemvalue="附加到 Unity 播放器.AndroidPlayer(Xiaomi M2011K2C)" />
       <item itemvalue="附加到 Unity 编辑器.附加到 Unity 编辑器" />
       <item itemvalue="附加到 Unity 编辑器.附加到 Unity 编辑器并运行" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="附加到 Unity 播放器.AndroidPlayer(Xiaomi M2011K2C)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -257,6 +317,8 @@
       <workItem from="1701938600489" duration="9317000" />
       <workItem from="1702006175319" duration="5626000" />
       <workItem from="1702018852509" duration="8758000" />
+      <workItem from="1702262469538" duration="1206000" />
+      <workItem from="1702263814734" duration="36545000" />
     </task>
     <servers />
   </component>
@@ -343,20 +405,46 @@
           </properties>
           <option name="timeStamp" value="76" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs</url>
-          <line>62</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipeline.cs" initialLine="62" containingFunctionPresentation="构造函数 'CustomRenderPipeline'">
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs</url>
+          <line>136</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Interfaces\Actions\ClusterAction.cs" initialLine="135" containingFunctionPresentation="方法 'Tick'">
             <startOffsets>
-              <option value="2777" />
-              <option value="2796" />
+              <option value="5138" />
+              <option value="5159" />
             </startOffsets>
             <endOffsets>
-              <option value="2795" />
-              <option value="2823" />
+              <option value="5158" />
+              <option value="5166" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="77" />
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs</url>
+          <line>184</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipeline.cs" initialLine="179" containingFunctionPresentation="方法 'Render'">
+            <startOffsets>
+              <option value="7337" />
+            </startOffsets>
+            <endOffsets>
+              <option value="7375" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyBox.cs</url>
+          <line>60</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Components\SkyBox\SkyBox.cs" initialLine="60" containingFunctionPresentation="方法 'Update'">
+            <startOffsets>
+              <option value="1534" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1564" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="114" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

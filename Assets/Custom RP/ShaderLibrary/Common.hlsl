@@ -14,6 +14,10 @@
 #define UNITY_MATRIX_I_V unity_MatrixInvV
 #define UNITY_PREV_MATRIX_M unity_prev_MatrixM
 #define UNITY_PREV_MATRIX_I_M unity_prev_MatrixIM
+#define PI 3.1415926535
+#define MIE_G (-0.990)
+#define MIE_G2 0.9801
+
 
 #if defined(_SHADOW_MASK_ALWAYS) || defined(_SHADOW_MASK_DISTANCE)
     #define SHADOWS_SHADOWMASK

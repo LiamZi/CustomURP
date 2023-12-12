@@ -55,7 +55,7 @@ namespace CustomURP
         public int _maxClusterCount = 100000;
         public int _maxMaterialCount = 1;
         public int _materialPoolSize = 500;
-        public bool _isInited = false;
+        // public bool _isInited = false;
         
         int2 _gridXY;
         int _clusterGridBuildKernel;
@@ -115,7 +115,7 @@ namespace CustomURP
         
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            if (_isInited) return;
+            if (_isInitialized) return;
             _cmd.Context = cmd.Context;
             _camera = camera;
 
@@ -127,13 +127,14 @@ namespace CustomURP
          
             BuildGrid();
 
-            _isInited = true;
+            // _isInited = true;
+            _isInitialized = true;
             // DebugCluster(camera._camera);
         }
 
         public override void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            if (!_isInited) return;
+            if (!_isInitialized) return;
             _cmd.Context = cmd.Context;
             _camera = camera;
             
@@ -451,7 +452,7 @@ namespace CustomURP
 
         public void Dispose()
         {
-            _isInited = false;
+            _isInitialized = false;
             if(_lightListBuffer != null) _lightListBuffer.Release();
             if(_lightIndexBuffer != null) _lightIndexBuffer.Release();
             if(_gridBuffer != null) _gridBuffer.Release();

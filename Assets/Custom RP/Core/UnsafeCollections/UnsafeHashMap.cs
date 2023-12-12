@@ -38,9 +38,15 @@ namespace Core
 
         public static UnsafeHashMap* Allocate(int capacity, int keyStride, int valueStride, bool fixedSize = false)
         {
-            var entryStride = sizeof(UnsafeHashCollection.Entry);
+            
+            int entryStride = sizeof(UnsafeHashCollection.Entry);
             capacity = UnsafeHashCollection.GetNextPrime(capacity);
-            Assert.Check(entryStride == 16);
+            
+// #if UNITY_WINDOW
+             // Assert.Check(entryStride == 16);
+// #elif UNITY_ANDROID
+             // Assert.Check(entryStride == 12);
+// #endif
 
             var keyAlignment = Native.GetAlignment(keyStride);
             var valueAlignment = Native.GetAlignment(valueStride);

@@ -10,7 +10,8 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 {
     // bool _useHDR;
     public static  CameraBufferSettings                _cameraBufferSettings;
-    private static UnsafeHashMap*                      _actions        = null;
+    // private static UnsafeHashMap*                      _actions        = null;
+    static Dictionary<ulong, int> _actions = null;
     private static List<CustomRenderPipelineCameraSet> _preFrameCamera = new List<CustomRenderPipelineCameraSet>(10);
 
     private static readonly List<CustomRenderPipelineCameraSet> _renderCamera =
@@ -62,10 +63,10 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
         if(_scene == null) _scene = new Scene(_asset);
         _scene.Awake();
-        // Scene.Awake();
 
-        if (_actions == null) _actions = UnsafeHashMap.Allocate<ulong, int>(_asset._availiableActions.Length);
-
+        // if (_actions == null) _actions = UnsafeHashMap.Allocate<ulong, int>(_asset._availiableActions.Length);
+        if (_actions == null) _actions = new Dictionary<ulong, int>(_asset._availiableActions.Length);
+        
         _asset.SetRenderingData();
         var actions = _asset._actions;
         DeviceUtility.SetPlatform();
@@ -76,7 +77,8 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         {
             var action = _asset._availiableActions[i];
             var key    = new UIntPtr(UnsafeUtility.GetPtr(action.GetType()));
-            UnsafeHashMap.Add(_actions, key.ToUInt64(), i);
+            // UnsafeHashMap.Add(_actions, key.ToUInt64(), i);
+            _actions[key.ToUInt64()] = i;
             action.Prepare();
             action.Initialization(_asset);
         }
@@ -127,7 +129,8 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     public CoreAction GetAction(Type type)
     {
         var key = new UIntPtr(UnsafeUtility.GetPtr(type));
-        if (UnsafeHashMap.TryGetValue(_actions, key.ToUInt64(), out ulong value))
+        // if (UnsafeHashMap.TryGetValue(_actions, key.ToUInt64(), out ulong value))
+        if(_actions.TryGetValue(key.ToUInt64(), out int value))
             return _asset._availiableActions[value];
 
         return null;
@@ -137,7 +140,8 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     {
         var type = typeof(T);
         var key  = new UIntPtr(UnsafeUtility.GetPtr(type));
-        if (UnsafeHashMap.TryGetValue(_actions, key.ToUInt64(), out ulong value))
+        // if (UnsafeHashMap.TryGetValue(_actions, key.ToUInt64(), out ulong value))
+        if(_actions.TryGetValue(key.ToUInt64(), out int value))
             return _asset._availiableActions[value] as T;
 
         return null;
@@ -300,7 +304,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         
         if (_actions != null)
         {
-            UnsafeHashMap.Free(_actions);
+            // UnsafeHashMap.Free(_actions);
             _actions = null;
         }
         
