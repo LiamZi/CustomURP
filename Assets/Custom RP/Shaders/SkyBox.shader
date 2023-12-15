@@ -6,6 +6,10 @@
         _SunIntensity("Sun Intensity", Float) = 2
         _SunCol ("Sun Colour", Color) = (1, 1, 1, 1)
         _SunDirectionWS("Sun DirectionWS", Vector) = (1, 1, 1, 1)
+        _Exposure("Exposure", Range(0, 8))  = 1.3
+        _AtmosphereThickness("Atmosphere Thickness", Range(0, 5)) = 1.0
+        _SkyTint ("Sky Tint", Color) = (.5, .5, .5, 1)
+        _GroundColor ("Ground", Color) = (.369, .349, .341, 1)
         _ScatteringIntensity("Scattering Intensity", Float) = 1
         _StarTex("Star Texture", 2D) = "white" {}
         _MilkyWayTex("Milky Way Texture", 2D) = "white" {}
@@ -47,7 +51,7 @@
             #pragma target 4.5
             #pragma vertex vert
             #pragma fragment frag
-            #pragma enable_d3d11_debug_symbols
+            // #pragma enable_d3d11_debug_symbols
             
             #include "../ShaderLibrary/ProceduralSkyBox.hlsl"
             ENDHLSL

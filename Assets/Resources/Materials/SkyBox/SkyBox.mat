@@ -48,11 +48,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MilkyWayNoise:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2869b65ef01b1434e95d2dcec429384e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MilkyWayTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 32528bbb4f64c0340b5b6b1d921a2770, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -68,10 +68,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AtmosphereThickness: 2.97
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Exposure: 2.3
     - _FlowSpeed: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -82,24 +84,26 @@ Material:
     - _MoonIntensity: 2.01
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ScatteringIntensity: 0
+    - _ScatteringIntensity: 0.3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StarIntensity: 1
-    - _SunIntensity: 0
+    - _StarIntensity: 0
+    - _SunIntensity: 1
     - _SunSize: 0.02
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GroundColor: {r: 0.36899996, g: 0.34899998, b: 0.34099993, a: 1}
     - _MilkyWayColor1: {r: 1, g: 1, b: 1, a: 1}
     - _MilkyWayColor2: {r: 1, g: 1, b: 1, a: 1}
     - _MoonCol: {r: 1, g: 1, b: 1, a: 1}
     - _MoonColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonDirectionWS: {r: -0.000000016611452, g: -0.9817816, b: -0.19001281, a: 0}
-    - _SunCol: {r: 0.9921568, g: 0.93333334, b: 1, a: 1}
+    - _MoonDirectionWS: {r: -0.000000053219622, g: 0.79335326, b: -0.60876155, a: 0}
+    - _SkyTint: {r: 1, g: 1, b: 1, a: 1}
+    - _SunCol: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
     - _SunColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SunDirectionWS: {r: 0.000000016611459, g: 0.98178154, b: 0.19001305, a: 0}
+    - _SunDirectionWS: {r: 0.000000053219615, g: -0.7933533, b: 0.6087614, a: 0}
   m_BuildTextureStacks: []

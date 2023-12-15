@@ -3,8 +3,8 @@
 
 #include "SkyBoxFunctions.hlsl"
 
-static const float PI2 = PI * 2;
-static const float halfPI = PI * 0.5;
+// static const float PI2 = PI * 2;
+// static const float halfPI = PI * 0.5;
 
 struct VertexInput
 {
@@ -18,6 +18,7 @@ struct VertexOutput
     float3 moonPos: TEXCOORD2;
     float3 positionOS: TEXCOORD3;
     float3 milkyWayPos: TEXCOORD4;
+    float3 eyeRay : TEXCOORD5;
 };
 
 struct VertexPositionInputs
@@ -51,6 +52,7 @@ VertexOutput vert(VertexInput input)
     
     o.moonPos = mul((float3x3)_MoonWorld2Obj, input.positionOS.xyz) * 6;
     o.moonPos.x *= -1;
+    o.eyeRay = normalize(mul((float3x3)unity_ObjectToWorld, input.positionOS.xyz));
     
     o.milkyWayPos = mul((float3x3)_MilkyWayWorld2Local, input.positionOS.xyz) * _MilkyWayTex_ST.xyz;
     
@@ -60,31 +62,82 @@ VertexOutput vert(VertexInput input)
 half4 frag(VertexOutput input) : SV_Target
 {
     float3 normalizePosWS = normalize(input.positionOS);
-    float2 sphereUV = float2(atan2(normalizePosWS.x, normalizePosWS.z) / PI2, asin(normalizePosWS.y) / halfPI);
+    float2 sphereUV = float2(atan2(normalizePosWS.x, normalizePosWS.z) / TWO_PI, asin(normalizePosWS.y) / HALF_PI);
+
+
+    float kKrESun = kRAYLEIGH * kSUN_BRIGHTNESS;
+    float kKr4PI = kRAYLEIGH * 4.0 * 3.14159265;
+    
+    float3 kSkyTintInGammaSpace = pow(_SkyTint, 1.0 / 2.2) ; // convert tint from Linear back to Gamma
+    float3 kScatteringWavelength = lerp (
+        kDefaultScatteringWavelength-kVariableRangeForScatteringWavelength,
+        kDefaultScatteringWavelength+kVariableRangeForScatteringWavelength,
+        half3(1,1,1) - kSkyTintInGammaSpace);
+        // _SunCol.rgb);// using Tint in sRGB gamma allows for more visually linear interpolation and to keep (.5) at (128, gray in sRGB) point
+    float3 kInvWavelength = 1.0 / pow(kScatteringWavelength, 4);
+
+    float3 cameraPos = float3(0,kInnerRadius + kCameraHeight,0);
+    float height = kInnerRadius + kCameraHeight;
+    float depth = exp(kScaleOverScaleDepth * (-kCameraHeight));
+    
+    
 
     
-    //This is sun's algorithm comes from unity.
     half4 sun = CalcSunAttenuation(normalizePosWS, -_SunDirectionWS) * _SunIntensity * _SunCol;
     half4 scattering = smoothstep(0.5, 1.5, dot(normalizePosWS, -_SunDirectionWS.xyz)) * _SunCol * _ScatteringIntensity;
     half scatteringInstensity = max(0.15, smoothstep(0.6, 0.0, -_SunDirectionWS.y));
-    scattering *= scatteringInstensity;
+    // scattering *= float4(exp(-clamp(scatteringInstensity, 0.0, 50.0) * (kInvWavelength * kKr4PI + kKm4PI)) , 1.0);
+    // scattering *= scatteringInstensity;
+    scattering *= float4(exp(-clamp(scatteringInstensity, 0.0, 50.0) * (kInvWavelength * kKr4PI + kKm4PI)) , 1.0);
     
+    // sun += (scattering * depth * height);
     sun += scattering;
-
+    
     half4 skyColor = SAMPLE_TEXTURE2D(_SkyGradientTex, sampler_SkyGradientTex, float2(sphereUV.y, 0.5));
-
+    half4 skyScattering = float4(exp(-clamp(scatteringInstensity, 0.0, 50.0) * (kInvWavelength * kKr4PI + kKm4PI)) , 1.0);
+    skyScattering *= skyScattering * depth * height;
+    half3 cIn = skyScattering * (kInvWavelength * kKrESun);
+    skyColor *= _Exposure * (cIn.rgbr * GetRayleighPhase(-_MoonDirectionWS.xyz, -input.eyeRay.xyz));
+    // skyColor = GetRayleighPhase(_MoonDirectionWS.xyz, -input.eyeRay);
+    
     float star = SAMPLE_TEXTURE2D(_StarTex, sampler_StarTex, sphereUV).r;
     star = saturate(star * star * star * 3) * _StarIntensity;
     
     half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(normalizePosWS, -_MoonDirectionWS.xyz));
     half4 moonScattering = smoothstep(0.97, 1.3, dot(normalizePosWS, -_MoonDirectionWS.xyz));
-
-    // moon = (moon * _MoonIntensity + moonScattering * 0.8) * _MoonColor;
     moon = (moon * _MoonIntensity + moonScattering * 0.8) * _MoonCol;
+
+    half4 milkyWayTex = SAMPLE_TEXTURE2D(_MilkyWayTex, sampler_MilkyWayTex, (input.milkyWayPos.xy + 0.5));
+    half milkyWay = smoothstep(0, 0.7, milkyWayTex.r);
+
+    half noiseMove1 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy + float2(0, _Time.y * _FlowSpeed)).r;
+    half noiseMove2 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy - _MilkyWayNoise_ST.zw - float2(0, _Time.y * _FlowSpeed)).r;
+    half noiseStatic = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy * 0.5).r;
     
+    milkyWay *= smoothstep(-0.2, 0.8, noiseStatic + milkyWay);
+    milkyWay *= smoothstep(-0.4, 0.8, noiseStatic);
+    noiseMove1 = smoothstep(0.0, 1.2, noiseMove1);
+    half milkyWay1 = milkyWay;
+    half milkyWay2 = milkyWay;
+
+    milkyWay1 -= noiseMove1 * (smoothstep(0.4, 1, milkyWayTex.g) + 0.4);
+    milkyWay2 -= noiseMove2 * (smoothstep(0.4, 1, milkyWayTex.g) + 0.4);
+
+    milkyWay1 = saturate(milkyWay1);
+    milkyWay2 = saturate(milkyWay2);
+
+    half3 milkyWayCol1 = milkyWay1 * _MilkyWayCol1.rgb * _MilkyWayCol1.a;
+    half3 milkyWayCol2 = milkyWay2 * _MilkyWayCol2.rgb * _MilkyWayCol2.a;
+
+    half milkyStar;
+    half cell;
+    VoronoiNoise(sphereUV, 20, 200, milkyStar, cell);
+    milkyStar = pow(1 - saturate(milkyStar), 50) * (smoothstep(0.2, 1, milkyWayTex.g) + milkyWayTex.r * 0.5) * 3;
+    half3 milkyWayBg = smoothstep(0.1, 1.5, milkyWayTex.r) * _MilkyWayCol1.rgb * 0.2;
+    half3 milkyCol = (SoftLight(milkyWayCol1, milkyWayCol2) + SoftLight(milkyWayCol2, milkyWayCol1)) * 0.5 * _MilkywayIntensity + milkyWayBg + milkyStar;
+    milkyCol *= _MilkywayIntensity;
     
-    return skyColor + sun + star + moon;
-    // return moon;
+    return skyColor + sun + star + moon + milkyCol.rgbr;
 }
 
 #endif
