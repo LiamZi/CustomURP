@@ -98,8 +98,8 @@ half4 frag(VertexOutput input) : SV_Target
     half4 skyColor = SAMPLE_TEXTURE2D(_SkyGradientTex, sampler_SkyGradientTex, float2(sphereUV.y, 0.5));
     half4 skyScattering = float4(exp(-clamp(scatteringInstensity, 0.0, 50.0) * (kInvWavelength * kKr4PI + kKm4PI)) , 1.0);
     skyScattering *= skyScattering * depth * height;
-    half3 cIn = skyScattering * (kInvWavelength * kKrESun);
-    skyColor *= _Exposure * (cIn.rgbr * GetRayleighPhase(-_MoonDirectionWS.xyz, -input.eyeRay.xyz));
+    half3 cIn = skyScattering * ( skyColor * kInvWavelength * kKrESun);
+    skyColor = _Exposure * (cIn.rgbr * GetRayleighPhase(-_MoonDirectionWS.xyz, -input.eyeRay.xyz));
     // skyColor = GetRayleighPhase(_MoonDirectionWS.xyz, -input.eyeRay);
     
     float star = SAMPLE_TEXTURE2D(_StarTex, sampler_StarTex, sphereUV).r;
@@ -111,11 +111,7 @@ half4 frag(VertexOutput input) : SV_Target
 
     half4 milkyWayTex = SAMPLE_TEXTURE2D(_MilkyWayTex, sampler_MilkyWayTex, (input.milkyWayPos.xy + 0.5));
     half milkyWay = smoothstep(0, 0.7, milkyWayTex.r);
-
-    // half noiseMove1 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy + float2(0, _Time.y * _FlowSpeed)).r;
-    // half noiseMove2 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy - _MilkyWayNoise_ST.zw - float2(0, _Time.y * _FlowSpeed)).r;
-    // half noiseStatic = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy * 0.5).r;
-
+    
     half noiseMove1 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy + _MilkyWayNoise_ST.zw + float2(0, _Time.y * _FlowSpeed)).r;
     half noiseMove2 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy - _MilkyWayNoise_ST.zw - float2(0, _Time.y * _FlowSpeed)).r;
     half noiseStatic = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy * 0.5).r;
