@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" afterDir="false" />
-    </list>
+    <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -265,7 +261,7 @@
       <workItem from="1702262469538" duration="1206000" />
       <workItem from="1702263814734" duration="43384000" />
       <workItem from="1702521259194" duration="3155000" />
-      <workItem from="1702542085556" duration="29859000" />
+      <workItem from="1702542085556" duration="30234000" />
     </task>
     <servers />
   </component>
