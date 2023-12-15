@@ -61,7 +61,9 @@ namespace CustomPipeline
                 // _cluster.DebugCluster(camera._camera);
                 _cluster.Tick(camera, ref cmd); 
             }
-            
+
+            CleanClusterShadow();
+
         }
 
         public void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)

@@ -163,10 +163,10 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
 
     private void EndFrameRendering(ScriptableRenderContext context, Camera[] cameras)
     {
-        if (_scene != null)
-        {
-            _scene.CleanClusterShadow();
-        }
+        // if (_scene != null)
+        // {
+        //     _scene.CleanClusterShadow();
+        // }
         
         //TODO： Forward rendering has to submit here.
         if (_delayReleaseRenderTarget != null)
