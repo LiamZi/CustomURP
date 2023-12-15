@@ -9,6 +9,7 @@
 struct VertexInput
 {
     float4 positionOS : POSITION;
+    UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
 struct VertexOutput
@@ -19,6 +20,8 @@ struct VertexOutput
     float3 positionOS: TEXCOORD3;
     float3 milkyWayPos: TEXCOORD4;
     float3 eyeRay : TEXCOORD5;
+
+    UNITY_VERTEX_OUTPUT_STEREO
 };
 
 struct VertexPositionInputs
@@ -46,6 +49,8 @@ VertexPositionInputs GetVertexPositionInputs(float3 positionOS)
 VertexOutput vert(VertexInput input)
 {
     VertexOutput o;
+    UNITY_SETUP_INSTANCE_ID(input);
+    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
     o.positionWS = TransformObjectToWorld(input.positionOS.xyz);
     o.positionCS = TransformWorldToHClip(o.positionWS);
     o.positionOS = input.positionOS.xyz;
@@ -80,9 +85,6 @@ half4 frag(VertexOutput input) : SV_Target
     float height = kInnerRadius + kCameraHeight;
     float depth = exp(kScaleOverScaleDepth * (-kCameraHeight));
     
-    
-
-    
     half4 sun = CalcSunAttenuation(normalizePosWS, -_SunDirectionWS) * _SunIntensity * _SunCol;
     half4 scattering = smoothstep(0.5, 1.5, dot(normalizePosWS, -_SunDirectionWS.xyz)) * _SunCol * _ScatteringIntensity;
     half scatteringInstensity = max(0.15, smoothstep(0.6, 0.0, -_SunDirectionWS.y));
@@ -110,34 +112,43 @@ half4 frag(VertexOutput input) : SV_Target
     half4 milkyWayTex = SAMPLE_TEXTURE2D(_MilkyWayTex, sampler_MilkyWayTex, (input.milkyWayPos.xy + 0.5));
     half milkyWay = smoothstep(0, 0.7, milkyWayTex.r);
 
-    half noiseMove1 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy + float2(0, _Time.y * _FlowSpeed)).r;
+    // half noiseMove1 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy + float2(0, _Time.y * _FlowSpeed)).r;
+    // half noiseMove2 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy - _MilkyWayNoise_ST.zw - float2(0, _Time.y * _FlowSpeed)).r;
+    // half noiseStatic = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy * 0.5).r;
+
+    half noiseMove1 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy + _MilkyWayNoise_ST.zw + float2(0, _Time.y * _FlowSpeed)).r;
     half noiseMove2 = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy - _MilkyWayNoise_ST.zw - float2(0, _Time.y * _FlowSpeed)).r;
     half noiseStatic = SAMPLE_TEXTURE2D(_MilkyWayNoise, sampler_MilkyWayNoise, (input.milkyWayPos.xy + 0.5) * _MilkyWayNoise_ST.xy * 0.5).r;
+                
     
     milkyWay *= smoothstep(-0.2, 0.8, noiseStatic + milkyWay);
     milkyWay *= smoothstep(-0.4, 0.8, noiseStatic);
     noiseMove1 = smoothstep(0.0, 1.2, noiseMove1);
+    
     half milkyWay1 = milkyWay;
     half milkyWay2 = milkyWay;
-
     milkyWay1 -= noiseMove1 * (smoothstep(0.4, 1, milkyWayTex.g) + 0.4);
     milkyWay2 -= noiseMove2 * (smoothstep(0.4, 1, milkyWayTex.g) + 0.4);
 
     milkyWay1 = saturate(milkyWay1);
     milkyWay2 = saturate(milkyWay2);
 
-    half3 milkyWayCol1 = milkyWay1 * _MilkyWayCol1.rgb * _MilkyWayCol1.a;
-    half3 milkyWayCol2 = milkyWay2 * _MilkyWayCol2.rgb * _MilkyWayCol2.a;
+    half3 milkyWayCol1 = milkyWay1 * _MilkyWayColor1.rgb * _MilkyWayColor1.a;
+    half3 milkyWayCol2 = milkyWay2 * _MilkyWayColor2.rgb * _MilkyWayColor2.a;
 
     half milkyStar;
     half cell;
     VoronoiNoise(sphereUV, 20, 200, milkyStar, cell);
-    milkyStar = pow(1 - saturate(milkyStar), 50) * (smoothstep(0.2, 1, milkyWayTex.g) + milkyWayTex.r * 0.5) * 3;
-    half3 milkyWayBg = smoothstep(0.1, 1.5, milkyWayTex.r) * _MilkyWayCol1.rgb * 0.2;
-    half3 milkyCol = (SoftLight(milkyWayCol1, milkyWayCol2) + SoftLight(milkyWayCol2, milkyWayCol1)) * 0.5 * _MilkywayIntensity + milkyWayBg + milkyStar;
-    milkyCol *= _MilkywayIntensity;
     
-    return skyColor + sun + star + moon + milkyCol.rgbr;
+    milkyStar = pow(1 - saturate(milkyStar), 50) * (smoothstep(0.2, 1, milkyWayTex.g) + milkyWayTex.r * 0.5) * 3;
+    
+    half3 milkywayBG = smoothstep(0.1, 1.5, milkyWayTex.r) * _MilkyWayColor2.rgb * 0.2;
+
+    half3 milkyCol = (SoftLight(milkyWayCol1, milkyWayCol2) + SoftLight(milkyWayCol2, milkyWayCol1)) * 0.5 * _MilkywayIntensity + milkywayBG + milkyStar;
+    milkyCol *= _MilkywayIntensity;
+
+    half4 col = skyColor + sun + star + moon + milkyCol.rgbr;
+    return sqrt(col);
 }
 
 #endif

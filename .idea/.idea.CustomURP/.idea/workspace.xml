@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/Skybox-Procedural.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/Skybox-Procedural.shader.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Shadows.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Shadows.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" afterDir="false" />
     </list>
@@ -33,6 +31,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/31/a8cab7d5/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/af/840997c7/UIntPtr.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/2a/dc893e7e/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/43/3db3db99/CommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/58/03b09f95/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/5a/784dc86e/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b0/9fbed331/ScriptableRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
@@ -269,7 +268,7 @@
       <workItem from="1702262469538" duration="1206000" />
       <workItem from="1702263814734" duration="43384000" />
       <workItem from="1702521259194" duration="3155000" />
-      <workItem from="1702542085556" duration="22845000" />
+      <workItem from="1702542085556" duration="29106000" />
     </task>
     <servers />
   </component>

@@ -240,7 +240,7 @@ namespace CustomURP
             dirAndMask.w = light.renderingLayerMask.ReinterpretAsFloat();
 
             _dirLightDirectionsAndMasks[index] = dirAndMask;
-            _dirLightShadowData[index] = _shadows.ReserveDirectinalShadows(light, visibleIndex);
+            _dirLightShadowData[index] =  _shadows.ReserveDirectinalShadows(light, visibleIndex);
             // _dirLightShadowData[index] = Vector4.zero;
         }
 

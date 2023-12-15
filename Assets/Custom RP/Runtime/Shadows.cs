@@ -91,6 +91,8 @@ public class Shadows
     private void ExcuteBuffer()
     {
         if (_context == null || _commandBuffer == null) return;
+        Debug.Log("shadows commandbuffer size : " + _commandBuffer.sizeInBytes);
+        // if (_shadowedDirectinnalLightCount <= 0 || _shadowedOtherLightCount <= 0) return;
         
         _context.ExecuteCommandBuffer(_commandBuffer);
         _commandBuffer.Clear();
