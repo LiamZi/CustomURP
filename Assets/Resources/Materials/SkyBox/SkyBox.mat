@@ -72,14 +72,14 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FlowSpeed: 0.05
+    - _FlowSpeed: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _MilkyWayIntensity: 1
+    - _MilkyWayIntensity: 0.02666664
     - _Mode: 0
-    - _MoonIntensity: 1.5
+    - _MoonIntensity: 2.01
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ScatteringIntensity: 0
@@ -88,7 +88,7 @@ Material:
     - _SrcBlend: 1
     - _StarIntensity: 1
     - _SunIntensity: 0
-    - _SunSize: 0.05
+    - _SunSize: 0.02
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
@@ -96,8 +96,10 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MilkyWayColor1: {r: 1, g: 1, b: 1, a: 1}
     - _MilkyWayColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _MoonCol: {r: 1, g: 1, b: 1, a: 1}
     - _MoonColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonDirectionWS: {r: 0.000000011410933, g: 0.9914449, b: 0.13052589, a: 0}
+    - _MoonDirectionWS: {r: -0.000000016611452, g: -0.9817816, b: -0.19001281, a: 0}
+    - _SunCol: {r: 0.9921568, g: 0.93333334, b: 1, a: 1}
     - _SunColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SunDirectionWS: {r: -0.000000086674866, g: 0.13052623, b: -0.99144495, a: 0}
+    - _SunDirectionWS: {r: 0.000000016611459, g: 0.98178154, b: 0.19001305, a: 0}
   m_BuildTextureStacks: []

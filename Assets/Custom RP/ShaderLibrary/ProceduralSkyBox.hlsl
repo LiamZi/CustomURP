@@ -13,13 +13,34 @@ struct VertexInput
 
 struct VertexOutput
 {
-    float4 positionCS : SV_POSITION;
-    float3 positionWS : TEXCOORD1;
-    float3 positionOS : TEXCOORD3;
-    float2 moonPos : TEXCOORD2;
-    float3 milkyWayPos : TEXCOORD4;
+    float4 positionCS: SV_POSITION;
+    float3 positionWS: TEXCOORD1;
+    float3 moonPos: TEXCOORD2;
+    float3 positionOS: TEXCOORD3;
+    float3 milkyWayPos: TEXCOORD4;
 };
 
+struct VertexPositionInputs
+{
+    float3 positionWS; // World space position
+    float3 positionVS; // View space position
+    float4 positionCS; // Homogeneous clip space position
+    float4 positionNDC;// Homogeneous normalized device coordinates
+};
+
+VertexPositionInputs GetVertexPositionInputs(float3 positionOS)
+{
+    VertexPositionInputs input;
+    input.positionWS = TransformObjectToWorld(positionOS);
+    input.positionVS = TransformWorldToView(input.positionWS);
+    input.positionCS = TransformWorldToHClip(input.positionWS);
+
+    float4 ndc = input.positionCS * 0.5f;
+    input.positionNDC.xy = float2(ndc.x, ndc.y * _ProjectionParams.x) + ndc.w;
+    input.positionNDC.zw = input.positionCS.zw;
+
+    return input;
+}
 
 VertexOutput vert(VertexInput input)
 {
@@ -30,7 +51,7 @@ VertexOutput vert(VertexInput input)
     
     o.moonPos = mul((float3x3)_MoonWorld2Obj, input.positionOS.xyz) * 6;
     o.moonPos.x *= -1;
-
+    
     o.milkyWayPos = mul((float3x3)_MilkyWayWorld2Local, input.positionOS.xyz) * _MilkyWayTex_ST.xyz;
     
     return o;
@@ -39,14 +60,12 @@ VertexOutput vert(VertexInput input)
 half4 frag(VertexOutput input) : SV_Target
 {
     float3 normalizePosWS = normalize(input.positionOS);
-    // float2 sphereUV = float2(atan2(normalizePosWS.x, normalizePosWS.z) / TWO_PI, asin(positionWS.y) / HALF_PI);
-    // float2 sphereUV = float2(atan2(normalizePosWS.x, normalizePosWS.z) / TWO_PI, asin(normalizePosWS.y) / HALF_PI);
     float2 sphereUV = float2(atan2(normalizePosWS.x, normalizePosWS.z) / PI2, asin(normalizePosWS.y) / halfPI);
 
     
     //This is sun's algorithm comes from unity.
-    half4 sun = CalcSunAttenuation(normalizePosWS, -_SunDirectionWS) * _SunIntensity * _SunColor;
-    half4 scattering = smoothstep(0.5, 1.5, dot(normalizePosWS, -_SunDirectionWS.xyz)) * _SunColor * _ScatteringIntensity;
+    half4 sun = CalcSunAttenuation(normalizePosWS, -_SunDirectionWS) * _SunIntensity * _SunCol;
+    half4 scattering = smoothstep(0.5, 1.5, dot(normalizePosWS, -_SunDirectionWS.xyz)) * _SunCol * _ScatteringIntensity;
     half scatteringInstensity = max(0.15, smoothstep(0.6, 0.0, -_SunDirectionWS.y));
     scattering *= scatteringInstensity;
     
@@ -56,18 +75,16 @@ half4 frag(VertexOutput input) : SV_Target
 
     float star = SAMPLE_TEXTURE2D(_StarTex, sampler_StarTex, sphereUV).r;
     star = saturate(star * star * star * 3) * _StarIntensity;
-
-    // half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(positionWS, -_MoonDirectionWS.xyz));
+    
     half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(normalizePosWS, -_MoonDirectionWS.xyz));
-
-    // half4 moonScattering = smoothstep(0.97, 1.3, dot(positionWS, -_MoonDirectionWS.xyz));
     half4 moonScattering = smoothstep(0.97, 1.3, dot(normalizePosWS, -_MoonDirectionWS.xyz));
 
     // moon = (moon * _MoonIntensity + moonScattering * 0.8) * _MoonColor;
-    moon = (moon * _MoonIntensity + moonScattering * 0.8) * _MoonColor;
+    moon = (moon * _MoonIntensity + moonScattering * 0.8) * _MoonCol;
     
     
     return skyColor + sun + star + moon;
+    // return moon;
 }
 
 #endif

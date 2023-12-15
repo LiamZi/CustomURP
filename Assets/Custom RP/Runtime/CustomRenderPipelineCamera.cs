@@ -63,14 +63,14 @@ public sealed unsafe class CustomRenderPipelineCamera : MonoBehaviour
 
     public void ResetMatrix()
     {
-        // var camera = GetComponent<Camera>();
-        // if(camera == null) return;
-        // // camera.orthographic = !camera.orthographic;
-        // camera.ResetCullingMatrix();
-        // camera.ResetProjectionMatrix();
-        // camera.ResetStereoProjectionMatrices();
-        // camera.ResetStereoViewMatrices();
-        // camera.ResetWorldToCameraMatrix();
+        var camera = GetComponent<Camera>();
+        if(camera == null) return;
+        // camera.orthographic = !camera.orthographic;
+        camera.ResetCullingMatrix();
+        camera.ResetProjectionMatrix();
+        camera.ResetStereoProjectionMatrices();
+        camera.ResetStereoViewMatrices();
+        camera.ResetWorldToCameraMatrix();
     }
 
     public void InitRenderTarget(ref Command cmd, CustomRenderPipelineAsset asset, CustomRenderPipelineCamera camera)

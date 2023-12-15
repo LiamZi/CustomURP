@@ -15,14 +15,15 @@ SAMPLER(sampler_MilkyWayNoise);
 
 
 CBUFFER_START(SKYBOXINPUT)
-float4 _SunColor;
+float4 _SunCol;
 float4 _SunDirectionWS;
 float4 _MoonDirectionWS;
 float _SunSize;
 float _SunIntensity;
 float _ScatteringIntensity;
+
 float4x4 _MoonWorld2Obj;
-float4 _MoonColor;
+float4 _MoonCol;
 float _MoonIntensity;
 float4x4 _MilkyWayWorld2Local;
 float4 _MilkyWayTex_ST;

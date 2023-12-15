@@ -76,8 +76,9 @@ namespace CustomURP
             }
             else if (_time >= 0)
             {
-                _mainLightMoon.transform.eulerAngles = new Vector3((_time - 18) * 180 / 12 + 90, 180, 0);
+                _mainLightMoon.transform.eulerAngles = new Vector3((_time) * 180 / 12 + 90, 180, 0);
             }
+                
 
             _sunTransform.eulerAngles = _mainLightSun.transform.eulerAngles;
             _moonTransform.eulerAngles = _mainLightMoon.transform.eulerAngles;

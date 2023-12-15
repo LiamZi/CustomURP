@@ -5,70 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyBox.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyBox.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeDataController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeDataController.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxFunctions.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxFunctions.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/NewUnlitShader.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/NewUnlitShader.shader.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Cloud.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Cloud.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/MilkyWayRamp3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/MilkyWayRamp3.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Moon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Moon.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Stars.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Stars.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/checker-map_tho.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/checker-map_tho.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/SkyBoxScene.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/SkyBoxScene.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time0.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time0.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time12.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time12.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time15.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time15.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time18.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time18.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time21.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time21.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time3.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time3.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time6.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time6.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time9.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene/Time9.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/BakedLightScene.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene/LightingData.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene/LightingData.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene/ReflectionProbe-0.exr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene/ReflectionProbe-0.exr.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyboxTest.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyboxTest/PostProcess Profile.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyboxTest/PostProcess Profile.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyboxTest/ReflectionProbe-0.exr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyboxTest/ReflectionProbe-0.exr.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyboxTest/SkyLightingData.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyboxTest/SkyLightingData.asset.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/CustomURP/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/CustomURP/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/CustomURP/v17/fileList.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/CustomURP/v17/fileList.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeDataController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeDataController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CoreAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CoreAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Common.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Common.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ClusterScene/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ClusterScene/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Moon.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Moon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Moon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/Moon.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Time12.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Time12.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Time18.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Time18.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Time6.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Time6.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Time9.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Time9.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,13 +49,13 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityCG.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityInstancing.cginc" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/31/a8cab7d5/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/af/840997c7/UIntPtr.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/2a/dc893e7e/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/58/03b09f95/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/5a/784dc86e/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b0/9fbed331/ScriptableRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b8/14625f43/RenderPipelineManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/d8/8beb914b/DynamicGI.cs" root0="SKIP_HIGHLIGHTING" />
@@ -159,32 +124,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.3895631",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
-    "vue.rearranger.settings.migration": "true",
-    "附加到 Unity 播放器.AndroidPlayer(Xiaomi M2011K2C).executor": "Debug",
-    "附加到 Unity 编辑器.附加到 Unity 编辑器.executor": "Debug"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.3895631&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;附加到 Unity 播放器.AndroidPlayer(Xiaomi M2011K2C).executor&quot;: &quot;Debug&quot;,
+    &quot;附加到 Unity 编辑器.附加到 Unity 编辑器.executor&quot;: &quot;Debug&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="附加到 Unity 编辑器.附加到 Unity 编辑器">
     <configuration name="启动 Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2020.3.47f1c1\Editor\Unity.exe" />
@@ -318,7 +283,9 @@
       <workItem from="1702006175319" duration="5626000" />
       <workItem from="1702018852509" duration="8758000" />
       <workItem from="1702262469538" duration="1206000" />
-      <workItem from="1702263814734" duration="36545000" />
+      <workItem from="1702263814734" duration="43384000" />
+      <workItem from="1702521259194" duration="3155000" />
+      <workItem from="1702542085556" duration="12161000" />
     </task>
     <servers />
   </component>

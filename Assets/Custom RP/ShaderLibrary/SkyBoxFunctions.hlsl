@@ -12,6 +12,18 @@ half GetMiePhase(half eyeCos, half eyeCos2)
     return  temp;
 }
 
+//Rayleigh phase
+half GetRayleighPhase(half eyeCos2)
+{
+    return 0.75 + 0.75 * eyeCos2;
+}
+
+half GetRayleighPhase(half3 light, half3 ray)
+{
+    half eyeCos = dot(light, ray);
+    return GetRayleighPhase(eyeCos);
+}
+
 // sun shape
 half CalcSunAttenuation(half3 lightPos, half3 ray)
 {
