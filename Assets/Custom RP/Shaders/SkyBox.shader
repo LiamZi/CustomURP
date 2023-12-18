@@ -37,6 +37,7 @@
             "RenderType" = "Background" 
 //            "LightMode" = "CustomLit"
             "RenderPipeline" = "UniversalRenderPipeline" 
+            "PreviewType"="Skybox"
         }
         
         Cull Off
