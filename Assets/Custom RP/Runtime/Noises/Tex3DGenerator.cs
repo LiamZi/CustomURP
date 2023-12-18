@@ -23,4 +23,30 @@ namespace CustomURP
             return res;
         }
     }
+
+    [System.Serializable]
+    public class Tex3DGeneratorSecond : TextureGeneratorInterface
+    {
+        public int _texResolution = 32;
+        public int channel1WorleyFreq = 16;
+        public int _channel2WorleyFreq = 32;
+        public int _channel3WorleyFreq = 64;
+
+        public Color Generator(Vector3 pos)
+        {
+            Color res = new Color();
+            res.r = WorleyNoiseGenerator.OctaveNoise(pos, channel1WorleyFreq, 3);
+            res.g = WorleyNoiseGenerator.OctaveNoise(pos, _channel2WorleyFreq, 3);
+            res.b = WorleyNoiseGenerator.OctaveNoise(pos, _channel3WorleyFreq, 3);
+            res.a = 1.0f;
+            
+            return res;
+        }
+
+        public Color Sample(Vector3 pos)
+        {
+            return Generator(pos);
+        }
+        
+    }
 }
