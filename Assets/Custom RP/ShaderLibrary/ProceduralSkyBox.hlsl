@@ -3,9 +3,6 @@
 
 #include "SkyBoxFunctions.hlsl"
 
-// static const float PI2 = PI * 2;
-// static const float halfPI = PI * 0.5;
-
 struct VertexInput
 {
     float4 positionOS : POSITION;

@@ -48,5 +48,44 @@ namespace CustomURP
             var v = h < 4 ? y : (h == 12 || h == 14 ? x : z);
             return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
         }
+
+        public static Texture3D Get3DTexture(TextureGeneratorInterface tex, int textureResoultion, TextureFormat format = TextureFormat.RGBA32)
+        {
+            Texture3D result = new Texture3D(textureResoultion, textureResoultion, textureResoultion, format, true);
+            Color[] colors = new Color[textureResoultion * textureResoultion * textureResoultion];
+            for (int x = 0; x < textureResoultion; x++)
+            {
+                for (int y = 0; y < textureResoultion; y++)
+                {
+                    for (int z = 0; z < textureResoultion; z++)
+                    {
+                        colors[x * textureResoultion * textureResoultion + y * textureResoultion + z] = tex.Sample(new Vector3(x, y, z) / textureResoultion);
+                    }
+                }
+            }
+            
+            result.SetPixels(colors);
+            result.wrapMode = TextureWrapMode.Repeat;
+            result.Apply();
+            return result;
+        }
+
+        public static Texture2D GetPreviewTexture(TextureGeneratorInterface tex, int textureResolution, TextureFormat format = TextureFormat.RGBA32)
+        {
+            Texture2D result = new Texture2D(textureResolution, textureResolution, format, true);
+            Color[] colors = new Color[textureResolution * textureResolution];
+            for (int x = 0; x < textureResolution; x++)
+            {
+                for (int y = 0; y < textureResolution; y++)
+                {
+                    colors[x * textureResolution + y] = tex.Sample(new Vector3(x, y, 0) / textureResolution);
+                }
+            }
+            
+            result.SetPixels(colors);
+            result.wrapMode = TextureWrapMode.Repeat;
+            result.Apply();
+            return result;
+        }
     }
 }

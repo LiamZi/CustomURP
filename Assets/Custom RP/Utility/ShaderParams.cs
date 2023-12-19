@@ -90,6 +90,39 @@ namespace CustomURP
         public static readonly int _scatteringIntensity = Shader.PropertyToID("_ScatteringIntensity");
         public static readonly int _sunIntensity = Shader.PropertyToID("_SunIntensity");
         
+        //Cloud
+        public static int _cloudStartHeight = Shader.PropertyToID("_CloudStartHeight");
+        public static int _cloudEndHeight = Shader.PropertyToID("_CloudEndHeight");
+
+        public static int _cloudTex = Shader.PropertyToID("_CloudTex");
+        public static int _cloudTile = Shader.PropertyToID("_CloudTile");
+        public static int _detailTex = Shader.PropertyToID("_DetailTex");
+
+        public static int _curlNoise = Shader.PropertyToID("_CurlNoise");
+        public static int _curlTile = Shader.PropertyToID("_CurlTile");
+        public static int _curlStrength = Shader.PropertyToID("_CurlStrength");
+        public static int _heightDensity = Shader.PropertyToID("_HeightDensity");
+
+        public static int _topOffst = Shader.PropertyToID("_CloudTopOffset");
+        public static int _cloudSize = Shader.PropertyToID("_CloudSize");
+
+        public static int _cloudOverallDensity = Shader.PropertyToID("_CloudOverallDensity");
+        public static int _cloudTypeModifier = Shader.PropertyToID("_CloudTypeModifier");
+        public static int _cloudCoverageModifier = Shader.PropertyToID("_CloudConverageModifier");
+
+        public static int _windDirection = Shader.PropertyToID("_WindDirection");
+        public static int _weatherTex = Shader.PropertyToID("_WeatherTex");
+        public static int _weatherTexSize = Shader.PropertyToID("_WeatherTexSize");
+        public static int _scatteringCoefficient = Shader.PropertyToID("_ScatteringCoefficient");
+        public static int _extinctionCoefficient = Shader.PropertyToID("_ExtinctionCoefficient");
+        public static int _multiScatteringA = Shader.PropertyToID("_MultiScatteringA");
+        public static int _multiScatteringB = Shader.PropertyToID("_MultiScatteringB");
+        public static int _multiScatteringC = Shader.PropertyToID("_MultiScatteringC");
+        public static int _silverSpread = Shader.PropertyToID("_SilverSpread");
+        public static int _atmosphereColorSaturateDistance = Shader.PropertyToID("_AtmosphereColorSaturateDistance");
+        public static int _atmosphereColor = Shader.PropertyToID("_AtmosphereColor");
+        public static int _ambientColor = Shader.PropertyToID("_AmbientColor");
+
 
         
         public static ShaderTagId[] _LegacyShaderTagIdsagId =

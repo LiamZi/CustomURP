@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7cfe49f1ce467f95c248841b1bc68f, type: 3}
+  m_Name: VolumeCloudConfig
+  m_EditorClassIdentifier: 
+  _testGenerator:
+    _perlinNoise: {fileID: 0}
+    _brightness: 10
+    _scale: 10
+    _perlin:
+      _period: 16
+      _octaves: 4
+  _tex3DGenerator:
+    _texResolution: 32
+    _perlinOctaves: 4
+    _channel1PerlinPeriod: 16
+    _channel2WorleyPeriod: 16
+    _channel3WorleyPeriod: 32
+    _channel4WorleyPeriod: 64
+  _tex3DGeneratorSaveName: Tex3D
+  _tex3DGeneratorSecond:
+    _texResolution: 32
+    channel1WorleyFreq: 16
+    _channel2WorleyFreq: 32
+    _channel3WorleyFreq: 64
+  _tex3DSecondSaveName: Tex3DSecond
