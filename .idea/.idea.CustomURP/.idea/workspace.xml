@@ -5,30 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Weathers/VolumeCloud.Editor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Weathers/VolumeCloud.Editor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Weathers/VolumeCloudEditorConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Weathers/VolumeCloudEditorConfig.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Editor.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Editor/VolumeCloudConfig.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Editor/VolumeCloudConfig.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/TestTex.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/TestTex.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Tex3D.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Tex3D.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Tex3DSecond.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Tex3DSecond.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/curlNoise.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/curlNoise.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudFunctions.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudFunctions.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudInput.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudInput.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudNormalRayMarch.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudNormalRayMarch.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/VolumeCloud.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/VolumeCloud.mat.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/HaltonSquence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/HaltonSquence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Noises/NoiseUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Noises/NoiseUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Weathers/VolumeCloudConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Weathers/VolumeCloudConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,7 +292,7 @@
       <workItem from="1702899038662" duration="88000" />
       <workItem from="1702899137053" duration="14000" />
       <workItem from="1702899160620" duration="639000" />
-      <workItem from="1702899828622" duration="18181000" />
+      <workItem from="1702899828622" duration="21488000" />
     </task>
     <servers />
   </component>
@@ -443,19 +432,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="122" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Weathers/VolumeCloud.Editor.cs</url>
-          <line>153</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Weathers\VolumeCloud.Editor.cs" initialLine="151" containingFunctionPresentation="方法 'OnGUI'">
-            <startOffsets>
-              <option value="6628" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6751" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="132" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

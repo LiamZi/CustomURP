@@ -97,6 +97,7 @@ namespace CustomURP
         public static int _cloudTex = Shader.PropertyToID("_CloudTex");
         public static int _cloudTile = Shader.PropertyToID("_CloudTile");
         public static int _detailTex = Shader.PropertyToID("_DetailTex");
+        public static int _detailTile = Shader.PropertyToID("_DetailTile");
 
         public static int _curlNoise = Shader.PropertyToID("_CurlNoise");
         public static int _curlTile = Shader.PropertyToID("_CurlTile");
