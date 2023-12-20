@@ -33,7 +33,7 @@
 
         Tags
         {
-           "Queue" = "Background" 
+            "Queue" = "Background" 
             "RenderType" = "Background" 
 //            "LightMode" = "CustomLit"
             "RenderPipeline" = "UniversalRenderPipeline" 

@@ -4,17 +4,9 @@
 // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
 #include  "../Common.hlsl"
 
-
 #include "ClusterStruct.hlsl"
 
 
-struct CSInput
-{
-    uint3 groupThreadID : SV_GroupThreadID;
-    uint3 dispatchThreadID : SV_DispatchThreadID;
-    uint groupIndex : SV_GroupIndex;
-    uint3 groupID : SV_GroupID;
-};
 
 groupshared  uint lightIndexOffset = 0;
 

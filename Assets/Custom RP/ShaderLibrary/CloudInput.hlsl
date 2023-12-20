@@ -2,9 +2,7 @@
 #define __SHADER_LIBRARY_CLOUD_INPUT_HLSL__
 
 
-#define EARTH_RADIUS 6371000.0
-#define EARTH_CENTER float3(0, -EARTH_RADIUS, 0)
-#define TRANSMITTANCE_SAMPLE_STEP 512.0f
+
 
 static const float bayerOffsets[3][3] = {
     {0, 7, 3},
@@ -20,6 +18,8 @@ TEXTURE2D(_CurlNoise);
 SAMPLER(sampler_CurlNoise);
 TEXTURE2D(_WeatherTex);
 SAMPLER(sampler_WeatherTex);
+TEXTURE2D(_HeightDensity);
+SAMPLER(sampler_HeightDensity);
 
 
 CBUFFER_START(CLOUDINPUT)
@@ -36,11 +36,19 @@ float _CloudOverallDensity;
 float _CloudCoverageModifier;
 float _CloudTypeModifier;
 half4 _WindDirection;
+float _WeatherTexSize;
 
 float _ScatteringCoefficient;
 float _ExtinctionCoefficient;
 float _SilverIntensity;
 float _SilverSpread;
+
+float4 _ProjectionExtents;
+
+float _MultiScatteringA;
+float _MultiScatteringB;
+float _MultiScatteringC;
+float4 _WorldLightPos;
 
 CBUFFER_END
 

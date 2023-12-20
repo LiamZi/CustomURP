@@ -98,6 +98,7 @@ namespace CustomURP
         public static int _cloudTile = Shader.PropertyToID("_CloudTile");
         public static int _detailTex = Shader.PropertyToID("_DetailTex");
         public static int _detailTile = Shader.PropertyToID("_DetailTile");
+        public static int _detailStrength = Shader.PropertyToID("_DetailStrength");
 
         public static int _curlNoise = Shader.PropertyToID("_CurlNoise");
         public static int _curlTile = Shader.PropertyToID("_CurlTile");
@@ -109,7 +110,7 @@ namespace CustomURP
 
         public static int _cloudOverallDensity = Shader.PropertyToID("_CloudOverallDensity");
         public static int _cloudTypeModifier = Shader.PropertyToID("_CloudTypeModifier");
-        public static int _cloudCoverageModifier = Shader.PropertyToID("_CloudConverageModifier");
+        public static int _cloudCoverageModifier = Shader.PropertyToID("_CloudCoverageModifier");
 
         public static int _windDirection = Shader.PropertyToID("_WindDirection");
         public static int _weatherTex = Shader.PropertyToID("_WeatherTex");

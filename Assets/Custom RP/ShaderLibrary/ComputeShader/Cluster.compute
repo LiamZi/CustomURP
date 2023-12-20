@@ -10,6 +10,7 @@
 #pragma exclude_renderers d3d9
 #pragma exclude_renderers d3d11_9x
 
+#include "ComputeCommon.hlsl"
 #include "ClusterData.hlsl"
 
 

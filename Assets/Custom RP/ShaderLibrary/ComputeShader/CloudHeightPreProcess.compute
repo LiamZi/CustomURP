@@ -1,0 +1,46 @@
+#ifndef __SHADER_LIBRARY_COMPUTE_SHADER_CLOUD_HEIGHT_PREPROCESS_COMPUTE__
+#define __SHADER_LIBRARY_COMPUTE_SHADER_CLOUD_HEIGHT_PREPROCESS_COMPUTE__
+
+#pragma kernel CSMain
+
+#include "../Common.hlsl"
+#include "ComputeCommon.hlsl"
+#include "../CloudInput.hlsl"
+#include "../CloudFunctions.hlsl"
+
+
+#define SAMPLE_COUNT 64
+
+// Texture2D<float> _heightDensityMap;
+TEXTURE2D(_heightDensityMap);
+SAMPLER(sampler_heightDensityMap);
+
+RWTexture2D<float> _heightLUTResult;
+
+
+[numthreads(32, 32, 1)]
+void CSMain(CSInput input)
+{
+    uint w, h;
+    _heightLUTResult.GetDimensions(w, h);
+
+    float coverage, cloudType;
+    coverage = ((float)input.dispatchThreadID.x) / w;
+    cloudType = ((float)input.dispatchThreadID.y) / h;
+
+    UNITY_LOOP
+    float heightPercent;
+    for(heightPercent = 1.0f; heightPercent > 0.0f; heightPercent -= 1.0f / SAMPLE_COUNT)
+    {
+        float fakeSample = ProcessCloudTex(1.0f);
+        float density = fakeSample * SAMPLE_TEXTURE2D_LOD(_heightDensityMap, sampler_heightDensityMap, float2(cloudType, heightPercent), 0.0).r;
+        density = ApplyCoverageToDensity(density, coverage);
+        if(density > 0.0f) break;
+    }
+
+    _heightLUTResult[input.dispatchThreadID.xy] = heightPercent;
+}
+
+
+
+#endif
