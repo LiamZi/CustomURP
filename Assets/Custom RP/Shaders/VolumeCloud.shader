@@ -2,10 +2,9 @@
 {
     Properties
     {
-        [KeywordEnum(RealTime, No3DTex, Bake)]_RenderMode ("渲染模式", float) = 0
+        [Enum_Switch(RealTime, No3DTex, Bake)]_RenderMode ("渲染模式", float) = 0
         
-        _MainLightDirection("Light Direction", Vector) = (0, 1, 0, 0)
-//        [Foldout]_Shape ("形状_Foldout", float) = 1
+        [Foldout]_Shape ("形状_Foldout", float) = 1
         [Tex(_WeatherTexTiling, RealTime, No3DTex)][NoScaleOffset]_WeatherTex ("天气纹理", 2D) = "white" { }
         [HideInInspector]_WeatherTexTiling ("天气纹理平铺", Range(0.1, 30)) = 1
         [Switch(RealTime, No3DTex)]_WeatherTexOffset ("天气纹理偏移", vector) = (0, 0, 0, 0)
@@ -20,7 +19,7 @@
         [HideInInspector]_DetailShapeTexTiling ("细节形状纹理平铺", Range(0.1, 3)) = 1
         _DetailEffect ("细节影响强度", Range(0, 1)) = 1
         
-//        [Foldout(2, 2, 0, 0, RealTime, No3DTex)]_Shape_Weather ("天气设置_Foldout", float) = 1
+        [Foldout(2, 2, 0, 0, RealTime, No3DTex)]_Shape_Weather ("天气设置_Foldout", float) = 1
         [Header]
         [Range]_CloudHeightRange ("云层高度  最小/最大范围", vector) = (1500, 4000, 0, 8000)
         [Range(RealTime)]_StratusRange ("层云范围", vector) = (0.1, 0.4, 0, 1)
@@ -73,6 +72,7 @@
         [HideInInspector]_MainTex ("Texture", 2D) = "white" { }
         [HideInInspector]_BoundBoxMin ("_BoundBoxMin", vector) = (-1, -1, -1, -1)
         [HideInInspector]_BoundBoxMax ("_BoundBoxMax", vector) = (1, 1, 1, 1)
+        _MainLightDirection("Light Direction", Vector) = (0, 1, 0, 0)
     }
     SubShader
     {
@@ -149,4 +149,5 @@
             ENDHLSL
         }
     }
+    CustomEditor "Scarecrow.SimpleShaderGUI"
 }

@@ -5,32 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloudSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloudSettings.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Weather.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Weather.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Weather_No3DTex.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Weather_No3DTex.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Weather_No3DTex2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Weather_No3DTex2.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/blueNoise.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/blueNoise.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Volume Cloud Settings.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Volume Cloud Settings.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/SimpleShaderGUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/SimpleShaderGUI.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Weathers/VolumeCloudConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Weathers/VolumeCloudConfig.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator1.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator1.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Volume Cloud Config.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Volume Cloud Config.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BlendCloud.hlsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BlendCloud.hlsl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudHierarchicalRaymarch.hlsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudHierarchicalRaymarch.hlsl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudNormalRayMarch.hlsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudNormalRayMarch.hlsl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator.hlsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator.hlsl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud2.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud2.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/Cloud.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/Cloud.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/VolumeCloud.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/VolumeCloud.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Volume Cloud Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Volume Cloud Settings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +316,7 @@
       <workItem from="1702899137053" duration="14000" />
       <workItem from="1702899160620" duration="639000" />
       <workItem from="1702899828622" duration="67721000" />
-      <workItem from="1703212464761" duration="13820000" />
+      <workItem from="1703212464761" duration="16497000" />
     </task>
     <servers />
   </component>
@@ -461,6 +456,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs</url>
+          <line>66</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Components\Weathers\VolumeCloud.cs" initialLine="64" containingFunctionPresentation="方法 'BeginRendering'">
+            <startOffsets>
+              <option value="2086" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2143" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="126" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

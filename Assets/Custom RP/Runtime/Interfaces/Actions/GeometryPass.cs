@@ -130,11 +130,18 @@ namespace CustomURP
 
             _cmd.DrawSkybox(_camera);
 
-            if (_volmenCloud == null)
+            if (_asset.VolumeCloudSettings != null)
             {
-                _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
-                
+                if (_volmenCloud == null)
+                {
+                    _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
+                    _volmenCloud.Initialization(_asset);
+                }
+            
+                _volmenCloud.BeginRendering(_camera, ref _cmd);
+                _volmenCloud.Tick(_camera, ref _cmd);
             }
+
 
             if (_camera._renderTarget._isUseColorTexture || _camera._renderTarget._isUseDepthTexture)
                 _camera._renderTarget.CopyAttachments(ref _cmd, _material);

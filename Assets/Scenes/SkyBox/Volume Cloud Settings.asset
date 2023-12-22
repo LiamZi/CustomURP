@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f6c5090f7f4bc9b946ecbe7e3abad7, type: 3}
   m_Name: Volume Cloud Settings
   m_EditorClassIdentifier: 
-  _material: {fileID: 2100000, guid: 603b38984cc692c4796db2beb8813b79, type: 2}
+  _material: {fileID: 2100000, guid: fe285304059e5844b90019969fb1c54e, type: 2}
   _blueNoise: {fileID: 2800000, guid: 03e1b9d30e1962f4c9c6e8e05f3f55b1, type: 3}
   _rtScale: 0.5
   _frameBlock: 1

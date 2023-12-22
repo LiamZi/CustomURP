@@ -47,6 +47,8 @@ namespace CustomURP
             _cmd = cmd;
             _camera = camera;
 
+            _cmd.Name = "VolumeCloud";
+
             if (!(_asset.VolumeCloudSettings._material && camera._camera.cameraType == CameraType.Game || camera._camera.cameraType == CameraType.SceneView))
                 return;
 
@@ -62,8 +64,8 @@ namespace CustomURP
                     _cmd.ReleaseTemporaryRT(_cloundTexGame[i]);
                     _cmd.ReleaseTemporaryRT(_cloundTexScene[i]);
                     
-                    Array.Clear(_cloundTexGame, i, _cloundTexGame.Length);
-                    Array.Clear(_cloundTexGame, i, _cloundTexScene.Length);
+                    // Array.Clear(_cloundTexGame, i, _cloundTexGame.Length);
+                    // Array.Clear(_cloundTexGame, i, _cloundTexScene.Length);
                 }
 
                 _width = width;
@@ -173,6 +175,8 @@ namespace CustomURP
                 _cmd.Cmd.Blit(_cloudTexRT[(_rtSwicth + 1) % 2], _cameraColorRT, _setttings._material, 1);
                 _cmd.Execute();
             }
+            
+            _cmd.Name = "Geometry Pass";
         }
 
 
