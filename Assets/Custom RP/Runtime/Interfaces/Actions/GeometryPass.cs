@@ -18,6 +18,8 @@ namespace CustomURP
         private int2 _rtSize;
         private Texture2D missingTexture;
         public const bool _useHiz = true;
+
+        VolumeCloud _volmenCloud = null;
         
 
         protected internal override void Initialization(CustomRenderPipelineAsset asset)
@@ -127,6 +129,12 @@ namespace CustomURP
             _cmd.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
 
             _cmd.DrawSkybox(_camera);
+
+            if (_volmenCloud == null)
+            {
+                _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
+                
+            }
 
             if (_camera._renderTarget._isUseColorTexture || _camera._renderTarget._isUseDepthTexture)
                 _camera._renderTarget.CopyAttachments(ref _cmd, _material);

@@ -143,6 +143,14 @@ public unsafe partial class CustomRenderPipelineAsset : RenderPipelineAsset
         get => _clusterShadingSettings;
     }
 
+    [SerializeField]
+    VolumeCloudSettings _volumeCloudSettings;
+
+    public VolumeCloudSettings VolumeCloudSettings
+    {
+        get => _volumeCloudSettings;
+    }
+
     public enum CameraRenderType
     {
         Forward

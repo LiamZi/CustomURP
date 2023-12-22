@@ -102,24 +102,6 @@ namespace CustomURP
 
         IEnumerable ChangeToNight()
         {
-            // _dayOrNightChanging = true;
-            // var moon = _mainLightSun;
-            // var sun = _mainLightMoon;
-            // sun.enabled = true;
-            // float updateTime = 0f;
-            //
-            // while (updateTime <= 1)
-            // {
-            //     moon.intensity = Mathf.Lerp(moon.intensity, 0.7f, updateTime);
-            //     sun.intensity = Mathf.Lerp(sun.intensity, 0f, updateTime);
-            //     updateTime += Time.deltaTime;
-            //
-            //     yield return 0;
-            // }
-            //
-            // moon.enabled = false;
-            // _dayOrNightChanging = false;
-            
             _dayOrNightChanging = true;
             Light moon = _mainLightSun;
             Light sun = _mainLightMoon;
@@ -139,23 +121,6 @@ namespace CustomURP
 
         IEnumerable ChangeToDay()
         {
-            // _dayOrNightChanging = true;
-            // Light moon = _mainLightSun;
-            // Light sun = _mainLightMoon;
-            // sun.enabled = true;
-            // float updateTime = 0f;
-            // while (updateTime <= 1)
-            // {
-            //     moon.intensity = Mathf.Lerp(moon.intensity, 0f, updateTime);
-            //     sun.intensity = Mathf.Lerp(sun.intensity, 1f, updateTime);
-            //     updateTime += Time.deltaTime;
-            //
-            //     yield return 0;
-            // }
-            //
-            // moon.enabled = false;
-            // _dayOrNightChanging = false;
-            
             _dayOrNightChanging = true;
             Light moon = _mainLightSun;
             Light sun = _mainLightMoon;

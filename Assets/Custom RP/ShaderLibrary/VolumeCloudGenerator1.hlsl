@@ -24,9 +24,11 @@ Varyings vert(Attributes input)
 
     float3 viewDir = mul(unity_CameraInvProjection, float4(input.uv * 2.0 - 1.0, 0, -1)).xyz;
     o.viewDir = mul(unity_CameraToWorld, float4(viewDir, 0)).xyz;
+
+    return o;
 }
 
-half4 frag(Varyings input)
+half4 frag(Varyings input) : SV_Target
 {
     half4 backColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
 
@@ -42,7 +44,7 @@ half4 frag(Varyings input)
     }
 #endif
 
-    float depth = SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_CameraDepthTexture, input.uv).x;
+    float depth = SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_point_clamp, input.uv).x;
     float dstToObj = LinearEyeDepth(depth, _ZBufferParams);
 
     float3 viewDir = normalize(input.viewDir);

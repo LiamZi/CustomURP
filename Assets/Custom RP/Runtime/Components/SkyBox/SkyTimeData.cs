@@ -3,7 +3,7 @@
 
 namespace CustomURP
 {
-    [CreateAssetMenu(menuName = "Custom URP/Sky Box/Sky Time")]
+    
     public class SkyTimeData : ScriptableObject
     {
         public Gradient _skyColorGradient;
