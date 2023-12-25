@@ -100,6 +100,7 @@ namespace CustomURP
             _clusterShading = asset._pipelineShaders._ClusterRenderShader;
             _cmd = new Command("ClusterAction");
             _shadows = new Shadows();
+            // _cullingResults = new CullingResults();
             
             _clusterGridBuildKernel = _clusterShading.FindKernel("ClusterGridBuild");
             _gridLightBuildKernel = _clusterShading.FindKernel("GridLightBuild");
@@ -155,7 +156,7 @@ namespace CustomURP
             
         }
 
-        public void SetCullResult(ref CullingResults result)
+        public void SetCullResult(CullingResults result)
         {
             _cullingResults = result;
         }
@@ -176,7 +177,10 @@ namespace CustomURP
             int dirLightCount = 0;
             int otherLightCount = 0;
             NativeArray<int> indexMap = useLightsPerObject ? _cullingResults.GetLightIndexMap(Allocator.Temp) : default;
+            
+            
             NativeArray<VisibleLight> visibleLights = _cullingResults.visibleLights;
+           
             
             var i = 0;
             for (i = 0; i < visibleLights.Length; ++i)

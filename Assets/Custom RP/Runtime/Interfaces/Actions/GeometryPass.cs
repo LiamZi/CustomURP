@@ -57,12 +57,16 @@ namespace CustomURP
             // _cmd.EndSampler();
             
             var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
-            scene.SetClusterCullResult(ref _cullingResults);
+            scene.SetClusterCullResult(_cullingResults);
             scene.BeginRendering(camera, ref cmd);
             scene.Tick(camera, ref cmd);
             
             Setup(camera);
             DrawVisibleGeometry(cameraSettings._renderingLayerMask);
+            
+
+            
+            
             UnsupportedShaders();
             
             // _cmd.EndSampler();
@@ -129,7 +133,11 @@ namespace CustomURP
             _cmd.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
 
             _cmd.DrawSkybox(_camera);
-
+            
+            if (_camera._renderTarget._isUseColorTexture || _camera._renderTarget._isUseDepthTexture)
+                _camera._renderTarget.CopyAttachments(ref _cmd, _material);
+            // CopyAttachments();
+            
             if (_asset.VolumeCloudSettings != null)
             {
                 if (_volmenCloud == null)
@@ -141,12 +149,7 @@ namespace CustomURP
                 _volmenCloud.BeginRendering(_camera, ref _cmd);
                 _volmenCloud.Tick(_camera, ref _cmd);
             }
-
-
-            if (_camera._renderTarget._isUseColorTexture || _camera._renderTarget._isUseDepthTexture)
-                _camera._renderTarget.CopyAttachments(ref _cmd, _material);
-            // CopyAttachments();
-
+            
             sortingSettings.criteria = SortingCriteria.CommonTransparent;
             drawingSettings.sortingSettings = sortingSettings;
             filteringSettings.renderQueueRange = RenderQueueRange.transparent;

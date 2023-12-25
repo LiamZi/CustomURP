@@ -2,8 +2,8 @@
 {
     Properties
     {
-        [Enum_Switch(RealTime, No3DTex, Bake)]_RenderMode ("渲染模式", float) = 0
-        
+       [Enum_Switch(RealTime, No3DTex, Bake)]_RenderMode ("渲染模式", float) = 0
+
         [Foldout]_Shape ("形状_Foldout", float) = 1
         [Tex(_WeatherTexTiling, RealTime, No3DTex)][NoScaleOffset]_WeatherTex ("天气纹理", 2D) = "white" { }
         [HideInInspector]_WeatherTexTiling ("天气纹理平铺", Range(0.1, 30)) = 1
@@ -20,7 +20,6 @@
         _DetailEffect ("细节影响强度", Range(0, 1)) = 1
         
         [Foldout(2, 2, 0, 0, RealTime, No3DTex)]_Shape_Weather ("天气设置_Foldout", float) = 1
-        [Header]
         [Range]_CloudHeightRange ("云层高度  最小/最大范围", vector) = (1500, 4000, 0, 8000)
         [Range(RealTime)]_StratusRange ("层云范围", vector) = (0.1, 0.4, 0, 1)
         [Switch(RealTime)]_StratusFeather ("层云边缘羽化", Range(0, 1)) = 0.2
@@ -30,6 +29,8 @@
         [Switch(No3DTex)]_CloudOffsetLower ("云底层偏移", Range(-1, 1)) = 0
         [Switch(No3DTex)]_CloudOffsetUpper ("云顶层偏移", Range(-1, 1)) = 0
         [Switch(No3DTex)]_CloudFeather ("云层边缘羽化", Range(0, 1)) = 0.2
+        
+        
         
         [Foldout(2, 2, 0, 0)]_Shape_Effect ("性能_Foldout", float) = 1
         [Switch(Bake)]_SDFScale("SDF缩放", Range(0, 2)) = 1
@@ -67,12 +68,13 @@
         [Foldout(2, 2, 0, 0, RealTime, No3DTex)]_Lighting_Effect ("性能_Foldout", float) = 1
         _LightingMarchMax ("光照最大步进次数", Range(1, 15)) = 8
         
+        
         [Foldout_Out(1)]_FoldoutOut ("跳出折叠页_Foldout", float) = 1
         
         [HideInInspector]_MainTex ("Texture", 2D) = "white" { }
         [HideInInspector]_BoundBoxMin ("_BoundBoxMin", vector) = (-1, -1, -1, -1)
         [HideInInspector]_BoundBoxMax ("_BoundBoxMax", vector) = (1, 1, 1, 1)
-        _MainLightDirection("Light Direction", Vector) = (0, 1, 0, 0)
+//        _MainLightDirection("Light Direction", Vector) = (0, 1, 0, 0)
     }
     SubShader
     {
@@ -100,6 +102,7 @@
             #pragma shader_feature _RENDERMODE_REALTIME _RENDERMODE_NO3DTEX _RENDERMODE_BAKE
             #pragma shader_feature _SHAPE_DETAIL_ON
             #pragma multi_compile _OFF _2X2 _4X4
+            #pragma enable_d3d11_debug_symbols
 
             
             #include "../ShaderLibrary/VolumeCloudGenerator1.hlsl"
@@ -117,6 +120,7 @@
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+             #pragma enable_d3d11_debug_symbols
 
             // TEXTURE2D(_MainTex);
             // SAMPLER(sampler_MainTex);

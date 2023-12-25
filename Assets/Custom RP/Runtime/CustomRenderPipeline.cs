@@ -173,8 +173,11 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         {
             var iters = UnsafeList.GetIterator<int>(_delayReleaseRenderTarget);
             foreach (var i in iters)
+            {
                 //TODO: release delaying rt at the frame end.
                 _cmd.ReleaseTemporaryRT(i);
+            }
+              
         }
         
         _cmd.Context.Submit();

@@ -93,7 +93,10 @@ public sealed unsafe class CustomRenderPipelineCamera : MonoBehaviour
 
     public static void Initialized()
     {
-        if (_cameraMap == null) _cameraMap = UnsafeHashMap.Allocate<int, ulong>(20);
+        if (_cameraMap == null)
+        {
+            _cameraMap = UnsafeHashMap.Allocate<int, ulong>(20);
+        }
     }
 
     public void Add()

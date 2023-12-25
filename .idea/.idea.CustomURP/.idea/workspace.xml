@@ -5,27 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/SimpleShaderGUI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/SimpleShaderGUI.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Cloud_Bake.tga" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Cloud_Bake.tga.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Cloud_Bake2.tga" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Cloud_Bake2.tga.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Clouds Test_DetailNoise.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Clouds Test_DetailNoise.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Clouds Test_ShapeNoise.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/Clouds Test_ShapeNoise.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/ExampleNoise13D.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/SkyBox/VolumeCloud/ExampleNoise13D.asset.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BlendCloud.hlsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BlendCloud.hlsl.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudHierarchicalRaymarch.hlsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudHierarchicalRaymarch.hlsl.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudNormalRayMarch.hlsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudNormalRayMarch.hlsl.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator.hlsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator.hlsl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudFunctions.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudFunctions.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator1.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator1.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud2.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumeCloud2.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/Cloud.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/Cloud.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/VolumeCloud.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/VolumeCloud.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Volume Cloud Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Volume Cloud Settings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +37,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/HLSLSupport.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityCG.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityInstancing.cginc" root0="SKIP_HIGHLIGHTING" />
@@ -45,8 +50,10 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/31/a8cab7d5/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/79/e5db2f2f/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/af/840997c7/UIntPtr.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/1c/0a492d8d/CullingResults.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/1d/36086bcf/LightBakingOutput.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/2a/dc893e7e/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/32/e07c44c1/NativeArray`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/43/3db3db99/CommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/52/08f7c702/RenderTargetIdentifier.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/58/03b09f95/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
@@ -55,6 +62,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/98/6737ac04/Utils.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b0/9fbed331/ScriptableRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b8/14625f43/RenderPipelineManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/d7/fa602353/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/d8/8beb914b/DynamicGI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/e0/9ae16a47/RenderTextureFormat.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/e3/e3a7b1d1/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
@@ -66,6 +74,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/44/5b6dbf2f/PlayModeView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/75/b73bd7cb/AssetDatabase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/96/3d6ba2ef/SerializedObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/fd/787f4318/CameraEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Github/Unity-MPipeline-Framework/Assets/Scripts/MPipeline Core/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Github/Unity_Indirect-Rendering-With-Compute-Shaders/Assets/Scripts/Example.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" root0="FORCE_HIGHLIGHTING" />
@@ -118,6 +127,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.searcher@4.3.2/Samples~/Editor/SearcherExampleWindow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@10.10.1/ShaderGraphLibrary/Functions.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@10.10.1/ShaderGraphLibrary/ShaderVariables.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Editor Resources/Shaders/TMP_SDF_SSD.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/Canvas/AssertionFailureOnOutputVertexCount.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/CanvasRenderer/ParentCanvasIsSane.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CanvasScalerWithChildTextObjectDoesNotCrash.cs" root0="SKIP_HIGHLIGHTING" />
@@ -317,6 +327,8 @@
       <workItem from="1702899160620" duration="639000" />
       <workItem from="1702899828622" duration="67721000" />
       <workItem from="1703212464761" duration="16497000" />
+      <workItem from="1703472989814" duration="13690000" />
+      <workItem from="1703497329517" duration="3945000" />
     </task>
     <servers />
   </component>
@@ -405,28 +417,28 @@
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs</url>
-          <line>136</line>
+          <line>137</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Interfaces\Actions\ClusterAction.cs" initialLine="135" containingFunctionPresentation="方法 'Tick'">
             <startOffsets>
-              <option value="5138" />
-              <option value="5159" />
+              <option value="5193" />
+              <option value="5214" />
             </startOffsets>
             <endOffsets>
-              <option value="5158" />
-              <option value="5166" />
+              <option value="5213" />
+              <option value="5221" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs</url>
-          <line>184</line>
+          <line>188</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipeline.cs" initialLine="179" containingFunctionPresentation="方法 'Render'">
             <startOffsets>
-              <option value="7349" />
+              <option value="7399" />
             </startOffsets>
             <endOffsets>
-              <option value="7387" />
+              <option value="7437" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="86" />
@@ -446,7 +458,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs</url>
-          <line>268</line>
+          <line>272</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Interfaces\Actions\ClusterAction.cs" initialLine="270" containingFunctionPresentation="方法 'SetupPointLight'">
             <startOffsets>
               <option value="-1" />
@@ -469,6 +481,123 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs</url>
+          <line>78</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Components\Weathers\VolumeCloud.cs" initialLine="78" containingFunctionPresentation="方法 'BeginRendering'">
+            <startOffsets>
+              <option value="2492" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2541" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="129" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs</url>
+          <line>105</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Components\Weathers\VolumeCloud.cs" initialLine="105" containingFunctionPresentation="方法 'BeginRendering'">
+            <startOffsets>
+              <option value="3618" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3666" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs</url>
+          <line>116</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\UnsafeCollections\UnsafeHashCollection.cs" initialLine="116" containingFunctionPresentation="方法 'Free'">
+            <startOffsets>
+              <option value="2812" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2862" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs</url>
+          <line>92</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\UnsafeCollections\UnsafeHashMap.cs" initialLine="92" containingFunctionPresentation="方法 'Free'">
+            <startOffsets>
+              <option value="3628" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3673" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="134" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/Native.cs</url>
+          <line>33</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\UnsafeCollections\Native.cs" initialLine="33" containingFunctionPresentation="方法 'Free'">
+            <startOffsets>
+              <option value="1018" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1056" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs</url>
+          <line>56</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipelineCamera.cs" initialLine="56" containingFunctionPresentation="方法 'OnDestroy'">
+            <startOffsets>
+              <option value="1952" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1975" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs</url>
+          <line>97</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipelineCamera.cs" initialLine="97" containingFunctionPresentation="方法 'Initialized'">
+            <startOffsets>
+              <option value="3463" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3515" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="142" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs</url>
+          <line>104</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\CustomRenderPipelineCamera.cs" initialLine="104" containingFunctionPresentation="方法 'Add'">
+            <startOffsets>
+              <option value="3592" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3685" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashCollection.cs</url>
+          <line>176</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\UnsafeCollections\UnsafeHashCollection.cs" initialLine="176" containingFunctionPresentation="方法 'Remove'">
+            <startOffsets>
+              <option value="5247" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5282" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="145" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

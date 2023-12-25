@@ -32,12 +32,12 @@ namespace CustomPipeline
             }
         }
 
-        public void SetClusterCullResult(ref CullingResults results)
+        public void SetClusterCullResult(CullingResults results)
         {
             // if (Application.isPlaying && _cluster != null && !_cluster._isInited)
             if(_cluster != null)
             {
-                _cluster.SetCullResult(ref results);
+                _cluster.SetCullResult(results);
             }
         }
         public void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)

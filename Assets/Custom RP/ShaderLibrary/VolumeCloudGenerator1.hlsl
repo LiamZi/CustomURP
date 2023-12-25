@@ -44,12 +44,14 @@ half4 frag(Varyings input) : SV_Target
     }
 #endif
 
-    float depth = SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_point_clamp, input.uv).x;
+    float depth = SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_linear_clamp, input.uv).x;
     float dstToObj = LinearEyeDepth(depth, _ZBufferParams);
 
     float3 viewDir = normalize(input.viewDir);
-    float3 lightDir = normalize(_MainLightDirection);
+    // float3 lightDir = normalize(_MainLightDirection);
+    float3 lightDir = normalize(float4(0, 1, 0, 0));
     float3 cameraPos = _WorldSpaceCameraPos;
+    
 
     float3 sphereCenter = float3(cameraPos.x, -EARTH_RADIUS, cameraPos.z);
     float boundBoxScaleMax = 1;
@@ -66,164 +68,185 @@ half4 frag(Varyings input) : SV_Target
     float dstToCloud = dstCloud.x;
     float dstInCloud = dstCloud.y;
 
-    if(dstInCloud <= 0 || dstToObj <= dstToCloud)
+    // if(dstInCloud <= 0 || dstToObj <= dstToCloud)
+    if(dstInCloud <= 0)
     {
         return half4(0, 0, 0, 1);
     }
 
-    SamplingInfo dsi;
-    dsi.baseShapeTiling = _BaseShapeTexTiling;
-    dsi.baseShapeRatio = _BaseShapeRatio;
-    dsi.boundBoxScaleMax = boundBoxScaleMax;
-    dsi.boundBoxPosition = boundBoxPosition;
-    dsi.detailShapeTiling = _DetailShapeTexTiling;
-    dsi.weatherTexTiling = _WeatherTexTiling;
-    dsi.weatherTexOffset = _WeatherTexOffset;
-    dsi.baseShapeDetailEffect = _BaseShapeDetailEffect;
-    dsi.detailEffect = _DetailEffect;
-    dsi.densityMultiplier = _DensityScale;
-    dsi.cloudDensityAdjust = _CloudCover;
-    dsi.cloudAbsorbAdjust = _CloudAbsorb;
-    dsi.windDirection = normalize(_WindDirecton);
-    dsi.windSpeed = _WindSpeed;
-    dsi.cloudHeightMinMax = _CloudHeightRange.xy;
-    dsi.stratusInfo = float3(_StratusRange.xy, _StratusFeather);
-    dsi.cumulusInfo = float3(_CumulusRange.xy, _CumulusFeather);
-    dsi.cloudOffsetLower = _CloudOffsetLower;
-    dsi.cloudOffsetUpper = _CloudOffsetUpper;
-    dsi.feather = _CloudFeather;
-    dsi.sphereCenter = sphereCenter;
-    dsi.earthRadius = EARTH_RADIUS;
-
-    float phase = HGScatterMax(dot(viewDir, lightDir), _ScatterForward, _ScatterForwardIntensity, _ScatterBackward, _ScatterBackwardIntensity);
-    phase = _ScatterBase + phase * _ScatterMultiply;
-
-    float blueNoise = SAMPLE_TEXTURE2D(_BlueNoiseTex, sampler_BlueNoiseTex, input.uv * _BlueNoiseTexUV).r;
-    float endPos = dstToCloud + dstInCloud;
-
+     SamplingInfo dsi;
+     dsi.baseShapeTiling = _BaseShapeTexTiling;
+     dsi.baseShapeRatio = _BaseShapeRatio;
+     dsi.boundBoxScaleMax = boundBoxScaleMax;
+     dsi.boundBoxPosition = boundBoxPosition;
+     dsi.detailShapeTiling = _DetailShapeTexTiling;
+     dsi.weatherTexTiling = _WeatherTexTiling;
+     dsi.weatherTexOffset = _WeatherTexOffset;
+     dsi.baseShapeDetailEffect = _BaseShapeDetailEffect;
+     dsi.detailEffect = _DetailEffect;
+     dsi.densityMultiplier = _DensityScale;
+     dsi.cloudDensityAdjust = _CloudCover;
+     dsi.cloudAbsorbAdjust = _CloudAbsorb;
+     dsi.windDirection = normalize(_WindDirecton);
+     dsi.windSpeed = _WindSpeed;
+     dsi.cloudHeightMinMax = _CloudHeightRange.xy;
+     dsi.stratusInfo = float3(_StratusRange.xy, _StratusFeather);
+     dsi.cumulusInfo = float3(_CumulusRange.xy, _CumulusFeather);
+     dsi.cloudOffsetLower = _CloudOffsetLower;
+     dsi.cloudOffsetUpper = _CloudOffsetUpper;
+     dsi.feather = _CloudFeather;
+     dsi.sphereCenter = sphereCenter;
+     dsi.earthRadius = EARTH_RADIUS;
+//
+     float phase = HGScatterMax(dot(viewDir, lightDir), _ScatterForward, _ScatterForwardIntensity, _ScatterBackward, _ScatterBackwardIntensity);
+     phase = _ScatterBase + phase * _ScatterMultiply;
+//
+     float blueNoise = SAMPLE_TEXTURE2D(_BlueNoiseTex, sampler_BlueNoiseTex, input.uv * _BlueNoiseTexUV).r;
+     float endPos = dstToCloud + dstInCloud;
+//
 #ifdef _RENDERMODE_BAKE
     bool isFirstSampleCloud = true;
     float currentMarchLength = dstToCloud;
 #else
     float currentMarchLength = dstToCloud + _ShapeMarchLength * blueNoise * _BlueNoiseEffect;
 #endif
-    float3 currentPos = cameraPos + currentMarchLength * viewDir;
-    float shapeMarchLength = _ShapeMarchLength;
-
+     float3 currentPos = cameraPos + currentMarchLength * viewDir;
+     float shapeMarchLength = _ShapeMarchLength;
+//
 #if _RENDERMODE_BAKE
     bool isBake = true;
 #else
     bool isBake = false;
 #endif
+//
+     float totalDensity = 0;
+     float3 totalLumiance = 0;
+     float lightAttenuation = 1.0;
 
-    float totalDensity = 0;
-    float3 totalLumiance = 0;
-    float lightAttenuation = 1.0;
-
-    float densityTest = 0;
-    float densityPrevious = 0;
-    int densitySampleCountZero = 0;
-
+     float densityTest = 0;
+     float densityPrevious = 0;
+     int densitySampleCountZero = 0;
+//
     for(int marchNum = 0; marchNum < _ShapeMarchMax; marchNum++)
     {
         if(densityTest == 0 && !isBake)
         {
             currentMarchLength += _ShapeMarchLength * 2.0;
             currentPos = cameraPos + currentMarchLength * viewDir;
-
-            if(dstToObj <= currentMarchLength || endPos <= currentMarchLength)
+            
+            //如果步进到被物体遮挡,或穿出云覆盖范围时,跳出循环
+            if (dstToObj <= currentMarchLength || endPos <= currentMarchLength)
+            {
                 break;
-
+            }
+                        
+            //进行密度采样，测试是否继续大步前进
             dsi.position = currentPos;
             densityTest = SampleCloudDensity(dsi, true).density;
-
-            if(densityTest > 0)
+                        
+            //如果检测到云，往后退一步(因为我们可能错过了开始位置)
+            if (densityTest > 0)
             {
                 currentMarchLength -= _ShapeMarchLength;
             }
         }
         else
         {
-            currentPos = cameraPos + currentMarchLength * viewDir;
-            dsi.position = currentPos;
+                currentPos = cameraPos + currentMarchLength * viewDir;
+                dsi.position = currentPos;
 #ifdef _SHAPE_DETAIL_ON
-            CloudInfo i = SampleCloudDensity(dsi, false);
+                CloudInfo ci = SampleCloudDensity(dsi, false);
 #else
-            CloudInfo i = SampleCloudDensity(dsi, true);
+                CloudInfo ci = SampleCloudDensity(dsi, true);
 #endif
+            
 
 #if !_RENDERMODE_BAKE
-            if(i.density == 0 && densityPrevious == 0)
-            {
-                densitySampleCountZero++;
-                if(densitySampleCountZero >= 8)
+                if (ci.density == 0 && densityPrevious == 0)
                 {
-                    densityTest = 0;
-                    densitySampleCountZero = 0;
-                    continue;
+                    densitySampleCountZero ++ ;
+                    //累计检测到指定数值，切换到大步进
+                    if (densitySampleCountZero >= 8)
+                    {
+                        densityTest = 0;
+                        densitySampleCountZero = 0;
+                        continue;
+                    }
                 }
-            }
 #endif
-
+            
 #if _RENDERMODE_BAKE
-            float density = i.density * shapeMarchLength;
+                float density = ci.density * shapeMarchLength;
 #else
-            float density = i.density * _ShapeMarchLength;
+                float density = ci.density * _ShapeMarchLength;
 #endif
+            
             float currentLumince = 0;
 
             if(density > 0.01)
             {
-#if !_RENDERMODE_BAKE                
-                float2 dstCloudLight = ResolveRayStartEnd(sphereCenter, EARTH_RADIUS, _CloudHeightRange.x, _CloudHeightRange.y, currentPos, lightDir, false);
-                float lightMarchLength = dstCloudLight.y / _LightingMarchMax;
-                float3 currentPosLight = currentPos;
-                float totalDensityLight = 0;
-
-                for(int marchNumLight =0; marchNumLight < _LightingMarchMax; marchNumLight++)
+#if !_RENDERMODE_BAKE
+                //计算该区域的光照贡献，从当前点向灯光方向步进
+                float2 dstCloud_light = ResolveRayStartEnd(sphereCenter, EARTH_RADIUS, _CloudHeightRange.x, _CloudHeightRange.y, currentPos, lightDir, false);
+                //灯光步进长度
+                float lightMarchLength = dstCloud_light.y / _LightingMarchMax;
+                //当前步进位置
+                float3 currentPos_light = currentPos;
+                //灯光方向密度
+                float totalDensity_light = 0;
+            
+                //向灯光方向进行步进
+                for (int marchNumber_light = 0; marchNumber_light < _LightingMarchMax; marchNumber_light ++)
                 {
-                    currentPosLight += lightDir * lightMarchLength;
-                    dsi.position = currentPosLight;
-                    float densityLight = SampleCloudDensity(dsi, true).density * lightMarchLength;
-                    totalDensityLight += densityLight;
+                    currentPos_light += lightDir * lightMarchLength;
+                    dsi.position = currentPos_light;
+                    float density_Light = SampleCloudDensity(dsi, true).density * lightMarchLength;
+                    totalDensity_light += density_Light;
                 }
-
-                currentLumince = BeerPowder(totalDensityLight, i.absorptivity);
+                //光照强度
+                currentLumince = BeerPowder(totalDensity_light, ci.absorptivity);
 #else
-                currentLumince = i.lum;
+                currentLumince = ci.lum;
 #endif
+                
                 currentLumince = _DarknessThreshold + currentLumince * (1.0 - _DarknessThreshold);
-
-                float3 cloudColor = Interpolation3(_ColorDark.rgb, _ColorCentral.rgb, _ColorBright.rgb, saturate(currentLumince), _ColorCentralOffset) * _MainLightColor;
-
+                //
+                float3 cloudColor = Interpolation3(_ColorDark.rgb, _ColorCentral.rgb, _ColorBright.rgb, saturate(currentLumince), _ColorCentralOffset) * half3(1.0, 1.0, 1.0);
+                //
                 totalLumiance += lightAttenuation * cloudColor * density * phase;
                 totalDensity += density;
-                lightAttenuation *= Beer((density, i.absorptivity));
-
+                lightAttenuation *= Beer(density, ci.absorptivity);
+                //
                 if(lightAttenuation < 0.01)
                     break;
+                
             }
+
 
 #if _RENDERMODE_BAKE
-            shapeMarchLength = max(_ShapeMarchLength, i.sdf * _SDFScale);
-            if(density > 0.01 && isFirstSampleCloud)
-            {
-                shapeMarchLength *= blueNoise * _BlueNoiseEffect;
-                isFirstSampleCloud = false;
-            }
-
-            currentMarchLength += shapeMarchLength;
+                shapeMarchLength = max(_ShapeMarchLength, ci.sdf * _SDFScale);
+                //添加蓝噪声影响
+                if(density > 0.01 && isFirstSampleCloud)
+                {
+                    shapeMarchLength *= blueNoise * _BlueNoiseEffect;
+                    isFirstSampleCloud = false;
+                }
+                currentMarchLength += shapeMarchLength;
 #else
-            currentMarchLength += _ShapeMarchLength;       
+            currentMarchLength += _ShapeMarchLength;
 #endif
-            if(dstToObj <= currentMarchLength || endPos <= currentMarchLength)
-                break;
-
-            densityPrevious = i.density;
+                //如果步进到被物体遮挡,或穿出云覆盖范围时,跳出循环
+                if (dstToObj <= currentMarchLength || endPos <= currentMarchLength)
+                {
+                    break;
+                }
+                densityPrevious = ci.density;
         }
     }
-    
-    return half4(totalLumiance, lightAttenuation);
+                
+                //最后的颜色应当为backColor.rgb * lightAttenuation + totalLum, 但是因为分帧渲染，混合需要到下一pass
+                // return half4(backColor.rgb * lightAttenuation + totalLum, lightAttenuation);
+                return half4(totalLumiance, lightAttenuation);
 }
 
 #endif

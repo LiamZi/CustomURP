@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseShapeTex:
-        m_Texture: {fileID: 11700000, guid: 8ec5b747896df1b45b089fe01cfc1f5c, type: 2}
+        m_Texture: {fileID: 11700000, guid: 4db3cb96eeca09c4eb369b2114ecdc56, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailShapeTex:
-        m_Texture: {fileID: 11700000, guid: 5679660dcebcef44fb73132f23e9ad81, type: 2}
+        m_Texture: {fileID: 11700000, guid: bec9959e0f804da46b93db1ddd6ae5c1, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -72,17 +72,17 @@ Material:
     - _BaseShapeTexTiling: 1
     - _BlueNoiseEffect: 1
     - _BumpScale: 1
-    - _CloudAbsorb: 0.5
+    - _CloudAbsorb: 0.7
     - _CloudCover: 0.5
     - _CloudFeather: 0.2
     - _CloudOffsetLower: 0
     - _CloudOffsetUpper: 0
-    - _ColorCentralOffset: 0.5
-    - _CumulusFeather: 0.2
+    - _ColorCentralOffset: 0.528
+    - _CumulusFeather: 0.345
     - _Cutoff: 0.5
-    - _DarknessThreshold: 0.3
+    - _DarknessThreshold: 0.143
     - _DensityScale: 1
-    - _DetailEffect: 0.155
+    - _DetailEffect: 0.158
     - _DetailNormalMapScale: 1
     - _DetailShapeTexTiling: 1
     - _DstBlend: 0
@@ -101,15 +101,15 @@ Material:
     - _Parallax: 0.02
     - _RenderMode: 0
     - _SDFScale: 1
-    - _ScatterBackward: 0.4
-    - _ScatterBackwardIntensity: 0.4
-    - _ScatterBase: 0.2
-    - _ScatterForward: 0.5
-    - _ScatterForwardIntensity: 1
-    - _ScatterMultiply: 0.7
+    - _ScatterBackward: 0.25
+    - _ScatterBackwardIntensity: 0.5
+    - _ScatterBase: 0.805
+    - _ScatterForward: 0.709
+    - _ScatterForwardIntensity: 0.5
+    - _ScatterMultiply: 1
     - _Shape: 1
-    - _ShapeMarchLength: 120
-    - _ShapeMarchMax: 30
+    - _ShapeMarchLength: 101
+    - _ShapeMarchMax: 24.5
     - _Shape_Detail: 1
     - _Shape_Effect: 1
     - _Shape_Other: 1
@@ -117,24 +117,24 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StratusFeather: 0.2
+    - _StratusFeather: 0.336
     - _UVSec: 0
     - _WeatherTexTiling: 1
     - _WindSpeed: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseShapeRatio: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseShapeRatio: {r: 0.323, g: 1, b: 1, a: 1}
     - _BoundBoxMax: {r: 1, g: 1, b: 1, a: 1}
     - _BoundBoxMin: {r: -1, g: -1, b: -1, a: -1}
     - _CloudHeightRange: {r: 1500, g: 4000, b: 0, a: 8000}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorBright: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorCentral: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _ColorDark: {r: 0.1, g: 0.1, b: 0.1, a: 1}
-    - _CumulusRange: {r: 0.15, g: 0.8, b: 0, a: 1}
+    - _ColorBright: {r: 0.9019608, g: 0.92156863, b: 1, a: 1}
+    - _ColorCentral: {r: 0.3764706, g: 0.42352942, b: 0.54509807, a: 1}
+    - _ColorDark: {r: 0.03529412, g: 0.050980393, b: 0.05882353, a: 1}
+    - _CumulusRange: {r: 0.1422567, g: 0.8, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainLightDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _StratusRange: {r: 0.1, g: 0.4, b: 0, a: 1}
+    - _MainLightDirection: {r: 0, g: 0.85, b: 0, a: 0}
+    - _StratusRange: {r: 0.1263247, g: 0.4762875, b: 0, a: 1}
     - _WeatherTexOffset: {r: 15.47, g: -0.8, b: 0, a: 0}
     - _WindDirecton: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
