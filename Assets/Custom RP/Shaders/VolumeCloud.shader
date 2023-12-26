@@ -153,5 +153,5 @@
             ENDHLSL
         }
     }
-    CustomEditor "Scarecrow.SimpleShaderGUI"
+    CustomEditor "CustomURP.SimpleShaderGUI"
 }

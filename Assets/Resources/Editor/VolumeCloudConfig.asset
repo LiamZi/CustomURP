@@ -20,16 +20,16 @@ MonoBehaviour:
       _period: 16
       _octaves: 4
   _tex3DGenerator:
-    _texResolution: 32
+    _texResolution: 64
     _perlinOctaves: 4
-    _channel1PerlinPeriod: 16
-    _channel2WorleyPeriod: 16
-    _channel3WorleyPeriod: 32
-    _channel4WorleyPeriod: 64
-  _tex3DGeneratorSaveName: Tex3D
+    _channel1PerlinPeriod: 3
+    _channel2WorleyPeriod: 5
+    _channel3WorleyPeriod: 16
+    _channel4WorleyPeriod: 128
+  _tex3DGeneratorSaveName: Tex3D_2
   _tex3DGeneratorSecond:
     _texResolution: 32
-    channel1WorleyFreq: 16
-    _channel2WorleyFreq: 32
-    _channel3WorleyFreq: 64
-  _tex3DSecondSaveName: Tex3DSecond
+    channel1WorleyFreq: 8
+    _channel2WorleyFreq: 64
+    _channel3WorleyFreq: 128
+  _tex3DSecondSaveName: Tex3D_1

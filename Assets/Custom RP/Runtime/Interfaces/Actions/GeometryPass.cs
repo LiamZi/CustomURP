@@ -63,10 +63,6 @@ namespace CustomURP
             
             Setup(camera);
             DrawVisibleGeometry(cameraSettings._renderingLayerMask);
-            
-
-            
-            
             UnsupportedShaders();
             
             // _cmd.EndSampler();
@@ -142,8 +138,10 @@ namespace CustomURP
             {
                 if (_volmenCloud == null)
                 {
-                    _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
-                    _volmenCloud.Initialization(_asset);
+                    // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
+                    // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>(_asset.VolumeCloudSettings, "");
+                    _volmenCloud = new VolumeCloud(_asset.VolumeCloudSettings);
+                    // _volmenCloud.Initialization(_asset);
                 }
             
                 _volmenCloud.BeginRendering(_camera, ref _cmd);

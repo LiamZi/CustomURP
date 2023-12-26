@@ -14,8 +14,8 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(Camera))]
 public sealed unsafe class CustomRenderPipelineCamera : MonoBehaviour
 {
-    public static            UnsafeHashMap* _cameraMap = null;
-    // public static Dictionary<int, ulong> _cameraMap = Nullable;
+    // public static            UnsafeHashMap* _cameraMap = null;
+    public static Dictionary<int, ulong> _cameraMap;
     [SerializeField] private CameraSettings _settings;
 
     [SerializeField] private HizDepthGenerator      _hizDepthGenerator;
@@ -41,7 +41,7 @@ public sealed unsafe class CustomRenderPipelineCamera : MonoBehaviour
     public float3 _frustumMinPoint { get; private set; } = float3.zero;
     public float3 _frustumMaxPoint { get; private set; } = Vector3.zero;
 
-    public static UnsafeHashMap* CameraMap => _cameraMap;
+    public static Dictionary<int, ulong> CameraMap => _cameraMap;
 
     private void OnDisable()
     {
@@ -56,7 +56,8 @@ public sealed unsafe class CustomRenderPipelineCamera : MonoBehaviour
     {
         if (_cameraMap != null)
         {
-            UnsafeHashMap.Remove(_cameraMap, gameObject.GetInstanceID());
+            // UnsafeHashMap.Remove(_cameraMap, gameObject.GetInstanceID());
+            _cameraMap.Clear();
         }
         UnsafeList.Free(_frustumArray);
     }
@@ -95,14 +96,16 @@ public sealed unsafe class CustomRenderPipelineCamera : MonoBehaviour
     {
         if (_cameraMap == null)
         {
-            _cameraMap = UnsafeHashMap.Allocate<int, ulong>(20);
+            // _cameraMap = UnsafeHashMap.Allocate<int, ulong>(20);
+            _cameraMap = new Dictionary<int, ulong>(20);
         }
     }
 
     public void Add()
     {
         Initialized();
-        UnsafeHashMap.Set(_cameraMap, gameObject.GetInstanceID(), (ulong)UnsafeUtility.GetPtr(this));
+        // UnsafeHashMap.Set(_cameraMap, gameObject.GetInstanceID(), (ulong)UnsafeUtility.GetPtr(this));
+        _cameraMap[gameObject.GetInstanceID()] = (ulong)UnsafeUtility.GetPtr(this);
         if (_frustumArray == null) _frustumArray = UnsafeList.Allocate<float4>(6, true);
     }
 

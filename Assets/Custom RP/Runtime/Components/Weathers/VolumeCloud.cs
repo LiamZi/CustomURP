@@ -7,7 +7,7 @@ namespace CustomURP
 {
     public class VolumeCloud : CoreAction
     {
-        CustomRenderPipelineAsset _asset;
+        // CustomRenderPipelineAsset _asset;
         public VolumeCloudSettings _setttings;
         public string _name;
         public RenderTargetIdentifier _cameraColorRT;
@@ -29,12 +29,18 @@ namespace CustomURP
         int _rtSwitchScene;
 
         int _frameDebug = 1;
+
+        public VolumeCloud(VolumeCloudSettings settings, string name = "VolumeCloud")
+        {
+            _setttings = settings;
+            _name = name;
+            _frameCount = 0;
+        }
         
         protected internal override void Initialization(CustomRenderPipelineAsset asset)
         {
             this._asset = asset;
             _name = name;
-            // _cmd = new Command("Volume Cloud");
             _frameCount = 0;
         }
         public override bool InspectProperty()
@@ -49,10 +55,10 @@ namespace CustomURP
 
             _cmd.Name = "VolumeCloud";
 
-            if (!(_asset.VolumeCloudSettings._material && camera._camera.cameraType == CameraType.Game || camera._camera.cameraType == CameraType.SceneView))
+            if (!(_setttings._material && camera._camera.cameraType == CameraType.Game || camera._camera.cameraType == CameraType.SceneView))
                 return;
 
-            _setttings = _asset.VolumeCloudSettings;
+            // _setttings = _asset.VolumeCloudSettings;
 
             int width = (int)(camera._renderTarget._size.x * _setttings._rtScale);
             int height = (int)(camera._renderTarget._size.y * _setttings._rtScale);

@@ -191,8 +191,9 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         {
             CustomRenderPipelineCameraSet cameraSet;
 
-            if (!UnsafeHashMap.TryGetValue(CustomRenderPipelineCamera.CameraMap, camera.gameObject.GetInstanceID(),
-                    out ulong ppCameraPtr))
+            // if (!UnsafeHashMap.TryGetValue(CustomRenderPipelineCamera.CameraMap, camera.gameObject.GetInstanceID(),
+            //         out ulong ppCameraPtr))
+            if(!CustomRenderPipelineCamera.CameraMap.TryGetValue(camera.gameObject.GetInstanceID(), out ulong ppCameraPtr))
             {
                 if (!camera.TryGetComponent(out cameraSet._ppCamera))
                 {

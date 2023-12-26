@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
-namespace Scarecrow
+namespace CustomURP
 {
     public class SimpleShaderGUI : ShaderGUI
     {
