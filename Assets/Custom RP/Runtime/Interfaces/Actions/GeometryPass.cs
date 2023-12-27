@@ -63,6 +63,21 @@ namespace CustomURP
             
             Setup(camera);
             DrawVisibleGeometry(cameraSettings._renderingLayerMask);
+            
+            if (_asset.VolumeCloudSettings != null)
+            {
+                if (_volmenCloud == null)
+                {
+                    // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
+                    // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>(_asset.VolumeCloudSettings, "");
+                    _volmenCloud = new VolumeCloud(_asset.VolumeCloudSettings);
+                    // _volmenCloud.Initialization(_asset);
+                }
+            
+                _volmenCloud.BeginRendering(_camera, ref _cmd);
+                _volmenCloud.Tick(_camera, ref _cmd);
+            }
+            
             UnsupportedShaders();
             
             // _cmd.EndSampler();
@@ -134,25 +149,12 @@ namespace CustomURP
                 _camera._renderTarget.CopyAttachments(ref _cmd, _material);
             // CopyAttachments();
             
-            if (_asset.VolumeCloudSettings != null)
-            {
-                if (_volmenCloud == null)
-                {
-                    // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
-                    // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>(_asset.VolumeCloudSettings, "");
-                    _volmenCloud = new VolumeCloud(_asset.VolumeCloudSettings);
-                    // _volmenCloud.Initialization(_asset);
-                }
-            
-                _volmenCloud.BeginRendering(_camera, ref _cmd);
-                _volmenCloud.Tick(_camera, ref _cmd);
-            }
-            
             sortingSettings.criteria = SortingCriteria.CommonTransparent;
             drawingSettings.sortingSettings = sortingSettings;
             filteringSettings.renderQueueRange = RenderQueueRange.transparent;
 
             _cmd.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
+            
         }
 
         private void Draw(ref Command cmd, RenderTargetIdentifier from, RenderTargetIdentifier to, Material material,
