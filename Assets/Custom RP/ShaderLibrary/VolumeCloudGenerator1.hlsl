@@ -45,8 +45,17 @@ half4 frag(Varyings input) : SV_Target
 #endif
 
     float depth = SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_linear_clamp, input.uv).x;
-    float dstToObj = LinearEyeDepth(depth, _ZBufferParams);
-
+    float linearDepth = LinearEyeDepth(depth, _ZBufferParams);
+    float rayMarchEnd = 0.0f;
+    if(linearDepth >= 1.0f)
+    {
+        rayMarchEnd = 1e7;
+    }
+    else
+    {
+        rayMarchEnd = linearDepth * _ProjectionParams.z;
+    }
+    
     float3 viewDir = normalize(input.viewDir);
     // float3 lightDir = normalize(_MainLightDirection);
     float3 lightDir = normalize(float4(0, 1, 0, 0));
@@ -69,7 +78,7 @@ half4 frag(Varyings input) : SV_Target
     float dstInCloud = dstCloud.y;
 
     // if(dstInCloud <= 0 || dstToObj <= dstToCloud)
-    if(dstInCloud <= 0)
+    if(dstInCloud <= 0 || rayMarchEnd <= dstToCloud)
     {
         return half4(0, 0, 0, 1);
     }
@@ -135,7 +144,7 @@ half4 frag(Varyings input) : SV_Target
             currentPos = cameraPos + currentMarchLength * viewDir;
             
             //如果步进到被物体遮挡,或穿出云覆盖范围时,跳出循环
-            if (dstToObj <= currentMarchLength || endPos <= currentMarchLength)
+            if (rayMarchEnd <= currentMarchLength || endPos <= currentMarchLength)
             {
                 break;
             }
@@ -236,7 +245,7 @@ half4 frag(Varyings input) : SV_Target
             currentMarchLength += _ShapeMarchLength;
 #endif
                 //如果步进到被物体遮挡,或穿出云覆盖范围时,跳出循环
-                if (dstToObj <= currentMarchLength || endPos <= currentMarchLength)
+                if (rayMarchEnd <= currentMarchLength || endPos <= currentMarchLength)
                 {
                     break;
                 }
@@ -244,9 +253,9 @@ half4 frag(Varyings input) : SV_Target
         }
     }
                 
-                //最后的颜色应当为backColor.rgb * lightAttenuation + totalLum, 但是因为分帧渲染，混合需要到下一pass
-                // return half4(backColor.rgb * lightAttenuation + totalLum, lightAttenuation);
-                return half4(totalLumiance, lightAttenuation);
+    //最后的颜色应当为backColor.rgb * lightAttenuation + totalLum, 但是因为分帧渲染，混合需要到下一pass
+    // return half4(backColor.rgb * lightAttenuation + totalLum, lightAttenuation);
+    return half4(totalLumiance, lightAttenuation);
 }
 
 #endif

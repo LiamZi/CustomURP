@@ -5,20 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/PropertyDraw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/PropertyDraw/PropertyGUI_Foldout.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/Weathers/VolumeCloud.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineCamera.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudFunctions.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/CloudFunctions.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator1.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator1.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/Cloud.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Clouds/Cloud.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +19,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -325,7 +313,8 @@
       <workItem from="1702899828622" duration="67721000" />
       <workItem from="1703212464761" duration="16497000" />
       <workItem from="1703472989814" duration="13690000" />
-      <workItem from="1703497329517" duration="20620000" />
+      <workItem from="1703497329517" duration="23466000" />
+      <workItem from="1703658184925" duration="2729000" />
     </task>
     <servers />
   </component>
@@ -546,31 +535,31 @@
           </properties>
           <option name="timeStamp" value="161" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/SimpleShaderGUI.cs</url>
-          <line>59</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\SimpleShaderGUI.cs" initialLine="59" containingFunctionPresentation="方法 'OnGUI'">
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeDataController.cs</url>
+          <line>77</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Components\SkyBox\SkyTimeDataController.cs" initialLine="77" containingFunctionPresentation="方法 'GetSkyTimeData'">
             <startOffsets>
-              <option value="1822" />
+              <option value="2636" />
             </startOffsets>
             <endOffsets>
-              <option value="1852" />
+              <option value="2762" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="166" />
+          <option name="timeStamp" value="163" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/SimpleShaderGUI.cs</url>
-          <line>101</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\SimpleShaderGUI.cs" initialLine="101" containingFunctionPresentation="方法 'GetShowState'">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Components/SkyBox/SkyTimeDataController.cs</url>
+          <line>32</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Components\SkyBox\SkyTimeDataController.cs" initialLine="32" containingFunctionPresentation="方法 'GetSkyTimeData'">
             <startOffsets>
-              <option value="3402" />
+              <option value="1021" />
             </startOffsets>
             <endOffsets>
-              <option value="3435" />
+              <option value="1071" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="167" />
+          <option name="timeStamp" value="165" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
