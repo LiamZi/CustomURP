@@ -21,7 +21,7 @@ Varyings vert(Attributes input)
     Varyings o;
     o.positionCS = TransformObjectToHClip(input.positionOS);
     o.uv = input.uv;
-
+    
     float3 viewDir = mul(unity_CameraInvProjection, float4(input.uv * 2.0 - 1.0, 0, -1)).xyz;
     o.viewDir = mul(unity_CameraToWorld, float4(viewDir, 0)).xyz;
 
@@ -43,18 +43,17 @@ half4 frag(Varyings input) : SV_Target
         return backColor;
     }
 #endif
-
-    float depth = SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_linear_clamp, input.uv).x;
-    float linearDepth = LinearEyeDepth(depth, _ZBufferParams);
+    
+    float linearDepth = Linear01Depth(_CameraDepthTexture.Sample(sampler_point_clamp, input.uv), _ZBufferParams);
     float rayMarchEnd = 0.0f;
-    // if(linearDepth >= 1.0f)
-    // {
-    //     rayMarchEnd = 1e7;
-    // }
-    // else
-    // {
-    rayMarchEnd = linearDepth * _ProjectionParams.z;
-    // }
+    if(linearDepth >= 1.0f)
+    {
+        rayMarchEnd = 1e7;
+    }
+    else
+    {
+        rayMarchEnd = linearDepth * _ProjectionParams.z;
+    }
     
     float3 viewDir = normalize(input.viewDir);
     // float3 lightDir = normalize(_MainLightDirection);

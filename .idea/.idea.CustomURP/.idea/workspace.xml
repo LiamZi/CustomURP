@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator1.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumeCloudGenerator1.hlsl" afterDir="false" />
-    </list>
+    <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -311,7 +309,7 @@
       <workItem from="1703212464761" duration="16497000" />
       <workItem from="1703472989814" duration="13690000" />
       <workItem from="1703497329517" duration="23466000" />
-      <workItem from="1703658184925" duration="3296000" />
+      <workItem from="1703658184925" duration="4634000" />
     </task>
     <servers />
   </component>
