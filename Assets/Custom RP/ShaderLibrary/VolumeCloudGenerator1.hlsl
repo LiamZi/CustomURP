@@ -47,14 +47,14 @@ half4 frag(Varyings input) : SV_Target
     float depth = SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_linear_clamp, input.uv).x;
     float linearDepth = LinearEyeDepth(depth, _ZBufferParams);
     float rayMarchEnd = 0.0f;
-    if(linearDepth >= 1.0f)
-    {
-        rayMarchEnd = 1e7;
-    }
-    else
-    {
-        rayMarchEnd = linearDepth * _ProjectionParams.z;
-    }
+    // if(linearDepth >= 1.0f)
+    // {
+    //     rayMarchEnd = 1e7;
+    // }
+    // else
+    // {
+    rayMarchEnd = linearDepth * _ProjectionParams.z;
+    // }
     
     float3 viewDir = normalize(input.viewDir);
     // float3 lightDir = normalize(_MainLightDirection);
@@ -242,7 +242,7 @@ half4 frag(Varyings input) : SV_Target
                 }
                 currentMarchLength += shapeMarchLength;
 #else
-            currentMarchLength += _ShapeMarchLength;
+                currentMarchLength += _ShapeMarchLength;
 #endif
                 //如果步进到被物体遮挡,或穿出云覆盖范围时,跳出循环
                 if (rayMarchEnd <= currentMarchLength || endPos <= currentMarchLength)

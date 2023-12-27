@@ -69,9 +69,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BaseShapeDetailEffect: 0.741
+    - _BaseShapeDetailEffect: 0.6
     - _BaseShapeTexTiling: 1
-    - _BlueNoiseEffect: 1
+    - _BlueNoiseEffect: 0.608
     - _BumpScale: 1
     - _CloudAbsorb: 0.7
     - _CloudCover: 0.5
@@ -124,7 +124,7 @@ Material:
     - _WindSpeed: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseShapeRatio: {r: 0.323, g: 1, b: 1, a: 1}
+    - _BaseShapeRatio: {r: 0.323, g: 1.63, b: 1, a: 1}
     - _BoundBoxMax: {r: 1, g: 1, b: 1, a: 1}
     - _BoundBoxMin: {r: -1, g: -1, b: -1, a: -1}
     - _CloudHeightRange: {r: 1500, g: 4000, b: 0, a: 8000}
