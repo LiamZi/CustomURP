@@ -5,31 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/RainDrop.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/RainDrop.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/RainDrop.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/RainDrop.shader.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/Editor.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/Editor/VRLensFlareEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/Editor/VRLensFlareEditor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlareCore.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlareCore.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlareFeature.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlareFeature.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlarePass.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlarePass.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.shader.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/New Flare.flare" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/New Flare.flare.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Weathers/Rain.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Weathers/Rain.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -338,7 +314,7 @@
       <workItem from="1703212464761" duration="16497000" />
       <workItem from="1703472989814" duration="13690000" />
       <workItem from="1703497329517" duration="23466000" />
-      <workItem from="1703658184925" duration="21617000" />
+      <workItem from="1703658184925" duration="24034000" />
     </task>
     <servers />
   </component>
