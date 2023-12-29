@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkyBox
-  m_Shader: {fileID: 4800000, guid: 549899cfdb8f42f4af38f5a782e1fa96, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_Name: RainRipples
+  m_Shader: {fileID: 4800000, guid: 267b737cb406aa349abe962073c2b83e, type: 3}
+  m_ShaderKeywords: _ALPHABLEND_ON _COLORADDSUBDIFF_ON _REQUIRE_UV2 _SHADOWS_ON
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,6 +19,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: f6cf58de5ee6aca4da103a5406861d3e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -35,25 +43,21 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DistortionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f6cf58de5ee6aca4da103a5406861d3e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MilkyWayNoise:
-        m_Texture: {fileID: 2800000, guid: 2869b65ef01b1434e95d2dcec429384e, type: 3}
-        m_Scale: {x: 4.5, y: 2}
-        m_Offset: {x: 0, y: 0}
-    - _MilkyWayTex:
-        m_Texture: {fileID: 2800000, guid: 32528bbb4f64c0340b5b6b1d921a2770, type: 3}
-        m_Scale: {x: 0.44, y: 0.84}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -63,47 +67,58 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _StarTex:
-        m_Texture: {fileID: 2800000, guid: d34f114d65847ce44bea47678cad4c78, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AtmosphereThickness: 1.05
+    - PixelSnap: 0
+    - _BlendOp: 0
     - _BumpScale: 1
-    - _Cutoff: 0.5
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
+    - _Clipping: 0
+    - _ColorMode: 1
+    - _Cull: 2
+    - _Cutoff: 0.32
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _Exposure: 2.2
-    - _FlowSpeed: 0.02
+    - _Distortion: 0
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0
+    - _DstBlend: 10
+    - _EmissionEnabled: 0
+    - _EnableExternalAlpha: 0
+    - _FlipbookBlending: 0
+    - _FlipbookMode: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _LightingEnabled: 0
     - _Metallic: 0
-    - _MilkyWayIntensity: 0.02666664
-    - _Mode: 0
-    - _MoonIntensity: 2.01
+    - _Mode: 2
+    - _NearFade: 0
+    - _NearFadeDistance: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ScatteringIntensity: 0.8333333
+    - _Shadows: 0
     - _SmoothnessTextureChannel: 0
+    - _SoftParticles: 0
+    - _SoftParticlesDistance: 0
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
+    - _SoftParticlesRange: 1
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _StarIntensity: 0.3333333
-    - _SunIntensity: 1
-    - _SunSize: 0.03
+    - _SrcBlend: 5
     - _UVSec: 0
-    - _ZWrite: 1
+    - _VertexColors: 0
+    - _ZWrite: 0
     m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.21048418, g: 0.6352208, b: 0.8113208, a: 1}
-    - _MilkyWayColor1: {r: 0.11372549, g: 0.23529412, b: 0.83137256, a: 1}
-    - _MilkyWayColor2: {r: 0.30588236, g: 0.9137255, b: 0.8117647, a: 1}
-    - _MoonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonDirectionWS: {r: 0.00000008444392, g: 0.25881934, b: 0.96592575, a: 0}
-    - _SkyTint: {r: 0.20597059, g: 0.4696213, b: 0.764151, a: 1}
-    - _SunCol: {r: 0.8113208, g: 0.6581433, b: 0.3564563, a: 1}
-    - _SunColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SunDirectionWS: {r: -0.00000008444392, g: -0.2588191, b: -0.96592593, a: 0}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -5,12 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/RainDrop.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/RainDrop.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/RainDrop.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/RainDrop.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/Editor/VRLensFlareEditor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/Editor/VRLensFlareEditor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlareCore.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlareCore.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlareFeature.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlareFeature.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlarePass.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/URP/VRLensFlarePass.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/New Flare.flare" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/New Flare.flare.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ClusterStruct.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/LightingData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/LightingData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/Lightmap-0_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakeLightScene/BakedLightScene/Lightmap-0_comp_light.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +63,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/58/03b09f95/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/5a/784dc86e/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/5c/0bad5ee0/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/65/019ad560/LayerMask.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/8d/67ad9f86/Shader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/98/6737ac04/Utils.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b0/9fbed331/ScriptableRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
@@ -62,6 +82,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/89/9a0351ea/MaterialEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/96/3d6ba2ef/SerializedObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/fd/787f4318/CameraEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Github/ScreenSpaceLensFlareTest/Library/PackageCache/com.unity.render-pipelines.core@12.1.11/Runtime/PostProcessing/LensFlareComponentSRP.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Github/Unity-MPipeline-Framework/Assets/Scripts/MPipeline Core/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Github/Unity_Indirect-Rendering-With-Compute-Shaders/Assets/Scripts/Example.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" root0="FORCE_HIGHLIGHTING" />
@@ -78,6 +99,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxFunctions.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/UnityInput.hlsl" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/ACES.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/D3D11.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/GLCore.hlsl" root0="SKIP_HIGHLIGHTING" />
@@ -316,7 +338,7 @@
       <workItem from="1703212464761" duration="16497000" />
       <workItem from="1703472989814" duration="13690000" />
       <workItem from="1703497329517" duration="23466000" />
-      <workItem from="1703658184925" duration="7550000" />
+      <workItem from="1703658184925" duration="21617000" />
     </task>
     <servers />
   </component>
