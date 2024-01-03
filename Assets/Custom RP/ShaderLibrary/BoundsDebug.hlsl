@@ -1,0 +1,5 @@
+#ifndef __SHADER_LIBRARY_BOUNDS_DEBUG_HLSL__
+#define __SHADER_LIBRARY_BOUNDS_DEBUG_HLSL__
+
+
+#endif

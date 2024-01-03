@@ -257,6 +257,12 @@ namespace CustomURP
         {
             Cmd.DispatchCompute(computeShader, kernelIndex, threadGroupsX, threadGroupsY, threadGroupsZ);
         }
+        
+        public void CopyTexture(RenderTargetIdentifier src, int srcElement, int srcMip,
+                                RenderTargetIdentifier dst, int dstElement, int dstMip)
+        {
+            Cmd.CopyTexture(src, srcElement, srcMip, dst, dstElement, dstMip);
+        }
 
         public void Release()
         {

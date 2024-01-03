@@ -5,7 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Weathers/Rain.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Weathers/Rain.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainEditor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainEditor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Terrain.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Terrain.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainAsset.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainAsset.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BoundsDebug.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BoundsDebug.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/BoundsDebug.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/BoundsDebug.shader.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/MeshUtility.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/MeshUtility.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/TextureUtility.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/TextureUtility.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/Terrain.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain Asset.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain Asset.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Weathers/RainPlane.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Weathers/RainPlane.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FrustumCulling/DrawCube.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FrustumCulling/DrawCube.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBox/SkyBoxScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,10 +42,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/HLSLSupport.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityCG.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityInstancing.cginc" root0="SKIP_HIGHLIGHTING" />
@@ -39,6 +61,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/58/03b09f95/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/5a/784dc86e/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/5c/0bad5ee0/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/62/23b6f107/Graphics.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/65/019ad560/LayerMask.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/8d/67ad9f86/Shader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/98/6737ac04/Utils.cs" root0="SKIP_HIGHLIGHTING" />
@@ -52,6 +75,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/e6/c9109dbc/RenderPipelineAsset.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/f5/9fd9d601/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/f5/d837e8a0/Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/06/dabe643a/MeshUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/18/b8c231d6/HostView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/44/5b6dbf2f/PlayModeView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/833df26ca235433581ca39100dce8362772c00/75/b73bd7cb/AssetDatabase.cs" root0="SKIP_HIGHLIGHTING" />
@@ -75,7 +99,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxFunctions.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/UnityInput.hlsl" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scenes/SkyBox/Flare/VRLensFlare.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/ACES.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/D3D11.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/GLCore.hlsl" root0="SKIP_HIGHLIGHTING" />
@@ -314,7 +337,9 @@
       <workItem from="1703212464761" duration="16497000" />
       <workItem from="1703472989814" duration="13690000" />
       <workItem from="1703497329517" duration="23466000" />
-      <workItem from="1703658184925" duration="24034000" />
+      <workItem from="1703658184925" duration="25381000" />
+      <workItem from="1704163267912" duration="100000" />
+      <workItem from="1704163549669" duration="17552000" />
     </task>
     <servers />
   </component>
