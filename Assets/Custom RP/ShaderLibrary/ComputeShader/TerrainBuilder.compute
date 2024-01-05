@@ -1,0 +1,35 @@
+#ifndef __SHADER_LIBRARY_COMPUTE_SHADER_TERRAIN_BUILDER_COMPUTE__
+#define __SHADER_LIBRARY_COMPUTE_SHADER_TERRAIN_BUILDER_COMPUTE__
+
+#pragma kernel TraverseQuadTree
+#pragma kernel BuildLodMap
+#pragma kernel BuildPatches
+
+#pragma multi_compile_local _ _REVERSE_Z
+#pragma multi_compile_local _ ENABLE_FRUSTUM_CULL
+#pragma multi_compile_local _ ENABLE_HIZ_CULL
+#pragma multi_compile_local _ BOUNDS_DEBUG
+#pragma multi_compile_local _ ENABLE_SEAM
+
+#include "ComputeCommon.hlsl"
+#include "../TerrainInput.hlsl"
+
+[numthreads(1, 1, 1)]
+void TraverseQuadTree(CSInput input)
+{
+    
+}
+
+[numthreads(8, 8, 1)]
+void BuildLodMap(CSInput input)
+{
+    
+}
+
+[numthreads(8, 8, 1)]
+void BuildPatches(CSInput input)
+{
+    
+}
+
+#endif

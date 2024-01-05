@@ -1,0 +1,45 @@
+#ifndef __SHADER_LIBRARY_COMPUTE_SHADER_MIN_MAX_HEIGHTS_COMPUTE__
+#define __SHADER_LIBRARY_COMPUTE_SHADER_MIN_MAX_HEIGHTS_COMPUTE__
+
+
+#pragma kernel PatchMinMaxHeight
+#pragma kernel PatchMinMaxHeightMapMip
+
+#include "ComputeCommon.hlsl"
+
+Texture2D<float4> _heightTex;
+RWTexture2D<float4> _patchMinMaxHeightTex;
+Texture2D<float4> _inputTex;
+RWTexture2D<float4> _reduceTex;
+
+
+[numthreads(8, 8, 1)]
+void PatchMinMaxHeight(CSInput input)
+{
+    float h1 = _heightTex[input.dispatchThreadID.xy].r;
+    float h2 = _heightTex[input.dispatchThreadID.xy + uint2(1, 0)].r;
+    float h3 = _heightTex[input.dispatchThreadID.xy + uint2(0, 1)].r;
+    float h4 = _heightTex[input.dispatchThreadID.xy + uint2(1, 1)].r;
+
+    float hmin = min(min(h1, h2), min(h3, h4));
+    float hmax = max(max(h1, h2), max(h3, h4));
+    _patchMinMaxHeightTex[input.dispatchThreadID.xy].rgba = float4(hmin, hmax, 0, 1);
+}
+
+
+[numthreads(5, 5, 1)]
+void PatchMinMaxHeightMapMip(CSInput input)
+{
+    uint2 inLoc = input.dispatchThreadID.xy * 2;
+    float2 h1 = _inputTex[inLoc].rg;
+    float2 h2 = _inputTex[inLoc + uint2(1, 0)].rg;
+    float2 h3 = _inputTex[inLoc + uint2(0, 1)].rg;
+    float2 h4 = _inputTex[inLoc + uint2(1, 1)].rg;
+
+    float hmin = min(min(h1.r, h2.r), min(h3.r, h4.r));
+    float hmax = max(max(h1.g, h2.g), max(h3.g, h4.g));
+    _reduceTex[input.dispatchThreadID.xy] = float4(hmin, hmax, 0.0, 1.0);
+}
+
+
+#endif

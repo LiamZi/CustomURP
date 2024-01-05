@@ -126,7 +126,7 @@ namespace CustomURP
             {
                 if (!_patchMesh)
                 {
-                    _patchMesh = MeshUtility.CreatePlanemesh(16);
+                    _patchMesh = MeshUtility.CreatePlaneMesh(16);
                 }
                 return _patchMesh;
             }

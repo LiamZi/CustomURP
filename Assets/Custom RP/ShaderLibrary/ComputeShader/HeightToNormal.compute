@@ -1,0 +1,40 @@
+#ifndef __SHADER_LIBRARY_COMPUTE_SHADER_HEIGHT_TO_NORMAL_COMPUTE__
+#define __SHADER_LIBRARY_COMPUTE_SHADER_HEIGHT_TO_NORMAL_COMPUTE__
+
+#pragma kernel CSMain
+
+#include "ComputeCommon.hlsl"
+
+Texture2D<float4> _HeightTex;
+RWTexture2D<float4> _NormalTex;
+
+float3 GetPosition(uint2 coord)
+{
+    uint w, h;
+    _HeightTex.GetDimensions(w, h);
+    float height = _HeightTex[coord].r;
+    return float3(coord.x * 1.0 / w, height, coord.y * 1.0 / h);
+}
+
+float3 GetNormal(float3 p1, float3 p2)
+{
+    return normalize(-cross(p1, p2)).xyz;
+}
+
+[numthreads(8, 8, 1)]
+void CSMain(CSInput input)
+{
+    uint2 coord = input.dispatchThreadID.xy;
+    float3 p0 = GetPosition(coord);
+    float3 p1 = GetPosition(coord + uint2(1, 0)) - p0;
+    float3 p2 = GetPosition(coord + uint2(0, 1)) - p0;
+    float3 p3 = GetPosition(coord + uint2(-1, 0)) - p0;
+    float3 p4 = GetPosition(coord + uint2(0, -1)) - p0;
+
+    float3 normal = GetNormal(p1, p2) + GetNormal(p2, p3) + GetNormal(p3, p4) + GetNormal(p4, p1);
+    normal = normalize(normal);
+    normal = (normal + 1) * 0.5;
+    _NormalTex[coord] = float4(normal.xyz, 1.0);
+}
+
+#endif

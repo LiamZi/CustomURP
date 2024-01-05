@@ -6,7 +6,7 @@ namespace CustomURP
 {
     public class MeshUtility
     {
-        public static Mesh CreatePlanemesh(int size)
+        public static Mesh CreatePlaneMesh(int size)
         {
             var mesh = new Mesh();
             var sizePerGrid = 0.5f;

@@ -16,3 +16,9 @@ MonoBehaviour:
   _maxLOD: 5
   _maxLodNodeCount: 6
   _worldSize: {x: 10240, y: 10240, z: 10240}
+  _virtualMap: {fileID: 0}
+  _heightMap: {fileID: 0}
+  _normalMap: {fileID: 0}
+  _minMaxHeightMaps: []
+  _quadTreeMaps: []
+  _terrainShader: {fileID: 7200000, guid: cca1c6a6cbeb4b1581f4d836c2508fc0, type: 3}

@@ -130,8 +130,15 @@ namespace CustomURP
         public static int _cloudWidthId = Shader.PropertyToID("_Width");
         public static int _cloudHeightId = Shader.PropertyToID("_Height");
         public static int _cloudFrameCountId = Shader.PropertyToID("_FrameCount");
-        
 
+
+        public static int _heightTex = Shader.PropertyToID("_HeightTex");
+        public static int _normalTex = Shader.PropertyToID("_NormalTex");
+        public static int _texSize = Shader.PropertyToID("TexSize");
+        public static int _worldSize = Shader.PropertyToID("WorldSize");
+        public static int _boundsList = Shader.PropertyToID("BoundsList");
+        public static int _boundsHeightRedundance = Shader.PropertyToID("BoundsHeightRedundance");
+        public static int _hizDepthBias = Shader.PropertyToID("_HizDepthBias");
 
         
         public static ShaderTagId[] _LegacyShaderTagIdsagId =

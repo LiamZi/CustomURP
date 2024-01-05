@@ -58,7 +58,7 @@ namespace CustomURP
 
             if (_updateGITime > 0.5f)
             {
-                // DynamicGI.UpdateEnvironment();
+                DynamicGI.UpdateEnvironment();
             }
 
             _currentSkyTimeData = _skyTimeDataController.GetSkyTimeData(_time);

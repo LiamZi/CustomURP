@@ -29,6 +29,7 @@
         HLSLINCLUDE
         #include "../ShaderLibrary/Common.hlsl"
         #include "../ShaderLibrary/SkyBoxInput.hlsl"
+
         ENDHLSL
 
         Tags
