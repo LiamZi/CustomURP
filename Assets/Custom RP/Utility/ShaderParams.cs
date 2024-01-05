@@ -91,19 +91,19 @@ namespace CustomURP
         public static readonly int _sunIntensity = Shader.PropertyToID("_SunIntensity");
         
         //Cloud
-        public static int _cloudStartHeightId = Shader.PropertyToID("_CloudStartHeight");
-        public static int _cloudEndHeightId = Shader.PropertyToID("_CloudEndHeight");
+        public static readonly int _cloudStartHeightId = Shader.PropertyToID("_CloudStartHeight");
+        public static readonly int _cloudEndHeightId = Shader.PropertyToID("_CloudEndHeight");
 
-        public static int _cloudTexId = Shader.PropertyToID("_CloudTex");
-        public static int _cloudTileId = Shader.PropertyToID("_CloudTile");
-        public static int _detailTexId = Shader.PropertyToID("_DetailTex");
-        public static int _detailTileId = Shader.PropertyToID("_DetailTile");
-        public static int _detailStrengthId = Shader.PropertyToID("_DetailStrength");
+        public static readonly int _cloudTexId = Shader.PropertyToID("_CloudTex");
+        public static readonly int _cloudTileId = Shader.PropertyToID("_CloudTile");
+        public static readonly int _detailTexId = Shader.PropertyToID("_DetailTex");
+        public static readonly int _detailTileId = Shader.PropertyToID("_DetailTile");
+        public static readonly int _detailStrengthId = Shader.PropertyToID("_DetailStrength");
 
-        public static int _curlNoiseId = Shader.PropertyToID("_CurlNoise");
-        public static int _curlTileId = Shader.PropertyToID("_CurlTile");
-        public static int _curlStrengthId = Shader.PropertyToID("_CurlStrength");
-        public static int _heightDensityId = Shader.PropertyToID("_HeightDensity");
+        public static readonly int _curlNoiseId = Shader.PropertyToID("_CurlNoise");
+        public static readonly int _curlTileId = Shader.PropertyToID("_CurlTile");
+        public static readonly int _curlStrengthId = Shader.PropertyToID("_CurlStrength");
+        public static readonly int _heightDensityId = Shader.PropertyToID("_HeightDensity");
 
         // public static int _topOffst = Shader.PropertyToID("_CloudTopOffset");
         // public static int _cloudSize = Shader.PropertyToID("_CloudSize");
@@ -125,21 +125,35 @@ namespace CustomURP
         // public static int _atmosphereColor = Shader.PropertyToID("_AtmosphereColor");
         // public static int _ambientColor = Shader.PropertyToID("_AmbientColor");
 
-        public static int _blueNoiseTexId = Shader.PropertyToID("_BlueNoiseTex");
-        public static int _blueNoiseTexUVId = Shader.PropertyToID("_BlueNoiseTexUV");
-        public static int _cloudWidthId = Shader.PropertyToID("_Width");
-        public static int _cloudHeightId = Shader.PropertyToID("_Height");
-        public static int _cloudFrameCountId = Shader.PropertyToID("_FrameCount");
+        public static readonly int _blueNoiseTexId = Shader.PropertyToID("_BlueNoiseTex");
+        public static readonly int _blueNoiseTexUVId = Shader.PropertyToID("_BlueNoiseTexUV");
+        public static readonly int _cloudWidthId = Shader.PropertyToID("_Width");
+        public static readonly int _cloudHeightId = Shader.PropertyToID("_Height");
+        public static readonly int _cloudFrameCountId = Shader.PropertyToID("_FrameCount");
 
 
-        public static int _heightTex = Shader.PropertyToID("_HeightTex");
-        public static int _normalTex = Shader.PropertyToID("_NormalTex");
-        public static int _texSize = Shader.PropertyToID("TexSize");
-        public static int _worldSize = Shader.PropertyToID("WorldSize");
-        public static int _boundsList = Shader.PropertyToID("BoundsList");
-        public static int _boundsHeightRedundance = Shader.PropertyToID("BoundsHeightRedundance");
-        public static int _hizDepthBias = Shader.PropertyToID("_HizDepthBias");
-
+        public static readonly int _heightTex = Shader.PropertyToID("_HeightTex");
+        public static readonly int _normalTex = Shader.PropertyToID("_NormalTex");
+        public static readonly int _texSize = Shader.PropertyToID("TexSize");
+        public static readonly int _worldSize = Shader.PropertyToID("WorldSize");
+        public static readonly int _boundsList = Shader.PropertyToID("BoundsList");
+        public static readonly int _boundsHeightRedundance = Shader.PropertyToID("BoundsHeightRedundance");
+        public static readonly int _hizDepthBias = Shader.PropertyToID("_HizDepthBias");
+        public static readonly int _quadTreeTexture = Shader.PropertyToID("QuadTreeTexture");
+        public static readonly int _appendFinalNodeList = Shader.PropertyToID("AppendFinalNodeList");
+        public static readonly int _cameraFrustumPlanes = Shader.PropertyToID("_CameraFrustumPlanes");
+        public static readonly int _passLOD = Shader.PropertyToID("PassLOD");
+        public static readonly int _finalNodeList = Shader.PropertyToID("FinalNodeList");
+        public static readonly int _appendNodeList = Shader.PropertyToID("AppendNodeList");
+        public static readonly int _consumeNodeList = Shader.PropertyToID("ConsumeNodeList");
+        public static readonly int _nodeEvaluationC = Shader.PropertyToID("_NodeEvaluationC");
+        public static readonly int _worldLodParams = Shader.PropertyToID("WorldLodParams");
+        public static readonly int _nodeDescriptors = Shader.PropertyToID("NodeDescriptors");
+        public static readonly int _lodMap = Shader.PropertyToID("_LodMap");
+        public static readonly int _minMaxHeightTexture = Shader.PropertyToID("MinMaxHeightTexture");
+        public static readonly int _culledPatchList = Shader.PropertyToID("CulledPatchList");
+        public static readonly int _patchBoundsList = Shader.PropertyToID("PatchBoundsList");
+        public static readonly int _nodeIdOffsetOfLOD = Shader.PropertyToID("NodeIDOffsetOfLOD");
         
         public static ShaderTagId[] _LegacyShaderTagIdsagId =
         {

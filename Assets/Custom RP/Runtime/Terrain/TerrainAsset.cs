@@ -13,7 +13,7 @@ namespace CustomURP
         public int _maxLOD = 5;
 
         [SerializeField]
-        public int _maxLodNodeCount = 6;
+        public int _maxLodNodeCount = 5;
 
         [SerializeField]
         Vector3 _worldSize = new Vector3(10240, 10240, 10240);
@@ -141,6 +141,30 @@ namespace CustomURP
                     _cubeMesh = MeshUtility.CreateCube(1);
                 }
                 return _cubeMesh;
+            }
+        }
+
+        public int MaxLodNodeCount
+        {
+            get
+            {
+                return _maxLodNodeCount;
+            }
+        }
+
+        public int MaxLod
+        {
+            get
+            {
+                return _maxLOD;
+            }
+        }
+
+        public uint MaxNodeId
+        {
+            get
+            {
+                return _maxNodeId;
             }
         }
     };

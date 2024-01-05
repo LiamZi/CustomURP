@@ -264,9 +264,19 @@ namespace CustomURP
             Cmd.CopyTexture(src, srcElement, srcMip, dst, dstElement, dstMip);
         }
 
+        public void SetBufferCounterValue(ComputeBuffer buffer, uint counterValue)
+        {
+            Cmd.SetComputeBufferCounterValue(buffer, counterValue);
+        }
+
         public void Release()
         {
             Cmd.Release();
+        }
+
+        public void Clear()
+        {
+            Cmd.Clear();
         }
     };
 }
