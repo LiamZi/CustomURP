@@ -183,6 +183,31 @@ namespace CustomURP
             _cmd.Clear();
             ClearBufferCounter();
             
+            UpdateCameraFrustumPlanes(camera);
+
+            if (_isNodeEvaluationCDirty)
+            {
+                _isNodeEvaluationCDirty = false;
+                _cmd.SetComputeVectorParam(_shader, ShaderParams._nodeEvaluationC, _nodeEvaluationC);
+            }
+            
+            _cmd.SetComputeVectorParam(_shader, ShaderParams._cameraPositionWS, camera.transform.position);
+            _cmd.SetComputeVectorParam(_shader, ShaderParams._worldSize, _asset.WorldSize);
+            
+            
+        }
+
+        void UpdateCameraFrustumPlanes(Camera camera)
+        {
+            GeometryUtility.CalculateFrustumPlanes(camera, _cameraFrustumPlanes);
+            for (var i = 0; i < _cameraFrustumPlanes.Length; ++i)
+            {
+                Vector4 p = (Vector4)_cameraFrustumPlanes[i].normal;
+                p.w = _cameraFrustumPlanes[i].distance;
+                _cameraFrustumPlanesToVector4[i] = p;
+            }
+            
+            _shader.SetVectorArray(ShaderParams._cameraFrustumPlanes, _cameraFrustumPlanesToVector4);
         }
 
         public ComputeBuffer PatchBoundsBuffer

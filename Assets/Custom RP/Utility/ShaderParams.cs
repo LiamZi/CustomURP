@@ -154,6 +154,7 @@ namespace CustomURP
         public static readonly int _culledPatchList = Shader.PropertyToID("CulledPatchList");
         public static readonly int _patchBoundsList = Shader.PropertyToID("PatchBoundsList");
         public static readonly int _nodeIdOffsetOfLOD = Shader.PropertyToID("NodeIDOffsetOfLOD");
+        public static readonly int _cameraPositionWS = Shader.PropertyToID("_CameraPositionWS");
         
         public static ShaderTagId[] _LegacyShaderTagIdsagId =
         {
