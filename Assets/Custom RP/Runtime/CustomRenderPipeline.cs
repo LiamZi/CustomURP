@@ -59,13 +59,13 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         GraphicsSettings.lightsUseLinearIntensity            = true;
         _indirectSettings                                    = asset.IndirectSettings;
 
-        if (_asset._loadingThread == null) _asset._loadingThread = LoadingThread.Singleton();
+        _asset._loadingThread ??= LoadingThread.Singleton();
 
-        if(_scene == null) _scene = new Scene(_asset);
+        _scene = new Scene(_asset);
         _scene.Awake();
 
         // if (_actions == null) _actions = UnsafeHashMap.Allocate<ulong, int>(_asset._availiableActions.Length);
-        if (_actions == null) _actions = new Dictionary<ulong, int>(_asset._availiableActions.Length);
+        _actions ??= new Dictionary<ulong, int>(_asset._availiableActions.Length);
         
         _asset.SetRenderingData();
         var actions = _asset._actions;
@@ -201,9 +201,10 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
                     if (camera.cameraType == CameraType.SceneView)
                     {
                         cameraSet._isEditor = true;
-                        var eulerAngle = camera.transform.eulerAngles;
+                        var transform = camera.transform;
+                        var eulerAngle = transform.eulerAngles;
                         eulerAngle.z                 = 0;
-                        camera.transform.eulerAngles = eulerAngle;
+                        transform.eulerAngles = eulerAngle;
                         if (!Camera.main ||
                             !(cameraSet._ppCamera = Camera.main.GetComponent<CustomRenderPipelineCamera>()))
                             continue;
@@ -305,10 +306,10 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
             _scene.Dispose();
             // _scene = null;
         }
-        
+
         if (_actions != null)
         {
-            // UnsafeHashMap.Free(_actions);
+            _actions.Clear(); 
             _actions = null;
         }
         
