@@ -16,7 +16,7 @@ struct NodeDescriptor
     uint branch;
 };
 
-struct RenderPath
+struct RenderPatch
 {
     float2 position;
     float2 minMaxHeight;

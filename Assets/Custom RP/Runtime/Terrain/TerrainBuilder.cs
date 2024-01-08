@@ -34,12 +34,10 @@ namespace CustomURP
         bool _isNodeEvaluationCDirty = true;
         float _hizDepthBias = 1.0f;
         
-        
-        
         Vector4 _nodeEvaluationC = new Vector4(1, 0, 0, 0);
         Plane[] _cameraFrustumPlanes = new Plane[6];
-        Vector4[] _cameraFrustumPlanesToVector4 = new Vector4[6]; 
-        
+        Vector4[] _cameraFrustumPlanesToVector4 = new Vector4[6];
+        string _cmdOirginName = "";
         
         
         public TerrainBuilder(TerrainAsset asset)
@@ -47,13 +45,16 @@ namespace CustomURP
             _asset = asset;
             _shader = asset.TerrainShader;
             _cmd = new Command("TerrainBuild");
+            // _cmd = CustomRenderPipeline._cmd;
+            // _cmdOirginName = _cmd.Name;
+           
             _culledPatchBuffer = new ComputeBuffer(_maxNodeBufferSize * 64, PatchStripSize, ComputeBufferType.Append);
             
             _patchIndirectArgs = new ComputeBuffer(5, 4, ComputeBufferType.IndirectArguments);
-            _patchIndirectArgs.SetData(new uint[]{TerrainAsset.PatchMesh.GetIndexCount(0), 0, 0, 0, 0});
+            _patchIndirectArgs.SetData(new uint[]{_asset.PatchMesh.GetIndexCount(0), 0, 0, 0, 0});
 
             _patchBoundsIndirectArgs = new ComputeBuffer(5, 4, ComputeBufferType.IndirectArguments);
-            _patchBoundsIndirectArgs.SetData(new uint[]{TerrainAsset.CubeMesh.GetIndexCount(0), 0, 0, 0, 0});
+            _patchBoundsIndirectArgs.SetData(new uint[]{_asset.CubeMesh.GetIndexCount(0), 0, 0, 0, 0});
 
             _maxLODNodeList = new ComputeBuffer(asset.MaxLodNodeCount * asset.MaxLodNodeCount, 8, ComputeBufferType.Append);
             InitializationLodNodeListData();
@@ -111,7 +112,7 @@ namespace CustomURP
                 worldLodParams[lod] = new Vector4(nodeSize, patchExtent, maxCount, sectorCountPerNode);
                 maxCount *= 2;
             }
-            _shader.SetVectorArray(ShaderParams._worldLodParams, worldLodParams);
+            _shader.SetVectorArray(ShaderParams._worldLodParamsId, worldLodParams);
 
             int[] nodeIdOffsetLod = new int[(_asset.MaxLod + 1) * 4];
             int nodeIdOffset = 0;
@@ -122,7 +123,7 @@ namespace CustomURP
                 nodeIdOffset += (int)(worldLodParams[lod].z * worldLodParams[lod].z);
             }
             
-            _shader.SetInts(ShaderParams._nodeIdOffsetOfLOD, nodeIdOffsetLod);
+            _shader.SetInts(ShaderParams._nodeIdOffsetOfLODId, nodeIdOffsetLod);
         }
 
         void InitializationLodNodeListData()
@@ -145,25 +146,25 @@ namespace CustomURP
 
         void BindComputeShader(int kernelIndex)
         {
-            _shader.SetTexture(kernelIndex, ShaderParams._quadTreeTexture, _asset.QuadTreeMap);
+            _shader.SetTexture(kernelIndex, ShaderParams._quadTreeTextureId, _asset.QuadTreeMap);
             if (kernelIndex == _kernelOfTraverseQuadTree)
             {
-                _shader.SetBuffer(kernelIndex, ShaderParams._appendFinalNodeList, _finalNodeListBuffer);
-                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTexture, _asset.MinMaxHeightMap);
-                _shader.SetBuffer(kernelIndex, ShaderParams._nodeDescriptors, _nodeDescriptors);
+                _shader.SetBuffer(kernelIndex, ShaderParams._appendFinalNodeListId, _finalNodeListBuffer);
+                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.MinMaxHeightMap);
+                _shader.SetBuffer(kernelIndex, ShaderParams._nodeDescriptorsId, _nodeDescriptors);
             }
             else if (kernelIndex == _kernelOfBuildLodMap)
             {
-                _shader.SetTexture(kernelIndex, ShaderParams._lodMap, _lodMap);
-                _shader.SetBuffer(kernelIndex, ShaderParams._nodeDescriptors, _nodeDescriptors);
+                _shader.SetTexture(kernelIndex, ShaderParams._lodMapId, _lodMap);
+                _shader.SetBuffer(kernelIndex, ShaderParams._nodeDescriptorsId, _nodeDescriptors);
             }
             else if (kernelIndex == _kernelOfBuildPatches)
             {
-                _shader.SetTexture(kernelIndex, ShaderParams._lodMap, _lodMap);
-                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTexture, _asset.MinMaxHeightMap);
-                _shader.SetBuffer(kernelIndex, ShaderParams._finalNodeList, _finalNodeListBuffer);
-                _shader.SetBuffer(kernelIndex, ShaderParams._culledPatchList, _culledPatchBuffer);
-                _shader.SetBuffer(kernelIndex, ShaderParams._patchBoundsList, _patchBoundsBuffer);
+                _shader.SetTexture(kernelIndex, ShaderParams._lodMapId, _lodMap);
+                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.MinMaxHeightMap);
+                _shader.SetBuffer(kernelIndex, ShaderParams._finalNodeListId, _finalNodeListBuffer);
+                _shader.SetBuffer(kernelIndex, ShaderParams._culledPatchListId, _culledPatchBuffer);
+                _shader.SetBuffer(kernelIndex, ShaderParams._patchBoundsListId, _patchBoundsBuffer);
             }
         }
 
@@ -180,21 +181,69 @@ namespace CustomURP
         public void Tick()
         {
             var camera = Camera.main;
+            var context = CustomRenderPipeline._cmd.Context;
+            if (camera == null) return;
+            if (context == null) return;
+            
+            
             _cmd.Clear();
             ClearBufferCounter();
             
             UpdateCameraFrustumPlanes(camera);
+            
 
             if (_isNodeEvaluationCDirty)
             {
                 _isNodeEvaluationCDirty = false;
-                _cmd.SetComputeVectorParam(_shader, ShaderParams._nodeEvaluationC, _nodeEvaluationC);
+                _cmd.SetComputeVectorParam(_shader, ShaderParams._nodeEvaluationCId, _nodeEvaluationC);
             }
             
-            _cmd.SetComputeVectorParam(_shader, ShaderParams._cameraPositionWS, camera.transform.position);
-            _cmd.SetComputeVectorParam(_shader, ShaderParams._worldSize, _asset.WorldSize);
+            _cmd.SetComputeVectorParam(_shader, ShaderParams._cameraPositionWSId, camera.transform.position);
+            _cmd.SetComputeVectorParam(_shader, ShaderParams._worldSizeId, _asset.WorldSize);
             
+            _cmd.CopyCounterValue(_maxLODNodeList, _indirectArgsBuffer, 0);
+
+            ComputeBuffer consumeNodeList = _nodeListA;
+            ComputeBuffer appendNodeList = _nodeListB;
+
+            for (var lod = _asset._maxLOD; lod >= 0; lod--)
+            {
+                _cmd.SetComputeIntParam(_shader, ShaderParams._passLODId, lod);
+                if (lod == _asset._maxLOD)
+                {
+                    _cmd.SetComputeBufferParam(_shader, _kernelOfTraverseQuadTree, ShaderParams._consumeNodeListId, _maxLODNodeList);
+                }
+                else
+                {
+                    _cmd.SetComputeBufferParam(_shader, _kernelOfTraverseQuadTree, ShaderParams._consumeNodeListId, consumeNodeList);
+                }
+                
+                _cmd.SetComputeBufferParam(_shader, _kernelOfTraverseQuadTree, ShaderParams._appendNodeListId, appendNodeList);
+                _cmd.DispatchCompute(_shader, _kernelOfTraverseQuadTree, _indirectArgsBuffer, 0);
+                _cmd.CopyCounterValue(appendNodeList, _indirectArgsBuffer, 0);
+                // var temp = consumeNodeList;
+                // consumeNodeList = appendNodeList;
+                // appendNodeList = temp;
+                SwapNodeList(consumeNodeList, appendNodeList);
+            }
             
+            _cmd.DispatchCompute(_shader, _kernelOfBuildLodMap, 20, 20, 1);
+            
+            _cmd.CopyCounterValue(_finalNodeListBuffer, _indirectArgsBuffer, 0);
+            _cmd.DispatchCompute(_shader, _kernelOfBuildPatches, _indirectArgsBuffer, 0);
+            _cmd.CopyCounterValue(_culledPatchBuffer, _patchIndirectArgs, 4);
+            if (_isBoundsBufferOn)
+            {
+                _cmd.CopyCounterValue(_patchBoundsBuffer, _patchBoundsIndirectArgs, 4);
+            }
+            _cmd.Execute();
+
+            _cmd.Name = _cmdOirginName;
+        }
+
+        void SwapNodeList(ComputeBuffer a, ComputeBuffer b)
+        {
+            (a, b) = (b, a);
         }
 
         void UpdateCameraFrustumPlanes(Camera camera)
@@ -207,7 +256,7 @@ namespace CustomURP
                 _cameraFrustumPlanesToVector4[i] = p;
             }
             
-            _shader.SetVectorArray(ShaderParams._cameraFrustumPlanes, _cameraFrustumPlanesToVector4);
+            _shader.SetVectorArray(ShaderParams._cameraFrustumPlanesId, _cameraFrustumPlanesToVector4);
         }
 
         public ComputeBuffer PatchBoundsBuffer
@@ -218,6 +267,30 @@ namespace CustomURP
             }
         }
 
+        public ComputeBuffer CulledPatchBuffer
+        {
+            get
+            {
+                return _culledPatchBuffer;
+            }
+        }
+
+        public ComputeBuffer PatchIndirectArgs
+        {
+            get
+            {
+                return _patchIndirectArgs;
+            }
+        }
+
+        public ComputeBuffer BoundsIndirectArgs
+        {
+            get
+            {
+                return _patchBoundsIndirectArgs;
+            }
+        }
+        
         public bool IsFrustumCullEnabled
         {
             set
@@ -262,7 +335,7 @@ namespace CustomURP
         {
             set
             {
-                _shader.SetInt(ShaderParams._boundsHeightRedundance, value);
+                _shader.SetInt(ShaderParams._boundsHeightRedundanceId, value);
             }
         }
 
@@ -291,7 +364,7 @@ namespace CustomURP
             set
             {
                 _hizDepthBias = value;
-                _shader.SetFloat(ShaderParams._hizDepthBias, Mathf.Clamp(value, 0.01f, 1000f));
+                _shader.SetFloat(ShaderParams._hizDepthBiasId, Mathf.Clamp(value, 0.01f, 1000f));
             }
 
             get

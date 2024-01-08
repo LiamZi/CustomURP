@@ -258,6 +258,12 @@ namespace CustomURP
             Cmd.DispatchCompute(computeShader, kernelIndex, threadGroupsX, threadGroupsY, threadGroupsZ);
         }
         
+        public void DispatchCompute(ComputeShader computeShader, int kernelIndex,
+                                    ComputeBuffer indirectBuffer, uint argsOffset)
+        {
+            Cmd.DispatchCompute(computeShader, kernelIndex, indirectBuffer, argsOffset);
+        }
+        
         public void CopyTexture(RenderTargetIdentifier src, int srcElement, int srcMip,
                                 RenderTargetIdentifier dst, int dstElement, int dstMip)
         {
@@ -267,6 +273,11 @@ namespace CustomURP
         public void SetBufferCounterValue(ComputeBuffer buffer, uint counterValue)
         {
             Cmd.SetComputeBufferCounterValue(buffer, counterValue);
+        }
+
+        public void CopyCounterValue(ComputeBuffer src, ComputeBuffer dst, uint dstOffsetBytes)
+        {
+            Cmd.CopyCounterValue(src, dst, dstOffsetBytes);
         }
 
         public void Release()

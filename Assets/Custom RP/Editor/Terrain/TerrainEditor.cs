@@ -59,13 +59,13 @@ namespace CustomURP
             desc.enableRandomWrite = true;
             var rt = RenderTexture.GetTemporary(desc);
             ComputeShader cs = AssetDatabase.LoadAssetAtPath<ComputeShader>("Assets/Custom RP/ShaderLibrary/ComputeShader/HeightToNormal.compute");
-            cs.SetTexture(0, ShaderParams._heightTex, heightmap, 0);
-            cs.SetTexture(0, ShaderParams._normalTex, rt, 0);
+            cs.SetTexture(0, ShaderParams._heightTexId, heightmap, 0);
+            cs.SetTexture(0, ShaderParams._normalTexId, rt, 0);
 
             uint tx, ty, tz;
             cs.GetKernelThreadGroupSizes(0, out tx, out ty, out tz);
-            cs.SetVector(ShaderParams._texSize, new Vector4(heightmap.width, heightmap.height, 0, 0));
-            cs.SetVector(ShaderParams._worldSize, new Vector3(10240, 2048, 10240));
+            cs.SetVector(ShaderParams._texSizeId, new Vector4(heightmap.width, heightmap.height, 0, 0));
+            cs.SetVector(ShaderParams._worldSizeId, new Vector3(10240, 2048, 10240));
             cs.Dispatch(0, (int)(heightmap.width / tx), (int)(heightmap.height / ty), 1);
             var req = AsyncGPUReadback.Request(rt, 0, 0, rt.width, 0, rt.height, 0, 1, request =>
             {

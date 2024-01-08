@@ -132,29 +132,31 @@ namespace CustomURP
         public static readonly int _cloudFrameCountId = Shader.PropertyToID("_FrameCount");
 
 
-        public static readonly int _heightTex = Shader.PropertyToID("_HeightTex");
-        public static readonly int _normalTex = Shader.PropertyToID("_NormalTex");
-        public static readonly int _texSize = Shader.PropertyToID("TexSize");
-        public static readonly int _worldSize = Shader.PropertyToID("WorldSize");
-        public static readonly int _boundsList = Shader.PropertyToID("BoundsList");
-        public static readonly int _boundsHeightRedundance = Shader.PropertyToID("BoundsHeightRedundance");
-        public static readonly int _hizDepthBias = Shader.PropertyToID("_HizDepthBias");
-        public static readonly int _quadTreeTexture = Shader.PropertyToID("QuadTreeTexture");
-        public static readonly int _appendFinalNodeList = Shader.PropertyToID("AppendFinalNodeList");
-        public static readonly int _cameraFrustumPlanes = Shader.PropertyToID("_CameraFrustumPlanes");
-        public static readonly int _passLOD = Shader.PropertyToID("PassLOD");
-        public static readonly int _finalNodeList = Shader.PropertyToID("FinalNodeList");
-        public static readonly int _appendNodeList = Shader.PropertyToID("AppendNodeList");
-        public static readonly int _consumeNodeList = Shader.PropertyToID("ConsumeNodeList");
-        public static readonly int _nodeEvaluationC = Shader.PropertyToID("_NodeEvaluationC");
-        public static readonly int _worldLodParams = Shader.PropertyToID("WorldLodParams");
-        public static readonly int _nodeDescriptors = Shader.PropertyToID("NodeDescriptors");
-        public static readonly int _lodMap = Shader.PropertyToID("_LodMap");
-        public static readonly int _minMaxHeightTexture = Shader.PropertyToID("MinMaxHeightTexture");
-        public static readonly int _culledPatchList = Shader.PropertyToID("CulledPatchList");
-        public static readonly int _patchBoundsList = Shader.PropertyToID("PatchBoundsList");
-        public static readonly int _nodeIdOffsetOfLOD = Shader.PropertyToID("NodeIDOffsetOfLOD");
-        public static readonly int _cameraPositionWS = Shader.PropertyToID("_CameraPositionWS");
+        public static readonly int _heightTexId = Shader.PropertyToID("_HeightTex");
+        public static readonly int _normalTexId = Shader.PropertyToID("_NormalTex");
+        public static readonly int _texSizeId = Shader.PropertyToID("TexSize");
+        public static readonly int _worldSizeId = Shader.PropertyToID("_WorldSize");
+        public static readonly int _boundsListId = Shader.PropertyToID("BoundsList");
+        public static readonly int _boundsHeightRedundanceId = Shader.PropertyToID("BoundsHeightRedundance");
+        public static readonly int _hizDepthBiasId = Shader.PropertyToID("_HizDepthBias");
+        public static readonly int _quadTreeTextureId = Shader.PropertyToID("QuadTreeTexture");
+        public static readonly int _appendFinalNodeListId = Shader.PropertyToID("AppendFinalNodeList");
+        public static readonly int _cameraFrustumPlanesId = Shader.PropertyToID("_CameraFrustumPlanes");
+        public static readonly int _passLODId = Shader.PropertyToID("PassLOD");
+        public static readonly int _finalNodeListId = Shader.PropertyToID("FinalNodeList");
+        public static readonly int _appendNodeListId = Shader.PropertyToID("AppendNodeList");
+        public static readonly int _consumeNodeListId = Shader.PropertyToID("ConsumeNodeList");
+        public static readonly int _nodeEvaluationCId = Shader.PropertyToID("_NodeEvaluationC");
+        public static readonly int _worldLodParamsId = Shader.PropertyToID("WorldLodParams");
+        public static readonly int _nodeDescriptorsId = Shader.PropertyToID("NodeDescriptors");
+        public static readonly int _lodMapId = Shader.PropertyToID("_LodMap");
+        public static readonly int _minMaxHeightTextureId = Shader.PropertyToID("MinMaxHeightTexture");
+        public static readonly int _culledPatchListId = Shader.PropertyToID("CulledPatchList");
+        public static readonly int _patchBoundsListId = Shader.PropertyToID("PatchBoundsList");
+        public static readonly int _nodeIdOffsetOfLODId = Shader.PropertyToID("NodeIDOffsetOfLOD");
+        public static readonly int _cameraPositionWSId = Shader.PropertyToID("_CameraPositionWS");
+        public static readonly int _patchListId = Shader.PropertyToID("_PatchList");
+        public static readonly int _worldToNormalMapMatrixId = Shader.PropertyToID("_WorldToNormalMapMatrix");
         
         public static ShaderTagId[] _LegacyShaderTagIdsagId =
         {

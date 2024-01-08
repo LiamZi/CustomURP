@@ -201,9 +201,10 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
                     if (camera.cameraType == CameraType.SceneView)
                     {
                         cameraSet._isEditor = true;
-                        var eulerAngle = camera.transform.eulerAngles;
+                        var transform = camera.transform;
+                        var eulerAngle = transform.eulerAngles;
                         eulerAngle.z                 = 0;
-                        camera.transform.eulerAngles = eulerAngle;
+                        transform.eulerAngles = eulerAngle;
                         if (!Camera.main ||
                             !(cameraSet._ppCamera = Camera.main.GetComponent<CustomRenderPipelineCamera>()))
                             continue;

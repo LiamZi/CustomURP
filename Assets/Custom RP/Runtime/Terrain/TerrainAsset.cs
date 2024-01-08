@@ -120,7 +120,7 @@ namespace CustomURP
             }
         }
 
-        public static Mesh PatchMesh
+        public Mesh PatchMesh
         {
             get
             {
@@ -132,7 +132,7 @@ namespace CustomURP
             }
         }
 
-        public static Mesh CubeMesh
+        public Mesh CubeMesh
         {
             get
             {
