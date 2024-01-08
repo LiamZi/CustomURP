@@ -17,8 +17,8 @@ namespace CustomURP
         public int _frameCount;
         public int _rtSwicth;
 
-        int[] _cloundTexGame = new int[2];
-        int[] _cloundTexScene = new int[2];
+        int[] _cloundTexGame = new int[2] {-1, -1};
+        int[] _cloundTexScene = new int[2] {-1, -1};
         int _lastWidthGame;
         int _lastHeightGame;
         int _lastWidthScene;
@@ -86,7 +86,7 @@ namespace CustomURP
             {
                 for (int i = 0; i < _cloundTexGame.Length; ++i)
                 {
-                    if (_cloundTexGame[i] != null && _lastWidthGame == width && _lastHeightGame == height)
+                    if (_cloundTexGame[i] != -1 && _lastWidthGame == width && _lastHeightGame == height)
                         continue;
                     
                     if(width < _setttings._shieldWith)
@@ -111,7 +111,7 @@ namespace CustomURP
             {
                 for (int i = 0; i < _cloundTexScene.Length; ++i)
                 {
-                    if (_cloundTexScene[i] != null && _lastWidthGame == width && _lastHeightGame == height)
+                    if (_cloundTexScene[i] != -1 && _lastWidthGame == width && _lastHeightGame == height)
                         continue;
 
                     _cmd.GetTemporaryRT(_cloundTexScene[i], width, height, 0, FilterMode.Bilinear, _isUseHDR ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default);
