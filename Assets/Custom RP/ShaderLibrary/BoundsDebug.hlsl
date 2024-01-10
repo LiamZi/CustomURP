@@ -15,7 +15,7 @@ struct Varyings
     float3 color : TEXCOORD0;
 };
 
-StructuredBuffer<BoundsDebug> BoundsList;
+StructuredBuffer<BoundsDebug> _BoundsList;
 
 Varyings vert(Attribute input, uint instanceID : SV_InstanceID)
 {
@@ -24,7 +24,7 @@ Varyings vert(Attribute input, uint instanceID : SV_InstanceID)
     UNITY_TRANSFER_INSTANCE_ID(input, o);
     
     float4 pos = input.positionOS;
-    BoundsDebug debug = BoundsList[instanceID];
+    BoundsDebug debug = _BoundsList[instanceID];
     Bounds bounds = debug.bounds;
     float3 center = (bounds.min + bounds.max) * 0.5;
     float3 scale = (bounds.max - center) / 0.5;

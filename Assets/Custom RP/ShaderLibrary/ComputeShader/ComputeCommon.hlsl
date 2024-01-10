@@ -1,6 +1,8 @@
 #ifndef __SHADER_LIBRARY_COMPUTE_SHADER_COMPUTE_COMMON_HLSL__
 #define __SHADER_LIBRARY_COMPUTE_SHADER_COMPUTE_COMMON_HLSL__
 
+#pragma enable_d3d11_debug_symbols
+
 struct CSInput
 {
     uint3 groupThreadID : SV_GroupThreadID;

@@ -1,0 +1,19 @@
+#ifndef __SHADER_LIBRARY_COMPUTE_SHADER_QUAD_TREE_MIPMAP_BUILDER_COMPUTE__
+#define __SHADER_LIBRARY_COMPUTE_SHADER_QUAD_TREE_MIPMAP_BUILDER_COMPUTE__
+
+#pragma kernel CSMain
+
+#include "ComputeCommon.hlsl"
+
+RWTexture2D<float4> _QuadTreeMap;
+int _NodeIdOffset;
+uint _MapSize;
+
+[numthreads(5, 5, 1)]
+void CSMain(CSInput input)
+{
+    uint nodeId = _NodeIdOffset + input.dispatchThreadID.y * _MapSize + input.dispatchThreadID.x;
+    _QuadTreeMap[input.dispatchThreadID.xy] = nodeId / 65535.0;
+}
+
+#endif

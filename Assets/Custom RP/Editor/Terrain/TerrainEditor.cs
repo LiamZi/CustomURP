@@ -13,8 +13,8 @@ namespace CustomURP
             {
                 path = AssetDatabase.GetAssetPath(Selection.activeObject);
             }
-            
-            if(!string.IsNullOrEmpty(path))
+
+            if (!string.IsNullOrEmpty(path))
             {
                 if (!System.IO.Directory.Exists(path))
                 {
@@ -29,7 +29,7 @@ namespace CustomURP
 
             return path;
         }
-        
+
         [MenuItem("Terrain/CreatePlaneMesh")]
         public static void CreatePlaneMeshAsset()
         {
@@ -91,7 +91,7 @@ namespace CustomURP
             cbf = () =>
             {
                 if (req.done) return;
-                
+
                 req.Update();
                 EditorApplication.delayCall += cbf;
             };
@@ -117,5 +117,5 @@ namespace CustomURP
             RenderTexture.active = origin;
             return tex;
         }
-    }
-}
+    };
+};
