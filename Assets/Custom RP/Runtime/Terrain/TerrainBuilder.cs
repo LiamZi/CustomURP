@@ -146,11 +146,11 @@ namespace CustomURP
 
         void BindComputeShader(int kernelIndex)
         {
-            _shader.SetTexture(kernelIndex, ShaderParams._quadTreeTextureId, _asset.QuadTreeMap);
+            _shader.SetTexture(kernelIndex, ShaderParams._quadTreeTextureId, _asset.GetQuadTreeMap(ref _cmd));
             if (kernelIndex == _kernelOfTraverseQuadTree)
             {
                 _shader.SetBuffer(kernelIndex, ShaderParams._appendFinalNodeListId, _finalNodeListBuffer);
-                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.MinMaxHeightMap);
+                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.GetMinMaxHeightMap(ref _cmd));
                 _shader.SetBuffer(kernelIndex, ShaderParams._nodeDescriptorsId, _nodeDescriptors);
             }
             else if (kernelIndex == _kernelOfBuildLodMap)
@@ -161,7 +161,7 @@ namespace CustomURP
             else if (kernelIndex == _kernelOfBuildPatches)
             {
                 _shader.SetTexture(kernelIndex, ShaderParams._lodMapId, _lodMap);
-                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.MinMaxHeightMap);
+                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.GetMinMaxHeightMap(ref _cmd));
                 _shader.SetBuffer(kernelIndex, ShaderParams._finalNodeListId, _finalNodeListBuffer);
                 _shader.SetBuffer(kernelIndex, ShaderParams._culledPatchListId, _culledPatchBuffer);
                 _shader.SetBuffer(kernelIndex, ShaderParams._patchBoundsListId, _patchBoundsBuffer);
@@ -182,8 +182,8 @@ namespace CustomURP
         {
             var camera = Camera.main;
             var context = CustomRenderPipeline._cmd.Context;
-            if (camera == null) return;
-            if (context == null) return;
+            if (camera == null || context == null) return;
+            // if (context == null) return;
             
             
             _cmd.Clear();

@@ -22,7 +22,6 @@ namespace CustomURP
             RenderTextureDescriptor desc = new RenderTextureDescriptor(texSize, texSize, RenderTextureFormat.RG32, 0, 1);
             desc.enableRandomWrite = true;
             desc.autoGenerateMips = false;
-            // var rt = new RenderTexture(desc);
             var rt = RenderTexture.GetTemporary(desc);
             rt.filterMode = FilterMode.Point;
             rt.Create();
@@ -51,7 +50,7 @@ namespace CustomURP
             for (var i = 0; i < mipTextures.Count; i++)
             {
                 var path = GetMipTexPath(i);
-                var tex = TerrainEditor.ConvertToTexture2D(mipTextures[i], TextureFormat.RG32);
+                var tex = TerrainEditor.ConvertToTexture2D(mipTextures[i], TextureFormat.RG16);
                 var bytes = tex.EncodeToPNG();
                 System.IO.File.WriteAllBytes(path, bytes);
             }

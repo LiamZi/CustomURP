@@ -5,53 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/QuadTreeMapEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/QuadTreeMapEditor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/QuadTreeMipMapBuilder.compute" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/QuadTreeMipMapBuilder.compute.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_0.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_1.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_2.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_3.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_4.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/QuadTreeMaps/QuadTreeMap_5.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/TerrainNormal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/TerrainNormal.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/MinMaxHeightMapGeneratorEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/MinMaxHeightMapGeneratorEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BoundsDebug.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BoundsDebug.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ComputeCommon.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/ComputeCommon.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainAsset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainBuilder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/MinMaxHeights.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/MinMaxHeights.compute" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/TerrainBuilder.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/TerrainBuilder.compute" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/TextureUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/TextureUtility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain Asset.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +48,7 @@
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityShaderUtilities.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityShaderVariables.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1e112811079b4e7098e7b50a689fba71c5600/87/7cf67b7f/IMGUIContainer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1e112811079b4e7098e7b50a689fba71c5600/c9/08f3d433/Panel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/31/a8cab7d5/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/79/e5db2f2f/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/8a/5632137b/List`1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -91,6 +72,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b0/9fbed331/ScriptableRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b8/14625f43/RenderPipelineManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b9/561838e3/AsyncGPUReadbackRequest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/c4/c5636eb8/Texture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/cd/6da42c75/ComputeShader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/ce/ee4ea800/Mesh.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/d3/7fbbaaa0/Plane.cs" root0="SKIP_HIGHLIGHTING" />
@@ -374,7 +356,7 @@
       <workItem from="1704349625922" duration="14410000" />
       <workItem from="1704423657237" duration="15281000" />
       <workItem from="1704682158348" duration="22714000" />
-      <workItem from="1704772137158" duration="15567000" />
+      <workItem from="1704772137158" duration="24333000" />
     </task>
     <servers />
   </component>
@@ -600,10 +582,10 @@
           <line>183</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TerrainBuilder.cs" initialLine="183" containingFunctionPresentation="方法 'Tick'">
             <startOffsets>
-              <option value="7474" />
+              <option value="7513" />
             </startOffsets>
             <endOffsets>
-              <option value="7522" />
+              <option value="7561" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="168" />
@@ -626,78 +608,65 @@
           <line>273</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TerrainBuilder.cs" initialLine="273" containingFunctionPresentation="属性 'CulledPatchBuffer'">
             <startOffsets>
-              <option value="11001" />
+              <option value="11062" />
             </startOffsets>
             <endOffsets>
-              <option value="11027" />
+              <option value="11088" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="173" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainBuilder.cs</url>
-          <line>44</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TerrainBuilder.cs" initialLine="44" containingFunctionPresentation="构造函数 'TerrainBuilder'">
-            <startOffsets>
-              <option value="1385" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1400" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="174" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Utility/TextureUtility.cs</url>
-          <line>10</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Utility\TextureUtility.cs" initialLine="10" containingFunctionPresentation="方法 'CreateRenderTextureWithMipTextures'">
-            <startOffsets>
-              <option value="287" />
-            </startOffsets>
-            <endOffsets>
-              <option value="309" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="177" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/MinMaxHeightMapGeneratorEditor.cs</url>
-          <line>102</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\MinMaxHeightMapGeneratorEditor.cs" initialLine="102" containingFunctionPresentation="方法 'GenerateMipMap'">
+          <line>32</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\MinMaxHeightMapGeneratorEditor.cs" initialLine="33" containingFunctionPresentation="方法 'CaluateGroupXY'">
             <startOffsets>
-              <option value="3540" />
+              <option value="986" />
             </startOffsets>
             <endOffsets>
-              <option value="3609" />
+              <option value="1017" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="187" />
+          <option name="timeStamp" value="189" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/MinMaxHeightMapGeneratorEditor.cs</url>
           <line>112</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\MinMaxHeightMapGeneratorEditor.cs" initialLine="112" containingFunctionPresentation="方法 'GeneratePatchMinMaxHeightTexMip0'">
             <startOffsets>
-              <option value="3970" />
+              <option value="4000" />
             </startOffsets>
             <endOffsets>
-              <option value="4036" />
+              <option value="4070" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="188" />
+          <option name="timeStamp" value="194" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/MinMaxHeightMapGeneratorEditor.cs</url>
-          <line>33</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\MinMaxHeightMapGeneratorEditor.cs" initialLine="33" containingFunctionPresentation="方法 'CaluateGroupXY'">
+          <line>127</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\MinMaxHeightMapGeneratorEditor.cs" initialLine="127" containingFunctionPresentation="lambda 表达式内 方法 'Generate'">
             <startOffsets>
-              <option value="1035" />
+              <option value="4616" />
             </startOffsets>
             <endOffsets>
-              <option value="1066" />
+              <option value="4642" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="189" />
+          <option name="timeStamp" value="198" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Utility/TextureUtility.cs</url>
+          <line>24</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Utility\TextureUtility.cs" initialLine="23" containingFunctionPresentation="方法 'CreateRenderTextureWithMipTextures'">
+            <startOffsets>
+              <option value="878" />
+            </startOffsets>
+            <endOffsets>
+              <option value="892" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="202" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -706,6 +675,7 @@
         <PinnedItemInfo parentTag="Type#ShadowSettings" memberName="_directional" />
         <PinnedItemInfo parentTag="Type#UnityEngine.ComputeShader" memberName="shaderKeywords" />
         <PinnedItemInfo parentTag="Type#UnityEngine.Rendering.CommandBuffer" memberName="m_Ptr" />
+        <PinnedItemInfo parentTag="Type#UnityEngine.ComputeBuffer" memberName="m_Safety" />
         <PinnedItemInfo parentTag="Type#UnityEngine.Object" memberName="name" />
         <PinnedItemInfo parentTag="Type#Core.UnsafeList" memberName="_items" />
         <PinnedItemInfo parentTag="Type#UnityEditor.SerializedProperty" memberName="serializedObject" />

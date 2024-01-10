@@ -18,8 +18,11 @@ namespace CustomURP
 
             for (var i = 0; i < mipmaps.Length; ++i)
             {
-                cmd.CopyTexture(mipmaps[i], 0, 0, rt, 0, i);
+                // cmd.CopyTexture(mipmaps[i], 0, 0, rt, 0, i);
+                Graphics.CopyTexture(mipmaps[i], 0, 0, rt, 0, i);
             }
+            
+            // cmd.Execute();
 
             return rt;
         }

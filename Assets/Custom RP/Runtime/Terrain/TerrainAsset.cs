@@ -75,6 +75,16 @@ namespace CustomURP
             }
         }
 
+        public RenderTexture GetQuadTreeMap(ref Command cmd)
+        {
+            if (!_quadTreeMap)
+            {
+                _quadTreeMap = TextureUtility.CreateRenderTextureWithMipTextures(ref cmd, _quadTreeMaps, RenderTextureFormat.R16);
+            }
+            
+            return _quadTreeMap;
+        }
+
 
         public RenderTexture QuadTreeMap
         {
@@ -86,6 +96,16 @@ namespace CustomURP
                 }
                 return _quadTreeMap;
             }
+        }
+
+        public RenderTexture GetMinMaxHeightMap(ref Command cmd)
+        {
+            if (!_minMaxHeightMap)
+            {
+                _minMaxHeightMap = TextureUtility.CreateRenderTextureWithMipTextures(ref cmd, _minMaxHeightMaps, RenderTextureFormat.RG32);
+            }
+
+            return _minMaxHeightMap;
         }
 
         public RenderTexture MinMaxHeightMap
