@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 
 namespace CustomURP
@@ -19,7 +20,16 @@ namespace CustomURP
 
         RenderTexture CreateMinMaxHeightTexture(int texSize)
         {
-            RenderTextureDescriptor desc = new RenderTextureDescriptor(texSize, texSize, RenderTextureFormat.RG32, 0, 1);
+            // RenderTextureDescriptor desc = new RenderTextureDescriptor(texSize, texSize, RenderTextureFormat.RG32, 0, 1);
+            // desc.enableRandomWrite = true;
+            // desc.autoGenerateMips = false;
+            // var rt = RenderTexture.GetTemporary(desc);
+            // rt.filterMode = FilterMode.Point;
+            // rt.isPowerOfTwo = false;
+            // rt.Create();
+            // return rt;
+            
+            RenderTextureDescriptor desc = new RenderTextureDescriptor(texSize,texSize,RenderTextureFormat.RG32,0,1);
             desc.enableRandomWrite = true;
             desc.autoGenerateMips = false;
             var rt = RenderTexture.GetTemporary(desc);
@@ -36,13 +46,25 @@ namespace CustomURP
             groupY = (int)(textureSize / threadY);
         }
 
-        void WaitRenderTexture(RenderTexture rt, System.Action<RenderTexture> cb)
-        {
-            var request = AsyncGPUReadback.Request(rt, 0, TextureFormat.RG32, readbackRequest =>
-            {
-                cb(rt);
+        // void WaitRenderTexture(RenderTexture rt, System.Action<RenderTexture> cb)
+        // {
+        //     var request = AsyncGPUReadback.Request(rt, 0, TextureFormat.RG32, readbackRequest =>
+        //     {
+        //         // cb(rt);
+        //     });
+        //     TerrainEditor.UpdateGpuAsyncRequest(request);
+        // }
+        
+        private void WaitRenderTexture(RenderTexture renderTexture,System.Action<RenderTexture> callback){
+            
+            GraphicsFormat myGraphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
+            TextureFormat myTextureFormat = GraphicsFormatUtility.GetTextureFormat(myGraphicsFormat);
+
+            
+            var request = AsyncGPUReadback.Request(renderTexture,0,TextureFormat.RGBAHalf,(res)=>{
+                callback(renderTexture);
             });
-            TerrainEditor.UpdateGpuAsyncRequest(request);
+            TerrainEditor.UpdateGpuAsyncRequest(request);    
         }
 
         void SaveMipTextures(List<RenderTexture> mipTextures)
@@ -50,7 +72,7 @@ namespace CustomURP
             for (var i = 0; i < mipTextures.Count; i++)
             {
                 var path = GetMipTexPath(i);
-                var tex = TerrainEditor.ConvertToTexture2D(mipTextures[i], TextureFormat.RG16);
+                var tex = TerrainEditor.ConvertToTexture2D(mipTextures[i], TextureFormat.RG32);
                 var bytes = tex.EncodeToPNG();
                 System.IO.File.WriteAllBytes(path, bytes);
             }
@@ -87,7 +109,7 @@ namespace CustomURP
                 }
                 else
                 {
-                    cb();
+                    // cb();
                 }
             });
         }

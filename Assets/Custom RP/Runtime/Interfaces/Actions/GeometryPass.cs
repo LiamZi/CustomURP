@@ -60,6 +60,16 @@ namespace CustomURP
             scene.SetClusterCullResult(_cullingResults);
             scene.BeginRendering(camera, ref cmd);
             scene.Tick(camera, ref cmd);
+
+            var terrainGo = GameObject.Find("Terrain");
+            if (terrainGo)
+            {
+                var terrain = terrainGo.GetComponent<Terrain>();
+                if (terrain)
+                {
+                    terrain.Tick(ref _cmd, _camera);
+                }
+            }
             
             Setup(camera);
             DrawVisibleGeometry(cameraSettings._renderingLayerMask);

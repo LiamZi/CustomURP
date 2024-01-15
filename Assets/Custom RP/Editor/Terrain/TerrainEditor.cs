@@ -106,15 +106,26 @@ namespace CustomURP
             AssetDatabase.Refresh();
         }
 
-        public static Texture2D ConvertToTexture2D(RenderTexture rt, TextureFormat format)
-        {
-            var origin = RenderTexture.active;
-            RenderTexture.active = rt;
-            var tex = new Texture2D(rt.width, rt.height, format, 0, false);
-            tex.filterMode = rt.filterMode;
-            tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0, false);
-            tex.Apply(false, false);
-            RenderTexture.active = origin;
+        // public static Texture2D ConvertToTexture2D(RenderTexture rt, TextureFormat format)
+        // {
+        //     var origin = RenderTexture.active;
+        //     RenderTexture.active = rt;
+        //     var tex = new Texture2D(rt.width, rt.height, format, 0, false);
+        //     tex.filterMode = rt.filterMode;
+        //     tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0, false);
+        //     tex.Apply(false, false);
+        //     RenderTexture.active = origin;
+        //     return tex;
+        // }
+        
+        public static Texture2D ConvertToTexture2D(RenderTexture renderTexture,TextureFormat format){
+            var original = RenderTexture.active;
+            RenderTexture.active = renderTexture;
+            var tex = new Texture2D(renderTexture.width,renderTexture.height,format,0,false);
+            tex.filterMode = renderTexture.filterMode;
+            tex.ReadPixels(new Rect(0,0,tex.width,tex.height),0,0,false);
+            tex.Apply(false,false);
+            RenderTexture.active = original;
             return tex;
         }
     };

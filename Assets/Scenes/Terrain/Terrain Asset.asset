@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxNodeId: 34124
   _maxLOD: 5
-  _maxLodNodeCount: 6
-  _worldSize: {x: 10240, y: 10240, z: 10240}
+  _maxLodNodeCount: 5
+  _worldSize: {x: 10240, y: 2048, z: 10240}
   _virtualMap: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
   _heightMap: {fileID: 2800000, guid: 4ac67c365e9667d46b1c7d8ebd0548e2, type: 3}
   _normalMap: {fileID: 2800000, guid: ba0acba11707093418ddbabe9ece8b01, type: 3}
   _minMaxHeightMaps:
-  - {fileID: 2800000, guid: 3e384480d62f7e94aaa2fa04d4539fd2, type: 3}
-  - {fileID: 2800000, guid: e0826d9400164224db630bc70a9c9084, type: 3}
-  - {fileID: 2800000, guid: 318ba261f3c020d4f8173e089130f8c9, type: 3}
-  - {fileID: 2800000, guid: 863bed6f7287d4c438e8609b44e28938, type: 3}
-  - {fileID: 2800000, guid: bbb8d2cbce083cd4799b0ff974fa43ef, type: 3}
-  - {fileID: 2800000, guid: eeb946494321cf340a8bec46d03ccda3, type: 3}
-  - {fileID: 2800000, guid: 6c2bf1135e812f14abb109fdeb7edc88, type: 3}
-  - {fileID: 2800000, guid: 89bf78098f6cf514896d6f914b4ccab4, type: 3}
-  - {fileID: 2800000, guid: d41d287274590af459d62925421e9f1d, type: 3}
+  - {fileID: 2800000, guid: cd09e7bc8c6fcb449869b2a3fc9eef69, type: 3}
+  - {fileID: 2800000, guid: 16e9ee0dab9ae524f9e824b570ffb2ec, type: 3}
+  - {fileID: 2800000, guid: 1094416ee0ce7a44b8abd8f1d9653885, type: 3}
+  - {fileID: 2800000, guid: 5286be9a383fa1a4fabd1fe35724dd26, type: 3}
+  - {fileID: 2800000, guid: 48032fdbc029a3143b311b61a4927b25, type: 3}
+  - {fileID: 2800000, guid: f9bba99a8b38ee148983a4c15820b105, type: 3}
+  - {fileID: 2800000, guid: 9f24cecbf9888a149b591bafcd209cf8, type: 3}
+  - {fileID: 2800000, guid: 0d540d65ee46c97409b28bf3552ad65f, type: 3}
+  - {fileID: 2800000, guid: 1428a0ea628150c418b2bad10dfcbdd3, type: 3}
   _quadTreeMaps:
   - {fileID: 2800000, guid: f5090c4acc10dde469d0e96527508e96, type: 3}
   - {fileID: 2800000, guid: 12c3b7e8fa342e44abe59880e69386ca, type: 3}

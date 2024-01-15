@@ -10,7 +10,7 @@ namespace CustomURP
     {
         TerrainAsset _asset;
         ComputeShader _shader;
-        Command _cmd = null;
+        Command _cmd = new Command("TerrainBuild");
         
         ComputeBuffer _maxLODNodeList;
         ComputeBuffer _nodeListA;
@@ -44,7 +44,7 @@ namespace CustomURP
         {
             _asset = asset;
             _shader = asset.TerrainShader;
-            _cmd = new Command("TerrainBuild");
+            // _cmd = new Command("TerrainBuild");
             // _cmd = CustomRenderPipeline._cmd;
             // _cmdOirginName = _cmd.Name;
            
@@ -178,18 +178,16 @@ namespace CustomURP
             _cmd.SetBufferCounterValue(_patchBoundsBuffer, 0);
         }
 
-        public void Tick()
+        public void Tick(ScriptableRenderContext context, CustomRenderPipelineCamera camera)
         {
-            var camera = Camera.main;
-            var context = CustomRenderPipeline._cmd.Context;
-            if (camera == null || context == null) return;
-            // if (context == null) return;
+            // var camera = Camera.main;
+            // var context = CustomRenderPipeline._cmd.Context;
+
+            // _cmd.Context = context;
             
-            
-            _cmd.Clear();
             ClearBufferCounter();
             
-            UpdateCameraFrustumPlanes(camera);
+            UpdateCameraFrustumPlanes(camera._camera);
             
 
             if (_isNodeEvaluationCDirty)
@@ -198,7 +196,7 @@ namespace CustomURP
                 _cmd.SetComputeVectorParam(_shader, ShaderParams._nodeEvaluationCId, _nodeEvaluationC);
             }
             
-            _cmd.SetComputeVectorParam(_shader, ShaderParams._cameraPositionWSId, camera.transform.position);
+            _cmd.SetComputeVectorParam(_shader, ShaderParams._cameraPositionWSId, camera._camera.transform.position);
             _cmd.SetComputeVectorParam(_shader, ShaderParams._worldSizeId, _asset.WorldSize);
             
             _cmd.CopyCounterValue(_maxLODNodeList, _indirectArgsBuffer, 0);
@@ -236,9 +234,10 @@ namespace CustomURP
             {
                 _cmd.CopyCounterValue(_patchBoundsBuffer, _patchBoundsIndirectArgs, 4);
             }
-            _cmd.Execute();
-
-            _cmd.Name = _cmdOirginName;
+            // _cmd.Execute();
+            context.ExecuteCommandBuffer(_cmd.Cmd);
+            _cmd.Clear();
+            // _cmd.Name = _cmdOirginName;
         }
 
         void SwapNodeList(ComputeBuffer a, ComputeBuffer b)

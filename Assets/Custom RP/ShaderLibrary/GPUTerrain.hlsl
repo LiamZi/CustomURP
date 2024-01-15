@@ -63,7 +63,7 @@ Varyings vert(Attribute input, uint instanceID : SV_InstanceID)
     float4 inPos = input.positionOS;
     float2 uv = input.uv;
 
-    RenderPatch patch = PatchList[instanceID];
+    RenderPatch patch = _PatchList[instanceID];
 #if _ENABLE_LOD_SEAMLESS
     
 #endif

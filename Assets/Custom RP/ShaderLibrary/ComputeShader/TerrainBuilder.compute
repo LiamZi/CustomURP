@@ -30,10 +30,16 @@ float3 _CameraPositionWS;
 float3 _WorldSize;
 float4 _WorldLodParams[6];
 uint _NodeIDOffsetOfLOD[6];
-int _BoundsHeightRedundace;
+int _BoundsHeightRedundance;
 float4 _NodeEvaluationC;
 
 float4 _CameraFrustumPlanes[6];
+ConsumeStructuredBuffer<RenderPatch> _PatchConsumeList;
+AppendStructuredBuffer<RenderPatch> _CulledPatchList;
+
+#if _BOUNDS_DEBUG
+AppendStructuredBufferBoundsDebug> _PatchBoundsList;
+#endif
 
 float GetNodeSize(uint lod)
 {
@@ -128,7 +134,7 @@ void BuildLodMap(CSInput input)
 {
     uint2 sectorLoc = input.dispatchThreadID.xy;
     
-    [UNITY_UNROLL]
+    [unroll]
     for(uint lod = MAX_TERRAIN_LOD; lod >= 0; lod--)
     {
         uint sectorCount = GetSectorCountPerNode(lod);
@@ -151,8 +157,8 @@ RenderPatch CreatePath(uint3 node, uint2 patchOffset)
     float patchMeterSize = nodeMeterSize / PATCH_COUNT_PER_NODE;
     float2 nodePositionWS = GetNodePositionWSV2(node.xy, lod);
 
-    uint patchLoc = node.xy * PATCH_COUNT_PER_NODE + patchOffset;
-    float2 minMaxHeight = _MinMaxHeightTexture.mips[lod][patchLoc].rg * _WorldSize.y + float2(-_BoundsHeightRedundace, _BoundsHeightRedundace);
+    uint2 patchLoc = node.xy * PATCH_COUNT_PER_NODE + patchOffset;
+    float2 minMaxHeight = _MinMaxHeightTexture.mips[lod][patchLoc].rg * _WorldSize.y + float2(-_BoundsHeightRedundance, _BoundsHeightRedundance);
     RenderPatch patch;
     patch.lod = lod;
     patch.position = nodePositionWS + (patchOffset - (PATCH_COUNT_PER_NODE - 1) * 0.5) * patchMeterSize;
@@ -167,16 +173,16 @@ Bounds GetPatchBounds(RenderPatch patch)
 #if _ENABLE_SEAM
     halfSize *= 0.9;
 #endif
-    Bounds bounds;
-    float3 boundsMin, boundsMax;
-    boundsMin.xz = patch.position - halfSize;
-    boundsMax.xz = patch.position + halfSize;
-    boundsMin.y = patch.minMaxHeight.y;
-    boundsMax.y = patch.minMaxHeight.y;
+     Bounds bounds;
+     float3 boundsMin, boundsMax;
+     boundsMin.xz = patch.position - halfSize;
+     boundsMax.xz = patch.position + halfSize;
+     boundsMin.y = patch.minMaxHeight.y;
+     boundsMax.y = patch.minMaxHeight.y;
 
-    bounds.min = boundsMin;
-    bounds.max = boundsMax;
-    return bounds;
+     bounds.min = boundsMin;
+     bounds.max = boundsMax;
+     return bounds;
 }
 
 bool IsOutSidePlane(float4 plane, float3 pos)
@@ -216,7 +222,7 @@ bool FrustumCull(float4 planes[6], Bounds bounds)
 
 bool HizOcclusionCull(Bounds bounds)
 {
-    
+    return false;
 }
 
 
@@ -238,20 +244,74 @@ bool Cull(Bounds bounds)
     return false;
 }
 
+uint4 GetSectorBounds(uint3 node)
+{
+    uint sectorCountPerNode = GetSectorCountPerNode(node.z);
+    uint2 sectorMin = node.xy * sectorCountPerNode;
+    return uint4(sectorMin, sectorMin + sectorCountPerNode - 1);
+}
+
+uint GetLod(uint2 sector)
+{
+    if(sector.x < 0 || sector.y < 0 || sector.x >= SECTOR_COUNT_WORLD || sector.y >= SECTOR_COUNT_WORLD)
+    {
+        return 0;
+    }
+
+    return round(_LodMap[sector].r * MAX_TERRAIN_LOD);
+}
+
+void SetLodTrans(inout RenderPatch patch, uint3 node, uint2 patchOffset)
+{
+    uint lod = node.z;
+    uint4 sectorBounds = GetSectorBounds(node);
+    int4 lodTrans = int4(0, 0, 0, 0);
+    if(patchOffset.x == 0)
+    {
+        lodTrans.x = GetLod(sectorBounds.xy + int2(-1, 0)) - lod;
+    }
+
+    if(patchOffset.y == 0)
+    {
+        lodTrans.y = GetLod(sectorBounds.xy  + int2(0, -1)) - lod;
+    }
+
+    if(patchOffset.x == 7)
+    {
+        lodTrans.z = GetLod(sectorBounds.zw + int2(1, 0)) -lod;
+    }
+
+    if(patchOffset.y == 7)
+    {
+        lodTrans.w = GetLod(sectorBounds.zw + int2(0, 1)) - lod;
+    }
+
+    patch.lodTrans = (uint4)max(0, lodTrans);
+}
+
 [numthreads(8, 8, 1)]
 void BuildPatches(CSInput input)
 {
-    uint3 nodeLoc = _FinalNodeList[input.groupID.x];
-    uint2 patchOffset = input.groupThreadID.xy;
+    // uint3 nodeLoc = _FinalNodeList[input.groupID.x];
+    // uint2 patchOffset = input.groupThreadID.xy;
+    //
+    // RenderPatch patch = CreatePath(nodeLoc, patchOffset);
 
-    RenderPatch patch = CreatePath(nodeLoc, patchOffset);
-
-    Bounds bounds = GetPatchBounds(patch);
-    if(Cull(bounds))
-    {
-        return;
-    }
-    
+//     Bounds bounds = GetPatchBounds(patch);
+//     if(Cull(bounds))
+//     {
+//         return;
+//     }
+//
+//     SetLodTrans(patch, nodeLoc, patchOffset);
+//     _CulledPatchList.Append(patch);
+//
+// #if _BOUNDS_DEBUG
+//     BoundsDebug bd;
+//     bd.bounds = bounds;
+//     bd.color = float4((bounds.min + _WorldSize * 0.5) / _WorldSize, 1);
+//     _PatchBoundsList.Append(bd);
+// #endif
 }
 
 #endif

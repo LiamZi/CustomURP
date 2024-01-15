@@ -138,11 +138,12 @@ namespace CustomURP
         public static readonly int _worldSizeId = Shader.PropertyToID("_WorldSize");
         public static readonly int _boundsListId = Shader.PropertyToID("_BoundsList");
         public static readonly int _boundsHeightRedundanceId = Shader.PropertyToID("_BoundsHeightRedundance");
+        
         public static readonly int _hizDepthBiasId = Shader.PropertyToID("_HizDepthBias");
         public static readonly int _quadTreeTextureId = Shader.PropertyToID("_QuadTreeTexture");
         public static readonly int _appendFinalNodeListId = Shader.PropertyToID("_AppendFinalNodeList");
         public static readonly int _cameraFrustumPlanesId = Shader.PropertyToID("_CameraFrustumPlanes");
-        public static readonly int _passLODId = Shader.PropertyToID("_PassLOD");
+        public static readonly int _passLODId = Shader.PropertyToID("_PassLod");
         public static readonly int _finalNodeListId = Shader.PropertyToID("_FinalNodeList");
         public static readonly int _appendNodeListId = Shader.PropertyToID("_AppendNodeList");
         public static readonly int _consumeNodeListId = Shader.PropertyToID("_ConsumeNodeList");

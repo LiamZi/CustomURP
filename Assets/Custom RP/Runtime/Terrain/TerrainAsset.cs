@@ -16,7 +16,7 @@ namespace CustomURP
         public int _maxLodNodeCount = 5;
 
         [SerializeField]
-        Vector3 _worldSize = new Vector3(10240, 10240, 10240);
+        Vector3 _worldSize = new Vector3(10240, 2048, 10240);
 
         [SerializeField]
         Texture2D _virtualMap = null;

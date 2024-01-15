@@ -28,16 +28,18 @@ namespace CustomURP
         TerrainBuilder _traverse;
         Material _terrainMaterial;
         bool _isTerrainMaterialDirty = false;
-        Command _cmd;
+        Command _cmd = null;
 
         void Start()
         {
             if (_traverse == null)
             {
+                if(_cmd == null) _cmd = new Command("Terrain");
                 _traverse = new TerrainBuilder(_asset);
                 _asset.BoundDebugMaterial.SetBuffer(ShaderParams._boundsListId, _traverse.PatchBoundsBuffer);
                 this.Apply();
             }
+            
         }
 
         void Apply()
@@ -55,12 +57,13 @@ namespace CustomURP
             _isTerrainMaterialDirty = true;
         }
 
-        void Update()
+        // void Update()
+        public void Tick(ref Command cmd, CustomRenderPipelineCamera camera)
         {
             // if(Input.GetKeyDown(KeyCode.Space))
             if(_traverse == null) return;
             // if(_traverse != null)
-            _traverse.Tick();
+            _traverse.Tick(cmd.Context, camera);
 
             var material = EnsureMaterial();
             if (_isTerrainMaterialDirty)
@@ -75,6 +78,10 @@ namespace CustomURP
             {
                 _cmd.Cmd.DrawMeshInstancedIndirect(_asset.CubeMesh, 0, _asset.BoundDebugMaterial, 0, _traverse.BoundsIndirectArgs);
             }
+            
+            // _cmd.Execute();
+            cmd.Context.ExecuteCommandBuffer(_cmd.Cmd);
+            _cmd.Cmd.Clear();
         }
 
         Material EnsureMaterial()

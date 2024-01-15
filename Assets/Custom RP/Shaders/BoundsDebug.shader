@@ -1,4 +1,4 @@
-﻿Shader "Unlit/BoundsDebug"
+﻿Shader "Custom RP/Terrain/BoundsDebug"
 {
     Properties
     {
