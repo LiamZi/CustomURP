@@ -64,16 +64,16 @@ namespace CustomURP
             if(_traverse == null) return;
             // if(_traverse != null)
             _traverse.Tick(cmd.Context, camera);
-
+            
             var material = EnsureMaterial();
             if (_isTerrainMaterialDirty)
             {
                 UpdateTerrainMaterialProeprties();
             }
-
+            
             // var patchMesh = _asset.PatchMesh;
             // var bounds = new Bounds(Vector3.zero, Vector3.one * 10240);
-            _cmd.Cmd.DrawMeshInstancedIndirect(_asset.PatchMesh, 0, _terrainMaterial, 0, _traverse.PatchBoundsBuffer);
+            _cmd.Cmd.DrawMeshInstancedIndirect(_asset.PatchMesh, 0, material, 0, _traverse.PatchIndirectArgs);
             if (_patchBoundsDebug)
             {
                 _cmd.Cmd.DrawMeshInstancedIndirect(_asset.CubeMesh, 0, _asset.BoundDebugMaterial, 0, _traverse.BoundsIndirectArgs);
@@ -82,20 +82,45 @@ namespace CustomURP
             // _cmd.Execute();
             cmd.Context.ExecuteCommandBuffer(_cmd.Cmd);
             _cmd.Cmd.Clear();
+            //  if(_traverse == null) return;
+            //  
+            // if(Input.GetKeyDown(KeyCode.Space)){
+            //     _traverse.Tick(cmd.Context, camera);
+            // }
+            // _traverse.Tick(cmd.Context, camera);
+            // var terrainMaterial = this.EnsureMaterial();
+            // if(_isTerrainMaterialDirty){
+            //     this.UpdateTerrainMaterialProeprties();
+            // }
+            // Graphics.DrawMeshInstancedIndirect(_asset.PatchMesh,0,terrainMaterial,new Bounds(Vector3.zero,Vector3.one * 10240),_traverse.PatchIndirectArgs);
+            // if(_patchBoundsDebug){
+            //     Graphics.DrawMeshInstancedIndirect(_asset.CubeMesh,0,_asset.BoundDebugMaterial,new Bounds(Vector3.zero,Vector3.one * 10240),_traverse.BoundsIndirectArgs);
+            // }
         }
 
         Material EnsureMaterial()
         {
-            if (_terrainMaterial)  return _terrainMaterial;
+            // if (_terrainMaterial)  return _terrainMaterial;
+            //
+            // _terrainMaterial = new Material(Shader.Find("Custom RP/GPUTerrain"));
+            // _terrainMaterial.SetTexture(ShaderParams._heightTexId, _asset.HeightMap);
+            // _terrainMaterial.SetTexture(ShaderParams._normalTexId, _asset.NormalMap);
+            // _terrainMaterial.SetTexture(ShaderParams._MainTex, _asset.NormalMap);
+            // _terrainMaterial.SetBuffer(ShaderParams._patchListId, _traverse.CulledPatchBuffer);
+            //
+            // UpdateTerrainMaterialProeprties();
+            //
+            // return _terrainMaterial;
             
-            _terrainMaterial = new Material(Shader.Find("Custom RP/GPUTerrain"));
-            _terrainMaterial.SetTexture(ShaderParams._heightTexId, _asset.HeightMap);
-            _terrainMaterial.SetTexture(ShaderParams._normalTexId, _asset.NormalMap);
-            _terrainMaterial.SetTexture(ShaderParams._MainTex, _asset.NormalMap);
-            _terrainMaterial.SetBuffer(ShaderParams._patchListId, _traverse.CulledPatchBuffer);
-
-            UpdateTerrainMaterialProeprties();
-            
+            if(!_terrainMaterial){
+                var material = new Material(Shader.Find("Custom RP/GPUTerrain"));
+                material.SetTexture(ShaderParams._heightTexId,_asset.HeightMap);
+                material.SetTexture(ShaderParams._normalTexId,_asset.NormalMap);
+                material.SetTexture(ShaderParams._MainTex,_asset.VirtualMap);
+                material.SetBuffer(ShaderParams._patchListId,_traverse.CulledPatchBuffer);
+                _terrainMaterial = material;
+                this.UpdateTerrainMaterialProeprties();
+            }
             return _terrainMaterial;
         }
 

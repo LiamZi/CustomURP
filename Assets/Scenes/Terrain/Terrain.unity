@@ -399,14 +399,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _asset: {fileID: 11400000, guid: 28979d96a7eeaa84ab9866d6217b92cf, type: 2}
-  _isFrustumCullEnabled: 1
-  _isHizOcclusionCullingEnabled: 1
-  _hizDepthBias: 1
-  _boundsHeightRedundance: 5
+  _isFrustumCullEnabled: 0
+  _isHizOcclusionCullingEnabled: 0
+  _hizDepthBias: 0.2
+  _boundsHeightRedundance: 4
   _distanceEvaluation: 1.2
-  _seamLess: 1
-  _patchDebug: 1
-  _nodeDebug: 1
+  _seamLess: 0
+  _patchDebug: 0
+  _nodeDebug: 0
   _mipDebug: 0
   _patchBoundsDebug: 0
 --- !u!1 &1259291456
@@ -460,7 +460,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -486,13 +486,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259291456}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.130007, y: 0, z: 0, w: 0.99151313}
+  m_LocalPosition: {x: -1447, y: 1318, z: -2640}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -14.94, y: 0, z: 0}
 --- !u!114 &1259291460
 MonoBehaviour:
   m_ObjectHideFlags: 0

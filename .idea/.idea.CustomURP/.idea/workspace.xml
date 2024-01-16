@@ -6,36 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/MinMaxHeightMapGeneratorEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/MinMaxHeightMapGeneratorEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainEditor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Terrain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Terrain.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainAsset.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainBuilder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/TerrainBuilder.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/TerrainBuilder.compute" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/TerrainBuilder.compute.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/TerrainBuilder.compute.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/GPUTerrain.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/GPUTerrain.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/BoundsDebug.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/BoundsDebug.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/GPUTerrain.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/GPUTerrain.shader" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain Asset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +76,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/e3/e3a7b1d1/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/e5/99ebc0a9/RenderTextureDescriptor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/e6/c9109dbc/RenderPipelineAsset.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/eb/46437bb4/ComputeBufferType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/f5/9fd9d601/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/f5/d837e8a0/Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/f6/6c6b2f0b/RenderTexture.cs" root0="SKIP_HIGHLIGHTING" />
@@ -105,6 +93,7 @@
     <setting file="file://$PROJECT_DIR$/../../Github/Unity_Indirect-Rendering-With-Compute-Shaders/Assets/Scripts/Example.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeHashMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Core/UnsafeCollections/UnsafeList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/QuadTreeMapEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipelineAsset.cs" root0="FORCE_HIGHLIGHTING" />
@@ -112,11 +101,18 @@
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/CombinePass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Commnad.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Shadows.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Terrain.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainAsset.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/QuadTreeMipMapBuilder.compute" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/TerrainBuilder.compute" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Light.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Lighting.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxFunctions.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxInput.hlsl" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/TerrainInput.hlsl" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/UnityInput.hlsl" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/ACES.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/D3D11.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/ShaderLibrary/API/GLCore.hlsl" root0="SKIP_HIGHLIGHTING" />
@@ -154,6 +150,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/Shaders/Terrain/TerrainLitBase.shader" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/Shaders/Terrain/TerrainLitInput.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/Shaders/Terrain/WavingGrassInput.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/Shaders/Terrain/WavingGrassPasses.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.10.1/Shaders/Utils/StencilDeferred.shader" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.searcher@4.3.2/Samples~/Editor/SearcherExampleHostWindow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.searcher@4.3.2/Samples~/Editor/SearcherExampleWindow.cs" root0="SKIP_HIGHLIGHTING" />
@@ -370,7 +367,7 @@
       <workItem from="1704772137158" duration="39547000" />
       <workItem from="1704956018710" duration="14581000" />
       <workItem from="1705027984264" duration="2982000" />
-      <workItem from="1705286604408" duration="1553000" />
+      <workItem from="1705286604408" duration="28304000" />
     </task>
     <servers />
   </component>

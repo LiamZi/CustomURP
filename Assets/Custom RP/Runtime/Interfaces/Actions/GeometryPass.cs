@@ -61,6 +61,10 @@ namespace CustomURP
             scene.BeginRendering(camera, ref cmd);
             scene.Tick(camera, ref cmd);
 
+          
+            
+            Setup(camera);
+            
             var terrainGo = GameObject.Find("Terrain");
             if (terrainGo)
             {
@@ -71,7 +75,6 @@ namespace CustomURP
                 }
             }
             
-            Setup(camera);
             DrawVisibleGeometry(cameraSettings._renderingLayerMask);
             
             if (_asset.VolumeCloudSettings != null)
