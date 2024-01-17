@@ -9,20 +9,10 @@
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Terrain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Terrain.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TerrainBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/TerrainBuilder.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ComputeShader/TerrainBuilder.compute" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/GPUTerrain.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/GPUTerrain.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_0.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_2.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_3.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_4.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_5.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_6.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_7.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap/MinMaxHeight_8.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain Asset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Terrain/Terrain.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Common.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Common.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/GPUTerrain.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/GPUTerrain.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Textures/Terrain/HeightMap.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -367,7 +357,8 @@
       <workItem from="1704772137158" duration="39547000" />
       <workItem from="1704956018710" duration="14581000" />
       <workItem from="1705027984264" duration="2982000" />
-      <workItem from="1705286604408" duration="28304000" />
+      <workItem from="1705286604408" duration="35419000" />
+      <workItem from="1705483064039" duration="4466000" />
     </task>
     <servers />
   </component>

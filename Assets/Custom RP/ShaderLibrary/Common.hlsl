@@ -29,6 +29,7 @@
 
 SAMPLER(sampler_linear_clamp);
 SAMPLER(sampler_point_clamp);
+SAMPLER(sampler_linear_repeat);
 
 bool isOrthographicCamera()
 {

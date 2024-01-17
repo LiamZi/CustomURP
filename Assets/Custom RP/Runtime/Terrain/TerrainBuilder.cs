@@ -168,43 +168,43 @@ namespace CustomURP
 
         void BindComputeShader(int kernelIndex)
         {
-            // _shader.SetTexture(kernelIndex, ShaderParams._quadTreeTextureId, _asset.GetQuadTreeMap(ref _cmd));
-            // if (kernelIndex == _kernelOfTraverseQuadTree)
-            // {
-            //     _shader.SetBuffer(kernelIndex, ShaderParams._appendFinalNodeListId, _finalNodeListBuffer);
-            //     _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.GetMinMaxHeightMap(ref _cmd));
-            //     _shader.SetBuffer(kernelIndex, ShaderParams._nodeDescriptorsId, _nodeDescriptors);
-            // }
-            // else if (kernelIndex == _kernelOfBuildLodMap)
-            // {
-            //     _shader.SetTexture(kernelIndex, ShaderParams._lodMapId, _lodMap);
-            //     _shader.SetBuffer(kernelIndex, ShaderParams._nodeDescriptorsId, _nodeDescriptors);
-            // }
-            // else if (kernelIndex == _kernelOfBuildPatches)
-            // {
-            //     _shader.SetTexture(kernelIndex, ShaderParams._lodMapId, _lodMap);
-            //     _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.GetMinMaxHeightMap(ref _cmd));
-            //     _shader.SetBuffer(kernelIndex, ShaderParams._finalNodeListId, _finalNodeListBuffer);
-            //     _shader.SetBuffer(kernelIndex, ShaderParams._culledPatchListId, _culledPatchBuffer);
-            //     _shader.SetBuffer(kernelIndex, ShaderParams._patchBoundsListId, _patchBoundsBuffer);
-            // }
+            _shader.SetTexture(kernelIndex, ShaderParams._quadTreeTextureId, _asset.GetQuadTreeMap(ref _cmd));
+            if (kernelIndex == _kernelOfTraverseQuadTree)
+            {
+                _shader.SetBuffer(kernelIndex, ShaderParams._appendFinalNodeListId, _finalNodeListBuffer);
+                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.GetMinMaxHeightMap(ref _cmd));
+                _shader.SetBuffer(kernelIndex, ShaderParams._nodeDescriptorsId, _nodeDescriptors);
+            }
+            else if (kernelIndex == _kernelOfBuildLodMap)
+            {
+                _shader.SetTexture(kernelIndex, ShaderParams._lodMapId, _lodMap);
+                _shader.SetBuffer(kernelIndex, ShaderParams._nodeDescriptorsId, _nodeDescriptors);
+            }
+            else if (kernelIndex == _kernelOfBuildPatches)
+            {
+                _shader.SetTexture(kernelIndex, ShaderParams._lodMapId, _lodMap);
+                _shader.SetTexture(kernelIndex, ShaderParams._minMaxHeightTextureId, _asset.GetMinMaxHeightMap(ref _cmd));
+                _shader.SetBuffer(kernelIndex, ShaderParams._finalNodeListId, _finalNodeListBuffer);
+                _shader.SetBuffer(kernelIndex, ShaderParams._culledPatchListId, _culledPatchBuffer);
+                _shader.SetBuffer(kernelIndex, ShaderParams._patchBoundsListId, _patchBoundsBuffer);
+            }
             
-            _shader.SetTexture(kernelIndex,"_QuadTreeTexture",_asset.GetQuadTreeMap(ref _cmd));
-            if(kernelIndex == _kernelOfTraverseQuadTree){
-                _shader.SetBuffer(kernelIndex,ShaderParams._appendFinalNodeListId,_finalNodeListBuffer);
-                _shader.SetTexture(kernelIndex,"_MinMaxHeightTexture",_asset.GetMinMaxHeightMap(ref _cmd));
-                _shader.SetBuffer(kernelIndex,ShaderParams._nodeDescriptorsId,_nodeDescriptors);
-            }else if(kernelIndex == _kernelOfBuildLodMap){
-                _shader.SetTexture(kernelIndex,ShaderParams._lodMapId,_lodMap);
-                _shader.SetBuffer(kernelIndex,ShaderParams._nodeDescriptorsId,_nodeDescriptors);
-            }
-            else if(kernelIndex == _kernelOfBuildPatches){
-                _shader.SetTexture(kernelIndex,ShaderParams._lodMapId,_lodMap);
-                _shader.SetTexture(kernelIndex,"_MinMaxHeightTexture",_asset.GetMinMaxHeightMap(ref _cmd));
-                _shader.SetBuffer(kernelIndex,ShaderParams._finalNodeListId,_finalNodeListBuffer);
-                _shader.SetBuffer(kernelIndex,"_CulledPatchList",_culledPatchBuffer);
-                _shader.SetBuffer(kernelIndex,"_PatchBoundsList",_patchBoundsBuffer);
-            }
+            // _shader.SetTexture(kernelIndex,ShaderParams._quadTreeTextureId,_asset.GetQuadTreeMap(ref _cmd));
+            // if(kernelIndex == _kernelOfTraverseQuadTree){
+            //     _shader.SetBuffer(kernelIndex,ShaderParams._appendFinalNodeListId,_finalNodeListBuffer);
+            //     _shader.SetTexture(kernelIndex,ShaderParams._minMaxHeightTextureId,_asset.GetMinMaxHeightMap(ref _cmd));
+            //     _shader.SetBuffer(kernelIndex,ShaderParams._nodeDescriptorsId,_nodeDescriptors);
+            // }else if(kernelIndex == _kernelOfBuildLodMap){
+            //     _shader.SetTexture(kernelIndex,ShaderParams._lodMapId,_lodMap);
+            //     _shader.SetBuffer(kernelIndex,ShaderParams._nodeDescriptorsId,_nodeDescriptors);
+            // }
+            // else if(kernelIndex == _kernelOfBuildPatches){
+            //     _shader.SetTexture(kernelIndex,ShaderParams._lodMapId,_lodMap);
+            //     _shader.SetTexture(kernelIndex,ShaderParams._minMaxHeightTextureId,_asset.GetMinMaxHeightMap(ref _cmd));
+            //     _shader.SetBuffer(kernelIndex,ShaderParams._finalNodeListId,_finalNodeListBuffer);
+            //     _shader.SetBuffer(kernelIndex,ShaderParams._culledPatchListId,_culledPatchBuffer);
+            //     _shader.SetBuffer(kernelIndex, ShaderParams._patchBoundsListId,_patchBoundsBuffer);
+            // }
         }
 
         void ClearBufferCounter()
@@ -216,76 +216,6 @@ namespace CustomURP
             _cmd.SetBufferCounterValue(_culledPatchBuffer, 0);
             _cmd.SetBufferCounterValue(_patchBoundsBuffer, 0);
         }
-
-        // public void Tick(ScriptableRenderContext context, CustomRenderPipelineCamera camera)
-        // {
-        //     // var camera = Camera.main;
-        //     // var context = CustomRenderPipeline._cmd.Context;
-        //
-        //     // _cmd.Context = context;
-        //     
-        //     _cmd.Clear();
-        //     ClearBufferCounter();
-        //     
-        //     UpdateCameraFrustumPlanes(camera._camera);
-        //     
-        //
-        //     if (_isNodeEvaluationCDirty)
-        //     {
-        //         _isNodeEvaluationCDirty = false;
-        //         _cmd.SetComputeVectorParam(_shader, ShaderParams._nodeEvaluationCId, _nodeEvaluationC);
-        //     }
-        //     
-        //     _cmd.SetComputeVectorParam(_shader, ShaderParams._cameraPositionWSId, camera._camera.transform.position);
-        //     _cmd.SetComputeVectorParam(_shader, ShaderParams._worldSizeId, _asset.WorldSize);
-        //     
-        //     _cmd.CopyCounterValue(_maxLODNodeList, _indirectArgsBuffer, 0);
-        //
-        //     ComputeBuffer consumeNodeList = _nodeListA;
-        //     ComputeBuffer appendNodeList = _nodeListB;
-        //
-        //     for (var lod = _asset._maxLOD; lod >= 0; lod--)
-        //     {
-        //         _cmd.SetComputeIntParam(_shader, ShaderParams._passLODId, lod);
-        //         if (lod == _asset._maxLOD)
-        //         {
-        //             _cmd.SetComputeBufferParam(_shader, _kernelOfTraverseQuadTree, ShaderParams._consumeNodeListId, _maxLODNodeList);
-        //         }
-        //         else
-        //         {
-        //             _cmd.SetComputeBufferParam(_shader, _kernelOfTraverseQuadTree, ShaderParams._consumeNodeListId, consumeNodeList);
-        //         }
-        //         
-        //         _cmd.SetComputeBufferParam(_shader, _kernelOfTraverseQuadTree, ShaderParams._appendNodeListId, appendNodeList);
-        //         _cmd.DispatchCompute(_shader, _kernelOfTraverseQuadTree, _indirectArgsBuffer, 0);
-        //         _cmd.CopyCounterValue(appendNodeList, _indirectArgsBuffer, 0);
-        //         var temp = consumeNodeList;
-        //         consumeNodeList = appendNodeList;
-        //         appendNodeList = temp;
-        //         
-        //         // SwapNodeList(ref consumeNodeList, ref appendNodeList);
-        //     }
-        //     
-        //     _cmd.DispatchCompute(_shader, _kernelOfBuildLodMap, 20, 20, 1);
-        //
-        //     var tmp = new uint3[_maxNodeBufferSize];
-        //     _finalNodeListBuffer.GetData(tmp);
-        //     
-        //     
-        //     _cmd.CopyCounterValue(_finalNodeListBuffer, _indirectArgsBuffer, 0);
-        //     _cmd.DispatchCompute(_shader, _kernelOfBuildPatches, _indirectArgsBuffer, 0);
-        //     _cmd.CopyCounterValue(_culledPatchBuffer, _patchIndirectArgs, 4);
-        //     if (_isBoundsBufferOn)
-        //     {
-        //         _cmd.CopyCounterValue(_patchBoundsBuffer, _patchBoundsIndirectArgs, 4);
-        //     }
-        //     // _cmd.Execute();
-        //     context.ExecuteCommandBuffer(_cmd.Cmd);
-        //    
-        //    
-        //     // _cmd.Name = _cmdOirginName;
-        //     this.LogPatchArgs();
-        // }
         
         public void Tick(ScriptableRenderContext context, CustomRenderPipelineCamera ppcamera)
         {
@@ -294,39 +224,42 @@ namespace CustomURP
             //clear
             _cmd.Clear();
             this.ClearBufferCounter();
-
+        
             this.UpdateCameraFrustumPlanes(camera);
-
+        
             if(_isNodeEvaluationCDirty){
                 _isNodeEvaluationCDirty = false;
                 _cmd.SetComputeVectorParam(_shader, ShaderParams._nodeEvaluationCId,_nodeEvaluationC);
             }
-
+        
             _cmd.SetComputeVectorParam(_shader,ShaderParams._cameraPositionWSId,camera.transform.position);
             _cmd.SetComputeVectorParam(_shader,ShaderParams._worldSizeId, _asset.WorldSize);
-
+        
             //四叉树分割计算得到初步的Patch列表
             _cmd.CopyCounterValue(_maxLODNodeList,_indirectArgsBuffer,0);
             ComputeBuffer consumeNodeList = _nodeListA;
             ComputeBuffer appendNodeList = _nodeListB;
-            for(var lod = _asset._maxLOD; lod >=0; lod --){
+            for(var lod = _asset._maxLOD; lod >=0; lod --)
+            {
                 _cmd.SetComputeIntParam(_shader,ShaderParams._passLODId,lod);
-                if(lod == _asset._maxLOD){
+                if(lod == _asset._maxLOD)
+                {
                     _cmd.SetComputeBufferParam(_shader,_kernelOfTraverseQuadTree,ShaderParams._consumeNodeListId,_maxLODNodeList);
-                }else{
+                }
+                else
+                {
                     _cmd.SetComputeBufferParam(_shader,_kernelOfTraverseQuadTree,ShaderParams._consumeNodeListId,consumeNodeList);
                 }
                 _cmd.SetComputeBufferParam(_shader,_kernelOfTraverseQuadTree,ShaderParams._appendNodeListId,appendNodeList);
                 _cmd.DispatchCompute(_shader,_kernelOfTraverseQuadTree,_indirectArgsBuffer,0);
                 _cmd.CopyCounterValue(appendNodeList,_indirectArgsBuffer,0);
-                var temp = consumeNodeList;
-                consumeNodeList = appendNodeList;
-                appendNodeList = temp;
+                
+                SwapNodeList(ref consumeNodeList, ref appendNodeList);
             }
             //生成LodMap
             _cmd.DispatchCompute(_shader,_kernelOfBuildLodMap,20,20,1);
-
-
+        
+        
             //生成Patch
             _cmd.CopyCounterValue(_finalNodeListBuffer,_indirectArgsBuffer,0);
             _cmd.DispatchCompute(_shader,_kernelOfBuildPatches,_indirectArgsBuffer,0);
@@ -334,9 +267,9 @@ namespace CustomURP
             if(_isBoundsBufferOn){
                 _cmd.CopyCounterValue(_patchBoundsBuffer,_patchBoundsIndirectArgs,4);
             }
-            Graphics.ExecuteCommandBuffer(_cmd.Cmd);
-            // context.ExecuteCommandBuffer(_cmd.Cmd);
-
+            // Graphics.ExecuteCommandBuffer(_cmd.Cmd);
+            context.ExecuteCommandBuffer(_cmd.Cmd);
+        
             // this.LogPatchArgs();
         }
 

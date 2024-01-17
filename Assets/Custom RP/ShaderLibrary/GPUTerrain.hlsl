@@ -22,7 +22,7 @@ StructuredBuffer<RenderPatch> _PatchList;
 TEXTURE2D(_MainTex);
 SAMPLER(sampler_MainTex);
 TEXTURE2D(_HeightMap);
-SAMPLER(sampler_HeightMap);
+SAMPLER(sampler_HeightMap_linear_clamp);
 TEXTURE2D(_NormalMap);
 SAMPLER(sampler_NormalMap);
 float3 _WorldSize;
@@ -46,7 +46,7 @@ float3 TransformNormalToWS(float3 normal)
 float3 SampleNormal(float2 uv)
 {
     float3 normal;
-    normal.xz = SAMPLE_TEXTURE2D_LOD(_NormalMap, sampler_NormalMap, uv, 0).xy * 2 - 1;
+    normal.xz = SAMPLE_TEXTURE2D_LOD(_NormalMap, sampler_linear_repeat, uv, 0).xy * 2 - 1;
     normal.y = sqrt(max(0, 1 - dot(normal.xz, normal.xz)));
     normal = TransformNormalToWS(normal);
     return normal;
@@ -75,12 +75,14 @@ Varyings vert(Attribute input, uint instanceID : SV_InstanceID)
     
     inPos.xz += patch.position;
 
-    float2 heightUV = (inPos.z + (_WorldSize.xz * 0.5) + 0.5) / (_WorldSize.xz + 1);
-    float height = SAMPLE_TEXTURE2D_LOD(_HeightMap, sampler_HeightMap, heightUV, 0).r;
+    float2 heightUV = (inPos.xz + (_WorldSize.xz * 0.5) + 0.5) / (_WorldSize.xz + 1);
+    float height = SAMPLE_TEXTURE2D_LOD(_HeightMap, sampler_HeightMap_linear_clamp, heightUV, 0).r;
+    // inPos.y = height * _WorldSize.y;
     inPos.y = height * _WorldSize.y;
 
     float3 normal = SampleNormal(heightUV);
     o.color = max(0.05, dot(normal, half3(1, 1, 0)));
+    // o.color = half3(1.0, 1.0, 1.0);
 
     o.positionCS = TransformObjectToHClip(inPos.xyz);
     o.uv = uv * scale * 8;

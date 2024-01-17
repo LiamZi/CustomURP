@@ -154,6 +154,9 @@ namespace CustomURP
                 new FilteringSettings(RenderQueueRange.opaque, renderingLayerMask: (uint)renderingLayerMask);
             
             // _cmd.EnableShaderKeyword("USE_CLUSTERED_LIGHTLIST");
+            
+
+            
             _cmd.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
 
             _cmd.DrawSkybox(_camera);
@@ -167,7 +170,6 @@ namespace CustomURP
             filteringSettings.renderQueueRange = RenderQueueRange.transparent;
 
             _cmd.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
-            
         }
 
         private void Draw(ref Command cmd, RenderTargetIdentifier from, RenderTargetIdentifier to, Material material,

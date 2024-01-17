@@ -73,29 +73,15 @@ namespace CustomURP
             
             // var patchMesh = _asset.PatchMesh;
             // var bounds = new Bounds(Vector3.zero, Vector3.one * 10240);
-            _cmd.Cmd.DrawMeshInstancedIndirect(_asset.PatchMesh, 0, material, 0, _traverse.PatchIndirectArgs);
+            cmd.Cmd.DrawMeshInstancedIndirect(_asset.PatchMesh, 0, material, 0, _traverse.PatchIndirectArgs);
             if (_patchBoundsDebug)
             {
-                _cmd.Cmd.DrawMeshInstancedIndirect(_asset.CubeMesh, 0, _asset.BoundDebugMaterial, 0, _traverse.BoundsIndirectArgs);
+                cmd.Cmd.DrawMeshInstancedIndirect(_asset.CubeMesh, 0, _asset.BoundDebugMaterial, 0, _traverse.BoundsIndirectArgs);
             }
             
             // _cmd.Execute();
-            cmd.Context.ExecuteCommandBuffer(_cmd.Cmd);
-            _cmd.Cmd.Clear();
-            //  if(_traverse == null) return;
-            //  
-            // if(Input.GetKeyDown(KeyCode.Space)){
-            //     _traverse.Tick(cmd.Context, camera);
-            // }
-            // _traverse.Tick(cmd.Context, camera);
-            // var terrainMaterial = this.EnsureMaterial();
-            // if(_isTerrainMaterialDirty){
-            //     this.UpdateTerrainMaterialProeprties();
-            // }
-            // Graphics.DrawMeshInstancedIndirect(_asset.PatchMesh,0,terrainMaterial,new Bounds(Vector3.zero,Vector3.one * 10240),_traverse.PatchIndirectArgs);
-            // if(_patchBoundsDebug){
-            //     Graphics.DrawMeshInstancedIndirect(_asset.CubeMesh,0,_asset.BoundDebugMaterial,new Bounds(Vector3.zero,Vector3.one * 10240),_traverse.BoundsIndirectArgs);
-            // }
+            cmd.Context.ExecuteCommandBuffer(cmd.Cmd);
+            cmd.Cmd.Clear();
         }
 
         Material EnsureMaterial()
