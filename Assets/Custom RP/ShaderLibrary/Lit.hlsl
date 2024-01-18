@@ -135,11 +135,7 @@ float4 frag(VertexOutput input) : SV_TARGET
     // surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _Smoothness);
     // surface.smoothness = GetSmoothness(input.baseUV, input.detailUV);
     surface.smoothness = GetSmoothness(config);
-
-    // surface.occlusion = GetOcclusion(input.baseUV);
     surface.occlusion = GetOcclusion(config);
-
-    // surface.fresnelStrength = GetFresnel(input.baseUV);
     surface.fresnelStrength = GetFresnel(config);
 
     surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);

@@ -52,7 +52,74 @@ float3 SampleNormal(float2 uv)
     return normal;
 }
 
+float3 ApplyNodeDebug(RenderPatch patch, float3 pos)
+{
+    uint nodeCount = (uint)(5 * pow(2, 5 - patch.lod));
+    float nodeSize = _WorldSize.x / nodeCount;
+    uint2 node = floor((patch.position + _WorldSize.xz * 0.5) / nodeSize);
+    float2 nodeCenterPos = - _WorldSize.xz * 0.5 + (node + 0.5) * nodeSize;
+    pos.xz = nodeCenterPos + (pos.xz - nodeCenterPos) * 0.95;
+    return pos;
+}
 
+void FixedBetweenPatchSeam(inout float4 pos, inout float2 uv, RenderPatch patch)
+{
+    uint4 lodTrans = patch.lodTrans;
+    uint2 posIndex = floor((pos.xz + PATCH_MESH_SIZE * 0.5 + 0.01) / PATCH_MESH_GRID_SIZE);
+    float uvGridStrip = 1.0 / PATCH_MESH_GRID_COUNT;
+
+    uint lodDelta = lodTrans.x;
+    if(lodDelta > 0 && posIndex.x == 0)
+    {
+        uint gridStripCount = pow(2, lodDelta);
+        uint modIndex = posIndex.y % gridStripCount;
+        if(modIndex != 0)
+        {
+            pos.z -= PATCH_MESH_GRID_SIZE * modIndex;
+            uv.y -= uvGridStrip * modIndex;
+            return;
+        }
+    }
+
+    lodDelta = lodTrans.y;
+    if(lodDelta > 0 && posIndex.y == 0)
+    {
+        uint gridStripCount = pow(2, lodDelta);
+        uint modIndex = posIndex.x % gridStripCount;
+        if(modIndex != 0)
+        {
+            pos.x -= PATCH_MESH_GRID_SIZE * modIndex;
+            uv.x -= uvGridStrip * modIndex;
+            return;
+        }
+    }
+
+    lodDelta = lodTrans.z;
+    if(lodDelta > 0 && posIndex.x == PATCH_MESH_GRID_COUNT)
+    {
+        uint gridStripCount = pow(2, lodDelta);
+        uint modIndex = posIndex.y % gridStripCount;
+        if(modIndex != 0)
+        {
+            pos.z += PATCH_MESH_GRID_SIZE * (gridStripCount - modIndex);
+            uv.y += uvGridStrip * (gridStripCount - modIndex);
+            return;
+        }
+    }
+
+    lodDelta = lodTrans.w;
+    if(lodDelta > 0 && posIndex.y == PATCH_MESH_GRID_COUNT)
+    {
+        uint gridStripCount = pow(2, lodDelta);
+        uint modIndex = posIndex.x % gridStripCount;
+        if(modIndex != 0)
+        {
+            pos.x += PATCH_MESH_GRID_SIZE * (gridStripCount - modIndex);
+            uv.x += uvGridStrip * (gridStripCount - modIndex);
+            return;
+        }
+    }
+}
 
 Varyings vert(Attribute input, uint instanceID : SV_InstanceID)
 {
@@ -60,31 +127,35 @@ Varyings vert(Attribute input, uint instanceID : SV_InstanceID)
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_TRANSFER_INSTANCE_ID(input, o);
 
-    float4 inPos = input.positionOS;
+    float4 pos = input.positionOS;
     float2 uv = input.uv;
 
     RenderPatch patch = _PatchList[instanceID];
 #if _ENABLE_LOD_SEAMLESS
-    
+    FixedBetweenPatchSeam(pos, uv, patch);
 #endif
 
     uint lod = patch.lod;
     float scale = pow(2, lod);
     uint4 loadTrans = patch.lodTrans;
-    inPos.xz *= scale;
+    pos.xz *= scale;
     
-    inPos.xz += patch.position;
+    pos.xz += patch.position;
+    
+#if _ENABLE_NODE_DEBUG
+    inPos.xyz = ApplyNodeDebug(patch, inPos.xyz);
+#endif  
 
-    float2 heightUV = (inPos.xz + (_WorldSize.xz * 0.5) + 0.5) / (_WorldSize.xz + 1);
+    float2 heightUV = (pos.xz + (_WorldSize.xz * 0.5) + 0.5) / (_WorldSize.xz + 1);
     float height = SAMPLE_TEXTURE2D_LOD(_HeightMap, sampler_HeightMap_linear_clamp, heightUV, 0).r;
-    // inPos.y = height * _WorldSize.y;
-    inPos.y = height * _WorldSize.y;
+    pos.y = height * _WorldSize.y;
+    // inPos.y = height * 1500.0 ;
 
     float3 normal = SampleNormal(heightUV);
-    o.color = max(0.05, dot(normal, half3(1, 1, 0)));
+    o.color = max(0.05, dot(float3(0, 0.25, 1.0), normal));
     // o.color = half3(1.0, 1.0, 1.0);
 
-    o.positionCS = TransformObjectToHClip(inPos.xyz);
+    o.positionCS = TransformObjectToHClip(pos.xyz);
     o.uv = uv * scale * 8;
 
 #if _ENABLE_MIP_DEBUG

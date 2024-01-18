@@ -72,7 +72,6 @@ namespace CustomURP
             }
             
             // var patchMesh = _asset.PatchMesh;
-            // var bounds = new Bounds(Vector3.zero, Vector3.one * 10240);
             cmd.Cmd.DrawMeshInstancedIndirect(_asset.PatchMesh, 0, material, 0, _traverse.PatchIndirectArgs);
             if (_patchBoundsDebug)
             {
@@ -117,38 +116,38 @@ namespace CustomURP
             
             if(_seamLess)
             {
-                _terrainMaterial.EnableKeyword("ENABLE_LOD_SEAMLESS");
+                _terrainMaterial.EnableKeyword("_ENABLE_LOD_SEAMLESS");
             }
             else
             {
-                _terrainMaterial.DisableKeyword("ENABLE_LOD_SEAMLESS");
+                _terrainMaterial.DisableKeyword("_ENABLE_LOD_SEAMLESS");
             }
             
             if(_mipDebug)
             {
-                _terrainMaterial.EnableKeyword("ENABLE_MIP_DEBUG");
+                _terrainMaterial.EnableKeyword("_ENABLE_MIP_DEBUG");
             }
             else
             {
-                _terrainMaterial.DisableKeyword("ENABLE_MIP_DEBUG");
+                _terrainMaterial.DisableKeyword("_ENABLE_MIP_DEBUG");
             }
             
             if(_patchDebug)
             {
-                _terrainMaterial.EnableKeyword("ENABLE_PATCH_DEBUG");
+                _terrainMaterial.EnableKeyword("_ENABLE_PATCH_DEBUG");
             }
             else
             {
-                _terrainMaterial.DisableKeyword("ENABLE_PATCH_DEBUG");
+                _terrainMaterial.DisableKeyword("_ENABLE_PATCH_DEBUG");
             }
             
             if(_nodeDebug)
             {
-                _terrainMaterial.EnableKeyword("ENABLE_NODE_DEBUG");
+                _terrainMaterial.EnableKeyword("_ENABLE_NODE_DEBUG");
             }
             else
             {
-                _terrainMaterial.DisableKeyword("ENABLE_NODE_DEBUG");
+                _terrainMaterial.DisableKeyword("_ENABLE_NODE_DEBUG");
             }
             
             _terrainMaterial.SetVector(ShaderParams._worldSizeId, _asset.WorldSize);

@@ -102,49 +102,29 @@ namespace CustomURP
 
         void InitializationWorldParams()
         {
-            // float size = _asset.WorldSize.x;
-            // int maxCount = _asset.MaxLodNodeCount;
-            // Vector4[] worldLodParams = new Vector4[_asset.MaxLod + 1];
-            //
-            // for (var lod = _asset.MaxLod; lod >= 0; lod--)
-            // {
-            //     var nodeSize = size / maxCount;
-            //     var patchExtent = nodeSize / 16;
-            //     var sectorCountPerNode = (int)Mathf.Pow(2, lod);
-            //     worldLodParams[lod] = new Vector4(nodeSize, patchExtent, maxCount, sectorCountPerNode);
-            //     maxCount *= 2;
-            // }
-            // _shader.SetVectorArray(ShaderParams._worldLodParamsId, worldLodParams);
-            //
-            // int[] nodeIdOffsetLod = new int[(_asset.MaxLod + 1) * 4];
-            // int nodeIdOffset = 0;
-            //
-            // for (int lod = _asset.MaxLod; lod >= 0; lod--)
-            // {
-            //     nodeIdOffsetLod[lod * 4] = nodeIdOffset;
-            //     nodeIdOffset += (int)(worldLodParams[lod].z * worldLodParams[lod].z);
-            // }
-            //
-            // _shader.SetInts(ShaderParams._nodeIdOffsetOfLODId, nodeIdOffsetLod);
-            
             float wSize = _asset.WorldSize.x;
             int nodeCount = _asset._maxLodNodeCount;
             Vector4[] worldLODParams = new Vector4[_asset.MaxLod + 1];
-            for(var lod = _asset.MaxLod; lod >=0; lod --){
+            
+            for(var lod = _asset.MaxLod; lod >=0; lod --)
+            {
                 var nodeSize = wSize / nodeCount;
                 var patchExtent = nodeSize / 16;
                 var sectorCountPerNode = (int)Mathf.Pow(2,lod);
                 worldLODParams[lod] = new Vector4(nodeSize,patchExtent,nodeCount,sectorCountPerNode);
                 nodeCount *= 2;
             }
+            
             _shader.SetVectorArray(ShaderParams._worldLodParamsId,worldLODParams);
 
             int[] nodeIDOffsetLOD = new int[ (_asset.MaxLod + 1) * 4];
             int nodeIdOffset = 0;
-            for(int lod = _asset.MaxLod; lod >=0; lod --){
+            for(int lod = _asset.MaxLod; lod >=0; lod --)
+            {
                 nodeIDOffsetLOD[lod * 4] = nodeIdOffset;
                 nodeIdOffset += (int)(worldLODParams[lod].z * worldLODParams[lod].z);
             }
+            
             _shader.SetInts("NodeIDOffsetOfLOD",nodeIDOffsetLOD);
         }
 
@@ -188,23 +168,6 @@ namespace CustomURP
                 _shader.SetBuffer(kernelIndex, ShaderParams._culledPatchListId, _culledPatchBuffer);
                 _shader.SetBuffer(kernelIndex, ShaderParams._patchBoundsListId, _patchBoundsBuffer);
             }
-            
-            // _shader.SetTexture(kernelIndex,ShaderParams._quadTreeTextureId,_asset.GetQuadTreeMap(ref _cmd));
-            // if(kernelIndex == _kernelOfTraverseQuadTree){
-            //     _shader.SetBuffer(kernelIndex,ShaderParams._appendFinalNodeListId,_finalNodeListBuffer);
-            //     _shader.SetTexture(kernelIndex,ShaderParams._minMaxHeightTextureId,_asset.GetMinMaxHeightMap(ref _cmd));
-            //     _shader.SetBuffer(kernelIndex,ShaderParams._nodeDescriptorsId,_nodeDescriptors);
-            // }else if(kernelIndex == _kernelOfBuildLodMap){
-            //     _shader.SetTexture(kernelIndex,ShaderParams._lodMapId,_lodMap);
-            //     _shader.SetBuffer(kernelIndex,ShaderParams._nodeDescriptorsId,_nodeDescriptors);
-            // }
-            // else if(kernelIndex == _kernelOfBuildPatches){
-            //     _shader.SetTexture(kernelIndex,ShaderParams._lodMapId,_lodMap);
-            //     _shader.SetTexture(kernelIndex,ShaderParams._minMaxHeightTextureId,_asset.GetMinMaxHeightMap(ref _cmd));
-            //     _shader.SetBuffer(kernelIndex,ShaderParams._finalNodeListId,_finalNodeListBuffer);
-            //     _shader.SetBuffer(kernelIndex,ShaderParams._culledPatchListId,_culledPatchBuffer);
-            //     _shader.SetBuffer(kernelIndex, ShaderParams._patchBoundsListId,_patchBoundsBuffer);
-            // }
         }
 
         void ClearBufferCounter()
@@ -219,8 +182,9 @@ namespace CustomURP
         
         public void Tick(ScriptableRenderContext context, CustomRenderPipelineCamera ppcamera)
         {
-            var camera = ppcamera._camera;
-            
+            // var camera = ppcamera._camera;
+
+            var camera = Camera.main;
             //clear
             _cmd.Clear();
             this.ClearBufferCounter();
@@ -244,13 +208,13 @@ namespace CustomURP
                 _cmd.SetComputeIntParam(_shader,ShaderParams._passLODId,lod);
                 if(lod == _asset._maxLOD)
                 {
-                    _cmd.SetComputeBufferParam(_shader,_kernelOfTraverseQuadTree,ShaderParams._consumeNodeListId,_maxLODNodeList);
+                    _cmd.SetComputeBufferParam(_shader,_kernelOfTraverseQuadTree,ShaderParams._consumeNodeListId, _maxLODNodeList);
                 }
                 else
                 {
-                    _cmd.SetComputeBufferParam(_shader,_kernelOfTraverseQuadTree,ShaderParams._consumeNodeListId,consumeNodeList);
+                    _cmd.SetComputeBufferParam(_shader,_kernelOfTraverseQuadTree,ShaderParams._consumeNodeListId, consumeNodeList);
                 }
-                _cmd.SetComputeBufferParam(_shader,_kernelOfTraverseQuadTree,ShaderParams._appendNodeListId,appendNodeList);
+                _cmd.SetComputeBufferParam(_shader,_kernelOfTraverseQuadTree,ShaderParams._appendNodeListId, appendNodeList);
                 _cmd.DispatchCompute(_shader,_kernelOfTraverseQuadTree,_indirectArgsBuffer,0);
                 _cmd.CopyCounterValue(appendNodeList,_indirectArgsBuffer,0);
                 
@@ -264,12 +228,13 @@ namespace CustomURP
             _cmd.CopyCounterValue(_finalNodeListBuffer,_indirectArgsBuffer,0);
             _cmd.DispatchCompute(_shader,_kernelOfBuildPatches,_indirectArgsBuffer,0);
             _cmd.CopyCounterValue(_culledPatchBuffer,_patchIndirectArgs,4);
-            if(_isBoundsBufferOn){
+            if(_isBoundsBufferOn)
+            {
                 _cmd.CopyCounterValue(_patchBoundsBuffer,_patchBoundsIndirectArgs,4);
             }
-            // Graphics.ExecuteCommandBuffer(_cmd.Cmd);
+            
             context.ExecuteCommandBuffer(_cmd.Cmd);
-        
+            
             // this.LogPatchArgs();
         }
 
@@ -328,9 +293,9 @@ namespace CustomURP
             set
             {
                 if (value)
-                    _shader.EnableKeyword("ENALBE_FRUSTUM_CULL");
+                    _shader.EnableKeyword("_ENABLE_FRUSTUM_CULL");
                 else
-                    _shader.DisableKeyword("ENALBE_FRUSTUM_CULL");
+                    _shader.DisableKeyword("_ENABLE_FRUSTUM_CULL");
             }
         }
 
@@ -339,9 +304,9 @@ namespace CustomURP
             set
             {
                 if(value)
-                    _shader.EnableKeyword("ENALBE_HIZ_CULL");
+                    _shader.EnableKeyword("_ENABLE_HIZ_CULL");
                 else
-                    _shader.DisableKeyword("ENALBE_HIZ_CULL");
+                    _shader.DisableKeyword("_ENABLE_HIZ_CULL");
             }
         }
 
@@ -350,9 +315,9 @@ namespace CustomURP
             set
             {
                 if(value)
-                    _shader.EnableKeyword("BOUNDS_DEBUG");
+                    _shader.EnableKeyword("_BOUNDS_DEBUG");
                 else
-                    _shader.DisableKeyword("BOUNDS_DEBUG");
+                    _shader.DisableKeyword("_BOUNDS_DEBUG");
 
                 _isBoundsBufferOn = value;
             }
@@ -385,9 +350,9 @@ namespace CustomURP
             set
             {
                 if(value)
-                    _shader.EnableKeyword("ENABLE_SEAM");
+                    _shader.EnableKeyword("_ENABLE_SEAM");
                 else
-                    _shader.DisableKeyword("ENABLE_SEAM");
+                    _shader.DisableKeyword("_ENABLE_SEAM");
             }
         }
 

@@ -31,7 +31,7 @@
             #pragma shader_feature _ENABLE_PATCH_DEBUG
             #pragma shader_feature _ENABLE_LOD_SEAMLESS
             #pragma shader_feature _ENABLE_NODE_DEBUG
-            #pragma enable_d3d11_debug_symbols
+            // #pragma enable_d3d11_debug_symbols
 
             #include "../ShaderLibrary/GPUTerrain.hlsl"
             
