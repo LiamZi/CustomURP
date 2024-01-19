@@ -74,6 +74,7 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Clipping: 1
+    - _Clusters: 0
     - _CutOff: 0.12
     - _Cutoff: 0.32
     - _DetailAlbedo: 1
@@ -97,6 +98,7 @@ Material:
     - _PremulAlpha: 0
     - _ReceiveShadows: 1
     - _Shadows: 1
+    - _Slices: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -105,6 +107,6 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-    - _Color: {r: 0.073252015, g: 0.5660378, b: 0, a: 1}
+    - _Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

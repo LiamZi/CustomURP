@@ -20,16 +20,7 @@ namespace CustomURP
 
         RenderTexture CreateMinMaxHeightTexture(int texSize)
         {
-            // RenderTextureDescriptor desc = new RenderTextureDescriptor(texSize, texSize, RenderTextureFormat.RG32, 0, 1);
-            // desc.enableRandomWrite = true;
-            // desc.autoGenerateMips = false;
-            // var rt = RenderTexture.GetTemporary(desc);
-            // rt.filterMode = FilterMode.Point;
-            // rt.isPowerOfTwo = false;
-            // rt.Create();
-            // return rt;
-            
-            RenderTextureDescriptor desc = new RenderTextureDescriptor(texSize,texSize,RenderTextureFormat.RG32,0,1);
+            RenderTextureDescriptor desc = new RenderTextureDescriptor(texSize,texSize,RenderTextureFormat.ARGBFloat,0,1);
             desc.enableRandomWrite = true;
             desc.autoGenerateMips = false;
             var rt = RenderTexture.GetTemporary(desc);
@@ -57,11 +48,11 @@ namespace CustomURP
         
         private void WaitRenderTexture(RenderTexture renderTexture,System.Action<RenderTexture> callback){
             
-            GraphicsFormat myGraphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
-            TextureFormat myTextureFormat = GraphicsFormatUtility.GetTextureFormat(myGraphicsFormat);
+            // GraphicsFormat myGraphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
+            // TextureFormat myTextureFormat = GraphicsFormatUtility.GetTextureFormat(myGraphicsFormat);
 
             
-            var request = AsyncGPUReadback.Request(renderTexture,0,TextureFormat.RGBAHalf,(res)=>{
+            var request = AsyncGPUReadback.Request(renderTexture,0,TextureFormat.RGBAFloat,(res)=>{
                 callback(renderTexture);
             });
             TerrainEditor.UpdateGpuAsyncRequest(request);    
@@ -72,7 +63,7 @@ namespace CustomURP
             for (var i = 0; i < mipTextures.Count; i++)
             {
                 var path = GetMipTexPath(i);
-                var tex = TerrainEditor.ConvertToTexture2D(mipTextures[i], TextureFormat.RG32);
+                var tex = TerrainEditor.ConvertToTexture2D(mipTextures[i], TextureFormat.RGBAFloat);
                 var bytes = tex.EncodeToPNG();
                 System.IO.File.WriteAllBytes(path, bytes);
             }
@@ -109,7 +100,7 @@ namespace CustomURP
                 }
                 else
                 {
-                    // cb();
+                    cb();
                 }
             });
         }

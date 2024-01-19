@@ -143,13 +143,13 @@ Varyings vert(Attribute input, uint instanceID : SV_InstanceID)
     pos.xz += patch.position;
     
 #if _ENABLE_NODE_DEBUG
-    inPos.xyz = ApplyNodeDebug(patch, inPos.xyz);
+    pos.xyz = ApplyNodeDebug(patch, pos.xyz);
 #endif  
 
     float2 heightUV = (pos.xz + (_WorldSize.xz * 0.5) + 0.5) / (_WorldSize.xz + 1);
     float height = SAMPLE_TEXTURE2D_LOD(_HeightMap, sampler_HeightMap_linear_clamp, heightUV, 0).r;
     pos.y = height * _WorldSize.y;
-    // inPos.y = height * 1500.0 ;
+    // pos.y = height * 1500.0 ;
 
     float3 normal = SampleNormal(heightUV);
     o.color = max(0.05, dot(float3(0, 0.25, 1.0), normal));

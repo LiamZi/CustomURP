@@ -5,14 +5,14 @@
 
 #include "ComputeCommon.hlsl"
 
-Texture2D<float4> _HeightTex;
+Texture2D<float4> _HeightMap;
 RWTexture2D<float4> _NormalTex;
 
 float3 GetPosition(uint2 coord)
 {
     uint w, h;
-    _HeightTex.GetDimensions(w, h);
-    float height = _HeightTex[coord].r;
+    _HeightMap.GetDimensions(w, h);
+    float height = _HeightMap[coord].r;
     return float3(coord.x * 1.0 / w, height, coord.y * 1.0 / h);
 }
 

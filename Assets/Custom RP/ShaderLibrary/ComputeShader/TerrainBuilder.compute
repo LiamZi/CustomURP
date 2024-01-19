@@ -38,7 +38,7 @@ ConsumeStructuredBuffer<RenderPatch> _PatchConsumeList;
 AppendStructuredBuffer<RenderPatch> _CulledPatchList;
 
 #if _BOUNDS_DEBUG
-AppendStructuredBufferBoundsDebug> _PatchBoundsList;
+AppendStructuredBuffer<BoundsDebug> _PatchBoundsList;
 #endif
 
 float GetNodeSize(uint lod)
@@ -61,35 +61,20 @@ uint GetSectorCountPerNode(uint lod)
     return (uint)_WorldLodParams[lod].w;
 }
 
-// float2 GetNodePositionWSV2(uint2 node, uint lod)
-// {
-//     float nodeMeterSize = GetNodeSize(lod);
-//     float nodeCount = GetNodeCount(lod);
-//     float2 nodePositionWS = ((float2)node - (nodeCount - 1) * 0.5) * nodeMeterSize;
-//     return nodePositionWS;
-// }
-
-float2 GetNodePositionWS2(uint2 nodeLoc,uint mip){
-    float nodeMeterSize = GetNodeSize(mip);
-    float nodeCount = GetNodeCount(mip);
-    float2 nodePositionWS = ((float2)nodeLoc - (nodeCount-1)*0.5) * nodeMeterSize;
+float2 GetNodePositionWSV2(uint2 node, uint lod){
+    float nodeMeterSize = GetNodeSize(lod);
+    float nodeCount = GetNodeCount(lod);
+    float2 nodePositionWS = ((float2)node - (nodeCount-1) * 0.5) * nodeMeterSize;
     return nodePositionWS;
 }
 
 
-// float3 GetNodePositionWS(uint2 node, uint lod)
-// {
-//     float2 nodePositionWS = GetNodePositionWSV2(node, lod);
-//     float2 minMaxHeight = _MinMaxHeightTexture.mips[lod + 3][node].xy;
-//     float y = (minMaxHeight.x + minMaxHeight.y) * 0.5 * _WorldSize.y;
-//     return float3(nodePositionWS.x, y, nodePositionWS.y);
-// }
-
-float3 GetNodePositionWS(uint2 nodeLoc,uint lod){
-    float2 nodePositionWS = GetNodePositionWS2(nodeLoc,lod);
-    float2 minMaxHeight = _MinMaxHeightTexture.mips[lod + 3][nodeLoc].xy;
+float3 GetNodePositionWS(uint2 node, uint lod)
+{
+    float2 nodePositionWS = GetNodePositionWSV2(node, lod);
+    float2 minMaxHeight = _MinMaxHeightTexture.mips[lod + 3][node].xy;
     float y = (minMaxHeight.x + minMaxHeight.y) * 0.5 * _WorldSize.y;
-    return float3(nodePositionWS.x,y,nodePositionWS.y);
+    return float3(nodePositionWS.x, y, nodePositionWS.y);
 }
 
 bool EvaluateNode(uint2 node, uint lod)
@@ -106,8 +91,6 @@ bool EvaluateNode(uint2 node, uint lod)
     return false;
 }
 
-
-
 uint GetNodeId(uint3 nodeLoc)
 {
     return _NodeIDOffsetOfLOD[nodeLoc.z] + nodeLoc.y * GetNodeCount(nodeLoc.z) + nodeLoc.x;
@@ -118,64 +101,36 @@ uint GetNodeId(uint2 nodeLoc, uint mip)
     return GetNodeId(uint3(nodeLoc, mip));
 }
 
-// [numthreads(1, 1, 1)]
-// void TraverseQuadTree(CSInput input)
-// {
-//     uint2 nodeLoc = _ConsumeNodeList.Consume();
-//     // nodeLoc = uint2(4, 3);
-//     uint nodeId = GetNodeId(nodeLoc, _PassLod);
-//     NodeDescriptor desc = _NodeDescriptors[nodeId];
-//     
-//     if(_PassLod > 0 && EvaluateNode(nodeLoc, _PassLod))
-//     {
-//         uint2 tmp = nodeLoc * 2;
-//         uint2 tmp1 = nodeLoc * 2 + uint2(1, 0);
-//         uint2 tmp2 = nodeLoc * 2 + uint2(0, 1);
-//         uint2 tmp3 = nodeLoc * 2 + uint2(1, 1);
-//         
-//         _AppendNodeList.Append(tmp);
-//         _AppendNodeList.Append(tmp1);
-//         _AppendNodeList.Append(tmp2);
-//         _AppendNodeList.Append(tmp3);
-//         desc.branch = 1;
-//     }
-//     else
-//     {
-//         uint3 temp = uint3(nodeLoc, _PassLod);
-//         _AppendFinalNodeList.Append(temp);
-//         desc.branch = 0;
-//     }
-//
-//     _NodeDescriptors[nodeId] = desc;
-// }
-
-[numthreads(1,1,1)]
-void TraverseQuadTree (uint3 id : SV_DispatchThreadID)
+[numthreads(1, 1, 1)]
+void TraverseQuadTree(CSInput input)
 {
     uint2 nodeLoc = _ConsumeNodeList.Consume();
-    uint nodeId = GetNodeId(nodeLoc,_PassLod);
+    // nodeLoc = uint2(4, 3);
+    uint nodeId = GetNodeId(nodeLoc, _PassLod);
     NodeDescriptor desc = _NodeDescriptors[nodeId];
-    if(_PassLod > 0 && EvaluateNode(nodeLoc,_PassLod)){
-        //divide
+    
+    if(_PassLod > 0 && EvaluateNode(nodeLoc, _PassLod))
+    {
         uint2 tmp = nodeLoc * 2;
-        uint2 tmp1 = nodeLoc * 2 + uint2(1,0);
-        uint2 tmp2 = nodeLoc * 2 + uint2(0,1);
-        uint2 tmp3 = nodeLoc * 2 + uint2(1,1);
+        uint2 tmp1 = nodeLoc * 2 + uint2(1, 0);
+        uint2 tmp2 = nodeLoc * 2 + uint2(0, 1);
+        uint2 tmp3 = nodeLoc * 2 + uint2(1, 1);
         
         _AppendNodeList.Append(tmp);
         _AppendNodeList.Append(tmp1);
         _AppendNodeList.Append(tmp2);
         _AppendNodeList.Append(tmp3);
         desc.branch = 1;
-    }else{
-        uint3 temp = uint3(nodeLoc,_PassLod);
+    }
+    else
+    {
+        uint3 temp = uint3(nodeLoc, _PassLod);
         _AppendFinalNodeList.Append(temp);
         desc.branch = 0;
     }
+
     _NodeDescriptors[nodeId] = desc;
 }
-
-
 
 [numthreads(8, 8, 1)]
 void BuildLodMap(CSInput input)
@@ -200,25 +155,11 @@ void BuildLodMap(CSInput input)
 
 RenderPatch CreatePath(uint3 node, uint2 patchOffset)
 {
-    // uint lod = node.z;
-    // float nodeMeterSize = GetNodeSize(lod);
-    // float patchMeterSize = nodeMeterSize / PATCH_COUNT_PER_NODE;
-    // // float2 nodePositionWS = GetNodePositionWSV2(node.xy, lod);
-    // float2 nodePositionWS = GetNodePositionWS2(node.xy, lod);
-    // uint2 patchLoc = node.xy * PATCH_COUNT_PER_NODE + patchOffset;
-    // float2 minMaxHeight = _MinMaxHeightTexture.mips[lod][patchLoc].rg * _WorldSize.y + float2(-_BoundsHeightRedundance, _BoundsHeightRedundance);
-    // RenderPatch patch;
-    // patch.lod = lod;
-    // patch.position = nodePositionWS + (patchOffset - (PATCH_COUNT_PER_NODE - 1) * 0.5) * patchMeterSize;
-    // patch.minMaxHeight = minMaxHeight;
-    // patch.lodTrans = 0;
-    // return patch;
-
     uint lod = node.z;
     float nodeMeterSize = GetNodeSize(lod);
     float patchMeterSize = nodeMeterSize / PATCH_COUNT_PER_NODE;
-    float2 nodePositionWS = GetNodePositionWS2(node.xy, lod);
-
+    float2 nodePositionWS = GetNodePositionWSV2(node.xy, lod);
+    
     uint2 patchLoc = node.xy * PATCH_COUNT_PER_NODE + patchOffset;
     //经测试，当min和max相差较小时，RG32似乎还是存在精度问题
     float2 minMaxHeight = _MinMaxHeightTexture.mips[lod][patchLoc].rg * _WorldSize.y + float2(-_BoundsHeightRedundance,_BoundsHeightRedundance);
@@ -232,21 +173,6 @@ RenderPatch CreatePath(uint3 node, uint2 patchOffset)
 
 Bounds GetPatchBounds(RenderPatch patch)
 {
-//     float halfSize = GetPatchExtent(patch.lod);
-// #if _ENABLE_SEAM
-//     halfSize *= 0.9;
-// #endif
-//      Bounds bounds;
-//      float3 boundsMin, boundsMax;
-//      boundsMin.xz = patch.position - halfSize;
-//      boundsMax.xz = patch.position + halfSize;
-//      boundsMin.y = patch.minMaxHeight.y;
-//      boundsMax.y = patch.minMaxHeight.y;
-//
-//      bounds.min = boundsMin;
-//      bounds.max = boundsMax;
-//      return bounds;
-
     float halfSize = GetPatchExtent(patch.lod);
 #if ENABLE_SEAM
     halfSize *= 0.9;
@@ -268,20 +194,6 @@ bool IsOutSidePlane(float4 plane, float3 pos)
     return dot(plane.xyz, pos) + plane.w < 0;
 }
 
-// bool IsAABBOutSidePlane(float4 plane, float3 min, float3 max)
-// {
-//     return IsOutSidePlane(plane, min) &&
-//         IsOutSidePlane(plane, max) &&
-//                 IsOutSidePlane(plane, float3(min.x, min.y, max.z)) &&
-//                     IsOutSidePlane(plane, float3(min.x, max.y, min.z)) &&
-//                         IsOutSidePlane(plane, float3(min.x, max.y, max.z)) &&
-//                             IsOutSidePlane(plane, float3(max.x, min.y, max.z)) &&
-//                                 IsOutSidePlane(plane, float3(max.x, max.y, min.z)) &&
-//                                     IsOutSidePlane(plane, float3(max.x, min.y, min.z));
-//             
-//     
-// }
-
 bool IsAABBOutSidePlane(float4 plane,float3 boundsMin,float3 boundsMax){
     return IsOutSidePlane(plane,boundsMin) &&
     IsOutSidePlane(plane,boundsMax) &&
@@ -297,17 +209,6 @@ bool IsBoundsOutSidePlane(float4 plane, Bounds bounds)
 {
     return IsAABBOutSidePlane(plane, bounds.min, bounds.max);
 }
-
-// bool FrustumCull(float4 planes[6], Bounds bounds)
-// {
-//     return IsBoundsOutSidePlane(planes[0], bounds) ||
-//         IsBoundsOutSidePlane(planes[1], bounds) ||
-//             IsBoundsOutSidePlane(planes[2], bounds) ||
-//                 IsBoundsOutSidePlane(planes[3], bounds) ||
-//                     IsBoundsOutSidePlane(planes[4], bounds) ||
-//                         IsBoundsOutSidePlane(planes[5], bounds);
-//                 
-// }
 
 bool FrustumCull(float4 planes[6],Bounds bounds)
 {

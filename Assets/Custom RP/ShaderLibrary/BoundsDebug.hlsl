@@ -38,7 +38,7 @@ Varyings vert(Attribute input, uint instanceID : SV_InstanceID)
 half4 frag(Varyings input) : SV_Target
 {
     UNITY_SETUP_INSTANCE_ID(input);
-    half4 col = half4(input.color, 1.0);
+    half4 col = half4(input.color, 0.25);
     return col;
 }
 

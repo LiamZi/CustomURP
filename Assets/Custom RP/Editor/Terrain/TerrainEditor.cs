@@ -121,7 +121,7 @@ namespace CustomURP
         public static Texture2D ConvertToTexture2D(RenderTexture renderTexture,TextureFormat format){
             var original = RenderTexture.active;
             RenderTexture.active = renderTexture;
-            var tex = new Texture2D(renderTexture.width,renderTexture.height,format,0,false);
+            var tex = new Texture2D(renderTexture.width,renderTexture.height, format,0,false);
             tex.filterMode = renderTexture.filterMode;
             tex.ReadPixels(new Rect(0,0,tex.width,tex.height),0,0,false);
             tex.Apply(false,false);

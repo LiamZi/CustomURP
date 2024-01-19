@@ -7,7 +7,7 @@
 
 #include "ComputeCommon.hlsl"
 
-Texture2D<float4> _HeightTex;
+Texture2D<float4> _HeightMap;
 RWTexture2D<float4> _PatchMinMaxHeightTex;
 Texture2D<float4> _InputTex;
 RWTexture2D<float4> _ReduceTex;
@@ -16,15 +16,29 @@ RWTexture2D<float4> _ReduceTex;
 [numthreads(8, 8, 1)]
 void PatchMinMaxHeight(CSInput input)
 {
-    float h1 = _HeightTex[input.dispatchThreadID.xy].r;
-    float h2 = _HeightTex[input.dispatchThreadID.xy + uint2(1, 0)].r;
-    float h3 = _HeightTex[input.dispatchThreadID.xy + uint2(0, 1)].r;
-    float h4 = _HeightTex[input.dispatchThreadID.xy + uint2(1, 1)].r;
+    float h1 = _HeightMap[input.dispatchThreadID.xy].r;
+    float h2 = _HeightMap[input.dispatchThreadID.xy + uint2(1, 0)].r;
+    float h3 = _HeightMap[input.dispatchThreadID.xy + uint2(0, 1)].r;
+    float h4 = _HeightMap[input.dispatchThreadID.xy + uint2(1, 1)].r;
     
     float hmin = min(min(h1, h2), min(h3, h4));
     float hmax = max(max(h1, h2), max(h3, h4));
     _PatchMinMaxHeightTex[input.dispatchThreadID.xy].rgba = float4(hmin, hmax, 0, 1);
 }
+
+// [numthreads(8,8,1)]
+// void PatchMinMaxHeight (uint3 id : SV_DispatchThreadID)
+// {
+//
+//     float h1 = _HeightMap[id.xy].r;
+//     float h2 = _HeightMap[id.xy + uint2(1,0)].r;
+//     float h3 = _HeightMap[id.xy + uint2(0,1)].r;
+//     float h4 = _HeightMap[id.xy + uint2(1,1)].r;
+//
+//     float hmin = min(min(h1,h2),min(h3,h4));
+//     float hmax = max(max(h1,h2),max(h3,h4));
+//     _PatchMinMaxHeightTex[id.xy].rgba = float4(hmin,hmax,0,1);
+// }
 
 
 [numthreads(5, 5, 1)]

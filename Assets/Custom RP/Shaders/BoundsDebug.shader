@@ -12,9 +12,11 @@
         #include "../ShaderLibrary/TerrainInput.hlsl"
         ENDHLSL
 
+        Blend One OneMinusSrcAlpha
+
         Tags
         {
-            "RenderType"="Opaque"
+            "RenderType" = "Opaque"
             "LightMode" = "CustomLit"
         }
         
@@ -26,7 +28,7 @@
             #pragma vertex vert
             #pragma fragment frag
             #pragma multi_compile_instancing
-            #pragma shader_feature ENABLE_MIP_DEBUG
+            #pragma shader_feature _ENABLE_MIP_DEBUG
 
             #include "../ShaderLibrary/BoundsDebug.hlsl"
             ENDHLSL
