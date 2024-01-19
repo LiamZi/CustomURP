@@ -36,6 +36,7 @@ namespace CustomURP
                     _cmd.Execute();
                 }
                 _cmd.Context.DrawGizmos(_camera._camera, GizmoSubset.PostImageEffects);
+                _cmd.Execute();
             }
         }
 #endif

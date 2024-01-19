@@ -54,7 +54,7 @@ MonoBehaviour:
     _other:
       _atlasSize: 1024
       _filter: 2
-  _postFXSettings: {fileID: 11400000, guid: 153f77e5b46652449af79e489c08f49d, type: 2}
+  _postFXSettings: {fileID: 0}
   _colorLUTResolution: 32
   _cameraRendererShader: {fileID: 4800000, guid: 4011e83c664b3b542998e4d8b98a88e8, type: 3}
   _pipelineShaders:
