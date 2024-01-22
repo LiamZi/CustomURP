@@ -161,7 +161,7 @@ RenderPatch CreatePath(uint3 node, uint2 patchOffset)
     float2 nodePositionWS = GetNodePositionWSV2(node.xy, lod);
     
     uint2 patchLoc = node.xy * PATCH_COUNT_PER_NODE + patchOffset;
-    //经测试，当min和max相差较小时，RG32似乎还是存在精度问题
+    
     float2 minMaxHeight = _MinMaxHeightTexture.mips[lod][patchLoc].rg * _WorldSize.y + float2(-_BoundsHeightRedundance,_BoundsHeightRedundance);
     RenderPatch patch;
     patch.lod = lod;

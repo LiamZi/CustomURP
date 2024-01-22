@@ -140,6 +140,10 @@ Varyings vert(Attribute input, uint instanceID : SV_InstanceID)
     uint4 loadTrans = patch.lodTrans;
     pos.xz *= scale;
     
+#if _ENABLE_PATCH_DEBUG
+    pos.xz *= 0.9;
+#endif
+    
     pos.xz += patch.position;
     
 #if _ENABLE_NODE_DEBUG

@@ -26,21 +26,6 @@ void PatchMinMaxHeight(CSInput input)
     _PatchMinMaxHeightTex[input.dispatchThreadID.xy].rgba = float4(hmin, hmax, 0, 1);
 }
 
-// [numthreads(8,8,1)]
-// void PatchMinMaxHeight (uint3 id : SV_DispatchThreadID)
-// {
-//
-//     float h1 = _HeightMap[id.xy].r;
-//     float h2 = _HeightMap[id.xy + uint2(1,0)].r;
-//     float h3 = _HeightMap[id.xy + uint2(0,1)].r;
-//     float h4 = _HeightMap[id.xy + uint2(1,1)].r;
-//
-//     float hmin = min(min(h1,h2),min(h3,h4));
-//     float hmax = max(max(h1,h2),max(h3,h4));
-//     _PatchMinMaxHeightTex[id.xy].rgba = float4(hmin,hmax,0,1);
-// }
-
-
 [numthreads(5, 5, 1)]
 void PatchMinMaxHeightMapMip(CSInput input)
 {

@@ -25,6 +25,7 @@ namespace CustomURP
             desc.autoGenerateMips = false;
             var rt = RenderTexture.GetTemporary(desc);
             rt.filterMode = FilterMode.Point;
+            // rt.isPowerOfTwo = false;
             rt.Create();
             return rt;
         }
@@ -36,24 +37,16 @@ namespace CustomURP
             groupX = (int)(textureSize / threadX);
             groupY = (int)(textureSize / threadY);
         }
-
-        // void WaitRenderTexture(RenderTexture rt, System.Action<RenderTexture> cb)
-        // {
-        //     var request = AsyncGPUReadback.Request(rt, 0, TextureFormat.RG32, readbackRequest =>
-        //     {
-        //         // cb(rt);
-        //     });
-        //     TerrainEditor.UpdateGpuAsyncRequest(request);
-        // }
         
-        private void WaitRenderTexture(RenderTexture renderTexture,System.Action<RenderTexture> callback){
+        private void WaitRenderTexture(RenderTexture rt, System.Action<RenderTexture> callback)
+        { 
             
-            // GraphicsFormat myGraphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
-            // TextureFormat myTextureFormat = GraphicsFormatUtility.GetTextureFormat(myGraphicsFormat);
-
+            var graphicsFormat = GraphicsFormatUtility.GetGraphicsFormat(rt.format, true);
+            TextureFormat format = GraphicsFormatUtility.GetTextureFormat(graphicsFormat);
             
-            var request = AsyncGPUReadback.Request(renderTexture,0,TextureFormat.RGBAFloat,(res)=>{
-                callback(renderTexture);
+            var request = AsyncGPUReadback.Request(rt, 0, format,(res)=>
+            {
+                callback(rt);
             });
             TerrainEditor.UpdateGpuAsyncRequest(request);    
         }
@@ -162,11 +155,20 @@ namespace CustomURP
         [MenuItem("Terrain/MinMaxHeightMapFromSelectedHeightMap")]
         public static void GenerateMinMaxHeightMapFromSelectedHeightMap()
         {
+      
             if (Selection.activeObject is Texture2D heightmap)
             {
                 var file = AssetDatabase.GetAssetPath(heightmap);
                 new MinMaxHeightMapGeneratorEditor(heightmap).Generate();
             }
+        }
+
+        public static void GenerateMinMaxHeightMapFromSelectedHeightMapTest()
+        {
+            var heightmap = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Resources/Textures/Terrain/HeightMap.png");
+            if (heightmap == null) return;
+            
+            new MinMaxHeightMapGeneratorEditor(heightmap).Generate();
         }
     };
 };

@@ -85,18 +85,6 @@ namespace CustomURP
 
         Material EnsureMaterial()
         {
-            // if (_terrainMaterial)  return _terrainMaterial;
-            //
-            // _terrainMaterial = new Material(Shader.Find("Custom RP/GPUTerrain"));
-            // _terrainMaterial.SetTexture(ShaderParams._heightTexId, _asset.HeightMap);
-            // _terrainMaterial.SetTexture(ShaderParams._normalTexId, _asset.NormalMap);
-            // _terrainMaterial.SetTexture(ShaderParams._MainTex, _asset.NormalMap);
-            // _terrainMaterial.SetBuffer(ShaderParams._patchListId, _traverse.CulledPatchBuffer);
-            //
-            // UpdateTerrainMaterialProeprties();
-            //
-            // return _terrainMaterial;
-            
             if(!_terrainMaterial){
                 var material = new Material(Shader.Find("Custom RP/GPUTerrain"));
                 material.SetTexture(ShaderParams._heightTexId,_asset.HeightMap);
@@ -152,6 +140,11 @@ namespace CustomURP
             
             _terrainMaterial.SetVector(ShaderParams._worldSizeId, _asset.WorldSize);
             _terrainMaterial.SetMatrix(ShaderParams._worldToNormalMapMatrixId, Matrix4x4.Scale(_asset.WorldSize).inverse);
+        }
+
+        void OnValidate()
+        {
+            Apply();
         }
 
         void OnDestroy()
