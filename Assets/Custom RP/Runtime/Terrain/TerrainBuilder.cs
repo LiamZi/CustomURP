@@ -125,7 +125,7 @@ namespace CustomURP
                 nodeIdOffset += (int)(worldLODParams[lod].z * worldLODParams[lod].z);
             }
             
-            _shader.SetInts("NodeIDOffsetOfLOD",nodeIDOffsetLOD);
+            _shader.SetInts("_NodeIDOffsetOfLOD", nodeIDOffsetLOD);
         }
 
         void InitializationLodNodeListData()

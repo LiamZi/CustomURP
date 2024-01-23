@@ -12,6 +12,7 @@ namespace CustomURP
         const int patchMapSize = 1280;
         Texture2D _heightmap;
         string _dir;
+        string _fileName;
 
         public MinMaxHeightMapGeneratorEditor(Texture2D heightmap)
         {
@@ -68,8 +69,9 @@ namespace CustomURP
         {
             var heightMapPath = AssetDatabase.GetAssetPath(_heightmap);
             var dir = System.IO.Path.GetDirectoryName(heightMapPath);
-            var heightMapName = System.IO.Path.GetFileNameWithoutExtension(heightMapPath);
-            _dir = $"{dir}/{heightMapName}";
+            _fileName = System.IO.Path.GetFileNameWithoutExtension(heightMapPath);
+            // _dir = $"{dir}/Bounds{heightMapName}";
+            _dir = $"{dir}/BoundsMaps";
             if (!System.IO.Directory.Exists(_dir))
             {
                 System.IO.Directory.CreateDirectory(_dir);
@@ -78,7 +80,7 @@ namespace CustomURP
 
         string GetMipTexPath(int mipIndex)
         {
-            var path = $"{_dir}/MinMaxHeight_{mipIndex}.png";
+            var path = $"{_dir}/{_fileName}_Bound_{mipIndex}.png";
             return path;
         }
 

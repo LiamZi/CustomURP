@@ -50,10 +50,10 @@ namespace CustomURP
             {
                 if (request.hasError) return;
 
-                var tex = TerrainEditor.ConvertToTexture2D(rt, TextureFormat.RG32);
+                var tex = TerrainEditor.ConvertToTexture2D(rt, TextureFormat.R16);
                 var bytes = tex.EncodeToPNG();
                 var dir = TerrainEditor.GetSelectedDir();
-                System.IO.File.WriteAllBytes($"{dir}/QuadTreeMap_" + mip + ".png", bytes);
+                System.IO.File.WriteAllBytes($"{dir}/QuadTree/QuadTreeMap_" + mip + ".png", bytes);
                 if (mip > 0)
                 {
                     QuadTreeMapMipBuilder(mip - 1, nodeIdOffset + mipTexSize * mipTexSize);

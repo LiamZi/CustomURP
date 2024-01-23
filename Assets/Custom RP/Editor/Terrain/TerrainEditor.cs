@@ -19,6 +19,8 @@ namespace CustomURP
                 if (!System.IO.Directory.Exists(path))
                 {
                     path = System.IO.Path.GetDirectoryName(path);
+                    
+                    
                 }
             }
 

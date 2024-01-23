@@ -17,23 +17,23 @@ MonoBehaviour:
   _maxLodNodeCount: 5
   _worldSize: {x: 10240, y: 2048, z: 10240}
   _virtualMap: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
-  _heightMap: {fileID: 2800000, guid: 4ac67c365e9667d46b1c7d8ebd0548e2, type: 3}
-  _normalMap: {fileID: 2800000, guid: ba0acba11707093418ddbabe9ece8b01, type: 3}
+  _heightMap: {fileID: 2800000, guid: 44fef2ea01e291c4684437650ae3170f, type: 3}
+  _normalMap: {fileID: 2800000, guid: 371057fda14de4742b1706685a64ce8c, type: 3}
   _minMaxHeightMaps:
-  - {fileID: 2800000, guid: 6ffde0403002e4c4bb2bf20bc68d0ed5, type: 3}
-  - {fileID: 2800000, guid: 0f149c8dcca909c42a36cf7c4910525d, type: 3}
-  - {fileID: 2800000, guid: e284480e5c240d34f998b6d8af3be608, type: 3}
-  - {fileID: 2800000, guid: 79b9757cbcbb99347a427a2cc681993b, type: 3}
-  - {fileID: 2800000, guid: 080bcddb05388c64b90e5229a6556c15, type: 3}
-  - {fileID: 2800000, guid: 57d50a650e064934d84ad98bffbf67e8, type: 3}
-  - {fileID: 2800000, guid: 2f88e4f7c40c5c14a9afac9921878784, type: 3}
-  - {fileID: 2800000, guid: 0b133b7d6e5d1d34580609ef04cda93f, type: 3}
-  - {fileID: 2800000, guid: c2544d228ddfd9a46862a14b0c38046f, type: 3}
+  - {fileID: 2800000, guid: 07da6b4ee2321c3428943f1573d566e8, type: 3}
+  - {fileID: 2800000, guid: c37922a24f884c44990701e4acf807b3, type: 3}
+  - {fileID: 2800000, guid: 01edb089181d9e740be7fd98a6f12806, type: 3}
+  - {fileID: 2800000, guid: bdafd7c3e9435c5419a9db2d59b462b5, type: 3}
+  - {fileID: 2800000, guid: fc286bd2691c5634393514ccc6272e5a, type: 3}
+  - {fileID: 2800000, guid: bc5695798eb4097449c4add9e77cca6d, type: 3}
+  - {fileID: 2800000, guid: 86004d205b5727f4ebb66796be156923, type: 3}
+  - {fileID: 2800000, guid: aae5c468711f45a45bb278be27055937, type: 3}
+  - {fileID: 2800000, guid: 87fe7d32b11bb2a40905bf6e183d77a4, type: 3}
   _quadTreeMaps:
-  - {fileID: 2800000, guid: f5090c4acc10dde469d0e96527508e96, type: 3}
-  - {fileID: 2800000, guid: 12c3b7e8fa342e44abe59880e69386ca, type: 3}
-  - {fileID: 2800000, guid: 64cbe50cf404e90439d638f66d94176b, type: 3}
-  - {fileID: 2800000, guid: 7aa6c32ad932cff46bb5e1ba7cc83a6d, type: 3}
-  - {fileID: 2800000, guid: d9bf39e7d2b59bd4a94c55e4c603d4e4, type: 3}
-  - {fileID: 2800000, guid: 3ee9279cb8605f0458a271bcaacd48db, type: 3}
+  - {fileID: 2800000, guid: 9e5743e3783e17f47b702f97e016ed2b, type: 3}
+  - {fileID: 2800000, guid: ba717b632d3dce948a098613438358a4, type: 3}
+  - {fileID: 2800000, guid: 79c0512039782e14d8b10b4191aa711c, type: 3}
+  - {fileID: 2800000, guid: de33c0edc6b465a42b42089f01c8dbdb, type: 3}
+  - {fileID: 2800000, guid: 96ba8045a3c17d84e98e12dacba9ea18, type: 3}
+  - {fileID: 2800000, guid: 8f6ce4133502d9b4b8c84c347e535bcc, type: 3}
   _terrainShader: {fileID: 7200000, guid: cca1c6a6cbeb4b1581f4d836c2508fc0, type: 3}

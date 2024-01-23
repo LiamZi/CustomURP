@@ -14,6 +14,7 @@
 struct NodeDescriptor
 {
     uint branch;
+    
 };
 
 struct RenderPatch

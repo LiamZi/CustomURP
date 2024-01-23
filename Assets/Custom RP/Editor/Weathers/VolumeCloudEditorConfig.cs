@@ -2,6 +2,7 @@
 
 namespace CustomURP
 {
+    [CreateAssetMenu(menuName = "Custom URP/Weathers/VolumeCloudEditorConfig")]
     public class VolumeCloudEditorConfig : ScriptableObject
     {
         public CurlNoiseGenerator _testGenerator;
