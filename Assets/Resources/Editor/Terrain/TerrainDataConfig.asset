@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: New Terrain Data Editor Config
+  m_Name: TerrainDataConfig
   m_EditorClassIdentifier: Assembly-CSharp-Editor:CustomURP:TerrainDataEditorConfig
   _terrainMeshData:
-    _data: {fileID: 0}
+    _terrainData: {fileID: 0}
+  _slices: 0
+  _lodSize: 1

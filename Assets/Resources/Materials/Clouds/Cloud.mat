@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseShapeTex:
-        m_Texture: {fileID: 11700000, guid: c7600588ea6553f4093c26fdea5eb3e9, type: 2}
+        m_Texture: {fileID: 11700000, guid: 5679660dcebcef44fb73132f23e9ad81, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -69,7 +69,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BaseShapeDetailEffect: 0.6
+    - _BaseShapeDetailEffect: 0.592
     - _BaseShapeTexTiling: 1
     - _BlueNoiseEffect: 0.608
     - _BumpScale: 1
@@ -82,7 +82,7 @@ Material:
     - _CumulusFeather: 0.345
     - _Cutoff: 0.5
     - _DarknessThreshold: 0.143
-    - _DensityScale: 0.49
+    - _DensityScale: 0.75
     - _DetailEffect: 0.631
     - _DetailNormalMapScale: 1
     - _DetailShapeTexTiling: 1
@@ -121,7 +121,7 @@ Material:
     - _StratusFeather: 0.336
     - _UVSec: 0
     - _WeatherTexTiling: 1
-    - _WindSpeed: 1
+    - _WindSpeed: 0.27
     - _ZWrite: 1
     m_Colors:
     - _BaseShapeRatio: {r: 0.323, g: 1.63, b: 1, a: 1}
