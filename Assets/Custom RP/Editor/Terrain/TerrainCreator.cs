@@ -306,10 +306,10 @@ namespace CustomURP
 
         void BakeMeshesWithMaterial(List<MeshPrefabBaker> bakers, UnityEngine.Terrain terrain, string[] lodFolder, GameObject[] prefabRoot)
         {
-            var arrAlbetoMats = new Material[2];
+            var arrAlbedoMats = new Material[2];
             var arrNormalMats = new Material[2];
 
-            MaterialUtils.GetBakeMaterials(terrain, arrAlbetoMats, arrNormalMats);
+            MaterialUtils.GetBakeMaterials(terrain, arrAlbedoMats, arrNormalMats);
             var texture = new Texture2D(_bakeTextureSize, _bakeTextureSize, TextureFormat.RGBA32, false);
             RenderTexture rt = RenderTexture.GetTemporary(_bakeTextureSize, _bakeTextureSize);
 
@@ -324,15 +324,15 @@ namespace CustomURP
                     AssetDatabase.Refresh();
                 }
 
-                var albetoPath = string.Format("{0}/Textures/albeto_{1}.png", folder, baker._meshId);
-                SaveBakedTexture(albetoPath, rt, texture, arrAlbetoMats, baker.scaleOffset);
+                var albedoPath = string.Format("{0}/Textures/albedo_{1}.png", folder, baker._meshId);
+                SaveBakedTexture(albedoPath, rt, texture, arrAlbedoMats, baker.scaleOffset);
 
                 var normalPath = string.Format("{0}/Textures/normal_{1}.png", folder, baker._meshId);
                 SaveBakedTexture(normalPath, rt, texture, arrNormalMats, baker.scaleOffset);
                 
                 AssetDatabase.Refresh();
 
-                var albetoTex = AssetDatabase.LoadAssetAtPath<Texture2D>(albetoPath);
+                var albedoTex = AssetDatabase.LoadAssetAtPath<Texture2D>(albedoPath);
                 var normalTex = AssetDatabase.LoadAssetAtPath<Texture2D>(normalPath);
                 if (!AssetDatabase.IsValidFolder(Path.Combine(folder, "Materials")))
                 {
@@ -341,19 +341,68 @@ namespace CustomURP
                 }
 
                 var matPath = string.Format("{0}/Materials/mat_{1}.mat", folder, baker._meshId);
-                SaveBakedTexture();
+                SaveBakedMaterial(matPath, albedoTex, normalTex, new Vector2(baker.scaleOffset.x, baker.scaleOffset.y));
+                AssetDatabase.Refresh();
+
+                if (prefabRoot[baker._lod] == null)
+                {
+                    prefabRoot[baker._lod] = new GameObject(terrain.name);
+                }
+
+                GameObject meshGO = new GameObject(baker._meshId.ToString());
+                var filter = meshGO.AddComponent<MeshFilter>();
+                filter.mesh = baker._mesh;
+                var renderer = meshGO.AddComponent<MeshRenderer>();
+                renderer.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(matPath);
+                meshGO.transform.parent = prefabRoot[baker._lod].transform;
             }
+            
+            RenderTexture.ReleaseTemporary(rt);
+            foreach (var mat in arrAlbedoMats) 
+            {
+                DestroyImmediate(mat);
+            }
+
+            foreach (var mat in arrNormalMats)
+            {
+                DestroyImmediate(mat);
+            }
+            
+            DestroyImmediate(texture);
         }
 
         void SaveBakedTexture(string path, RenderTexture rt, Texture2D texture, Material[] arrMats, Vector4 scaleOffset)
         {
-            
+            for (int i = 0; i < 2; ++i)
+            {
+                Graphics.Blit(null, rt, arrMats[0]);
+                arrMats[0].SetVector("_BakeScaleOffset", scaleOffset);
+                if (arrMats[1] != null)
+                {
+                    Graphics.Blit(null, rt, arrMats[1]);
+                    arrMats[1].SetVector("_BakeScaleOffset", scaleOffset);
+                }
+                RenderTexture previous = RenderTexture.active;
+                RenderTexture.active = rt;
+                texture.ReadPixels(new Rect(Vector2.zero, new Vector2(texture.width, texture.height)), 0, 0);
+                texture.Apply();
+                RenderTexture.active = previous;
+            }
+
+            byte[] tga = texture.EncodeToTGA();
+            File.WriteAllBytes(path, tga);
         }
 
-        void SaveBakedMaterial(string path, Texture2D albeto, Texture2D normal, Vector2 size)
+        void SaveBakedMaterial(string path, Texture2D albedo, Texture2D normal, Vector2 size)
         {
             var scale = new Vector2(1f / size.x, 1f / size.y);
-            Material mat = new Material(Shader.Find(""))
+            Material mat = new Material(Shader.Find("Custom RP/TerrainVTLit"));
+            mat.SetTexture("_Diffuse", albedo);
+            mat.SetTextureScale("_Diffuse", scale);
+            mat.SetTexture("_Normal", normal);
+            mat.SetTextureScale("_Normal", scale);
+            mat.EnableKeyword("_NORMALMAP");
+            AssetDatabase.CreateAsset(mat, path);
         }
 
     };
