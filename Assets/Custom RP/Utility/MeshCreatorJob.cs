@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -441,12 +442,118 @@ namespace CustomURP
 
         byte GetBorderType(Bounds container, Bounds child)
         {
-            return byte.MaxValue;
+            byte type = Byte.MaxValue;
+            float lBorder = container.center.x - container.extents.x;
+            float rBorder = container.center.x + container.extents.x;
+            float lChildBorder = child.center.x - child.extents.x;
+            float rChildBorder = child.center.x + child.extents.x;
+
+            if (Mathf.Abs(lBorder - lChildBorder) < 0.01f)
+            {
+                type = Tree.LBorder;
+            }
+
+            if (Mathf.Abs(rBorder - rChildBorder) < 0.01f)
+            {
+                type = Tree.RBorder;
+            }
+
+            float bBorder = container.center.z - container.extents.z;
+            float tBorder = container.center.z + container.extents.z;
+            float bChildBorder = child.center.z - child.extents.z;
+            float tChildBorder = child.center.z + child.extents.z;
+
+            if (Mathf.Abs(tBorder - tChildBorder) < 0.01f)
+            {
+                if (type == Tree.LBorder)
+                {
+                    type = Tree.LTCorner;
+                }
+                else if (type == Tree.RBorder)
+                {
+                    type = Tree.RTCorner;
+                }
+                else
+                {
+                    type = Tree.TBorder;
+                }
+            }
+
+            if (Mathf.Abs(bBorder - bChildBorder) < 0.01f)
+            {
+                if (type == Tree.LBorder)
+                {
+                    type = Tree.LBCorner;
+                }
+                else if (type == Tree.RBorder)
+                {
+                    type = Tree.RBCorner;
+                }
+                else
+                {
+                    type = Tree.BBorder;
+                }
+            }
+            
+            return type;
         }
 
         void AddBoundaryFromDetail(Tree container, Tree detail, float minDis)
         {
-            
+            byte type = GetBorderType(container._bounds, detail._bounds);
+            switch (type)
+            {
+                case Tree.LBorder:
+                    container.MergeBoundary(Tree.LBorder, minDis, detail._boundaries[Tree.LTCorner]);
+                    container.MergeBoundary(Tree.LBorder, minDis, detail._boundaries[Tree.LBorder]);
+                    container.MergeBoundary(Tree.LBorder, minDis, detail._boundaries[Tree.LBCorner]);
+                    break;
+                case Tree.LTCorner:
+                    container.MergeBoundary(Tree.TBorder, minDis, detail._boundaries[Tree.TBorder]);
+                    container.MergeBoundary(Tree.TBorder, minDis, detail._boundaries[Tree.RTCorner]);
+                    container.MergeBoundary(Tree.LTCorner, minDis, detail._boundaries[Tree.LTCorner]);
+                    container.MergeBoundary(Tree.LBorder, minDis, detail._boundaries[Tree.LBorder]);
+                    container.MergeBoundary(Tree.LBorder, minDis, detail._boundaries[Tree.LBCorner]);
+                    break;
+                case Tree.LBCorner:
+                    container.MergeBoundary(Tree.BBorder, minDis, detail._boundaries[Tree.BBorder]);
+                    container.MergeBoundary(Tree.BBorder, minDis, detail._boundaries[Tree.RBCorner]);
+                    container.MergeBoundary(Tree.LBCorner, minDis, detail._boundaries[Tree.LBCorner]);
+                    container.MergeBoundary(Tree.LBorder, minDis, detail._boundaries[Tree.LBorder]);
+                    container.MergeBoundary(Tree.LBorder, minDis, detail._boundaries[Tree.LTCorner]);
+                    break;
+                case Tree.BBorder:
+                    container.MergeBoundary(Tree.BBorder, minDis, detail._boundaries[Tree.BBorder]);
+                    container.MergeBoundary(Tree.BBorder, minDis, detail._boundaries[Tree.LBCorner]);
+                    container.MergeBoundary(Tree.BBorder, minDis, detail._boundaries[Tree.RBCorner]);
+                    break;
+                case Tree.RBCorner:
+                    container.MergeBoundary(Tree.BBorder, minDis, detail._boundaries[Tree.BBorder]);
+                    container.MergeBoundary(Tree.BBorder, minDis, detail._boundaries[Tree.LBCorner]);
+                    container.MergeBoundary(Tree.RBCorner, minDis, detail._boundaries[Tree.RBCorner]);
+                    container.MergeBoundary(Tree.RBorder, minDis, detail._boundaries[Tree.RBorder]);
+                    container.MergeBoundary(Tree.RBorder, minDis, detail._boundaries[Tree.RTCorner]);
+                    break;
+                case Tree.RBorder:
+                    container.MergeBoundary(Tree.RBorder, minDis, detail._boundaries[Tree.RTCorner]);
+                    container.MergeBoundary(Tree.RBorder, minDis, detail._boundaries[Tree.RBorder]);
+                    container.MergeBoundary(Tree.RBorder, minDis, detail._boundaries[Tree.RBCorner]);
+                    break;
+                case Tree.RTCorner:
+                    container.MergeBoundary(Tree.TBorder, minDis, detail._boundaries[Tree.TBorder]);
+                    container.MergeBoundary(Tree.TBorder, minDis, detail._boundaries[Tree.LTCorner]);
+                    container.MergeBoundary(Tree.RTCorner, minDis, detail._boundaries[Tree.RTCorner]);
+                    container.MergeBoundary(Tree.RBorder, minDis, detail._boundaries[Tree.RBorder]);
+                    container.MergeBoundary(Tree.RBorder, minDis, detail._boundaries[Tree.RBCorner]);
+                    break;
+                case Tree.TBorder:
+                    container.MergeBoundary(Tree.TBorder, minDis, detail._boundaries[Tree.RTCorner]);
+                    container.MergeBoundary(Tree.TBorder, minDis, detail._boundaries[Tree.TBorder]);
+                    container.MergeBoundary(Tree.TBorder, minDis, detail._boundaries[Tree.LTCorner]);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public bool Done
