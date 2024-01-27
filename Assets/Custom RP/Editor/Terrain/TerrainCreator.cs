@@ -81,7 +81,7 @@ namespace CustomURP
         // SerializedObject _configSO;
         // TerrainDataEditorConfig _terrainDataConfig;
 
-        [MenuItem("SRP Tools/Terrain/TerrainMeshCreator")]
+        [MenuItem("SRP Tools/Terrain/TerrainMeshExport")]
         static void Init()
         {
             TerrainCreator window = (TerrainCreator)EditorWindow.GetWindow(typeof(TerrainCreator));

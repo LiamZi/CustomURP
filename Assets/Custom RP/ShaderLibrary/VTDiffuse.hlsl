@@ -1,0 +1,6 @@
+#ifndef __SHADER_LIBRARY_VT_DIFFUSE_HLSL__
+#define __SHADER_LIBRARY_VT_DIFFUSE_HLSL__
+
+
+
+#endif
