@@ -301,39 +301,42 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
     {
         base.Dispose(disposing);
 
-        if (_scene != null)
+        if (disposing)
         {
-            _scene.Dispose();
-            // _scene = null;
-        }
+            if (_scene != null)
+            {
+                _scene.Dispose();
+                // _scene = null;
+            }
 
-        if (_actions != null)
-        {
-            _actions.Clear(); 
-            _actions = null;
-        }
+            if (_actions != null)
+            {
+                _actions.Clear(); 
+                _actions = null;
+            }
         
-        if (_delayReleaseRenderTarget != null)
-        {
-            UnsafeList.Free(_delayReleaseRenderTarget);
-            _delayReleaseRenderTarget = null;
-        }
+            if (_delayReleaseRenderTarget != null)
+            {
+                UnsafeList.Free(_delayReleaseRenderTarget);
+                _delayReleaseRenderTarget = null;
+            }
         
-        _asset._loadingThread.Dispose();
+            _asset._loadingThread.Dispose();
 
-        for (var i = 0; i < _asset._availiableActions.Length; ++i)
-        {
-            var action = _asset._availiableActions[i];
-            if (action != null) continue;
-            action.Dispose();
+            for (var i = 0; i < _asset._availiableActions.Length; ++i)
+            {
+                var action = _asset._availiableActions[i];
+                if (action != null) continue;
+                action.Dispose();
+            }
+
+            DisposeForEditor();
+            // _renderer.Dispose();
+            RenderPipelineManager.beginFrameRendering  -= BeginFrameRendering;
+            RenderPipelineManager.beginCameraRendering -= BeginCameraRendering;
+            RenderPipelineManager.endCameraRendering   -= EndCameraRendering;
+            RenderPipelineManager.endFrameRendering    -= EndFrameRendering;
         }
-
-        DisposeForEditor();
-        // _renderer.Dispose();
-        RenderPipelineManager.beginFrameRendering  -= BeginFrameRendering;
-        RenderPipelineManager.beginCameraRendering -= BeginCameraRendering;
-        RenderPipelineManager.endCameraRendering   -= EndCameraRendering;
-        RenderPipelineManager.endFrameRendering    -= EndFrameRendering;
     }
 
     public Scene SceneController

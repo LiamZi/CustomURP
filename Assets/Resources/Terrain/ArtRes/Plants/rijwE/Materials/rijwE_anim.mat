@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: rijwE_anim
-  m_Shader: {fileID: 4800000, guid: cb8e5fe1025919d46930e9de715a10fb, type: 3}
+  m_Shader: {fileID: 4800000, guid: a15cee49566441a89d700e46077c9cf7, type: 3}
   m_ShaderKeywords: INTERACTIVE _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP
     _SHADOWS_SOFT
   m_LightmapFlags: 4
@@ -89,7 +89,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - FORCE_UP_NORMAL: 0
     - INTERACTIVE: 1

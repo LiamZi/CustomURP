@@ -81,7 +81,7 @@ Shader "Custom RP/Lit"
             // #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling
-            #pragma enable_d3d11_debug_symbols
+            // #pragma enable_d3d11_debug_symbols
 
 
             #pragma vertex vert

@@ -84,11 +84,11 @@ Material:
     - _MoonIntensity: 2.01
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ScatteringIntensity: 0.65
+    - _ScatteringIntensity: 0.93333334
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StarIntensity: 0.14999995
+    - _StarIntensity: 0.4333333
     - _SunIntensity: 1
     - _SunSize: 0.03
     - _UVSec: 0
@@ -101,9 +101,9 @@ Material:
     - _MilkyWayColor2: {r: 0.30588236, g: 0.9137255, b: 0.8117647, a: 1}
     - _MoonCol: {r: 1, g: 1, b: 1, a: 1}
     - _MoonColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonDirectionWS: {r: 0.00000007454018, g: 0.52249867, b: 0.8526401, a: 0}
+    - _MoonDirectionWS: {r: 0.000000086943864, g: 0.10452864, b: 0.99452186, a: 0}
     - _SkyTint: {r: 0.20597059, g: 0.4696213, b: 0.764151, a: 1}
     - _SunCol: {r: 0.8113208, g: 0.6581433, b: 0.3564563, a: 1}
     - _SunColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SunDirectionWS: {r: -0.00000007454017, g: -0.5224988, b: -0.85264003, a: 0}
+    - _SunDirectionWS: {r: -0.000000086943864, g: -0.10452849, b: -0.99452186, a: 0}
   m_BuildTextureStacks: []

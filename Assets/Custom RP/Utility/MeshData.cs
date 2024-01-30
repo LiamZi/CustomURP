@@ -10,7 +10,7 @@ namespace CustomURP
             public Vector2[] _uvs;
             public int[] _faces;
             public Vector2 _uvMin;
-            public Vector3 _uvMax;
+            public Vector2 _uvMax;
         }
         
         public int _lodLevel = -1;

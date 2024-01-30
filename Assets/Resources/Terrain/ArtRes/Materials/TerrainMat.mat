@@ -144,7 +144,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
@@ -163,11 +162,19 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _HeightTransition: 0
+    - _LayerHasMask0: 0
+    - _LayerHasMask1: 0
+    - _LayerHasMask2: 0
+    - _LayerHasMask3: 0
     - _Metallic: 0
     - _Metallic0: 0
     - _Metallic1: 0
     - _Metallic2: 0
     - _Metallic3: 0
+    - _NormalScale0: 1
+    - _NormalScale1: 1
+    - _NormalScale2: 1
+    - _NormalScale3: 1
     - _NumLayersCount: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005

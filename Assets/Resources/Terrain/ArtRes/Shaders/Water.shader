@@ -1,4 +1,4 @@
-Shader "Unlit/Water"
+Shader "Custom RP/Water"
 {
     Properties
     {

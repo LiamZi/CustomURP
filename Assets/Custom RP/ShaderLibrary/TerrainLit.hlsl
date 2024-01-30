@@ -49,32 +49,32 @@ struct Varyings
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
-void TerrainInstancing(inout float4 positionOS, inout float3 normal, inout float2 uv)
-{
-    #ifdef UNITY_INSTANCING_ENABLED
-    float2 patchVertex = positionOS.xy;
-    float4 instanceData = UNITY_ACCESS_INSTANCED_PROP(Terrain, _TerrainPatchInstanceData);
-
-    float2 sampleCoords = (patchVertex.xy + instanceData.xy) * instanceData.z; // (xy + float2(xBase,yBase)) * skipScale
-    float height = UnpackHeightmap(_TerrainHeightmapTexture.Load(int3(sampleCoords, 0)));
-
-    positionOS.xz = sampleCoords * _TerrainHeightmapScale.xz;
-    positionOS.y = height * _TerrainHeightmapScale.y;
-
-    #ifdef ENABLE_TERRAIN_PERPIXEL_NORMAL
-    normal = float3(0, 1, 0);
-    #else
-    normal = _TerrainNormalmapTexture.Load(int3(sampleCoords, 0)).rgb * 2 - 1;
-    #endif
-    uv = sampleCoords * _TerrainHeightmapRecipSize.zw;
-    #endif
-}
-
-void TerrainInstancing(inout float4 positionOS, inout float3 normal)
-{
-    float2 uv = { 0, 0 };
-    TerrainInstancing(positionOS, normal, uv);
-}
+// void TerrainInstancing(inout float4 positionOS, inout float3 normal, inout float2 uv)
+// {
+//     #ifdef UNITY_INSTANCING_ENABLED
+//     float2 patchVertex = positionOS.xy;
+//     float4 instanceData = UNITY_ACCESS_INSTANCED_PROP(Terrain, _TerrainPatchInstanceData);
+//
+//     float2 sampleCoords = (patchVertex.xy + instanceData.xy) * instanceData.z; // (xy + float2(xBase,yBase)) * skipScale
+//     float height = UnpackHeightmap(_TerrainHeightmapTexture.Load(int3(sampleCoords, 0)));
+//
+//     positionOS.xz = sampleCoords * _TerrainHeightmapScale.xz;
+//     positionOS.y = height * _TerrainHeightmapScale.y;
+//
+//     #ifdef ENABLE_TERRAIN_PERPIXEL_NORMAL
+//     normal = float3(0, 1, 0);
+//     #else
+//     normal = _TerrainNormalmapTexture.Load(int3(sampleCoords, 0)).rgb * 2 - 1;
+//     #endif
+//     uv = sampleCoords * _TerrainHeightmapRecipSize.zw;
+//     #endif
+// }
+//
+// void TerrainInstancing(inout float4 positionOS, inout float3 normal)
+// {
+//     float2 uv = { 0, 0 };
+//     TerrainInstancing(positionOS, normal, uv);
+// }
 
 
 Varyings vert(Attributes input)
@@ -82,7 +82,7 @@ Varyings vert(Attributes input)
     Varyings o;
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(input);
-    TerrainInstancing(input.positionOS, input.normalOS, input.texcoord);
+    // TerrainInstancing(input.positionOS, input.normalOS, input.texcoord);
 
     o.positionWS = TransformObjectToWorld(input.positionOS.xyz);
     o.positionCS = TransformWorldToHClip(o.positionWS);
@@ -133,7 +133,50 @@ void ComputeMasks(out half4 masks[4], half4 hasMask, Varyings input)
 
 void SplatmapMix(float4 uvMainAndLM, float4 uvSplat01, float4 uvSplat23, inout half4 splatControl, out half weight, out half4 mixedDiffuse, out half4 defaultSmoothness, inout half3 mixedNormal)
 {
+    half4 diffuseAlbedo[4];
+
+    diffuseAlbedo[0] = SAMPLE_TEXTURE2D(_Splat0, sampler_Splat0, uvSplat01.xy);
+    diffuseAlbedo[1] = SAMPLE_TEXTURE2D(_Splat1, sampler_Splat0, uvSplat01.zw);
+    diffuseAlbedo[2] = SAMPLE_TEXTURE2D(_Splat2, sampler_Splat0, uvSplat23.xy);
+    diffuseAlbedo[3] = SAMPLE_TEXTURE2D(_Splat3, sampler_Splat0, uvSplat23.zw);
+
+    defaultSmoothness = half4(diffuseAlbedo[0].a, diffuseAlbedo[1].a, diffuseAlbedo[2].a, diffuseAlbedo[3].a);
+    defaultSmoothness = half4(_Smoothness0, _Smoothness1, _Smoothness2, _Smoothness3);
+
+    weight = dot(splatControl, 1.0h);
     
+#if TERRAIN_SPLAT_ADDPASS
+    clip(weight <= 0.005h ? -1.0h : 1.0h);
+#endif
+
+#ifndef _TERRAIN_BASEMAP_GEN
+    splatControl /= (weight + HALF_MIN);
+#endif
+
+    mixedDiffuse = 0.0h;
+    mixedDiffuse += diffuseAlbedo[0] * half4(splatControl.rrr, 1.0h);
+    mixedDiffuse += diffuseAlbedo[1] * half4(splatControl.ggg, 1.0h);
+    mixedDiffuse += diffuseAlbedo[2] * half4(splatControl.bbb, 1.0h);
+    mixedDiffuse += diffuseAlbedo[3] * half4(splatControl.aaa, 1.0h);
+    
+#ifdef _NORMALMAP
+    half3 nrm = 0.0f;
+    nrm += splatControl.r * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal0, sampler_Normal0, uvSplat01.xy), _NormalScale0);
+    nrm += splatControl.g * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal1, sampler_Normal0, uvSplat01.zw), _NormalScale1);
+    nrm += splatControl.b * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal2, sampler_Normal0, uvSplat23.xy), _NormalScale2);
+    nrm += splatControl.a * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal3, sampler_Normal0, uvSplat23.zw), _NormalScale3);
+
+#if HAS_HALF
+    nrm.z += 0.01h;
+#else
+    nrm.z += 1e-5f;
+#endif
+
+    mixedNormal = normalize(nrm.xyz);
+
+#endif
+
+
 }
 
 half4 frag(Varyings input) : SV_TARGET
@@ -169,7 +212,7 @@ half4 frag(Varyings input) : SV_TARGET
     half alpha = weight;
     
     
-    return half4(1.0, 0.0, 0.0, 1.0);
+    return mixedDiffuse * alpha;
 }
 
 #endif

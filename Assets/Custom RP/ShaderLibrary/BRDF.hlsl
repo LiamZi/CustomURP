@@ -24,6 +24,8 @@ BRDF GetBRDF(Surface surface, bool applyAlphaToDiffuse = false)
     BRDF brdf;
     float oneMinusReflectivity = OneMinusReflectivity(surface.metallic);
     brdf.diffuse = surface.color * oneMinusReflectivity;
+
+    UNITY_BRANCH
     if(applyAlphaToDiffuse) 
     {
         brdf.diffuse *= surface.alpha;

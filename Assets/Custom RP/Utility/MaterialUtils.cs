@@ -223,5 +223,107 @@ namespace CustomURP
             return null;
 #endif
         }
+        
+        public static void SaveVTMaterials(string path, string dataName, UnityEngine.Terrain t,
+            List<string> albetoPath, List<string> bumpPath)
+        {
+#if UNITY_EDITOR
+            if (t.terrainData == null)
+            {
+                Debug.LogError("terrain data doesn't exist");
+                return;
+            }
+            int matCount = t.terrainData.alphamapTextureCount;
+            if (matCount <= 0)
+                return;
+            //base pass
+            SaveVTMaterail(path, dataName, t, 0, 0, "", albetoPath, bumpPath);
+            for (int i = 1; i < matCount; ++i)
+            {
+                SaveVTMaterail(path, dataName, t, i, i * 4, "Add", albetoPath, bumpPath);
+            }
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+#endif
+        }
+        
+          private static void SaveVTMaterail(string path, string dataName, UnityEngine.Terrain t, int matIdx, int layerStart, string shaderPostfix,
+            List<string> albetoPath, List<string> bumpPath)
+        {
+#if UNITY_EDITOR
+            Texture2D alphaMap = ExportAlphaMap(path, dataName, t, matIdx);
+            if (alphaMap == null)
+                return;
+            //
+            string mathPath = string.Format("{0}/VTDiffuse_{1}.mat", path, matIdx);
+            Material mat = AssetDatabase.LoadAssetAtPath<Material>(mathPath);
+            if (mat != null)
+                AssetDatabase.DeleteAsset(mathPath);
+            Material tMat = new Material(Shader.Find("MT/VTDiffuse" + shaderPostfix));
+            tMat.SetTexture("_Control", alphaMap);
+            if (tMat == null)
+            {
+                Debug.LogError("export terrain vt diffuse material failed");
+                return;
+            }
+            string bumpMatPath = string.Format("{0}/VTBump_{1}.mat", path, matIdx);
+            Material bmat = AssetDatabase.LoadAssetAtPath<Material>(bumpMatPath);
+            if (bmat != null)
+                AssetDatabase.DeleteAsset(bumpMatPath);
+            Material bumpmat = new Material(Shader.Find("MT/VTBump" + shaderPostfix));
+            bumpmat.SetTexture("_Control", alphaMap);
+            if (bumpmat == null)
+            {
+                Debug.LogError("export terrain vt bump material failed");
+                return;
+            }
+            for (int l = layerStart; l < layerStart + 4 && l < t.terrainData.terrainLayers.Length; ++l)
+            {
+                int idx = l - layerStart;
+                TerrainLayer layer = t.terrainData.terrainLayers[l];
+                Vector2 tiling = new Vector2(t.terrainData.size.x / layer.tileSize.x,
+                    t.terrainData.size.z / layer.tileSize.y);
+                tMat.SetTexture(string.Format("_Splat{0}", idx), layer.diffuseTexture);
+                tMat.SetTextureOffset(string.Format("_Splat{0}", idx), layer.tileOffset);
+                tMat.SetTextureScale(string.Format("_Splat{0}", idx), tiling);
+                var diffuseRemapScale = layer.diffuseRemapMax - layer.diffuseRemapMin;
+                if (diffuseRemapScale.magnitude > 0)
+                    tMat.SetColor(string.Format("_DiffuseRemapScale{0}", idx), diffuseRemapScale);
+                else
+                    tMat.SetColor(string.Format("_DiffuseRemapScale{0}", idx), Color.white);
+                if (layer.maskMapTexture != null)
+                {
+                    tMat.SetFloat(string.Format("_HasMask{0}", idx), 1f);
+                    tMat.SetTexture(string.Format("_Mask{0}", idx), layer.maskMapTexture);
+                }
+                else
+                {
+                    tMat.SetFloat(string.Format("_HasMask{0}", idx), 0f);
+                }
+                tMat.SetFloat(string.Format("_Smoothness{0}", idx), layer.smoothness);
+
+                bumpmat.SetTexture(string.Format("_Normal{0}", idx), layer.normalMapTexture);
+                bumpmat.SetFloat(string.Format("_NormalScale{0}", idx), layer.normalScale);
+                bumpmat.SetTextureOffset(string.Format("_Normal{0}", idx), layer.tileOffset);
+                bumpmat.SetTextureScale(string.Format("_Normal{0}", idx), tiling);
+                if (layer.maskMapTexture != null)
+                {
+                    bumpmat.SetFloat(string.Format("_HasMask{0}", idx), 1f);
+                    bumpmat.SetTexture(string.Format("_Mask{0}", idx), layer.maskMapTexture);
+                }
+                else
+                {
+                    bumpmat.SetFloat(string.Format("_HasMask{0}", idx), 0f);
+                }
+                bumpmat.SetFloat(string.Format("_Metallic{0}", idx), layer.metallic);
+            }
+            AssetDatabase.CreateAsset(tMat, mathPath);
+            if (albetoPath != null)
+                albetoPath.Add(mathPath);
+            AssetDatabase.CreateAsset(bumpmat, bumpMatPath);
+            if (bumpPath != null)
+                bumpPath.Add(bumpMatPath);
+#endif
+        }
     };
 };
