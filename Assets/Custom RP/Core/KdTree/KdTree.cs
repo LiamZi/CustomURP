@@ -31,10 +31,10 @@ namespace KdTree
         KdTreeNode<Key, Value> _root = null;
         
         
-        public KdTree(int _dimensions, ITypeMath<Key> _typeMath)
+        public KdTree(int dimensions, ITypeMath<Key> typeMath)
         {
-            _dimensions = _dimensions;
-            _typeMath = _typeMath;
+            this._dimensions = dimensions;
+            this._typeMath = typeMath;
             Count = 0;
         }
         

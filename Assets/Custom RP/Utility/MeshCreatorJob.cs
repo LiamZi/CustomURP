@@ -418,7 +418,7 @@ namespace CustomURP
         public void End()
         {
             _lods[0].FillData();
-            for (int i = 0; i < _lods.Length; ++i)
+            for (int i = 1; i < _lods.Length; ++i)
             {
                 TerrainScanner detail = _lods[i - 1];
                 TerrainScanner scaner = _lods[i];

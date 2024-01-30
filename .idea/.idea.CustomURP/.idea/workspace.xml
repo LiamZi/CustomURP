@@ -5,50 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/DataStructure.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/DataStructure.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Serialize.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Serialize/LodPolicy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Serialize/LodPolicy.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Serialize/TData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/Serialize/TData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/WavingGrassInput.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/WavingGrassInput.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/WavingGrassLighting.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/WavingGrassLighting.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/WavingGrass.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/WavingGrass.shader.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/QuadTree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/QuadTree.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BRDF.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BRDF.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Lighting.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Lighting.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/TerrainLit.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/TerrainLit.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/Lit.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/Lit.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/MeshData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/MeshData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Materials/TerrainMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Materials/TerrainMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/aquatic_floating_01/Materials/aquatic_floating_01.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/aquatic_floating_01/Materials/aquatic_floating_01.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/aquatic_floating_01/Materials/aquatic_floating_01_anim.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/aquatic_floating_01/Materials/aquatic_floating_01_anim.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/aquatic_floating_01/Materials/aquatic_floating_01_billboard.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/aquatic_floating_01/Materials/aquatic_floating_01_billboard.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/rijwE/Materials/rijwE.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/rijwE/Materials/rijwE.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/rijwE/Materials/rijwE_anim.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/rijwE/Materials/rijwE_anim.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/rijwE/Materials/rijwE_billboard.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/rijwE/Materials/rijwE_billboard.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/tkxgeieia/Materials/tkxgeieia.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/tkxgeieia/Materials/tkxgeieia.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/tkxgeieia/Materials/tkxgeieia_anim.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/tkxgeieia/Materials/tkxgeieia_anim.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/tkxgeieia/Materials/tkxgeieia_billboard.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Plants/tkxgeieia/Materials/tkxgeieia_billboard.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/RobotSphere/Assets/Models/Materials/eye_matAi.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/RobotSphere/Assets/Models/Materials/eye_matAi.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Shaders/Water.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Shaders/Water.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Terrains/heightfield_0.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Terrains/heightfield_0.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Terrains/heightfield_0/TerrainData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Terrains/heightfield_0/TerrainData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Terrains/heightfield_1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Terrains/heightfield_1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Terrains/heightfield_1/TerrainData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/Terrains/heightfield_1/TerrainData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TerrainDemo/TerrainDemo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainDemo/TerrainDemo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Core/KdTree/KdTree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Core/KdTree/KdTree.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/MeshCreatorJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/MeshCreatorJob.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +18,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/HLSLSupport.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityCG.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityInstancing.cginc" root0="SKIP_HIGHLIGHTING" />
@@ -70,6 +33,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1e13855442cf491a8b11d7de866cc01629fa00/81/90a12ffd/Socket.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/03/fb0cca9e/WaitHandle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/23/8de67bfc/IEnumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/25/9101d271/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/31/a8cab7d5/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/40/b989c220/ThreadHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/6c/e3368a02/Byte.cs" root0="SKIP_HIGHLIGHTING" />
@@ -428,7 +392,7 @@
       <workItem from="1706324854351" duration="1576000" />
       <workItem from="1706343538381" duration="7295000" />
       <workItem from="1706498296290" duration="1215000" />
-      <workItem from="1706499920828" duration="27453000" />
+      <workItem from="1706499920828" duration="31001000" />
     </task>
     <servers />
   </component>
@@ -687,6 +651,71 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/KdTree/KdTree.cs</url>
+          <line>212</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\KdTree\KdTree.cs" initialLine="212" containingFunctionPresentation="方法 'GetNearestNeighbours'">
+            <startOffsets>
+              <option value="6487" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6570" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="211" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Utility/Tree.cs</url>
+          <line>302</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Utility\Tree.cs" initialLine="302" containingFunctionPresentation="方法 'MergeBoundary'">
+            <startOffsets>
+              <option value="10561" />
+            </startOffsets>
+            <endOffsets>
+              <option value="10594" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/KdTree/KdTree.cs</url>
+          <line>195</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\KdTree\KdTree.cs" initialLine="195" containingFunctionPresentation="方法 'GetNearestNeighbours'">
+            <startOffsets>
+              <option value="5950" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5968" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="213" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/KdTree/KdTree.cs</url>
+          <line>269</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\KdTree\KdTree.cs" initialLine="269" containingFunctionPresentation="方法 'AddNearestNeighbours'">
+            <startOffsets>
+              <option value="8582" />
+            </startOffsets>
+            <endOffsets>
+              <option value="8599" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/KdTree/KdTree.cs</url>
+          <line>35</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\KdTree\KdTree.cs" initialLine="35" containingFunctionPresentation="构造函数 'KdTree'">
+            <startOffsets>
+              <option value="783" />
+            </startOffsets>
+            <endOffsets>
+              <option value="808" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="216" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
