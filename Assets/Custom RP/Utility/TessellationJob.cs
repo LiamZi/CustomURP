@@ -17,12 +17,7 @@ namespace CustomURP
             MinTriArea = minTriangleArea;
             _mesh = new MeshData[scanner[0]._trees.Length];
         }
-
-        // public TessellationJob(Terrain terrain, Bounds volume, int sub, float angleError, int maxX, int maxZ, bool sbrd)
-        // {
-        // }
-
-
+        
         public virtual void Tick()
         {
             if (Done)

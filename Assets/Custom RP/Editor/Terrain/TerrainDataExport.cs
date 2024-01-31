@@ -35,7 +35,7 @@ namespace CustomURP
             }
         }
         
-        [MenuItem("SRP Tools/Terrain/TerrainDatExport")]
+        [MenuItem("SRP Tools/Terrain/TerrainDataExport")]
         static void Init()
         {
             var window = (TerrainDataExport)EditorWindow.GetWindow(typeof(TerrainDataExport));
@@ -132,7 +132,7 @@ namespace CustomURP
                     if(_tessellationJob.Done) break;
                 }
 
-                var treeRoot = new QuadTreeBuildNode(_quadTreeDepht, bounds.min, bounds.min, Vector2.zero, Vector2.one);
+                var treeRoot = new QuadTreeBuildNode(_quadTreeDepht, bounds.min, bounds.max, Vector2.zero, Vector2.one);
 
                 var folder0 = AssetDatabase.CreateFolder("Assets", string.Format("{0}", _terrain.name));
                 folder0 = AssetDatabase.GUIDToAssetPath(folder0);
@@ -169,7 +169,7 @@ namespace CustomURP
                         {
                             if (stream.Length > 0)
                             {
-                                File.WriteAllBytes(string.Format("{0}/{1}/{2}.bytes", meshFullPath, _terrain.name, startMeshId), stream.ToArray());
+                                File.WriteAllBytes(string.Format("{0}/{1}_{2}.bytes", meshFullPath, _terrain.name, startMeshId), stream.ToArray());
                                 stream.Close();
                                 startMeshId = data._meshId;
                                 stream = new MemoryStream();
@@ -192,7 +192,7 @@ namespace CustomURP
 
                     if (stream.Length > 0 && startMeshId >= 0)
                     {
-                        File.WriteAllBytes(string.Format("{0}/{1}/{2}.bytes", meshFullPath, _terrain.name, startMeshId), stream.ToArray());
+                        File.WriteAllBytes(string.Format("{0}/{1}_{2}.bytes", meshFullPath, _terrain.name, startMeshId), stream.ToArray());
                         stream.Close();
                     }
 
@@ -238,7 +238,7 @@ namespace CustomURP
                     dataHeader._bakeNormalMats[p] = AssetDatabase.LoadAssetAtPath(bakeBumpMats[p], typeof(Material)) as Material;
                 }
                 
-                Material bakedMat = new Material(Shader.Find("MT/TerrainVTLit"));
+                Material bakedMat = new Material(Shader.Find("Custom RP/TerrainVTLit"));
                 bakedMat.EnableKeyword("_NORMALMAP");
                 var bakedMatPath = string.Format("{0}/BakedMat.mat", folder0);
                 AssetDatabase.CreateAsset(bakedMat, bakedMatPath);

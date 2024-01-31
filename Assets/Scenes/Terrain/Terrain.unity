@@ -507,12 +507,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _asset: {fileID: 11400000, guid: 28979d96a7eeaa84ab9866d6217b92cf, type: 2}
-  _isFrustumCullEnabled: 0
+  _isFrustumCullEnabled: 1
   _isHizOcclusionCullingEnabled: 0
   _hizDepthBias: 0.2
   _boundsHeightRedundance: 4
   _distanceEvaluation: 1.2
-  _seamLess: 0
+  _seamLess: 1
   _patchDebug: 0
   _nodeDebug: 0
   _mipDebug: 0

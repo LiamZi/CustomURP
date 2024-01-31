@@ -253,8 +253,11 @@ namespace CustomURP
         public Vector2 _uvMin = Vector2.zero;
         public Vector2 _uvMax = Vector2.one;
         
+        // public Dictionary<byte, List<VertexData>> _boundaries = new Dictionary<byte, List<VertexData>>();
         public Dictionary<byte, List<VertexData>> _boundaries = new Dictionary<byte, List<VertexData>>();
-        public Dictionary<byte, KdTree<float, int>> _boundaryKDTree = new Dictionary<byte, KdTree<float, int>>();
+        // public Dictionary<byte, KdTree<float, int>> _boundaryKDTree = new Dictionary<byte, KdTree<float, int>>();
+        Dictionary<byte, KdTree<float, int>> _boundaryKDTree = new Dictionary<byte, KdTree<float, int>>();
+
         public List<VertexData> _vertices = new List<VertexData>();
         public HashSet<byte> _stitchedBorders = new HashSet<byte>();
         public Vector3 _center { get { return _node._pos; } }
@@ -295,7 +298,7 @@ namespace CustomURP
 
         public void MergeBoundary(byte flag, float minDis, List<VertexData> src)
         {
-            if (_boundaries.ContainsKey(flag) || !_boundaryKDTree.ContainsKey(flag))
+            if (!_boundaries.ContainsKey(flag) || !_boundaryKDTree.ContainsKey(flag))
             {
                 Debug.LogError("The boundary need to merge not exists.");
             }

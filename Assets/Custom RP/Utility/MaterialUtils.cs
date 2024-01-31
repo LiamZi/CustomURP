@@ -259,7 +259,7 @@ namespace CustomURP
             Material mat = AssetDatabase.LoadAssetAtPath<Material>(mathPath);
             if (mat != null)
                 AssetDatabase.DeleteAsset(mathPath);
-            Material tMat = new Material(Shader.Find("MT/VTDiffuse" + shaderPostfix));
+            Material tMat = new Material(Shader.Find("Custom RP/VTDiffuse" + shaderPostfix));
             tMat.SetTexture("_Control", alphaMap);
             if (tMat == null)
             {
@@ -270,7 +270,7 @@ namespace CustomURP
             Material bmat = AssetDatabase.LoadAssetAtPath<Material>(bumpMatPath);
             if (bmat != null)
                 AssetDatabase.DeleteAsset(bumpMatPath);
-            Material bumpmat = new Material(Shader.Find("MT/VTBump" + shaderPostfix));
+            Material bumpmat = new Material(Shader.Find("Custom RP/VTBump" + shaderPostfix));
             bumpmat.SetTexture("_Control", alphaMap);
             if (bumpmat == null)
             {

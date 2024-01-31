@@ -101,10 +101,14 @@ half4 frag(VertexOutput input) : SV_Target
     
     float star = SAMPLE_TEXTURE2D(_StarTex, sampler_StarTex, sphereUV).r;
     star = saturate(star * star * star * 3) * _StarIntensity;
-    
+
+#if defined(_ENABLED_MOON)    
     half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(normalizePosWS, -_MoonDirectionWS.xyz));
     half4 moonScattering = smoothstep(0.97, 1.3, dot(normalizePosWS, -_MoonDirectionWS.xyz));
     moon = (moon * _MoonIntensity + moonScattering * 0.8) * _MoonCol;
+#else
+    half4 moon = half4(0.0, 0.0, 0.0, 0.0);
+#endif
 
     half4 milkyWayTex = SAMPLE_TEXTURE2D(_MilkyWayTex, sampler_MilkyWayTex, (input.milkyWayPos.xy + 0.5));
     half milkyWay = smoothstep(0, 0.7, milkyWayTex.r);

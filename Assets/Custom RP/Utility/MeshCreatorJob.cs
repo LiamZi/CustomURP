@@ -45,7 +45,7 @@ namespace CustomURP
             _stitchBorder = sbrd;
             _gridSize = new Vector2(bounds.size.x / maxX, bounds.size.z / maxZ);
 
-            _checkStart = new Vector3(bounds.center.x - bounds.center.x / 2, 
+            _checkStart = new Vector3(bounds.center.x - bounds.size.x / 2, 
                                     bounds.center.y + bounds.size.y / 2, 
                                     bounds.center.z - bounds.size.z / 2);
 
