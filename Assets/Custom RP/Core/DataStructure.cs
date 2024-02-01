@@ -26,7 +26,7 @@ namespace Core
         {
             if (_data == null || Length >= _data.Length)
             {
-                Debug.LogError("MTArray overflow : " + typeof(T));
+                Debug.LogError("Array overflow : " + typeof(T));
             }
             _data[Length] = item;
             ++Length;
