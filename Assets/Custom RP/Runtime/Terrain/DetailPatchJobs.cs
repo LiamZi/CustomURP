@@ -5,6 +5,7 @@ using UnityEngine.Jobs;
 using Unity.Collections;
 using Unity.Burst;
 using Unity.Jobs;
+using Unity.Jobs.LowLevel.Unsafe;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -530,10 +531,18 @@ namespace CustomURP
     
     internal class DetailPatchLayerJob : DetailPatchLayer
     {
+        enum JobState
+        {
+            Wait,
+            Running,
+            Done,
+        };
+        
         static int _jobRunningCount = 0;
         const int _maxConcurrentJobCount = 4;
         private DetailLayerCreateJob _job;
         private JobHandle _createJob;
+        JobState _state = JobState.Wait;
         
         public DetailPatchLayerJob(DetailLayerData data, DetailLayerCreateJob j, bool receiveShadow) 
             : base(data, receiveShadow)
@@ -543,7 +552,10 @@ namespace CustomURP
         
         public override bool _isSpawnDone
         {
-            get;
+            get
+            {
+                return _state == JobState.Done;
+            }
         }
         public override void TickBuild()
         {
