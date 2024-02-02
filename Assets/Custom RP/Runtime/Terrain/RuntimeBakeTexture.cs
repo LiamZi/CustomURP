@@ -108,7 +108,7 @@ namespace CustomURP
 
             for (int i = 0; i < _layers.Length; ++i)
             {
-                _cmd.Cmd.DrawMesh(_fullScreenMesh, Matrix4x4.identity, _layers[i]);
+                _cmd.Cmd.DrawMesh(FullScreenMesh, Matrix4x4.identity, _layers[i]);
             }
             Graphics.ExecuteCommandBuffer(_cmd.Cmd);
         }
