@@ -65,13 +65,23 @@ namespace CustomURP
             
             Setup(camera);
             
-            var terrainGo = GameObject.Find("Terrain");
+            // var terrainGo = GameObject.Find("Terrain");
+            // if (terrainGo)
+            // {
+            //     var terrain = terrainGo.GetComponent<Terrain>();
+            //     if (terrain)
+            //     {
+            //         terrain.Tick(ref _cmd, _camera);
+            //     }
+            // }
+
+            var terrainGo = GameObject.Find("heightfield_0");
             if (terrainGo)
             {
-                var terrain = terrainGo.GetComponent<Terrain>();
-                if (terrain)
+                var loader = terrainGo.GetComponent<TLoader>();
+                if (loader)
                 {
-                    terrain.Tick(ref _cmd, _camera);
+                    loader.Tick(camera, ref _cmd);
                 }
             }
             

@@ -5,195 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/HeightMap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/HeightMap.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/MeshDataLoader.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/MeshDataLoader.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TDetailRenderer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TDetailRenderer.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/VTCreator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/VTCreator.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_0.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_0.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1024.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1024.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1088.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1088.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1152.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1152.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1216.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1216.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_128.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_128.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1280.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1280.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1344.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1344.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1408.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1408.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1472.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1472.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1536.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1536.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1600.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1600.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1664.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1664.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1728.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1728.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1792.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1792.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1856.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1856.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_192.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_192.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1920.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1920.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1984.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_1984.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2048.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2048.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2112.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2112.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2176.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2176.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2240.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2240.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2304.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2304.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2368.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2368.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2432.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2432.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2496.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2496.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_256.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_256.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2560.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2560.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2624.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2624.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2688.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2688.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2752.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2752.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2816.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2816.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2880.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2880.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2944.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_2944.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3008.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3008.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3072.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3072.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3136.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3136.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_320.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_320.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3200.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3200.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3264.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3264.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3328.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3328.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3392.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3392.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3456.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3456.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3520.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3520.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3584.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3584.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3648.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3648.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3712.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3712.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3776.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3776.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_384.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_384.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3840.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3840.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3904.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3904.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3968.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_3968.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4032.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4032.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4096.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4096.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4160.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4160.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4224.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4224.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4288.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4288.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4352.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_4352.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_448.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_448.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_512.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_512.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_576.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_576.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_64.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_64.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_640.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_640.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_704.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_704.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_768.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_768.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_832.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_832.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_896.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_896.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_960.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MeshData/heightfield_0_960.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/BakedMat.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/BakedMat.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_0.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_0.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_1.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_1.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_0.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_0.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_1.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_1.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/details.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/details.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightMap.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightMap.bytes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_0.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_0.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_1.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_1.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_alpha0.tga" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_alpha0.tga.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_alpha1.tga" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_alpha1.tga.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/treeData.bytes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/treeData.bytes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/WaterHeight.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/WaterHeight.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/LodPolicy.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/heightfield_0/LodPolicy.asset.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainMeshData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/TerrainMeshData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainMeshData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/TerrainMeshData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/MeshCreatorJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/MeshCreatorJob.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/TessellationJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/TessellationJob.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/Tree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/Tree.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MeshData.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MeshData.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/DetailPatchJobs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/DetailPatchJobs.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TDetailRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/DetailRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TDetailRenderer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/DetailRenderer.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/VTCreator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/VTCreator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,6 +27,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -236,6 +61,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/af/840997c7/UIntPtr.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/f2/c3f17cb6/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/f4/ca970657/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/11/c16dc526/GeometryUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/18/06e59370/Texture2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/1c/0a492d8d/CullingResults.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/1d/36086bcf/LightBakingOutput.cs" root0="SKIP_HIGHLIGHTING" />
@@ -587,7 +413,7 @@
       <workItem from="1706324854351" duration="1576000" />
       <workItem from="1706343538381" duration="7295000" />
       <workItem from="1706498296290" duration="1215000" />
-      <workItem from="1706499920828" duration="47539000" />
+      <workItem from="1706499920828" duration="81923000" />
     </task>
     <servers />
   </component>
@@ -976,6 +802,71 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="227" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs</url>
+          <line>159</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TLoader.cs" initialLine="159" containingFunctionPresentation="方法 'Awake'">
+            <startOffsets>
+              <option value="4831" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4880" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="230" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/DetailRenderer.cs</url>
+          <line>526</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\DetailRenderer.cs" initialLine="526" containingFunctionPresentation="方法 'ActivePatch'">
+            <startOffsets>
+              <option value="16670" />
+            </startOffsets>
+            <endOffsets>
+              <option value="16695" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="235" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs</url>
+          <line>177</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TLoader.cs" initialLine="177" containingFunctionPresentation="方法 'Tick'">
+            <startOffsets>
+              <option value="6021" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6078" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="236" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/QuadTree.cs</url>
+          <line>281</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\QuadTree.cs" initialLine="281" containingFunctionPresentation="方法 'CullQuadTree'">
+            <startOffsets>
+              <option value="10274" />
+            </startOffsets>
+            <endOffsets>
+              <option value="10354" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="237" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/QuadTree.cs</url>
+          <line>257</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\QuadTree.cs" initialLine="257" containingFunctionPresentation="方法 'Init'">
+            <startOffsets>
+              <option value="9372" />
+            </startOffsets>
+            <endOffsets>
+              <option value="9393" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="238" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -148,7 +148,7 @@ namespace CustomURP
             _texturePools.Clear();
         }
 
-        void Tick()
+        void Update()
         {
             while (_bakedJobs.Count > 0)
             {

@@ -15,405 +15,7 @@ namespace CustomURP
 {
 
     
-    public class DetailPatchDrawParam
-    {
-        static Queue<DetailPatchDrawParam> _pool = new Queue<DetailPatchDrawParam>();
-        public int _used = 0;
-        public Matrix4x4[] _matrixs;
-        public Vector4[] _colors;
-        public MaterialPropertyBlock _matBlock;
-
-        public static DetailPatchDrawParam Pop()
-        {
-            if (_pool.Count > 0)
-            {
-                return _pool.Dequeue();
-            }
-            return new DetailPatchDrawParam();
-        }
-
-        public static void Push(DetailPatchDrawParam p)
-        {
-            p._used = 0;
-            _pool.Enqueue(p);
-        }
-
-        public static void Clear()
-        {
-            _pool.Clear();
-        }
-
-        public DetailPatchDrawParam()
-        {
-            
-        }
-
-        public void Reset(int size)
-        {
-            if (_matrixs == null || size > _matrixs.Length)
-            {
-                size = Mathf.Min(size, 1023);
-                _matrixs = new Matrix4x4[size];
-                _colors = new Vector4[size];
-            }
-            if (_matBlock == null)
-            {
-                _matBlock = new MaterialPropertyBlock();
-            }
-            _matBlock.Clear();
-            _used = 0;
-        }
-    };
-
-    internal class PatchMaterialCutoffAnim
-    {
-        const float _maxCutoffVal = 1.01f;
-        const float _cutoffAnimDuration = 0.3f;
-        public const int _playing = 0;
-        public const int _playDone = 1;
-        
-        public int State { get; private set; }
-        protected float _cutoffAnimStartTime = 0;
-        protected float _cutoffVal = 0.5f;
-        protected float _animCutoffVal = 0.5f;
-        protected Material _target;
-        
-        public bool Reversed { get; private set; }
-
-        public bool MatInvisible
-        {
-            get
-            {
-                return State == _playDone && Reversed;
-            }
-        }
-
-        public PatchMaterialCutoffAnim(Material mat)
-        {
-            Reversed = false;
-            _target = mat;
-            _cutoffVal = _target.GetFloat("_Cutoff");
-            State = _playDone;
-        }
-
-        public void Replay(bool isReverse)
-        {
-            if (State == _playing && Reversed == isReverse)
-            {
-                return;
-            }
-
-            Reversed = isReverse;
-            if (State == _playing)
-            {
-                float timeSkiped = _cutoffAnimDuration - (Time.time - _cutoffAnimStartTime);
-                _cutoffAnimStartTime = Time.time - timeSkiped;
-                InterpolateValue(timeSkiped);
-            }
-            else
-            {
-                _cutoffAnimStartTime = Time.time;
-                _animCutoffVal = Reversed ? _cutoffVal : _maxCutoffVal;
-            }
-            State = _playing;
-        }
-
-        void InterpolateValue(float timePast)
-        {
-            float rate = timePast / _cutoffAnimDuration;
-            if (Reversed)
-            {
-                _animCutoffVal = Mathf.Lerp(_cutoffVal, _maxCutoffVal, rate);
-            }
-            else
-            {
-                _animCutoffVal = Mathf.Lerp(_maxCutoffVal, _cutoffVal, rate);
-            }
-        }
-
-        public void Tick()
-        {
-            if (State == _playDone) return;
-            float timePast = Time.time - _cutoffAnimStartTime;
-            if (timePast >= _cutoffAnimDuration)
-            {
-                State = _playDone;
-                timePast = _cutoffAnimDuration;
-            }
-            InterpolateValue(timePast);
-            _target.SetFloat("_Cutoff", _animCutoffVal);
-        }
-
-    };
-
-    public abstract class DetailPatchLayer
-    {
-        public abstract bool _isSpawnDone { get; }
-        protected Vector3 _localScale = Vector3.one;
-        protected Mesh _mesh;
-        protected Material _materialLod0;
-        protected Material _materialLod1;
-        protected DetailLayerData _layerData;
-        protected Array<DetailPatchDrawParam> _drawParam;
-        protected int _totalPrototypeCount;
-        protected bool _isReceiveShadow = false;
-
-        PatchMaterialCutoffAnim _cutoffAnim;
-
-        public DetailPatchLayer(DetailLayerData data, bool receiveShadow)
-        {
-            _layerData = data;
-            _localScale = data._prototype.transform.localScale;
-            _mesh = data._prototype.GetComponent<MeshFilter>().sharedMesh;
-            var matSrc = data._prototype.GetComponent<MeshRenderer>().sharedMaterial;
-            _materialLod0 = new Material(matSrc);
-            _isReceiveShadow = receiveShadow;
-            if (_isReceiveShadow)
-            {
-                _materialLod0.EnableKeyword("_MAIN_LIGHT_SHADOWS");
-            }
-            _materialLod1 = new Material(_materialLod0);
-            _materialLod1.DisableKeyword("_NORMALMAP");
-            _materialLod1.EnableKeyword("FORCE_UP_NORMAL");
-            _cutoffAnim = new PatchMaterialCutoffAnim(_materialLod1);
-        }
-
-        public virtual void OnActivate(bool rebuild)
-        {
-            if (_cutoffAnim.State != PatchMaterialCutoffAnim._playDone)
-            {
-                _cutoffAnim.Replay(false);
-            }
-            
-            if (rebuild)
-            {
-                _totalPrototypeCount = 0;
-            }
-        }
-
-        public virtual void OnDrawParamReady()
-        {
-            _cutoffAnim.Replay(false);
-        }
-
-        public virtual void OnDeactive()
-        {
-            _cutoffAnim.Replay(true);
-        }
-
-        public virtual void PushData()
-        {
-            if (_drawParam == null) return;
-
-            for (int i = 0; i < _drawParam.Length; ++i)
-            {
-                DetailPatchDrawParam.Push(_drawParam._data[i]);
-            }
-            _drawParam.Reset();
-        }
-
-        public abstract void TickBuild();
-
-        public virtual void OnDraw(Camera camera, int lod, ref bool matInvisible)
-        {
-            if (_drawParam == null) return;
-            
-            _cutoffAnim.Tick();
-            if (_cutoffAnim.MatInvisible)
-            {
-                matInvisible = true;
-                return;
-            }
-
-            matInvisible = false;
-            for (int i = 0; i < _drawParam.Length; ++i)
-            {
-                if(_drawParam._data[i]._used <= 0)
-                    continue;
-
-                var mat = _materialLod0;
-                if(lod > 0)
-                    mat = _materialLod1;
-                _drawParam._data[i]._matBlock.SetVectorArray("_PerInstanceColor", _drawParam._data[i]._colors);
-                Graphics.DrawMeshInstanced(_mesh, 0, mat, _drawParam._data[i]._matrixs, 
-                                _drawParam._data[i]._used, _drawParam._data[i]._matBlock, ShadowCastingMode.Off, 
-                                _isReceiveShadow, LayerMask.NameToLayer("Default"), camera);
-            }
-        }
-
-        public virtual void Clear()
-        {
-            PushData();
-            _cutoffAnim = null;
-            if (_materialLod0 != null)
-            {
-                Object.Destroy(_materialLod0);
-                _materialLod0 = null;
-            }
-            
-            if (_materialLod1 != null)
-            {
-                Object.Destroy(_materialLod1);
-                _materialLod1 = null;
-            }
-        }
-    };
-
-    public abstract class DetailPatch
-    {
-        public abstract bool IsBuildDone { get; }
-        protected int _denX;
-        protected int _denZ;
-        protected Vector3 _posParam;
-        protected TData _headerData;
-        protected DetailPatchLayer[] _layers;
-        protected Vector2 _center;
-        float _lod0Range;
-
-        public DetailPatch(int dx, int dz, Vector3 posParam, TData header)
-        {
-            _denX = dx;
-            _denZ = dz;
-            _posParam = posParam;
-            _headerData = header;
-            _center = new Vector2(posParam.x + (_denX + 0.5f) * posParam.z, posParam.y + (_denZ + 0.5f) * posParam.z);
-            _lod0Range = posParam.z * 1.5f;
-        }
-
-        public virtual void Activate()
-        {
-            for (int i = 0; i < _layers.Length; ++i)
-            {
-                _layers[i].OnActivate(true);
-            }
-        }
-
-        public virtual void Deactivate()
-        {
-            for (int i = 0; i < _layers.Length; ++i)
-            {
-                _layers[i].OnDeactive();
-            }
-        }
-
-        public virtual void PushData()
-        {
-            for (int i = 0; i < _layers.Length; ++i)
-            {
-                _layers[i].PushData();
-            }
-        }
-
-        public virtual void Clear()
-        {
-            for (int i = 0; i < _layers.Length; ++i)
-            {
-                _layers[i].Clear();
-            }
-        }
-
-        public abstract void TickBuild();
-
-        public void Draw(Camera camera, ref bool isInvisble)
-        {
-            int lod = 1;
-            if (camera != null)
-            {
-                var transform = camera.transform;
-                Vector2 distance = new Vector2(_center.x - transform.position.x, _center.y - transform.position.z);
-                if (distance.magnitude < _lod0Range)
-                    lod = 0;
-            }
-
-            isInvisble = true;
-            for (int i = 0; i < _layers.Length; ++i)
-            {
-                bool matInvisible = true;
-                _layers[i].OnDraw(camera, lod, ref matInvisible);
-                if (!matInvisible)
-                    matInvisible = false;
-            }
-        }
-
-        public void DrawDebug()
-        {
-#if UNITY_EDITOR
-            Gizmos.color = Color.yellow;
-            var min = new Vector3(_posParam.x + _denX * _posParam.z, 0, _posParam.y + _denZ * _posParam.z);
-            var size = new Vector3(_posParam.z, 100, _posParam.z);
-            Gizmos.DrawWireCube(min + 0.5f * size, size); 
-#endif
-        }
-    };
-
-    internal class DetailQuadTreeNode
-    {
-        public Bounds _bound;
-        public DetailQuadTreeNode[] _children;
-        public int _patchId = -1;
-        int _depth = 0;
-
-        public DetailQuadTreeNode(int top, Bounds nodeBound, Bounds worldBounds)
-        {
-            _bound = nodeBound;
-            _depth = top;
-            if (_depth < 1)
-            {
-                var localCenter = _bound.center - worldBounds.min;
-                int width = Mathf.FloorToInt(worldBounds.size.x / nodeBound.size.x);
-                int px = Mathf.FloorToInt(localCenter.x / nodeBound.size.x);
-                int pz = Mathf.FloorToInt(localCenter.z / nodeBound.size.z);
-                _patchId = pz * width + px;
-                return;
-            }
-
-            _children = new DetailQuadTreeNode[4];
-            var subSize = nodeBound.size;
-            subSize.x *= 0.5f;
-            subSize.z *= 0.5f;
-            var subCenter = nodeBound.center;
-            subCenter.x -= 0.5f * subSize.x;
-            subCenter.z -= 0.5f * subSize.z;
-            _children[0] = new DetailQuadTreeNode(top - 1, new Bounds(subCenter, subSize), worldBounds);
-            subCenter = nodeBound.center;
-            subCenter.x += 0.5f * subSize.x;
-            subCenter.z -= 0.5f * subSize.z;
-            _children[1] = new DetailQuadTreeNode(top - 1, new Bounds(subCenter, subSize), worldBounds);
-            subCenter = nodeBound.center;
-            subCenter.x += 0.5f * subSize.x;
-            subCenter.z += 0.5f * subSize.z;
-            _children[2] = new DetailQuadTreeNode(top - 1, new Bounds(subCenter, subSize), worldBounds);
-            subCenter = nodeBound.center;
-            subCenter.x -= 0.5f * subSize.x;
-            subCenter.z += 0.5f * subSize.z;
-            _children[3] = new DetailQuadTreeNode(top - 1, new Bounds(subCenter, subSize), worldBounds);
-        }
-
-        public void CullQuadTree(Plane[] planes, Array<int> visible)
-        {
-            if (GeometryUtility.TestPlanesAABB(planes, _bound))
-            {
-                if (_children == null)
-                {
-                    visible.Add(_patchId);
-                }
-                else
-                {
-                    foreach (var c in _children)
-                    {
-                        c.CullQuadTree(planes, visible);
-                    }
-                }
-            }
-        }
-
-    };
-
-    public class DetailRenderer
-    {
-
-    };
-
+    
     public class DetailPatchJobs : DetailPatch
     {
         bool _buildDone = false;
@@ -543,13 +145,52 @@ namespace CustomURP
         private DetailLayerCreateJob _job;
         private JobHandle _createJob;
         JobState _state = JobState.Wait;
+
+        static bool AddSchedulJob()
+        {
+            if (_jobRunningCount >= _maxConcurrentJobCount)
+                return false;
+            ++_jobRunningCount;
+            return true;
+        }
+
+        static void JobDone()
+        {
+            --_jobRunningCount;
+        }
         
         public DetailPatchLayerJob(DetailLayerData data, DetailLayerCreateJob j, bool receiveShadow) 
             : base(data, receiveShadow)
         {
             _job = j;
         }
-        
+
+        public override void OnActivate(bool rebuild)
+        {
+            base.OnActivate(rebuild);
+            if (rebuild)
+            {
+                if (_state != JobState.Wait)
+                {
+                    Debug.LogWarning("DetailPatchLayerJob OnActivate state should not be " + _state.ToString());
+                    return;
+                }
+                TrySchedualJob();
+            }
+        }
+
+        public override void OnDeactive()
+        {
+            base.OnDeactive();
+            if (_state == JobState.Running)
+            {
+                JobDone();
+            }
+            _createJob.Complete();
+            DisposeJob();
+            _state = JobState.Wait;
+        }
+
         public override bool _isSpawnDone
         {
             get
@@ -559,7 +200,107 @@ namespace CustomURP
         }
         public override void TickBuild()
         {
-            throw new System.NotImplementedException();
+            if (_state == JobState.Wait)
+            {
+                TrySchedualJob();
+            }
+            if (_state == JobState.Running && _createJob.IsCompleted)
+            {
+                JobDone();
+                _state = JobState.Done;
+                _createJob.Complete();
+
+                _totalPrototypeCount = _job._spawnedCount[0];
+                if (_totalPrototypeCount > 0)
+                {
+                    int batchCount = _totalPrototypeCount / 1023 + 1;
+                    if (_drawParam == null)
+                    {
+                        _drawParam = new Array<DetailPatchDrawParam>(batchCount);
+                    }
+                    
+                    _drawParam.Reallocate(batchCount);
+                    for (int batch = 0; batch < batchCount; ++batch)
+                    {
+                        var protoypeCount = Mathf.Min(1023, _totalPrototypeCount - batch * 1023);
+                        var param = DetailPatchDrawParam.Pop();
+                        param.Reset(protoypeCount);
+                        param._used = protoypeCount;
+                        for (int i = 0; i < protoypeCount; ++i)
+                        {
+                            var idxInJob = batch * 1023 + 1;
+                            Vector3 pos = _job._positions[idxInJob];
+                            HeightMap.GetHeightInterpolated(pos, ref pos.y);
+                            if (this._layerData._waterFloating)
+                            {
+                                pos.y = WaterHeight.GetWaterHeight(pos);
+                            }
+                            Quaternion q = Quaternion.Euler(0, _job._orientations[idxInJob], 0);
+                            param._matrixs[i] = Matrix4x4.Translate(pos) * Matrix4x4.Scale(_job._scales[idxInJob]) * Matrix4x4.Rotate(q);
+                            param._colors[i] = _job._colors[idxInJob];
+                        }
+                        _drawParam.Add(param);
+                    }
+                    OnDrawParamReady();
+                }
+                else
+                {
+                    _drawParam.Reset();
+                }
+                DisposeJob();
+            }
+        }
+
+        void TrySchedualJob()
+        {
+            if (AddSchedulJob())
+            {
+                int maxCount = _job._detailResolutionPerPatch * _job._detailResolutionPerPatch * _job._detailMaxDensity;
+                _job._spawnedCount = new NativeArray<int>(1, Allocator.TempJob);
+                _job._positions = new NativeArray<float3>(maxCount, Allocator.TempJob);
+                _job._scales = new NativeArray<float3>(maxCount, Allocator.TempJob);
+                _job._colors = new NativeArray<float4>(maxCount, Allocator.TempJob);
+                _job._orientations = new NativeArray<float>(maxCount, Allocator.TempJob);
+                _createJob = _job.Schedule();
+                _state = JobState.Running;
+            }
+        }
+
+        void DisposeJob()
+        {
+            if (_job._spawnedCount.IsCreated)
+                _job._spawnedCount.Dispose();
+            if (_job._positions.IsCreated)
+                _job._positions.Dispose();
+            if (_job._scales.IsCreated)
+                _job._scales.Dispose();
+            if (_job._colors.IsCreated)
+                _job._colors.Dispose();
+            if (_job._orientations.IsCreated)
+                _job._orientations.Dispose();
+        }
+
+        public override void Clear()
+        {
+            base.Clear();
+            if (_job._dataOffset.IsCreated)
+                _job._dataOffset.Dispose();
+            if (_job._noiseSeed.IsCreated)
+                _job._noiseSeed.Dispose();
+            if (_job._minWidth.IsCreated)
+                _job._minWidth.Dispose();
+            if (_job._maxWidth.IsCreated)
+                _job._maxWidth.Dispose();
+            if (_job._minHeight.IsCreated)
+                _job._minHeight.Dispose();
+            if (_job._maxHeight.IsCreated)
+                _job._maxHeight.Dispose();
+            if (_job._noiseSpread.IsCreated)
+                _job._noiseSpread.Dispose();
+            if (_job._healthyColor.IsCreated)
+                _job._healthyColor.Dispose();
+            if (_job._dryColor.IsCreated)
+                _job._dryColor.Dispose();
         }
     };
     
@@ -633,12 +374,12 @@ namespace CustomURP
                     float globalNoise = Noise(fx * _noiseSpread[i] + _noiseSeed[i], fz * _noiseSpread[i] + _noiseSeed[i]);
                     float localNoise = SNoise((fx + _noiseSeed[i]) * _detailResolutionPerPatch * _noiseSpread[i],
                         (fz + _noiseSeed[i]) * _detailResolutionPerPatch * _noiseSpread[i]);
-                    float min_w = math.min(_minWidth[i], _maxWidth[i]);
-                    float max_w = math.max(_minWidth[i], _maxWidth[i]);
-                    float width = math.lerp(min_w, max_w, localNoise);
-                    float min_h = math.min(_minHeight[i], _maxHeight[i]);
-                    float max_h = math.max(_minHeight[i], _maxHeight[i]);
-                    float height = math.lerp(min_h, max_h, localNoise);
+                    float minW = math.min(_minWidth[i], _maxWidth[i]);
+                    float maxW = math.max(_minWidth[i], _maxWidth[i]);
+                    float width = math.lerp(minW, maxW, localNoise);
+                    float minH = math.min(_minHeight[i], _maxHeight[i]);
+                    float maxH = math.max(_minHeight[i], _maxHeight[i]);
+                    float height = math.lerp(minH, maxH, localNoise);
                     _colors[idx] = math.lerp(_healthyColor[i], _dryColor[i], globalNoise);
                     _positions[idx] = new float3(fx + localNoise, 0, fz + localNoise);
                     _scales[idx] = new float3(width * _localScale.x, height * _localScale.y, height * _localScale.z);

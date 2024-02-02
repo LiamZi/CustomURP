@@ -134,7 +134,7 @@ namespace CustomURP
         Array<QuadTreeNode> _deactiveCmd;
         Dictionary<int, PooledRenderMesh> _activeMeshes = new Dictionary<int, PooledRenderMesh>();
         IVTCreator _vtCreator;
-        TDetailRenderer _detailRenderer;
+        DetailRenderer _detailRenderer;
         Matrix4x4 _projM;
         Matrix4x4 _detailProjM;
         Matrix4x4 _prevWorld2Camera;
@@ -165,15 +165,15 @@ namespace CustomURP
             _deactiveCmd = new Array<QuadTreeNode>(_quadTree.NodeCount);
             _meshPool = new RuntimeMeshPool(_header, loader);
             _vtCreator = _vtCreatorGO.GetComponent<IVTCreator>();
-            _detailRenderer = new TDetailRenderer(_header, _quadTree.Bound, _receiveShadow);
+            _detailRenderer = new DetailRenderer(_header, _quadTree.Bound, _receiveShadow);
             _prevWorld2Camera = Matrix4x4.identity;
             _projM = Matrix4x4.Perspective(_cullCamera.fieldOfView, _cullCamera.aspect, _cullCamera.nearClipPlane, _cullCamera.farClipPlane);
             _detailProjM = Matrix4x4.Perspective(_cullCamera.fieldOfView, _cullCamera.aspect, _cullCamera.nearClipPlane, _detailDrawDistance);
         }
 
-        void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
+        public void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
-            if (_quadTree == null && _cullCamera == null) return;
+            if (_quadTree == null || _cullCamera == null) return;
 
             Matrix4x4 world2Camera = _cullCamera.worldToCameraMatrix;
             if (_prevWorld2Camera != world2Camera)
