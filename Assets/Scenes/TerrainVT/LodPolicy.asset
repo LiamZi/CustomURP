@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: LodPolicy
   m_EditorClassIdentifier: 
   _screenCover:
-  - 0.35
+  - 0.36
   - 0.6
   - 0

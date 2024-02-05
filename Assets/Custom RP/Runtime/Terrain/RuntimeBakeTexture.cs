@@ -100,6 +100,7 @@ namespace CustomURP
             {
                 _layers[i].SetVector("_BakeScaleOffset", _scaleOffset);
             }
+            
             Rtt.DiscardContents();
             _cmd.Clear();
             _cmd.Cmd.SetViewProjectionMatrices(Matrix4x4.identity, Matrix4x4.identity);
@@ -108,6 +109,7 @@ namespace CustomURP
 
             for (int i = 0; i < _layers.Length; ++i)
             {
+                _layers[i].SetVector("_BakeScaleOffset", _scaleOffset);
                 _cmd.Cmd.DrawMesh(FullScreenMesh, Matrix4x4.identity, _layers[i]);
             }
             Graphics.ExecuteCommandBuffer(_cmd.Cmd);

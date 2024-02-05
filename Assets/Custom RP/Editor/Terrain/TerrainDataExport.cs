@@ -239,7 +239,7 @@ namespace CustomURP
                 }
                 
                 Material bakedMat = new Material(Shader.Find("Custom RP/TerrainVTLit"));
-                bakedMat.EnableKeyword("_NORMALMAP");
+                bakedMat.EnableKeyword("_NORMAL_MAP");
                 var bakedMatPath = string.Format("{0}/BakedMat.mat", folder0);
                 AssetDatabase.CreateAsset(bakedMat, bakedMatPath);
                 dataHeader._bakedMat = AssetDatabase.LoadAssetAtPath(bakedMatPath, typeof(Material)) as Material;

@@ -30,13 +30,20 @@
         Tags { "RenderType"="Opaque"  "LightMode" = "CustomLit"}
         LOD 100
         Cull Off ZWrite Off ZTest Always
+        
+        HLSLINCLUDE
+        #include "../ShaderLibrary/Common.hlsl"
+        #include "../ShaderLibrary/LitInput.hlsl"
+        ENDHLSL
 
         Pass
         {
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
+            #pragma target 3.5
+            
+			#include "../ShaderLibrary/VTDiffuseInput.hlsl"
             #include "../ShaderLibrary/VTDiffuse.hlsl"
             
             ENDHLSL

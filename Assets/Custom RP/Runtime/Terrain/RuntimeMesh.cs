@@ -40,7 +40,7 @@ namespace CustomURP
 
         public PooledRenderMesh()
         {
-            _go = new GameObject("_tpatch");
+            _go = new GameObject("TerrainPatch");
             _mesh = _go.AddComponent<MeshFilter>();
             _renderer = _go.AddComponent<MeshRenderer>();
             _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
@@ -156,7 +156,7 @@ namespace CustomURP
         void RequestTexture(int size)
         {
             size = Mathf.Clamp(size, 128, 2048);
-            if (size != _textureSize)
+            // if (size != _textureSize)
             {
                 _textureSize = size;
                 var cmd = TVTCreateCmd.Pop();

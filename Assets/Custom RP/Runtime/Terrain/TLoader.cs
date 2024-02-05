@@ -167,8 +167,10 @@ namespace CustomURP
             _vtCreator = _vtCreatorGO.GetComponent<IVTCreator>();
             _detailRenderer = new DetailRenderer(_header, _quadTree.Bound, _receiveShadow);
             _prevWorld2Camera = Matrix4x4.identity;
-            _projM = Matrix4x4.Perspective(_cullCamera.fieldOfView, _cullCamera.aspect, _cullCamera.nearClipPlane, _cullCamera.farClipPlane);
-            _detailProjM = Matrix4x4.Perspective(_cullCamera.fieldOfView, _cullCamera.aspect, _cullCamera.nearClipPlane, _detailDrawDistance);
+            _projM = Matrix4x4.Perspective(_cullCamera.fieldOfView, _cullCamera.aspect, 
+                                    _cullCamera.nearClipPlane, _cullCamera.farClipPlane);
+            _detailProjM = Matrix4x4.Perspective(_cullCamera.fieldOfView, _cullCamera.aspect, 
+                                _cullCamera.nearClipPlane, _detailDrawDistance);
         }
 
         public void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
@@ -176,7 +178,7 @@ namespace CustomURP
             if (_quadTree == null || _cullCamera == null) return;
 
             Matrix4x4 world2Camera = _cullCamera.worldToCameraMatrix;
-            if (_prevWorld2Camera != world2Camera)
+            // if (_prevWorld2Camera != world2Camera)
             {
                 _prevWorld2Camera = world2Camera;
                 _activeCmd.Reset();
@@ -206,10 +208,10 @@ namespace CustomURP
                     }
                 }
 
-                GeometryUtility.CalculateFrustumPlanes(_detailProjM * world2Camera, _detailCullPlanes);
-                _detailRenderer.Cull(_detailCullPlanes);
+                // GeometryUtility.CalculateFrustumPlanes(_detailProjM * world2Camera, _detailCullPlanes);
+                // _detailRenderer.Cull(_detailCullPlanes);
             }
-            _detailRenderer.Tick(_cullCamera);
+            // _detailRenderer.Tick(_cullCamera);
         }
 
         public void OnDestroy()

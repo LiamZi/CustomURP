@@ -2,60 +2,54 @@
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _BaseMap ("_BaseMap", 2D) = "white" {}
+        _Normal ("Normal", 2D) = "grey" {}
     }
     SubShader
     {
         Tags
         {
             "RenderType"="Opaque"
+            "LightMode" = "CustomLit"
         }
         LOD 100
+        
+        HLSLINCLUDE
+        #include "../ShaderLibrary/Common.hlsl"
+        #include "../ShaderLibrary/LitInput.hlsl"
+        ENDHLSL
 
         Pass
         {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
+            HLSLPROGRAM
+            #pragma shader_feature _CLIPPING
+            #pragma shader_feature _RECEIVE_SHADOWS
+            #pragma shader_feature _PREMULTIPLY_ALPHA
+            #pragma shader_feature _NORMAL_MAP
+            #pragma shader_feature _MASK_MAP
+            #pragma shader_feature _DETAIL_MAP
+            #pragma multi_compile _ _DIRECTIONAL_PCF3 _DIRECTIONAL_PCF5 _DIRECTIONAL_PCF7
+            #pragma multi_compile _ _OTHER_PCF3 _OTHER_PCF5 _OTHER_PCF7
+            #pragma multi_compile _ _CASCADE_BLEND_SOFT _CASCADE_BLEND_DITHER
+            #pragma multi_compile _ _SHADOW_MASK_ALWAYS _SHADOW_MASK_DISTANCE 
+            #pragma multi_compile _ LOD_FADE_CROSSFADE LOD_FADE_PERCENTAGE 
+            #pragma multi_compile _ LIGHTMAP_ON
+            #pragma multi_compile _ _LIGHTS_PER_OBJECT
+            #pragma multi_compile _ USE_CLUSTER_LIGHT
+            // #pragma multi_compile _ LOD_FADE_CROSSFADE
+            #pragma multi_compile_instancing
+            #pragma instancing_options assumeuniformscaling
             // make fog work
             #pragma multi_compile_fog
+            #pragma target 3.5
+            // #pragma enable_d3d11_debug_symbols
 
-            #include "UnityCG.cginc"
+            #pragma vertex vert
+            #pragma fragment frag
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-            };
-
-            struct v2f
-            {
-                float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
-                float4 vertex : SV_POSITION;
-            };
-
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-
-            v2f vert(appdata v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o, o.vertex);
-                return o;
-            }
-
-            fixed4 frag(v2f i) : SV_Target
-            {
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
-            }
-            ENDCG
+            #include "../ShaderLibrary/VTTerrainLitInput.hlsl"
+            #include "../ShaderLibrary/TerrainVTLit.hlsl"
+            ENDHLSL
         }
     }
 }

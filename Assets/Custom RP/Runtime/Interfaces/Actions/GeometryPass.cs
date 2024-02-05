@@ -48,7 +48,7 @@ namespace CustomURP
             PrepareForSceneWindow(camera);
             if (!Cull(_asset.Shadows._maxDistance, ref cmd)) return;
 
-            // _cmd.BeginSample();
+            _cmd.BeginSample();
             _cmd.SetGlobalVector(camera._renderTarget._bufferSizeId, new Vector4(
                 1f / camera._renderTarget._size.x, 1f / camera._renderTarget._size.y,
                 camera._renderTarget._size.x, camera._renderTarget._size.y
@@ -61,7 +61,6 @@ namespace CustomURP
             scene.BeginRendering(camera, ref cmd);
             scene.Tick(camera, ref cmd);
 
-          
             
             Setup(camera);
             
@@ -103,7 +102,7 @@ namespace CustomURP
             
             UnsupportedShaders();
             
-            // _cmd.EndSampler();
+            _cmd.EndSampler();
         }
         
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
@@ -165,8 +164,6 @@ namespace CustomURP
             
             // _cmd.EnableShaderKeyword("USE_CLUSTERED_LIGHTLIST");
             
-
-            
             _cmd.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
 
             _cmd.DrawSkybox(_camera);
@@ -226,11 +223,11 @@ namespace CustomURP
                 flags == CameraClearFlags.Color ? camera._camera.backgroundColor.linear : Color.clear
             );
             _cmd.Name = "Geometry pass";
-            // _cmd.BeginSample();
+            _cmd.BeginSample();
             _cmd.SetGlobalTexture(rt._colorTextureId, missingTexture);
             _cmd.SetGlobalTexture(rt._depthTextureId, missingTexture);
             _cmd.Execute();
-            // _cmd.EndSampler();
+            _cmd.EndSampler();
         }
     }
 }

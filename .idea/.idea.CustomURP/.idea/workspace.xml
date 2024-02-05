@@ -5,7 +5,106 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/TerrainVTLit.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/TerrainVTLit.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTBump.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTBump.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTBumpInput.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTBumpInput.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTDiffuseInput.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTDiffuseInput.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTTerrainLitInput.hlsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTTerrainLitInput.hlsl.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/LodPolicy.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/LodPolicy.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeBakeTexture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeBakeTexture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/GI.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/GI.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTDiffuse.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTDiffuse.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/TerrainVTLit.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/TerrainVTLit.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTBump.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTBump.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTBumpAdd.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTBumpAdd.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTDiffuse.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTDiffuse.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTDiffuseAdd.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTDiffuseAdd.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MeshData.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_0.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_0.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1024.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1024.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1088.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1088.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1152.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1152.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1216.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1216.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_128.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_128.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1280.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1280.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1344.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1344.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1408.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1408.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1472.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1472.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1536.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1536.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1600.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1600.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1664.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1664.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1728.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1728.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1792.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1792.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1856.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1856.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_192.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_192.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1920.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1920.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1984.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1984.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2048.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2048.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2112.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2112.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2176.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2176.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2240.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2240.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2304.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2304.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2368.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2368.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2432.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2432.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2496.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2496.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_256.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_256.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2560.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2560.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2624.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2624.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2688.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2688.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2752.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2752.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2816.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2816.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2880.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2880.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2944.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_2944.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3008.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3008.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3072.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3072.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3136.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3136.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_320.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_320.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3200.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3200.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3264.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3264.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3328.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3328.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3392.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3392.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3456.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3456.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3520.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3520.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3584.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3584.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3648.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3648.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3712.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3712.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3776.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3776.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_384.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_384.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3840.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3840.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3904.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3904.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3968.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_3968.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4032.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4032.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4096.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4096.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4160.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4160.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4224.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4224.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4288.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4288.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4352.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_4352.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_448.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_448.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_512.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_512.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_576.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_576.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_64.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_64.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_640.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_640.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_704.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_704.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_768.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_768.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_832.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_832.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_896.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_896.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_960.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_960.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/BakedMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/BakedMat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/LodPolicy.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/LodPolicy.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +115,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -68,7 +173,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/6c/e3368a02/Byte.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/79/e5db2f2f/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/8a/5632137b/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/a0/3caf13e1/IFormattable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/af/840997c7/UIntPtr.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/e9/45913b7b/IEquatable`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/f2/c3f17cb6/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/f4/ca970657/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/11/c16dc526/GeometryUtility.cs" root0="SKIP_HIGHLIGHTING" />
@@ -89,6 +196,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/5c/0bad5ee0/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/62/23b6f107/Graphics.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/65/019ad560/LayerMask.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/73/727b3734/Matrix4x4.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/88/0781ca36/GraphicsFormat.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/88/990b1656/GraphicsFormatUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/8d/67ad9f86/Shader.cs" root0="SKIP_HIGHLIGHTING" />
@@ -99,6 +207,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b0/9fbed331/ScriptableRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b8/14625f43/RenderPipelineManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/b9/561838e3/AsyncGPUReadbackRequest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/bb/0509d05b/MeshRenderer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/bc/1a83ac4d/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/be/8b02f831/Camera.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/c4/c5636eb8/Texture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/cd/6da42c75/ComputeShader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/ce/ee4ea800/Mesh.cs" root0="SKIP_HIGHLIGHTING" />
@@ -207,6 +318,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.searcher@4.3.2/Samples~/Editor/SearcherExampleWindow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@10.10.1/ShaderGraphLibrary/Functions.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@10.10.1/ShaderGraphLibrary/ShaderVariables.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.7/Editor Resources/Shaders/TMP_Properties.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/Canvas/AssertionFailureOnOutputVertexCount.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/CanvasRenderer/ParentCanvasIsSane.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CanvasScalerWithChildTextObjectDoesNotCrash.cs" root0="SKIP_HIGHLIGHTING" />
@@ -818,13 +930,13 @@
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs</url>
-          <line>177</line>
+          <line>179</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TLoader.cs" initialLine="177" containingFunctionPresentation="方法 'Tick'">
             <startOffsets>
-              <option value="6021" />
+              <option value="6091" />
             </startOffsets>
             <endOffsets>
-              <option value="6078" />
+              <option value="6148" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="236" />
@@ -854,19 +966,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="239" />
-        </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs</url>
-          <line>144</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TLoader.cs" initialLine="144" containingFunctionPresentation="方法 'ActiveMesh'">
-            <startOffsets>
-              <option value="4341" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4389" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="244" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs</url>
@@ -909,16 +1008,172 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeBakeTexture.cs</url>
-          <line>176</line>
+          <line>167</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeBakeTexture.cs" initialLine="176" containingFunctionPresentation="方法 'Tick'">
             <startOffsets>
-              <option value="5006" />
+              <option value="4744" />
             </startOffsets>
             <endOffsets>
-              <option value="5048" />
+              <option value="4786" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="252" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs</url>
+          <line>235</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeMesh.cs" initialLine="235" containingFunctionPresentation="方法 'UpdatePatch'">
+            <startOffsets>
+              <option value="7194" />
+            </startOffsets>
+            <endOffsets>
+              <option value="7258" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="287" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/VTCreator.cs</url>
+          <line>169</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\VTCreator.cs" initialLine="169" containingFunctionPresentation="方法 'Update'">
+            <startOffsets>
+              <option value="4768" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4821" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="293" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs</url>
+          <line>231</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\TerrainDataExport.cs" initialLine="231" containingFunctionPresentation="方法 'OnGUI'">
+            <startOffsets>
+              <option value="9849" />
+            </startOffsets>
+            <endOffsets>
+              <option value="9961" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="294" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs</url>
+          <line>144</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TLoader.cs" initialLine="144" containingFunctionPresentation="方法 'ActiveMesh'">
+            <startOffsets>
+              <option value="4341" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4389" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="295" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs</url>
+          <line>56</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeMesh.cs" initialLine="56" containingFunctionPresentation="方法 'Reset'">
+            <startOffsets>
+              <option value="1666" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1689" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="298" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs</url>
+          <line>187</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeMesh.cs" initialLine="187" containingFunctionPresentation="方法 'ApplyTextures'">
+            <startOffsets>
+              <option value="5511" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5550" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="299" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeBakeTexture.cs</url>
+          <line>92</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeBakeTexture.cs" initialLine="92" containingFunctionPresentation="方法 'Reset'">
+            <startOffsets>
+              <option value="2758" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2773" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="300" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs</url>
+          <line>237</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\TerrainDataExport.cs" initialLine="237" containingFunctionPresentation="方法 'OnGUI'">
+            <startOffsets>
+              <option value="10175" />
+            </startOffsets>
+            <endOffsets>
+              <option value="10284" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="301" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs</url>
+          <line>249</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\TerrainDataExport.cs" initialLine="249" containingFunctionPresentation="方法 'OnGUI'">
+            <startOffsets>
+              <option value="10929" />
+            </startOffsets>
+            <endOffsets>
+              <option value="11023" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="302" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs</url>
+          <line>268</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Utility\MaterialUtils.cs" initialLine="268" containingFunctionPresentation="方法 'SaveVTMaterail'">
+            <startOffsets>
+              <option value="11392" />
+            </startOffsets>
+            <endOffsets>
+              <option value="11463" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="303" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs</url>
+          <line>257</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Utility\MaterialUtils.cs" initialLine="257" containingFunctionPresentation="方法 'SaveVTMaterail'">
+            <startOffsets>
+              <option value="10844" />
+            </startOffsets>
+            <endOffsets>
+              <option value="10915" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="304" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs</url>
+          <line>272</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Utility\MaterialUtils.cs" initialLine="272" containingFunctionPresentation="方法 'SaveVTMaterail'">
+            <startOffsets>
+              <option value="11644" />
+            </startOffsets>
+            <endOffsets>
+              <option value="11725" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="305" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -930,7 +1185,9 @@
         <PinnedItemInfo parentTag="Type#UnityEngine.ComputeBuffer" memberName="m_Safety" />
         <PinnedItemInfo parentTag="Type#UnityEngine.Object" memberName="name" />
         <PinnedItemInfo parentTag="Type#Core.UnsafeList" memberName="_items" />
+        <PinnedItemInfo parentTag="Type#CustomURP.TData" memberName="_detailMats" />
         <PinnedItemInfo parentTag="Type#UnityEditor.SerializedProperty" memberName="serializedObject" />
+        <PinnedItemInfo parentTag="Type#CustomURP.TData" memberName="_heightMap" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>

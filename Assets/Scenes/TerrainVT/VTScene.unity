@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _header: {fileID: 11400000, guid: b44c39a54906373468c7246c1d8b0797, type: 2}
-  _lodPolicy: {fileID: 11400000, guid: 99d2bac5fdd15044bbcb145a6dedfd8e, type: 2}
+  _lodPolicy: {fileID: 11400000, guid: 087b5b5f0422c854ba2a05439476b48d, type: 2}
   _cullCamera: {fileID: 1877727598}
   _vtCreatorGO: {fileID: 1475227956}
   _receiveShadow: 1
