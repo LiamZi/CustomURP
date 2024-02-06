@@ -74,15 +74,21 @@ namespace CustomURP
             //     }
             // }
 
-            var terrainGo = GameObject.Find("heightfield_0");
-            if (terrainGo)
+            for (var i = 0; i < 16; ++i)
             {
-                var loader = terrainGo.GetComponent<TLoader>();
-                if (loader)
+                var terrainIndex = string.Format("heightfield_{0}", i);
+                // var terrainGo = GameObject.Find("heightfield_1");
+                var terrainGo = GameObject.Find(terrainIndex);
+                if (terrainGo)
                 {
-                    loader.Tick(camera, ref _cmd);
+                    var loader = terrainGo.GetComponent<TLoader>();
+                    if (loader)
+                    {
+                        loader.Tick(camera, ref _cmd);
+                    }
                 }
             }
+ 
             
             DrawVisibleGeometry(cameraSettings._renderingLayerMask);
             

@@ -178,7 +178,7 @@ namespace CustomURP
             if (_quadTree == null || _cullCamera == null) return;
 
             Matrix4x4 world2Camera = _cullCamera.worldToCameraMatrix;
-            // if (_prevWorld2Camera != world2Camera)
+            if (_prevWorld2Camera != world2Camera)
             {
                 _prevWorld2Camera = world2Camera;
                 _activeCmd.Reset();
@@ -208,10 +208,10 @@ namespace CustomURP
                     }
                 }
 
-                // GeometryUtility.CalculateFrustumPlanes(_detailProjM * world2Camera, _detailCullPlanes);
-                // _detailRenderer.Cull(_detailCullPlanes);
+                GeometryUtility.CalculateFrustumPlanes(_detailProjM * world2Camera, _detailCullPlanes);
+                _detailRenderer.Cull(_detailCullPlanes);
             }
-            // _detailRenderer.Tick(_cullCamera);
+            _detailRenderer.Tick(_cullCamera);
         }
 
         public void OnDestroy()

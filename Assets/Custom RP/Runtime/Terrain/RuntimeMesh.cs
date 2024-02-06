@@ -156,7 +156,7 @@ namespace CustomURP
         void RequestTexture(int size)
         {
             size = Mathf.Clamp(size, 128, 2048);
-            // if (size != _textureSize)
+            if (size != _textureSize)
             {
                 _textureSize = size;
                 var cmd = TVTCreateCmd.Pop();

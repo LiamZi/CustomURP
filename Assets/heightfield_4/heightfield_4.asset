@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4e1bb9fcdd4c5a91e99ef4d81d7353, type: 3}
+  m_Name: heightfield_4
+  m_EditorClassIdentifier: 
+  _detailMats:
+  - {fileID: 2100000, guid: 7fc5a8b2a16eee74e9d2473da8670382, type: 2}
+  - {fileID: 2100000, guid: 0a78d0ab4803e41479575c6fab5a0936, type: 2}
+  _bakeDiffuseMats:
+  - {fileID: 2100000, guid: 90767f5bef40deb408a4b9aae2428ebc, type: 2}
+  - {fileID: 2100000, guid: 07961ffaffb1c0f4e893bbdc656ce9ca, type: 2}
+  _bakeNormalMats:
+  - {fileID: 2100000, guid: ccbb0661b016d5a4ba74ab3fceee7074, type: 2}
+  - {fileID: 2100000, guid: 12c93b655122ce7479c10a157c3fd51f, type: 2}
+  _bakedMat: {fileID: 2100000, guid: 94ecfe4cea1167244875fdf69cd1d7bf, type: 2}
+  _treeData: {fileID: 4900000, guid: 74f99eb04e1674748b5fb2c323d418f1, type: 3}
+  _meshDataPack: 64
+  _meshPrefix: heightfield_4
+  _heightMap: {fileID: 4900000, guid: 31cef6ec22b352140a34c3b6ebe9d31d, type: 3}
+  _heightmapScale: {x: 2, y: 106.59563, z: 2}
+  _heightmapResolution: 257
+  _detailPrototypes:
+  - _prototype: {fileID: 7048643380441350721, guid: 82e29e1d8fa1a454ab636bfd08038d14, type: 3}
+    _minWidth: 2
+    _maxWidth: 3
+    _minHeight: 2
+    _maxHeight: 3
+    _noiseSpread: 0.1
+    _healthyColor: {r: 1, g: 1, b: 1, a: 1}
+    _dryColor: {r: 1, g: 1, b: 1, a: 1}
+    _maxDensity: 1
+    _waterFloating: 0
+  - _prototype: {fileID: 8976685920760456344, guid: 8fd5383d027ec5741880a29061024733, type: 3}
+    _minWidth: 2
+    _maxWidth: 3
+    _minHeight: 2
+    _maxHeight: 3
+    _noiseSpread: 0.1
+    _healthyColor: {r: 1, g: 1, b: 1, a: 1}
+    _dryColor: {r: 1, g: 1, b: 1, a: 1}
+    _maxDensity: 1
+    _waterFloating: 0
+  - _prototype: {fileID: 6601052348899811647, guid: ca7b709f99cc8994083ebb1bbfa2a4f8, type: 3}
+    _minWidth: 2
+    _maxWidth: 3
+    _minHeight: 2
+    _maxHeight: 3
+    _noiseSpread: 0.1
+    _healthyColor: {r: 1, g: 1, b: 1, a: 1}
+    _dryColor: {r: 1, g: 1, b: 1, a: 1}
+    _maxDensity: 2
+    _waterFloating: 0
+  - _prototype: {fileID: 6435149076381368683, guid: e8ef04ec02981c84bbf565847d6f40cd, type: 3}
+    _minWidth: 6
+    _maxWidth: 8
+    _minHeight: 6
+    _maxHeight: 8
+    _noiseSpread: 0.1
+    _healthyColor: {r: 1, g: 1, b: 1, a: 1}
+    _dryColor: {r: 1, g: 1, b: 1, a: 1}
+    _maxDensity: 3
+    _waterFloating: 0
+  _detailWidth: 256
+  _detailHeight: 256
+  _detailResolutionPerPatch: 16
+  _detailLayers: {fileID: 4900000, guid: 4a16835a5bfe51f418a8b5fe2bced84d, type: 3}

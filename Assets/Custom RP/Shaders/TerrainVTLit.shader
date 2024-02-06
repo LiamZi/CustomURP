@@ -2,7 +2,7 @@
 {
     Properties
     {
-        _BaseMap ("_BaseMap", 2D) = "white" {}
+        _Diffuse ("_Diffuse", 2D) = "white" {}
         _Normal ("Normal", 2D) = "grey" {}
     }
     SubShader
@@ -35,14 +35,14 @@
             #pragma multi_compile _ LOD_FADE_CROSSFADE LOD_FADE_PERCENTAGE 
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ _LIGHTS_PER_OBJECT
-            #pragma multi_compile _ USE_CLUSTER_LIGHT
+            // #pragma multi_compile _ USE_CLUSTER_LIGHT
             // #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_instancing
             #pragma instancing_options assumeuniformscaling
             // make fog work
             #pragma multi_compile_fog
             #pragma target 3.5
-            // #pragma enable_d3d11_debug_symbols
+            #pragma enable_d3d11_debug_symbols
 
             #pragma vertex vert
             #pragma fragment frag

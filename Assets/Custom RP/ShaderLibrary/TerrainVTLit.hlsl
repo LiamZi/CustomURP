@@ -30,14 +30,14 @@ struct Varyings
     float4 positionCS : SV_POSITION;
     float4 uvMainAndLM : TEXCOORD0;
 #if defined(_NORMAL_MAP)
-    float4 normal : TEXCOORD1;
-    float4 tangent : TEXCOORD2;
-    float4 bitangent : TEXCOORD3;
+    float4 normalWS : TEXCOORD1;
+    float4 tangentWS : TEXCOORD2;
+    float4 bitangentWS : TEXCOORD3;
 #else
-    float3 normal : TEXCOORD1;
-    float3 positionWS : TEXCOORD2;
+    float3 normalWS : TEXCOORD1;
     // half3 vertexSH : TEXCOORD3;
 #endif
+    float3 positionWS : TEXCOORD4;
     // half4 fogFactorAndVertexLight : TEXCOORD4;
     GI_VARYINGS_DATA
    UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -54,19 +54,18 @@ Varyings vert(Attributes input)
     o.uvMainAndLM.zw = input.uv1 * unity_LightmapST.xy + unity_LightmapST.zw;
     float3 worldPos = TransformObjectToWorld(input.positionOS.xyz);
     
-
 #if defined(_NORMAL_MAP)
     float4 vertexTangent = float4(cross(float3(0, 0, 1), input.normalOS), 1.0);
     float3 normalWS = TransformObjectToWorldNormal(input.normalOS);
     float3 tangentWS = TransformObjectToWorldDir(vertexTangent);
     float sign = input.normalOS.w * GetOddNegativeScale();
     float3 bitangentWS = cross(normalWS, tangentWS) * sign;
-    o.normal = half4(normalWS, worldPos.x);
-    o.tangent = half4(tangentWS, worldPos.y);
-    o.bitangent = half4(bitangentWS, worldPos.z);
-    
+    o.normalWS = half4(normalWS, worldPos.x);
+    o.tangentWS = half4(tangentWS, worldPos.y);
+    o.bitangentWS = half4(bitangentWS, worldPos.z);
+    o.positionWS = worldPos;
 #else
-    o.normal = TransformObjectToWorldNormal(input.normalOS);
+    o.normalWS = TransformObjectToWorldNormal(input.normalOS);
     o.positionWS = worldPos;
 #endif
     o.positionCS = TransformObjectToHClip(worldPos);
@@ -78,12 +77,12 @@ float4 frag(Varyings input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
     
-    float4 mixedDiffuse = SAMPLE_TEXTURE2D(_Diffuse, sampler_Diffuse, input.uvMainAndLM.xy);
-    float4 mixedNormal = SAMPLE_TEXTURE2D(_Normal, sampler_Normal, input.uvMainAndLM.xy);
-    float3 normalTS = 0;
-    normalTS.xy = mixedNormal.xy * 2 - 1;
-    normalTS.z = sqrt(1 - normalTS.x * normalTS.x - normalTS.y * normalTS.y);
-    float3 albedo = mixedDiffuse.rgb;
+    // float4 mixedDiffuse = SAMPLE_TEXTURE2D(_Diffuse, sampler_Diffuse, input.uvMainAndLM.xy);
+    // float4 mixedNormal = SAMPLE_TEXTURE2D(_Normal, sampler_Normal, input.uvMainAndLM.xy);
+    // float3 normalTS = 0;
+    // normalTS.xy = mixedNormal.xy * 2 - 1;
+    // normalTS.z = sqrt(1 - normalTS.x * normalTS.x - normalTS.y * normalTS.y);
+    // float3 albedo = mixedDiffuse.rgb;
     
     InputConfig config = GetInputConfig(input.positionCS, input.uvMainAndLM.xy);
 
@@ -100,13 +99,52 @@ float4 frag(Varyings input) : SV_TARGET
     config.useDetail = true;
 #endif
     
-    float4 col = GetBase(config);
+    float4 col = SAMPLE_TEXTURE2D(_Diffuse, sampler_Diffuse, input.uvMainAndLM.xy);
 
 #if defined(_CLIPPING)
     clip(col.a - GetCutoff(config));
 #endif
+
+    Surface surface;
+    surface.position = input.positionWS;
+    surface.positionCS = input.positionCS;
+
+    float4 map = SAMPLE_TEXTURE2D(_Normal, sampler_Normal, input.uvMainAndLM.xy);
+#if defined(_NORMAL_MAP)
+    float scale = INPUT_PROP(_NormalScale);
+    float3 normalTS = 0;
+    normalTS.xy = map.xy * 2 - 1;
+    normalTS.z = sqrt(1 - normalTS.x * normalTS.x - normalTS.y * normalTS.y);
+    surface.normal = NormalTangentToWorld(normalTS, input.normalWS, input.tangentWS);
+    surface.interpolatedNormal = input.normalWS;
+#else
+    surface.normal = normalize(input.normalWS);
+    surface.interpolatedNormal = surface.normal;
+#endif
+
+    surface.depth = -TransformWorldToView(input.positionWS).z;
+    surface.color = col.rgb;
+    surface.alpha = 1.0;
+    surface.metallic = map.a;
+    surface.smoothness = col.a;
+    surface.occlusion = map.b;
+    surface.fresnelStrength = GetFresnel(config);
+    surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
+    surface.dither = InterleavedGradientNoise(config.fragment.positionSS, 0);
+    surface.renderingLayerMask = asuint(unity_RenderingLayer.x);
+
+
+#if defined(_PREMULTIPLY_ALPHA)
+    BRDF brdf = GetBRDF(surface, true);
+#else
+    BRDF brdf = GetBRDF(surface);
+#endif
+    GI gi = GetGI(GI_FRAGMENT_DATA(input), surface, brdf);
+    float3 finalColor = GetLighting(surface, brdf, gi);
+    // finalColor += GetEmission(config);
     
-    return mixedDiffuse;
+    
+    return float4(finalColor, GetFinalAlpha(surface.alpha));
 }
 
 

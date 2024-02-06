@@ -5,32 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/TerrainVTLit.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/TerrainVTLit.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTBump.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTBump.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTBumpInput.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTBumpInput.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTDiffuseInput.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTDiffuseInput.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTTerrainLitInput.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTTerrainLitInput.hlsl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/LodPolicy.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/LodPolicy.asset.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeBakeTexture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeBakeTexture.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/GI.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/GI.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTDiffuse.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VTDiffuse.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/TerrainVTLit.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/TerrainVTLit.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/TerrainVTLit.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/TerrainVTLit.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTBump.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTBump.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTBumpAdd.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTBumpAdd.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTDiffuse.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTDiffuse.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTDiffuseAdd.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VTDiffuseAdd.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MeshData.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_0.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_0.bytes.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1024.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1024.bytes.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1088.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_1088.bytes.meta" afterDir="false" />
@@ -100,11 +82,30 @@
       <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_832.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_832.bytes.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_896.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_896.bytes.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_960.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MeshData/heightfield_0_960.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/BakedData.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Terrain/ArtRes/BakedData.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TerrainDemo/TerrainDemo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainDemo/TerrainDemo.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/BakedMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/BakedMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/LodPolicy.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/LodPolicy.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/BakedMat.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/BakedMat.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_0.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_0.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_0.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_1.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTBump_1.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_0.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_0.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_0.mat.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_1.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/VTDiffuse_1.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/details.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/details.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/heightMap.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightMap.bytes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_0.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_0.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_0.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_0.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_1.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_1.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_alpha0.tga.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_alpha0.tga.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_alpha1.tga.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/heightfield_0_alpha1.tga.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/heightfield_0/treeData.bytes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/heightfield_0/treeData.bytes.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,46 +116,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/HLSLSupport.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityCG.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Hub/Editor/2020.3.47f1c1/Editor/Data/CGIncludes/UnityInstancing.cginc" root0="SKIP_HIGHLIGHTING" />
@@ -174,6 +135,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/79/e5db2f2f/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/8a/5632137b/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/a0/3caf13e1/IFormattable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/a5/9ffffd13/String.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/af/840997c7/UIntPtr.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/e9/45913b7b/IEquatable`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/f2/c3f17cb6/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
@@ -182,6 +144,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/18/06e59370/Texture2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/1c/0a492d8d/CullingResults.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/1d/36086bcf/LightBakingOutput.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/1e/93fbfe0d/ReflectionProbe.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/29/f804cae6/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/2a/dc893e7e/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/2b/262efc4e/AsyncGPUReadback.cs" root0="SKIP_HIGHLIGHTING" />
@@ -196,6 +159,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/5c/0bad5ee0/RenderPipeline.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/62/23b6f107/Graphics.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/65/019ad560/LayerMask.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/6e/39acc680/Renderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/73/727b3734/Matrix4x4.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/88/0781ca36/GraphicsFormat.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7a2c134242574696b1b60dc2458f071013ea00/88/990b1656/GraphicsFormatUtility.cs" root0="SKIP_HIGHLIGHTING" />
@@ -539,6 +503,7 @@
       <workItem from="1706343538381" duration="7295000" />
       <workItem from="1706498296290" duration="1215000" />
       <workItem from="1706499920828" duration="88696000" />
+      <workItem from="1707212064795" duration="832000" />
     </task>
     <servers />
   </component>
@@ -929,19 +894,6 @@
           <option name="timeStamp" value="227" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs</url>
-          <line>179</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TLoader.cs" initialLine="177" containingFunctionPresentation="方法 'Tick'">
-            <startOffsets>
-              <option value="6091" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6148" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="236" />
-        </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/QuadTree.cs</url>
           <line>257</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\QuadTree.cs" initialLine="257" containingFunctionPresentation="方法 'Init'">
@@ -953,19 +905,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="238" />
-        </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/QuadTree.cs</url>
-          <line>281</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\QuadTree.cs" initialLine="281" containingFunctionPresentation="方法 'CullQuadTree'">
-            <startOffsets>
-              <option value="10274" />
-            </startOffsets>
-            <endOffsets>
-              <option value="10354" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="239" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs</url>
@@ -1024,10 +963,10 @@
           <line>235</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeMesh.cs" initialLine="235" containingFunctionPresentation="方法 'UpdatePatch'">
             <startOffsets>
-              <option value="7194" />
+              <option value="7191" />
             </startOffsets>
             <endOffsets>
-              <option value="7258" />
+              <option value="7255" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="287" />
@@ -1045,7 +984,7 @@
           </properties>
           <option name="timeStamp" value="293" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs</url>
           <line>231</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\TerrainDataExport.cs" initialLine="231" containingFunctionPresentation="方法 'OnGUI'">
@@ -1085,19 +1024,6 @@
           <option name="timeStamp" value="298" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs</url>
-          <line>187</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeMesh.cs" initialLine="187" containingFunctionPresentation="方法 'ApplyTextures'">
-            <startOffsets>
-              <option value="5511" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5550" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="299" />
-        </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeBakeTexture.cs</url>
           <line>92</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeBakeTexture.cs" initialLine="92" containingFunctionPresentation="方法 'Reset'">
@@ -1110,7 +1036,7 @@
           </properties>
           <option name="timeStamp" value="300" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs</url>
           <line>237</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\TerrainDataExport.cs" initialLine="237" containingFunctionPresentation="方法 'OnGUI'">
@@ -1123,7 +1049,7 @@
           </properties>
           <option name="timeStamp" value="301" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Editor/Terrain/TerrainDataExport.cs</url>
           <line>249</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Editor\Terrain\TerrainDataExport.cs" initialLine="249" containingFunctionPresentation="方法 'OnGUI'">
@@ -1136,7 +1062,7 @@
           </properties>
           <option name="timeStamp" value="302" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs</url>
           <line>268</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Utility\MaterialUtils.cs" initialLine="268" containingFunctionPresentation="方法 'SaveVTMaterail'">
@@ -1149,7 +1075,7 @@
           </properties>
           <option name="timeStamp" value="303" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs</url>
           <line>257</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Utility\MaterialUtils.cs" initialLine="257" containingFunctionPresentation="方法 'SaveVTMaterail'">
@@ -1162,7 +1088,7 @@
           </properties>
           <option name="timeStamp" value="304" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Utility/MaterialUtils.cs</url>
           <line>272</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Utility\MaterialUtils.cs" initialLine="272" containingFunctionPresentation="方法 'SaveVTMaterail'">
@@ -1175,6 +1101,58 @@
           </properties>
           <option name="timeStamp" value="305" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/QuadTree.cs</url>
+          <line>314</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\QuadTree.cs" initialLine="314" containingFunctionPresentation="方法 'CullQuadTree'">
+            <startOffsets>
+              <option value="11703" />
+            </startOffsets>
+            <endOffsets>
+              <option value="11730" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="317" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/QuadTree.cs</url>
+          <line>302</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\QuadTree.cs" initialLine="302" containingFunctionPresentation="方法 'CullQuadTree'">
+            <startOffsets>
+              <option value="11200" />
+            </startOffsets>
+            <endOffsets>
+              <option value="11225" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="322" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/TLoader.cs</url>
+          <line>185</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\TLoader.cs" initialLine="185" containingFunctionPresentation="方法 'Tick'">
+            <startOffsets>
+              <option value="6357" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6636" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="323" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Core/QuadTree.cs</url>
+          <line>281</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Core\QuadTree.cs" initialLine="281" containingFunctionPresentation="方法 'CullQuadTree'">
+            <startOffsets>
+              <option value="10274" />
+            </startOffsets>
+            <endOffsets>
+              <option value="10354" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="324" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -1185,7 +1163,9 @@
         <PinnedItemInfo parentTag="Type#UnityEngine.ComputeBuffer" memberName="m_Safety" />
         <PinnedItemInfo parentTag="Type#UnityEngine.Object" memberName="name" />
         <PinnedItemInfo parentTag="Type#Core.UnsafeList" memberName="_items" />
+        <PinnedItemInfo parentTag="Type#Core.Array`1" memberName="_data" />
         <PinnedItemInfo parentTag="Type#CustomURP.TData" memberName="_detailMats" />
+        <PinnedItemInfo parentTag="Type#Core.Array`1" memberName="Length" />
         <PinnedItemInfo parentTag="Type#UnityEditor.SerializedProperty" memberName="serializedObject" />
         <PinnedItemInfo parentTag="Type#CustomURP.TData" memberName="_heightMap" />
       </pinned-members>
