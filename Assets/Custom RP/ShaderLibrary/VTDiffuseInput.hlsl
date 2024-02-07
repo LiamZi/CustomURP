@@ -25,13 +25,16 @@ CBUFFER_END
 
 TEXTURE2D(_Control);
 SAMPLER(sampler_Control);
+SAMPLER(sampler_linear_clamp_Control);
 TEXTURE2D(_Splat0);
 SAMPLER(sampler_Splat0);
+SAMPLER(sampler_linear_repeat_Splat0);
 TEXTURE2D(_Splat1);
 TEXTURE2D(_Splat2);
 TEXTURE2D(_Splat3);
 TEXTURE2D(_Mask0);
 SAMPLER(sampler_Mask0);
+SAMPLER(sampler_linear_repeat_Mask0);
 TEXTURE2D(_Mask1);
 TEXTURE2D(_Mask2);
 TEXTURE2D(_Mask3);

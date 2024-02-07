@@ -27,8 +27,6 @@
     SubShader
     {
         // No culling or depth
-        Cull Off ZWrite Off ZTest Always
-
         HLSLINCLUDE
         #include "../ShaderLibrary/Common.hlsl"
         #include "../ShaderLibrary/LitInput.hlsl"
@@ -36,10 +34,14 @@
 
         Pass
         {
+        	Cull Off ZWrite Off ZTest Always
+			Blend One One
+        
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment fragAdd
             #pragma target 3.5
+            #pragma enable_d3d11_debug_symbols
 
             #include "../ShaderLibrary/VTBumpInput.hlsl"
             #include "../ShaderLibrary/VTBump.hlsl"

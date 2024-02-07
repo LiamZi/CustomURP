@@ -22,7 +22,7 @@ struct Attributes
     float2 uv1 : TEXCOORD1;
     
     GI_ATTRIBUTE_DATA
-   UNITY_VERTEX_INPUT_INSTANCE_ID
+    UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
 struct Varyings
@@ -63,11 +63,11 @@ Varyings vert(Attributes input)
     o.normalWS = half4(normalWS, worldPos.x);
     o.tangentWS = half4(tangentWS, worldPos.y);
     o.bitangentWS = half4(bitangentWS, worldPos.z);
-    o.positionWS = worldPos;
 #else
     o.normalWS = TransformObjectToWorldNormal(input.normalOS);
-    o.positionWS = worldPos;
 #endif
+    
+    o.positionWS = worldPos;
     o.positionCS = TransformObjectToHClip(worldPos);
 
     return o;
@@ -76,13 +76,6 @@ Varyings vert(Attributes input)
 float4 frag(Varyings input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
-    
-    // float4 mixedDiffuse = SAMPLE_TEXTURE2D(_Diffuse, sampler_Diffuse, input.uvMainAndLM.xy);
-    // float4 mixedNormal = SAMPLE_TEXTURE2D(_Normal, sampler_Normal, input.uvMainAndLM.xy);
-    // float3 normalTS = 0;
-    // normalTS.xy = mixedNormal.xy * 2 - 1;
-    // normalTS.z = sqrt(1 - normalTS.x * normalTS.x - normalTS.y * normalTS.y);
-    // float3 albedo = mixedDiffuse.rgb;
     
     InputConfig config = GetInputConfig(input.positionCS, input.uvMainAndLM.xy);
 
@@ -115,10 +108,11 @@ float4 frag(Varyings input) : SV_TARGET
     float3 normalTS = 0;
     normalTS.xy = map.xy * 2 - 1;
     normalTS.z = sqrt(1 - normalTS.x * normalTS.x - normalTS.y * normalTS.y);
-    surface.normal = NormalTangentToWorld(normalTS, input.normalWS, input.tangentWS);
+    // surface.normal = NormalTangentToWorld(normalTS, input.normalWS, input.tangentWS);
+    surface.normal = normalize(input.normalWS);
     surface.interpolatedNormal = input.normalWS;
 #else
-    surface.normal = normalize(input.normalWS);
+    surface.normal = SafeNormalize(input.normalWS);
     surface.interpolatedNormal = surface.normal;
 #endif
 

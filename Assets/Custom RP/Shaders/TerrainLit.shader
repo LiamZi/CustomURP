@@ -58,7 +58,6 @@
             ENDHLSL
 
             HLSLPROGRAM
-
             #pragma multi_compile_fragment _ DEBUG_DISPLAY
             #pragma multi_compile_instancing
             #pragma shader_feature_local_fragment _TERRAIN_BLEND_HEIGHT

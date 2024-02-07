@@ -31,7 +31,7 @@
         	"RenderType"="Opaque" 
 	        "LightMode" = "CustomLit"
         }
-        Cull Off ZWrite Off ZTest Always
+
         
         HLSLINCLUDE
         #include "../ShaderLibrary/Common.hlsl"
@@ -40,11 +40,14 @@
 
         Pass
         {
+        	Cull Off ZWrite Off ZTest Always
+			Blend One One
+        
             HLSLPROGRAM
 			#pragma target 3.5
             #pragma vertex vert
             #pragma fragment fragAdd
-            
+            #pragma enable_d3d11_debug_symbols
 
 			#include "../ShaderLibrary/VTDiffuseInput.hlsl"
             #include "../ShaderLibrary/VTDiffuse.hlsl"

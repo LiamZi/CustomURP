@@ -2,7 +2,7 @@
 {
     Properties
     {
-        [HideInInspector] _Control("Control (RGBA)", 2D) = "red" {}
+        [HideInInspector] _Control("Control (RGBA)", 2D) = "white" {}
 		[HideInInspector] _Splat3("Layer 3 (A)", 2D) = "black" {}
 		[HideInInspector] _Splat2("Layer 2 (B)", 2D) = "black" {}
 		[HideInInspector] _Splat1("Layer 1 (G)", 2D) = "black" {}
@@ -42,6 +42,7 @@
             #pragma vertex vert
             #pragma fragment frag
             #pragma target 3.5
+            #pragma enable_d3d11_debug_symbols
             
 			#include "../ShaderLibrary/VTDiffuseInput.hlsl"
             #include "../ShaderLibrary/VTDiffuse.hlsl"

@@ -46,6 +46,7 @@
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma enable_d3d11_debug_symbols
 
 			#include "../ShaderLibrary/VTBumpInput.hlsl"
             #include "../ShaderLibrary/VTBump.hlsl"

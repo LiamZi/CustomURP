@@ -156,7 +156,7 @@ namespace CustomURP
         void RequestTexture(int size)
         {
             size = Mathf.Clamp(size, 128, 2048);
-            if (size != _textureSize)
+            // if (size != _textureSize)
             {
                 _textureSize = size;
                 var cmd = TVTCreateCmd.Pop();
@@ -234,7 +234,7 @@ namespace CustomURP
         public void UpdatePatch(Vector3 viewCenter, float fov, float screenH, float screenW)
         {
             int curTexSize = CalculateTextureSize(viewCenter, fov, screenH);
-            if (curTexSize != _textureSize)
+            // if (curTexSize != _textureSize)
             {
                 RequestTexture(curTexSize);
             }

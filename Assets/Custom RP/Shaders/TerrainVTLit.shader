@@ -38,7 +38,7 @@
             // #pragma multi_compile _ USE_CLUSTER_LIGHT
             // #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_instancing
-            #pragma instancing_options assumeuniformscaling
+            // #pragma instancing_options assumeuniformscaling
             // make fog work
             #pragma multi_compile_fog
             #pragma target 3.5

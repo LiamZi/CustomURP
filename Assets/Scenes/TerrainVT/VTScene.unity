@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a814050ee4141cc8988373156c812c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _header: {fileID: 11400000, guid: 38745e18bf6617348a3cf08facef38ab, type: 2}
+  _header: {fileID: 11400000, guid: a3753b3a221e8374fb999ed3c6ca57dc, type: 2}
   _lodPolicy: {fileID: 11400000, guid: 087b5b5f0422c854ba2a05439476b48d, type: 2}
   _cullCamera: {fileID: 1877727598}
   _vtCreatorGO: {fileID: 1475227956}
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a814050ee4141cc8988373156c812c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _header: {fileID: 11400000, guid: 2ee45de9af0085d42b861bb89f551b4f, type: 2}
+  _header: {fileID: 11400000, guid: 7092537e9301e814a8ad106c532f9e99, type: 2}
   _lodPolicy: {fileID: 11400000, guid: 087b5b5f0422c854ba2a05439476b48d, type: 2}
   _cullCamera: {fileID: 1877727598}
   _vtCreatorGO: {fileID: 1475227956}
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a814050ee4141cc8988373156c812c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _header: {fileID: 11400000, guid: 3da7594d3ab5e924eb50c2669b95da77, type: 2}
+  _header: {fileID: 11400000, guid: 04c0201b0268c4442bbbf1a75aa7d6cc, type: 2}
   _lodPolicy: {fileID: 11400000, guid: 087b5b5f0422c854ba2a05439476b48d, type: 2}
   _cullCamera: {fileID: 1877727598}
   _vtCreatorGO: {fileID: 1475227956}
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a814050ee4141cc8988373156c812c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _header: {fileID: 11400000, guid: 7c4d91ec7ba73064d8c2880a1597feba, type: 2}
+  _header: {fileID: 11400000, guid: c5f82f6ca700395408be2e839eff5445, type: 2}
   _lodPolicy: {fileID: 11400000, guid: 087b5b5f0422c854ba2a05439476b48d, type: 2}
   _cullCamera: {fileID: 1877727598}
   _vtCreatorGO: {fileID: 1475227956}
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a814050ee4141cc8988373156c812c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _header: {fileID: 11400000, guid: 15d4627a7842a9543a5b096985ca8797, type: 2}
+  _header: {fileID: 11400000, guid: 88d5d27aa32e29447a3f5ee63159b5b0, type: 2}
   _lodPolicy: {fileID: 11400000, guid: 087b5b5f0422c854ba2a05439476b48d, type: 2}
   _cullCamera: {fileID: 1877727598}
   _vtCreatorGO: {fileID: 1475227956}
@@ -510,7 +510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773938407}
   m_LocalRotation: {x: -0.021817854, y: -0.9050992, z: 0.42205483, w: -0.04678897}
-  m_LocalPosition: {x: 0, y: 1500, z: 0}
+  m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a814050ee4141cc8988373156c812c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _header: {fileID: 11400000, guid: d9255d92f7f58554cb025a1794a3ad54, type: 2}
+  _header: {fileID: 11400000, guid: 659884b08e14aea4e81ddb3ec5745c8b, type: 2}
   _lodPolicy: {fileID: 11400000, guid: 087b5b5f0422c854ba2a05439476b48d, type: 2}
   _cullCamera: {fileID: 1877727598}
   _vtCreatorGO: {fileID: 1475227956}
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3eca2518ee74e5aa33e22e471f07f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _texQuality: 1
+  _texQuality: 0
   _maxBakeCountPerFrame: 8
 --- !u!1 &1662215777
 GameObject:

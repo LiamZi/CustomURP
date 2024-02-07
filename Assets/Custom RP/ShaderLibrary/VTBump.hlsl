@@ -36,10 +36,10 @@ void SplatmapMix(float4 uvSplat01, float4 uvSplat23, inout half4 splatControl, o
 //	clip(weight <= 0.005h ? -1.0h : 1.0h);
 //#endif
 	half3 nrm = 0.0f;
-	nrm += splatControl.r * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal0, sampler_Normal0, uvSplat01.xy), _NormalScale0);
-	nrm += splatControl.g * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal1, sampler_Normal0, uvSplat01.zw), _NormalScale1);
-	nrm += splatControl.b * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal2, sampler_Normal0, uvSplat23.xy), _NormalScale2);
-	nrm += splatControl.a * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal3, sampler_Normal0, uvSplat23.zw), _NormalScale3);
+	nrm += splatControl.r * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal0, sampler_linear_repeat_Normal0, uvSplat01.xy), _NormalScale0);
+	nrm += splatControl.g * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal1, sampler_linear_repeat_Normal0, uvSplat01.zw), _NormalScale1);
+	nrm += splatControl.b * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal2, sampler_linear_repeat_Normal0, uvSplat23.xy), _NormalScale2);
+	nrm += splatControl.a * UnpackNormalScale(SAMPLE_TEXTURE2D(_Normal3, sampler_linear_repeat_Normal0, uvSplat23.zw), _NormalScale3);
 
 	// avoid risk of NaN when normalizing.
 #if HAS_HALF
@@ -59,10 +59,10 @@ void ComputeMask(float4 uvSplat01, float4 uvSplat23, half4 splatControl, out hal
     masks[3] = 0.5h;
     half4 hasMask = half4(_HasMask0, _HasMask1, _HasMask2, _HasMask3);
 	
-    masks[0] = lerp(masks[0], SAMPLE_TEXTURE2D(_Mask0, sampler_Mask0, uvSplat01.xy), hasMask.x);
-    masks[1] = lerp(masks[1], SAMPLE_TEXTURE2D(_Mask1, sampler_Mask0, uvSplat01.zw), hasMask.y);
-    masks[2] = lerp(masks[2], SAMPLE_TEXTURE2D(_Mask2, sampler_Mask0, uvSplat23.xy), hasMask.z);
-    masks[3] = lerp(masks[3], SAMPLE_TEXTURE2D(_Mask3, sampler_Mask0, uvSplat23.zw), hasMask.w);
+    masks[0] = lerp(masks[0], SAMPLE_TEXTURE2D(_Mask0, sampler_linear_repeat_Mask0, uvSplat01.xy), hasMask.x);
+    masks[1] = lerp(masks[1], SAMPLE_TEXTURE2D(_Mask1, sampler_linear_repeat_Mask0, uvSplat01.zw), hasMask.y);
+    masks[2] = lerp(masks[2], SAMPLE_TEXTURE2D(_Mask2, sampler_linear_repeat_Mask0, uvSplat23.xy), hasMask.z);
+    masks[3] = lerp(masks[3], SAMPLE_TEXTURE2D(_Mask3, sampler_linear_repeat_Mask0, uvSplat23.zw), hasMask.w);
 	
     half4 defaultMetallic = half4(_Metallic0, _Metallic1, _Metallic2, _Metallic3);
     half4 defaultOcclusion = 1.0;
@@ -113,7 +113,7 @@ float4 frag(Varyings input) : SV_TARGET
 half4 fragAdd(Varyings input) : SV_TARGET
 {
 	float2 splatUV = (input.uv.xy * (_Control_TexelSize.zw - 1.0f) + 0.5f) * _Control_TexelSize.xy;
-	half4 splatControl = SAMPLE_TEXTURE2D(_Control, sampler_Control, splatUV);
+	half4 splatControl = SAMPLE_TEXTURE2D(_Control, sampler_linear_clamp_Control, splatUV);
 
 	half weight;
 	half3 mixedNormal;
