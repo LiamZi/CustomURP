@@ -192,12 +192,12 @@ namespace CustomURP
                 {
                     ActiveMesh(_activeCmd._data[i]);
                 }
-
+                
                 for (int i = 0; i < _deactiveCmd.Length; ++i)
                 {
                     DeactiveMesh(_deactiveCmd._data[i]);
                 }
-
+                
                 if (_quadTree.ActiveNodes.Length > 0)
                 {
                     for (int i = 0; i < _quadTree.ActiveNodes.Length; ++i)
@@ -211,7 +211,7 @@ namespace CustomURP
                 GeometryUtility.CalculateFrustumPlanes(_detailProjM * world2Camera, _detailCullPlanes);
                 _detailRenderer.Cull(_detailCullPlanes);
             }
-            _detailRenderer.Tick(_cullCamera);
+            _detailRenderer.Tick(_cullCamera, ref cmd);
         }
 
         public void OnDestroy()

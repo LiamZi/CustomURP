@@ -115,6 +115,7 @@ Shader "Custom RP/WavingGrass"
 				// half4 color = UniversalFragmentBlinnPhong(inputData, surfaceData.albedo, half4(surfaceData.specular, 1.0), surfaceData.smoothness, surfaceData.emission, surfaceData.alpha);
 				// #endif
 				// color.rgb = MixFog(color.rgb, inputData.fogCoord);
+				// return half4(1.0, 0.0, 0.0, 1.0);
 				return diffuseAlpha;
 			}
 			ENDHLSL

@@ -207,7 +207,7 @@ namespace CustomURP
 
         public abstract void TickBuild();
 
-        public virtual void OnDraw(Camera camera, int lod, ref bool matInvisible)
+        public virtual void OnDraw(Camera camera, int lod, ref bool matInvisible, ref Command cmd)
         {
             if (_drawParam == null) return;
             
@@ -228,9 +228,9 @@ namespace CustomURP
                 if(lod > 0)
                     mat = _materialLod1;
                 _drawParam._data[i]._matBlock.SetVectorArray("_PerInstanceColor", _drawParam._data[i]._colors);
-                Graphics.DrawMeshInstanced(_mesh, 0, mat, _drawParam._data[i]._matrixs, 
-                                _drawParam._data[i]._used, _drawParam._data[i]._matBlock, ShadowCastingMode.Off, 
-                                _isReceiveShadow, LayerMask.NameToLayer("Default"), camera);
+                cmd.Cmd.DrawMeshInstanced(_mesh , 0, mat, 0, 
+                                _drawParam._data[i]._matrixs, _drawParam._data[i]._used, 
+                                _drawParam._data[i]._matBlock);
             }
         }
 
@@ -307,7 +307,7 @@ namespace CustomURP
 
         public abstract void TickBuild();
 
-        public void Draw(Camera camera, ref bool isInvisble)
+        public void Draw(Camera camera, ref bool isInvisble, ref Command cmd)
         {
             int lod = 1;
             if (camera != null)
@@ -322,9 +322,9 @@ namespace CustomURP
             for (int i = 0; i < _layers.Length; ++i)
             {
                 bool matInvisible = true;
-                _layers[i].OnDraw(camera, lod, ref matInvisible);
+                _layers[i].OnDraw(camera, lod, ref matInvisible, ref cmd);
                 if (!matInvisible)
-                    matInvisible = false;
+                    isInvisble = false;
             }
         }
 
@@ -472,7 +472,7 @@ namespace CustomURP
             _currentVisible.Reset();
         }
 
-        public void Tick(Camera camera)
+        public void Tick(Camera camera, ref Command cmd)
         {
             for (int i = _buildingPatches.Count - 1; i >= 0; --i)
             {
@@ -491,7 +491,7 @@ namespace CustomURP
                 var pid = _drawablePathces[i];
                 var p = _patches[pid];
                 bool invisible = false;
-                p.Draw(camera, ref invisible);
+                p.Draw(camera, ref invisible, ref cmd);
                 if (invisible)
                 {
                     p.PushData();
