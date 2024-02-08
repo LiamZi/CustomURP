@@ -204,8 +204,8 @@ namespace CustomURP
                 
                 if (_quadTree.ActiveNodes.Length > 0)
                 {
-                    // for (int i = 0; i < _quadTree.ActiveNodes.Length; ++i)
-                    for(int i = 0; i < 1; ++i)
+                    for (int i = 0; i < _quadTree.ActiveNodes.Length; ++i)
+                    // for(int i = 0; i < 1; ++i)
                     {
                         var node = _quadTree.ActiveNodes._data[0];
                         var p = _activeMeshes[node._meshIndex];

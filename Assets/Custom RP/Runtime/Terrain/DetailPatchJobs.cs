@@ -228,7 +228,7 @@ namespace CustomURP
                         param._used = protoypeCount;
                         for (int i = 0; i < protoypeCount; ++i)
                         {
-                            var idxInJob = batch * 1023 + 1;
+                            var idxInJob = batch * 1023 + i;
                             Vector3 pos = _job._positions[idxInJob];
                             HeightMap.GetHeightInterpolated(pos, ref pos.y);
                             if (this._layerData._waterFloating)
@@ -236,7 +236,10 @@ namespace CustomURP
                                 pos.y = WaterHeight.GetWaterHeight(pos);
                             }
                             Quaternion q = Quaternion.Euler(0, _job._orientations[idxInJob], 0);
-                            param._matrixs[i] = Matrix4x4.Translate(pos) * Matrix4x4.Scale(_job._scales[idxInJob]) * Matrix4x4.Rotate(q);
+                            var t = Matrix4x4.Translate(pos);
+                            var s = Matrix4x4.Scale(_job._scales[idxInJob]);
+                            var r = Matrix4x4.Rotate(q);
+                            param._matrixs[i] = t * r * s;
                             param._colors[i] = _job._colors[idxInJob];
                         }
                         _drawParam.Add(param);
