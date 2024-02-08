@@ -7,17 +7,18 @@
     }
     SubShader
     {
-        Tags
-        {
-            "RenderType"="Opaque"
-            "LightMode" = "CustomLit"
-        }
-        LOD 100
-        
         HLSLINCLUDE
         #include "../ShaderLibrary/Common.hlsl"
         #include "../ShaderLibrary/LitInput.hlsl"
         ENDHLSL
+
+        Tags 
+        { 
+            "LightMode" = "CustomLit"
+            "PreviewType"="Sphere"
+        }
+        
+//        LOD 100
 
         Pass
         {

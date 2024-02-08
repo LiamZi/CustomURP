@@ -143,20 +143,28 @@ namespace CustomURP
 
             if (dirLightCount > 0)
             {
-                _cmd.SetGlobalVectorArray(ShaderParams._DirLightColorId,      _dirLightColors);
-                _cmd.SetGlobalVectorArray(ShaderParams._DirLightDirectionId,  _dirLightDirectionsAndMasks);
-                _cmd.SetGlobalVectorArray(ShaderParams._DirLightShadowDataId, _dirLightShadowData);
+                // _cmd.SetGlobalVectorArray(ShaderParams._DirLightColorId,      _dirLightColors);
+                // _cmd.SetGlobalVectorArray(ShaderParams._DirLightDirectionId,  _dirLightDirectionsAndMasks);
+                // _cmd.SetGlobalVectorArray(ShaderParams._DirLightShadowDataId, _dirLightShadowData);
+                Shader.SetGlobalVectorArray(ShaderParams._DirLightColorId,      _dirLightColors);
+                Shader.SetGlobalVectorArray(ShaderParams._DirLightDirectionId,  _dirLightDirectionsAndMasks);
+                Shader.SetGlobalVectorArray(ShaderParams._DirLightShadowDataId, _dirLightShadowData);
             }
 
             _cmd.SetGlobalInt(ShaderParams._OtherLightSizeId, otherLightCount);
 
             if (otherLightCount > 0)
             {
-                _cmd.SetGlobalVectorArray(ShaderParams._OtherLightColorsId,     _otherLightColors);
-                _cmd.SetGlobalVectorArray(ShaderParams._OtherLightPositionsId,  _otherLightPositions);
-                _cmd.SetGlobalVectorArray(ShaderParams._OtherLightDirectionsId, _otherLightDirectionsAndMasks);
-                _cmd.SetGlobalVectorArray(ShaderParams._OtherLightSpotAnglesId, _otherLightAngles);
-                _cmd.SetGlobalVectorArray(ShaderParams._OtherLightShadowDataId, _otherLightShadowData);
+                // _cmd.SetGlobalVectorArray(ShaderParams._OtherLightColorsId,     _otherLightColors);
+                // _cmd.SetGlobalVectorArray(ShaderParams._OtherLightPositionsId,  _otherLightPositions);
+                // _cmd.SetGlobalVectorArray(ShaderParams._OtherLightDirectionsId, _otherLightDirectionsAndMasks);
+                // _cmd.SetGlobalVectorArray(ShaderParams._OtherLightSpotAnglesId, _otherLightAngles);
+                // _cmd.SetGlobalVectorArray(ShaderParams._OtherLightShadowDataId, _otherLightShadowData);
+                Shader.SetGlobalVectorArray(ShaderParams._OtherLightColorsId,     _otherLightColors);
+                Shader.SetGlobalVectorArray(ShaderParams._OtherLightPositionsId,  _otherLightPositions);
+                Shader.SetGlobalVectorArray(ShaderParams._OtherLightDirectionsId, _otherLightDirectionsAndMasks);
+                Shader.SetGlobalVectorArray(ShaderParams._OtherLightSpotAnglesId, _otherLightAngles);
+                Shader.SetGlobalVectorArray(ShaderParams._OtherLightShadowDataId, _otherLightShadowData);
             }
         }
 

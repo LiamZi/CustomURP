@@ -9,6 +9,7 @@ namespace CustomURP
     {
         private static ShaderTagId _customURPShaderTagId;
         private static ShaderTagId _litShaderTagId;
+        private static ShaderTagId _terrianLitShaderTagId;
 
         private static CameraSettings defaultCameraSettings = new CameraSettings();
         private static readonly Rect fullViewRect = new Rect(0f, 0f, 1f, 1f);

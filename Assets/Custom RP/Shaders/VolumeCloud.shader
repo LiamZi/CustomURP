@@ -82,7 +82,7 @@
         {
             "RenderType"="Opaque"
             "PreviewType"="Sphere"
-            "RenderPipeline" = "UniversalRenderPipeline"
+//            "RenderPipeline" = "UniversalRenderPipeline"
         }
         LOD 100
         

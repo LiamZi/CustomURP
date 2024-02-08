@@ -189,25 +189,20 @@ namespace CustomURP
                                     _activeCmd, _deactiveCmd, _lodPolicy);
                 
                 for (int i = 0; i < _activeCmd.Length; ++i)
-                // for(int i = 0; i < 1; ++i)
                 {
-                    // ActiveMesh(_activeCmd._data[0]);
                     ActiveMesh(_activeCmd._data[i]);
                 }
                 //
                 for (int i = 0; i < _deactiveCmd.Length; ++i)
-                // for(int i = 0; i < 1; ++i)
                 {
-                    // DeactiveMesh(_deactiveCmd._data[0]);
                     DeactiveMesh(_deactiveCmd._data[i]);
                 }
                 
                 if (_quadTree.ActiveNodes.Length > 0)
                 {
                     for (int i = 0; i < _quadTree.ActiveNodes.Length; ++i)
-                    // for(int i = 0; i < 1; ++i)
                     {
-                        var node = _quadTree.ActiveNodes._data[0];
+                        var node = _quadTree.ActiveNodes._data[i];
                         var p = _activeMeshes[node._meshIndex];
                         p.UpdatePatch(_cullCamera.transform.position, _cullCamera.fieldOfView, Screen.height, Screen.width);
                     }
@@ -219,17 +214,6 @@ namespace CustomURP
             
             _detailRenderer.Tick(_cullCamera, ref cmd);
             cmd.Execute();
-            
-            // if (_quadTree.ActiveNodes.Length > 0)
-            // {
-            //     // for (int i = 0; i < _quadTree.ActiveNodes.Length; ++i)
-            //     for(int i = 0; i < 1; ++i)
-            //     {
-            //         var node = _quadTree.ActiveNodes._data[0];
-            //         var p = _activeMeshes[node._meshIndex];
-            //         p.UpdatePatch(_cullCamera.transform.position, _cullCamera.fieldOfView, Screen.height, Screen.width);
-            //     }
-            // }
         }
 
         public void OnDestroy()
