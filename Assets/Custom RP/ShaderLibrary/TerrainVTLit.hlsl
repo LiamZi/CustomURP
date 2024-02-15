@@ -52,7 +52,7 @@ Varyings vert(Attributes input)
     
     o.uvMainAndLM.xy = TRANSFORM_TEX(input.uv, _Diffuse);
     o.uvMainAndLM.zw = input.uv1 * unity_LightmapST.xy + unity_LightmapST.zw;
-    float3 worldPos = TransformObjectToWorld(input.positionOS.xyz);
+    float3 positionWS = TransformObjectToWorld(input.positionOS.xyz);
     
 #if defined(_NORMAL_MAP)
     float4 vertexTangent = float4(cross(float3(0, 0, 1), input.normalOS), 1.0);
@@ -60,15 +60,15 @@ Varyings vert(Attributes input)
     float3 tangentWS = TransformObjectToWorldDir(vertexTangent);
     float sign = input.normalOS.w * GetOddNegativeScale();
     float3 bitangentWS = cross(normalWS, tangentWS) * sign;
-    o.normalWS = half4(normalWS, worldPos.x);
-    o.tangentWS = half4(tangentWS, worldPos.y);
-    o.bitangentWS = half4(bitangentWS, worldPos.z);
+    o.normalWS = half4(normalWS, positionWS.x);
+    o.tangentWS = half4(tangentWS, positionWS.y);
+    o.bitangentWS = half4(bitangentWS, positionWS.z);
 #else
     o.normalWS = TransformObjectToWorldNormal(input.normalOS);
 #endif
     
-    o.positionWS = worldPos;
-    o.positionCS = TransformObjectToHClip(worldPos);
+    o.positionWS = positionWS;
+    o.positionCS = TransformWorldToHClip(positionWS);
 
     return o;
 }
@@ -76,6 +76,7 @@ Varyings vert(Attributes input)
 float4 frag(Varyings input) : SV_TARGET
 {
     UNITY_SETUP_INSTANCE_ID(input);
+    // 
     
     InputConfig config = GetInputConfig(input.positionCS, input.uvMainAndLM.xy);
 
@@ -109,10 +110,11 @@ float4 frag(Varyings input) : SV_TARGET
     normalTS.xy = map.xy * 2 - 1;
     normalTS.z = sqrt(1 - normalTS.x * normalTS.x - normalTS.y * normalTS.y);
     // surface.normal = NormalTangentToWorld(normalTS, input.normalWS, input.tangentWS);
-    surface.normal = normalize(input.normalWS);
+    // surface.normal = normalize(input.normalWS);
+    surface.normal = input.normalWS;
     surface.interpolatedNormal = input.normalWS;
 #else
-    surface.normal = SafeNormalize(input.normalWS);
+    surface.normal = input.normalWS;
     surface.interpolatedNormal = surface.normal;
 #endif
 
@@ -122,7 +124,7 @@ float4 frag(Varyings input) : SV_TARGET
     surface.metallic = map.a;
     surface.smoothness = col.a;
     surface.occlusion = map.b;
-    surface.fresnelStrength = GetFresnel(config);
+    surface.fresnelStrength = 1.0;
     surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
     surface.dither = InterleavedGradientNoise(config.fragment.positionSS, 0);
     surface.renderingLayerMask = asuint(unity_RenderingLayer.x);
@@ -139,6 +141,7 @@ float4 frag(Varyings input) : SV_TARGET
     
     
     return float4(finalColor, GetFinalAlpha(surface.alpha));
+    // return float4(1.0, 1.0, 0.0, 1.0);
 }
 
 

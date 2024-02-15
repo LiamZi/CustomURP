@@ -11,18 +11,17 @@
         #include "../ShaderLibrary/Common.hlsl"
         #include "../ShaderLibrary/LitInput.hlsl"
         ENDHLSL
+        
 
         Tags 
         { 
-            "LightMode" = "CustomLit"
-            "PreviewType"="Sphere"
+            "LightMode" = "CustomLit" "PreviewType" = "Sphere"
         }
-        
-//        LOD 100
 
         Pass
         {
             HLSLPROGRAM
+            #pragma target 3.5
             #pragma shader_feature _CLIPPING
             #pragma shader_feature _RECEIVE_SHADOWS
             #pragma shader_feature _PREMULTIPLY_ALPHA
@@ -36,13 +35,13 @@
             #pragma multi_compile _ LOD_FADE_CROSSFADE LOD_FADE_PERCENTAGE 
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ _LIGHTS_PER_OBJECT
-            // #pragma multi_compile _ USE_CLUSTER_LIGHT
+            #pragma multi_compile _ USE_CLUSTER_LIGHT
             // #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_instancing
             // #pragma instancing_options assumeuniformscaling
             // make fog work
             #pragma multi_compile_fog
-            #pragma target 3.5
+            
             #pragma enable_d3d11_debug_symbols
 
             #pragma vertex vert
