@@ -98,9 +98,13 @@ half4 frag(VertexOutput input) : SV_Target
     half3 cIn = skyScattering * ( skyColor * kInvWavelength * kKrESun);
     skyColor = _Exposure * (cIn.rgbr * GetRayleighPhase(-_MoonDirectionWS.xyz, -input.eyeRay.xyz));
     // skyColor = GetRayleighPhase(_MoonDirectionWS.xyz, -input.eyeRay);
-    
+
+#if defined(_ENABLED_STAR)    
     float star = SAMPLE_TEXTURE2D(_StarTex, sampler_StarTex, sphereUV).r;
     star = saturate(star * star * star * 3) * _StarIntensity;
+#else
+    float star = 0.0;
+#endif
 
 #if defined(_ENABLED_MOON)    
     half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(normalizePosWS, -_MoonDirectionWS.xyz));
@@ -141,10 +145,15 @@ half4 frag(VertexOutput input) : SV_Target
     
     half3 milkywayBG = smoothstep(0.1, 1.5, milkyWayTex.r) * _MilkyWayColor2.rgb * 0.2;
 
+#if defined(_ENABLED_MILKYWAY)    
     half3 milkyCol = (SoftLight(milkyWayCol1, milkyWayCol2) + SoftLight(milkyWayCol2, milkyWayCol1)) * 0.5 * _MilkywayIntensity + milkywayBG + milkyStar;
     milkyCol *= _MilkywayIntensity;
+#else
+    half3 milkyCol = half3(0.0, 0.0, 0.0);
+#endif
 
     half4 col = skyColor + sun + star + moon + milkyCol.rgbr;
+    // half4 col = skyColor + sun + moon + milkyCol.rgbr;
     return sqrt(col);
 }
 

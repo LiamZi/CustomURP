@@ -23,6 +23,8 @@
         _MoonDirectionWS("Moon DirectionWS", Vector) = (1, 1, 1, 1)
         _StarIntensity("Star Intensity", Float) = 1
         [Toggle(_ENABLED_MOON)] _Enabled_Moon("Enabled Moon", Float) = 0
+        [Toggle(_ENABLED_MILKYWAY)] _Enabled_MilkyWay("Enabled MilkyWay", Float) = 0
+        [Toggle(_ENABLED_STAR)] _Enabled_Star("Enabled STAR", Float) = 0
     }
     
     SubShader
@@ -55,6 +57,8 @@
             #pragma vertex vert
             #pragma fragment frag
             #pragma shader_feature _ _ENABLED_MOON
+            #pragma shader_feature _ _ENABLED_MILKYWAY
+            #pragma shader_feature _ _ENABLED_STAR
             // #pragma enable_d3d11_debug_symbols
             
             #include "../ShaderLibrary/ProceduralSkyBox.hlsl"

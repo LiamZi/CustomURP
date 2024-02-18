@@ -15,7 +15,8 @@
 
         Tags 
         { 
-            "LightMode" = "CustomLit" "PreviewType" = "Sphere"
+            "LightMode" = "CustomLit" 
+            "PreviewType" = "Sphere"
         }
 
         Pass

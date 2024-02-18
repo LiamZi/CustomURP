@@ -103,27 +103,26 @@ float4 frag(Varyings input) : SV_TARGET
     surface.position = input.positionWS;
     surface.positionCS = input.positionCS;
 
-    float4 map = SAMPLE_TEXTURE2D(_Normal, sampler_Normal, input.uvMainAndLM.xy);
+    float4 bump = SAMPLE_TEXTURE2D(_Normal, sampler_Normal, input.uvMainAndLM.xy);
 #if defined(_NORMAL_MAP)
     float scale = INPUT_PROP(_NormalScale);
     float3 normalTS = 0;
-    normalTS.xy = map.xy * 2 - 1;
+    normalTS.xy = bump.xy * 2 - 1;
     normalTS.z = sqrt(1 - normalTS.x * normalTS.x - normalTS.y * normalTS.y);
     // surface.normal = NormalTangentToWorld(normalTS, input.normalWS, input.tangentWS);
-    // surface.normal = normalize(input.normalWS);
-    surface.normal = input.normalWS;
+    surface.normal = normalTS;
     surface.interpolatedNormal = input.normalWS;
 #else
-    surface.normal = input.normalWS;
-    surface.interpolatedNormal = surface.normal;
+     surface.normal = input.normalWS;
+     surface.interpolatedNormal = surface.normal;
 #endif
 
     surface.depth = -TransformWorldToView(input.positionWS).z;
     surface.color = col.rgb;
     surface.alpha = 1.0;
-    surface.metallic = map.a;
+    surface.metallic = bump.a;
     surface.smoothness = col.a;
-    surface.occlusion = map.b;
+    surface.occlusion = bump.b;
     surface.fresnelStrength = 1.0;
     surface.viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
     surface.dither = InterleavedGradientNoise(config.fragment.positionSS, 0);

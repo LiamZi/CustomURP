@@ -59,12 +59,13 @@ float3 SampleLightProbe(Surface surface)
 #else
     if(unity_ProbeVolumeParams.x)
     {
-        return SampleProbeVolumeSH4(
-                                TEXTURE3D_ARGS(unity_ProbeVolumeSH, samplerunity_ProbeVolumeSH), 
-                                surface.position, surface.normal, unity_ProbeVolumeWorldToObject,
-                                unity_ProbeVolumeParams.y, unity_ProbeVolumeParams.z,
-                                unity_ProbeVolumeMin.xyz, unity_ProbeVolumeSizeInv.xyz
-                            );
+        return SampleProbeVolumeSH4
+        (
+            TEXTURE3D_ARGS(unity_ProbeVolumeSH, samplerunity_ProbeVolumeSH), 
+            surface.position, surface.normal, unity_ProbeVolumeWorldToObject,
+            unity_ProbeVolumeParams.y, unity_ProbeVolumeParams.z,
+            unity_ProbeVolumeMin.xyz, unity_ProbeVolumeSizeInv.xyz
+        );
     }
     else
     {    

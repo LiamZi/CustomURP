@@ -2,8 +2,6 @@
 #define __SHADER_LIBRARY_LIGHTING_HLSL__
 
 
-
-
 float3 IncomingLight(Surface surface, Light light)
 {
     return saturate(dot(surface.normal, light.direction) * light.attenuation) * light.color;

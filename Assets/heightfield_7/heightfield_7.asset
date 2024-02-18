@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: heightfield_7
   m_EditorClassIdentifier: 
   _detailMats:
-  - {fileID: 2100000, guid: 767d134615388b24ea5495a231b2d4fb, type: 2}
-  - {fileID: 2100000, guid: 10adac15a814a504d839fcada82024f2, type: 2}
+  - {fileID: 2100000, guid: 2490e5c167f92d24dbc7c92c4edd8650, type: 2}
+  - {fileID: 2100000, guid: 4bb67f94e5224df4f8665d408cdee623, type: 2}
   _bakeDiffuseMats:
-  - {fileID: 2100000, guid: b9660a7877d5e0d42a4ece1b3c49de88, type: 2}
-  - {fileID: 2100000, guid: 3691e11c2990ae649b7a666c325d4074, type: 2}
+  - {fileID: 2100000, guid: f262f794a5381134f9a5a882dfac92d3, type: 2}
+  - {fileID: 2100000, guid: 7597692cb0edaeb4d86c100b41a3bba6, type: 2}
   _bakeNormalMats:
-  - {fileID: 2100000, guid: c69b0129fb3ca534eb3ffad3af626edc, type: 2}
-  - {fileID: 2100000, guid: 727fbae69072c1a43819a3e9eecfcff0, type: 2}
-  _bakedMat: {fileID: 2100000, guid: ee8f2d1f331957045965392cba593d0c, type: 2}
-  _treeData: {fileID: 4900000, guid: 968856155ed4cb647b5d6dc89548d111, type: 3}
+  - {fileID: 2100000, guid: 8d5f4ca7165905c4d917cb9dde12f34d, type: 2}
+  - {fileID: 2100000, guid: 0d4918930fa04f24e8dc188c7a37454b, type: 2}
+  _bakedMat: {fileID: 2100000, guid: c1b2731ddf7e2fe45b740029c09a1fa3, type: 2}
+  _treeData: {fileID: 4900000, guid: 3db249bfe2c4dd64ebdf303a8013e224, type: 3}
   _meshDataPack: 64
   _meshPrefix: heightfield_7
-  _heightMap: {fileID: 4900000, guid: 9b6817b92eeca9e4ab7d8cda6c76aba7, type: 3}
+  _heightMap: {fileID: 4900000, guid: adaf1e8c1a145d14dab2493b84cc0365, type: 3}
   _heightmapScale: {x: 2, y: 103.75621, z: 2}
   _heightmapResolution: 257
   _detailPrototypes:
@@ -72,4 +72,4 @@ MonoBehaviour:
   _detailWidth: 256
   _detailHeight: 256
   _detailResolutionPerPatch: 16
-  _detailLayers: {fileID: 4900000, guid: 3148c113603cf574186bf14eb3f4f383, type: 3}
+  _detailLayers: {fileID: 4900000, guid: 05e88590ab0a3fa45b06b933d0e10d89, type: 3}

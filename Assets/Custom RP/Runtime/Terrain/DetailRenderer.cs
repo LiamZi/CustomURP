@@ -85,7 +85,7 @@ namespace CustomURP
         {
             Reversed = false;
             _target = mat;
-            _cutoffVal = _target.GetFloat("_Cutoff");
+            _cutoffVal = _target.GetFloat("_GrassCutoff");
             State = _playDone;
         }
 
@@ -160,14 +160,16 @@ namespace CustomURP
             _mesh = data._prototype.GetComponent<MeshFilter>().sharedMesh;
             var matSrc = data._prototype.GetComponent<MeshRenderer>().sharedMaterial;
             _materialLod0 = new Material(matSrc);
+            _materialLod0.EnableKeyword("_CLIPPING");
             _isReceiveShadow = receiveShadow;
             if (_isReceiveShadow)
             {
                 _materialLod0.EnableKeyword("_MAIN_LIGHT_SHADOWS");
             }
             _materialLod1 = new Material(_materialLod0);
-            _materialLod1.DisableKeyword("_NORMALMAP");
+            _materialLod1.DisableKeyword("_NORMAL_MAP");
             _materialLod1.EnableKeyword("FORCE_UP_NORMAL");
+            _materialLod1.EnableKeyword("_CLIPPING");
             _cutoffAnim = new PatchMaterialCutoffAnim(_materialLod1);
         }
 

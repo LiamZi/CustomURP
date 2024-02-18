@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: heightfield_9_1
   m_Shader: {fileID: 4800000, guid: b9a65eb3e8654825a53c7b75036a835d, type: 3}
-  m_ShaderKeywords: _MASKMAP _NORMALMAP
+  m_ShaderKeywords: _CLIPPING _MASKMAP _NORMAL_MAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Control:
-        m_Texture: {fileID: 2800000, guid: 93aff0bafad7e104ea69f8a24e1e2dc3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 362ecfbd8c27f1d47a37adadee310ede, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask0:

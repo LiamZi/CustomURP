@@ -81,7 +81,8 @@ namespace CustomURP
                 tmat.SetFloat(string.Format("_NormalScale{0}", idx), layer.normalScale);
                 tmat.SetFloat(string.Format("_Metallic{0}", idx), layer.metallic);
                 tmat.SetFloat(string.Format("_Smoothness{0}", idx), layer.smoothness);
-                tmat.EnableKeyword("_NORMALMAP");
+                tmat.EnableKeyword("_NORMAL_MAP");
+                tmat.EnableKeyword("_CLIPPING");
                 
                 if (layer.maskMapTexture != null)
                 {
