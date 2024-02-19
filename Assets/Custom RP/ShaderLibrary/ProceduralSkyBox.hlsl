@@ -107,7 +107,7 @@ half4 frag(VertexOutput input) : SV_Target
 #endif
 
 #if defined(_ENABLED_MOON)    
-    half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(normalizePosWS, -_MoonDirectionWS.xyz));
+    half4 moon = SAMPLE_TEXTURE2D(_MoonTex, sampler_linear_clamp_MoonTex, (input.moonPos.xy + 0.5)) * step(0.5, dot(normalizePosWS, -_MoonDirectionWS.xyz));
     half4 moonScattering = smoothstep(0.97, 1.3, dot(normalizePosWS, -_MoonDirectionWS.xyz));
     moon = (moon * _MoonIntensity + moonScattering * 0.8) * _MoonCol;
 #else

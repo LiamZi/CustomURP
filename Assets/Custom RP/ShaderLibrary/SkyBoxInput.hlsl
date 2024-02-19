@@ -7,7 +7,7 @@ SAMPLER(sampler_SkyGradientTex);
 TEXTURE2D(_StarTex);
 SAMPLER(sampler_StarTex);
 TEXTURE2D(_MoonTex);
-SAMPLER(sampler_MoonTex);
+SAMPLER(sampler_linear_clamp_MoonTex);
 TEXTURE2D(_MilkyWayTex);
 SAMPLER(sampler_MilkyWayTex);
 TEXTURE2D(_MilkyWayNoise);
