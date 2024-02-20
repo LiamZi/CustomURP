@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: SkyBox
   m_Shader: {fileID: 4800000, guid: 549899cfdb8f42f4af38f5a782e1fa96, type: 3}
-  m_ShaderKeywords: _ENABLED_MILKYWAY _ENABLED_MOON _ENABLED_MilkyWay _ENABLED_STAR
+  m_ShaderKeywords: _ENABLED_MilkyWay
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,94 +19,38 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MilkyWayNoise:
-        m_Texture: {fileID: 2800000, guid: 2869b65ef01b1434e95d2dcec429384e, type: 3}
-        m_Scale: {x: 4.5, y: 2}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MilkyWayTex:
-        m_Texture: {fileID: 2800000, guid: 32528bbb4f64c0340b5b6b1d921a2770, type: 3}
-        m_Scale: {x: 0.44, y: 0.84}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _StarTex:
-        m_Texture: {fileID: 2800000, guid: d34f114d65847ce44bea47678cad4c78, type: 3}
+        m_Texture: {fileID: 2800000, guid: bbabab9605ad9e14eb964d019bed423c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AtmosphereThickness: 1.05
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _Enabled_MilkyWay: 1
-    - _Enabled_Moon: 1
-    - _Enabled_Star: 1
-    - _Exposure: 2.2
-    - _FlowSpeed: 0.02
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _MilkyWayIntensity: 0.02666664
-    - _Mode: 0
-    - _MoonIntensity: 2.01
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _ScatteringIntensity: 0.3226067
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _StarIntensity: 0.022606691
-    - _SunIntensity: 0.9773933
-    - _SunSize: 0.03
-    - _UVSec: 0
-    - _ZWrite: 1
+    - _AtmosphereThickness: 1
+    - _Enabled_MilkyWay: 0
+    - _Enabled_Moon: 0
+    - _Enabled_Star: 0
+    - _Exposure: 1.3
+    - _FlowSpeed: 0.05
+    - _MilkyWayIntensity: 1
+    - _MoonIntensity: 1.5
+    - _ScatteringIntensity: 0
+    - _StarIntensity: 1
+    - _SunIntensity: 0
+    - _SunSize: 0.05
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.21048418, g: 0.6352208, b: 0.8113208, a: 1}
-    - _MilkyWayColor1: {r: 0.11372549, g: 0.23529412, b: 0.83137256, a: 1}
-    - _MilkyWayColor2: {r: 0.30588236, g: 0.9137255, b: 0.8117647, a: 1}
+    - _GroundColor: {r: 0.36899996, g: 0.34899998, b: 0.34099993, a: 1}
+    - _MilkyWayColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _MilkyWayColor2: {r: 1, g: 1, b: 1, a: 1}
     - _MoonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonDirectionWS: {r: -0.000000063972934, g: 0.681557, b: -0.73176515, a: 0}
-    - _SkyTint: {r: 0.20597059, g: 0.4696213, b: 0.764151, a: 1}
-    - _SunCol: {r: 0.8113208, g: 0.6581433, b: 0.3564563, a: 1}
-    - _SunColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SunDirectionWS: {r: 0.000000063972976, g: -0.6815565, b: 0.73176545, a: 0}
+    - _MoonDirectionWS: {r: 0, g: -1.0000001, b: -0.00000011920929, a: 0}
+    - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SunCol: {r: 1, g: 1, b: 1, a: 1}
+    - _SunDirectionWS: {r: 0, g: -1.0000001, b: -0.00000011920929, a: 0}
   m_BuildTextureStacks: []

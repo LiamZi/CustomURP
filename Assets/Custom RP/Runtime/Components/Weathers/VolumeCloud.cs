@@ -30,7 +30,14 @@ namespace CustomURP
 
         int _frameDebug = 1;
 
-        public VolumeCloud(VolumeCloudSettings settings, string name = "VolumeCloud")
+        // public VolumeCloud(VolumeCloudSettings settings, string name = "VolumeCloud")
+        // {
+        //     _setttings = settings;
+        //     _name = name;
+        //     _frameCount = 0;
+        // }
+
+        public void Init(VolumeCloudSettings settings, string name = "VolumeCloud")
         {
             _setttings = settings;
             _name = name;

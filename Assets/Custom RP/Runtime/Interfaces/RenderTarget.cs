@@ -187,5 +187,13 @@ namespace CustomURP
             cmd.SetRenderTarget(to, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
             cmd.DrawProcedural(Matrix4x4.identity, material, isDepth ? 1 : 0, MeshTopology.Triangles, 3);
         }
+
+        public void GetDepthTexture(ref Command cmd, ref RenderTexture depthTexture)
+        {
+            if (DeviceUtility.CopyTextureSupported)
+            {
+                cmd.CopyTexture(_depthAttachmentId, depthTexture);
+            }
+        }
     }
 }

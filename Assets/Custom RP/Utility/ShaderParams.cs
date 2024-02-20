@@ -165,6 +165,26 @@ namespace CustomURP
         public static readonly int _inTexId = Shader.PropertyToID("_InputTex");
         public static readonly int _reduceTexId = Shader.PropertyToID("_ReduceTex");
         
+        //Volumetirc Light
+        public static readonly int _cameraForward = Shader.PropertyToID("_CameraForward");
+        public static readonly int _sampleCount = Shader.PropertyToID("_SampleCount");
+        public static readonly int _noiseVelocity = Shader.PropertyToID("_NoiseVelocity");
+        public static readonly int _noiseData = Shader.PropertyToID("_NoiseData");
+        public static readonly int _mieG = Shader.PropertyToID("_MieG");
+        public static readonly int _volumetircLight = Shader.PropertyToID("_VolumetricLight");
+        public static readonly int _zTest = Shader.PropertyToID("_ZTest");
+        public static readonly int _heightFog = Shader.PropertyToID("_HeightFog");
+        public static readonly int _worldViewProj = Shader.PropertyToID("_WorldViewProj");
+        public static readonly int _worldView = Shader.PropertyToID("_WorldView");
+        public static readonly int _lighPos = Shader.PropertyToID("_LightPos");
+        public static readonly int _lightColor = Shader.PropertyToID("_LightColor");
+        public static readonly int _lightTexture0 = Shader.PropertyToID("_LightTexture0");
+        public static readonly int _shadowMapTexture = Shader.PropertyToID("_ShadowMapTexture");
+        public static readonly int _maxRayLength = Shader.PropertyToID("_MaxRayLength");
+        public static readonly int _frustumCorners = Shader.PropertyToID("_FrustumCorners");
+        
+        
+        
         public static ShaderTagId[] _LegacyShaderTagIdsagId =
         {
             new ShaderTagId("Always"),

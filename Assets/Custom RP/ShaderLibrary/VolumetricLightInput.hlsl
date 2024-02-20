@@ -15,7 +15,6 @@
 
 
 
-
 CBUFFER_START(VolmetricLight)
 float4x4 _WorldViewProj;
 float4x4 _MyLightMatrix0;
@@ -52,6 +51,11 @@ float GetDensity(float3 pos)
     return density;
 }
 
+float MieScattering(float angle, float4 g)
+{
+    return g.w * (g.x / (pow(g.y - g.z * angle, 1.5)));
+}
+
 
 float4 RayMarch(float2 screenPos, float3 rayStart, float3 rayDir, float rayLength, Surface surface, ShadowData shadowData)
 {
@@ -64,20 +68,21 @@ float4 RayMarch(float2 screenPos, float3 rayStart, float3 rayDir, float rayLengt
     float stepSize = rayLength / stepCount;
     float3 step = rayDir * stepSize;
     float3 currentPos = rayStart + step * offset;
-    float vlight = 0;
+    float4 vlight = 0;
     float cosAngle;
 
-#if defined(DIRECTIONAL) || defined(DIRECTIONAL_COOKIE)
+#if defined(_DIRECTIONAL) || defined(_DIRECTIONAL_COOKIE)
     float extinction = 0;
-    cosAngle = dot(_LightDir.xyz, _directionalLightDirectionAndMasks[0].xyz, - rayDir);
+    cosAngle = dot(_directionalLightDirectionAndMasks[0].xyz, -rayDir);
 #else
     float extinction = length(_WorldSpaceCameraPos - currentPos) * _VolumetricLight.y * 0.5;
 #endif
 
+    Light light = GetDirectionalLight(0, surface, shadowData);
+    
     UNITY_LOOP
     for(int i = 0; i < stepCount; ++i)
     {
-        Light light = GetDirectionalLight(0, surface, shadowData);
         float atten = light.attenuation;
         float density = GetDensity(currentPos);
         float scattering = _VolumetricLight.x * stepSize * density;
@@ -85,7 +90,28 @@ float4 RayMarch(float2 screenPos, float3 rayStart, float3 rayDir, float rayLengt
 
         float4 l = atten * scattering * exp(-extinction);
         
+#if !defined(_DIRECTIONAL) && !defined(_DIRECTIONAL_COOKIE)
+        float3 tolight = normalize(currentPos - light.direction.xyz);
+        cosAngle = dot(tolight, -rayDir);
+        l *= MieScattering(cosAngle, _MieG);
+        
+#endif
+        vlight += l;
+        currentPos += step;
     }
+
+#if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
+    vlight *= MieScattering(cosAngle, _MieG);
+#endif
+    vlight *= float4(light.color, 1.0);
+    vlight = max(0, vlight);
+
+#if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
+    vlight.w = exp(-extinction);
+#else
+    vlight.w = 0;
+#endif
+    return vlight;
 }
 
 

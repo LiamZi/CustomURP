@@ -10,7 +10,7 @@ namespace CustomURP
 
         public void Clear()
         {
-            MonoBehaviour.Destroy(_mesh);
+            Object.Destroy(_mesh);
             _mesh = null;
         }
     };
@@ -57,7 +57,7 @@ namespace CustomURP
             if (_materials == null)
             {
                 _materials = new Material[1];
-                _materials[0] = GameObject.Instantiate(_dataHeader._bakedMat);
+                _materials[0] = Object.Instantiate(_dataHeader._bakedMat);
             }
             ClearRendererMaterial();
             _renderer.materials = _dataHeader._detailMats;
@@ -98,7 +98,7 @@ namespace CustomURP
             {
                 foreach (var m in _materials)
                 {
-                    GameObject.Destroy(m);
+                    Object.Destroy(m);
                 }
             }
 
@@ -106,7 +106,7 @@ namespace CustomURP
 
             if (_go != null)
             {
-                MonoBehaviour.Destroy(_go);
+                Object.Destroy(_go);
             }
             _go = null;
             _mesh = null;
@@ -114,13 +114,13 @@ namespace CustomURP
 
         void ClearRendererMaterial()
         {
-            if (_renderer != null && _renderer.materials != null)
+            if (_renderer == null && _renderer.materials == null)
+                return;
+            
+            for (int i = 0; i < _renderer.materials.Length; ++i)
             {
-                for (int i = 0; i < _renderer.materials.Length; ++i)
-                {
-                    var mat = _renderer.materials[i];
-                    GameObject.Destroy(mat);
-                }
+                var mat = _renderer.materials[i];
+                Object.Destroy(mat);
             }
         }
 

@@ -31,6 +31,7 @@ Varyins vert(Attributes input)
 float4 frag(Varyins input) : SV_TARGET
 {
     Surface surface;
+    ShadowData shadowData = GetShadowData(surface);
     float2 uv = input.uv;
     float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_point_clamp, uv);
     float linearDepth = Linear01Depth(depth, _ZBufferParams);
@@ -44,7 +45,7 @@ float4 frag(Varyins input) : SV_TARGET
     rayDir /= rayLength;
 
     rayLength = min(rayLength, _MaxRayLength);
-    float4 color = RayMarch(input.positionCS.xy, rayStart, rayDir, rayLength, surface);
+    float4 color = RayMarch(input.positionCS.xy, rayStart, rayDir, rayLength, surface, shadowData);
 
     if(linearDepth > 0.999999)
     {

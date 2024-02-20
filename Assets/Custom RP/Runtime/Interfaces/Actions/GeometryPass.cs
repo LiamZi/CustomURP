@@ -97,9 +97,10 @@ namespace CustomURP
             {
                 if (_volmenCloud == null)
                 {
-                    // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
+                    _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
+                    _volmenCloud.Init(_asset.VolumeCloudSettings);
                     // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>(_asset.VolumeCloudSettings, "");
-                    _volmenCloud = new VolumeCloud(_asset.VolumeCloudSettings);
+                    // _volmenCloud = new VolumeCloud(_asset.VolumeCloudSettings);
                     // _volmenCloud.Initialization(_asset);
                 }
             
