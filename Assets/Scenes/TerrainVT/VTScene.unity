@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03974604, g: 0.06739363, b: 0.21776958, a: 1}
+  m_IndirectSpecularColor: {r: 0.03482552, g: 0.05366838, b: 0.12956712, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -539,7 +539,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573675062}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: -0.000000030908623, y: -0.7071068, z: -0.7071068, w: 0.000000030908623}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -632,7 +632,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773938407}
-  m_LocalRotation: {x: -0.000000030908623, y: 0.7071068, z: -0.7071068, w: -0.000000030908623}
+  m_LocalRotation: {x: 0.000000030908623, y: 0.7071068, z: 0.7071068, w: -0.000000030908623}
   m_LocalPosition: {x: 0, y: 260, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -762,7 +762,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016655053}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.000000030908623, y: 0.7071068, z: -0.7071068, w: -0.000000030908623}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -802,12 +802,12 @@ MonoBehaviour:
   _time: 0
   _timeTick: 0
   _skyTimeDataController: {fileID: 1166914461}
-  _starTex: {fileID: 2800000, guid: bbabab9605ad9e14eb964d019bed423c, type: 3}
-  _moonTex: {fileID: 2800000, guid: d34f114d65847ce44bea47678cad4c78, type: 3}
+  _starTex: {fileID: 2800000, guid: d34f114d65847ce44bea47678cad4c78, type: 3}
+  _moonTex: {fileID: 2800000, guid: bbabab9605ad9e14eb964d019bed423c, type: 3}
   _mainLightSun: {fileID: 773938408}
-  _mainLightMoon: {fileID: 773938408}
-  _sunTransform: {fileID: 773938409}
-  _moonTransform: {fileID: 495465434}
+  _mainLightMoon: {fileID: 495465433}
+  _sunTransform: {fileID: 573675063}
+  _moonTransform: {fileID: 1016655054}
   _milkyWayTransform: {fileID: 1445101786}
   _skyBoxMaterial: {fileID: 2100000, guid: 67cf81125ebc7ee42935446bd2d50f55, type: 2}
 --- !u!114 &1166914461

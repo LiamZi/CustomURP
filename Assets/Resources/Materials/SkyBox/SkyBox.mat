@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _StarTex:
-        m_Texture: {fileID: 2800000, guid: bbabab9605ad9e14eb964d019bed423c, type: 3}
+        m_Texture: {fileID: 2800000, guid: d34f114d65847ce44bea47678cad4c78, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -52,5 +52,5 @@ Material:
     - _MoonDirectionWS: {r: 0, g: -1.0000001, b: -0.00000011920929, a: 0}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SunCol: {r: 1, g: 1, b: 1, a: 1}
-    - _SunDirectionWS: {r: 0, g: -1.0000001, b: -0.00000011920929, a: 0}
+    - _SunDirectionWS: {r: 0, g: 1.0000001, b: -0.00000011920929, a: 0}
   m_BuildTextureStacks: []
