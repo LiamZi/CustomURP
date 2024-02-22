@@ -53,10 +53,44 @@ UpSample vertUpSampleToFull(Attributes input)
     return vertUpSample(input, _HalfResDepthBuffer_TexelSize);
 }
 
-float4 fragUpSampleToFul(UpSample input)
+float4 fragUpSampleToFull(UpSample input) : SV_TARGET
 {
     return BilateralUpSample(input, _CameraDepthTexture, _HalfResDepthBuffer,
                         _HalfResColor, sampler_HalfResColor, sampler_HalfResDepthBuffer);
+}
+
+DownSample vertQuarterDepth(Attributes input)
+{
+    return vertDownSampleDepth(input, _HalfResDepthBuffer_TexelSize);
+}
+
+float fragQuarterDepth(DownSample input) : SV_TARGET
+{
+    return DownSampleDepth(input, _HalfResDepthBuffer, sampler_HalfResDepthBuffer);
+}
+
+UpSample vertQuarterUpSampleToFull(Attributes input)
+{
+    return vertUpSample(input, _QuarterResDepthBuffer_TexelSize);
+}
+
+float4 fragQuarterUpSampleToFull(UpSample input) : SV_TARGET
+{
+    return BilateralUpSample(input, _CameraDepthTexture, _QuarterResDepthBuffer,
+                        _QuarterResColor, sampler_QuarterResColor, sampler_QuarterResDepthBuffer);
+}
+
+float4 quarterhorizontalFrag(Varyins input) : SV_TARGET
+{
+    return BilateralBlur(input, int2(1, 0), _QuarterResDepthBuffer,
+                    sampler_QuarterResDepthBuffer, QUARTER_RES_BLUR_KERNEL_SIZE, _QuarterResDepthBuffer_TexelSize.xy);
+}
+
+float4 quarterVerticalFrag(Varyins input) : SV_TARGET
+{
+    return BilateralBlur(input, int2(0, 1), _QuarterResDepthBuffer,
+                    sampler_QuarterResDepthBuffer, QUARTER_RES_BLUR_KERNEL_SIZE, _QuarterResDepthBuffer_TexelSize.xy);
+
 }
 
 #endif

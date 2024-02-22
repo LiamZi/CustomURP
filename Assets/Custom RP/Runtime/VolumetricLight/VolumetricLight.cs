@@ -73,7 +73,7 @@ namespace CustomURP
             _cameraDepthRT.filterMode = FilterMode.Point;
         }
 
-        void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
+        public void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             if (_light == null || _light.gameObject == null) return;
 
