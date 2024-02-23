@@ -21,6 +21,11 @@
             HLSLINCLUDE
             #include "../ShaderLibrary/Common.hlsl"
             ENDHLSL
+
+			ZTest Off
+			Cull Off
+			ZWrite Off
+			Blend One One, One Zero
             
             HLSLPROGRAM
             #pragma target 3.5
