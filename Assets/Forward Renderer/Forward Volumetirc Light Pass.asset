@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Forward Volumetirc Light Pass
   m_EditorClassIdentifier: 
   _isEnabled: 1
-  _config: {fileID: 11400000, guid: 80610dd6bd3b88e4f842e953978b7a16, type: 2}
+  _lightConfig: {fileID: 11400000, guid: 80610dd6bd3b88e4f842e953978b7a16, type: 2}
+  _ditheringTex: {fileID: 0}
+  _noiseTex: {fileID: 11700000, guid: c7600588ea6553f4093c26fdea5eb3e9, type: 2}

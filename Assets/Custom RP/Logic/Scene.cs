@@ -16,6 +16,11 @@ namespace CustomPipeline
         public bool _gpuDriven { get; private set; } = false;
         ClusterAction _cluster = null;
         public ClusterAction Cluster { get => _cluster; set { _cluster = value; } }
+
+        VolumetircLightAction _volumetircLight = null;
+        
+        public VolumetircLightAction VolumeLight { get; set; }
+        
         public Scene(CustomRenderPipelineAsset asset)
         {
             _asset = asset;
@@ -40,6 +45,20 @@ namespace CustomPipeline
             {
                 _cluster.Initialization(_asset);
             }
+
+            if (_volumetircLight == null)
+            {
+                
+                if (_asset.VolumetircLightAction != null)
+                {
+                    _volumetircLight = _asset.VolumetircLightAction;
+                    _volumetircLight.Initialization(_asset);
+                }
+            }
+            else
+            {
+                _volumetircLight.Initialization(_asset);
+            }
         }
 
         public void SetClusterCullResult(CullingResults results)
@@ -50,6 +69,13 @@ namespace CustomPipeline
                 _cluster.SetCullResult(results);
             }
         }
+
+        public void SetVolumetricLightCamera(CustomRenderPipelineCamera camera)
+        {
+            if (_volumetircLight == null) return;
+            _volumetircLight.SetCamera(camera);
+        }
+        
         public void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             // if (Application.isPlaying && _cluster != null && !_cluster._isInited)
@@ -57,6 +83,11 @@ namespace CustomPipeline
             // if(_cluster != null)
             {
                 _cluster.BeginRendering(camera, ref cmd);
+            }
+
+            if (_volumetircLight != null && _volumetircLight.Enabled)
+            {
+                _volumetircLight.BeginRendering(camera, ref cmd);
             }
         }
 
@@ -73,12 +104,19 @@ namespace CustomPipeline
             }
 
             CleanClusterShadow();
-
+            
+            if (_volumetircLight != null && _volumetircLight.Enabled)
+            {
+                _volumetircLight.Tick(camera, ref cmd);
+            }
         }
 
         public void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
-        {
-            
+        {   
+            if (_volumetircLight != null && _volumetircLight.Enabled)
+            {
+                _volumetircLight.EndRendering(camera, ref cmd);
+            }
         }
 
         public void CleanClusterShadow()

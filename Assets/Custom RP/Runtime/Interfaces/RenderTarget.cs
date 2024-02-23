@@ -192,7 +192,8 @@ namespace CustomURP
         {
             if (DeviceUtility.CopyTextureSupported)
             {
-                cmd.CopyTexture(_depthAttachmentId, depthTexture);
+                cmd.CopyTexture(ShaderParams._CameraDepthTextureId, depthTexture);
+                cmd.Execute();
             }
         }
     }

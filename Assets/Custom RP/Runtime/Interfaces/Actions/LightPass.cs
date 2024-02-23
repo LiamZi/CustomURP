@@ -29,6 +29,7 @@ namespace CustomURP
             _isInitialized = true;
             _asset         = asset;
             _shadows       = new Shadows();
+            
         }
 
        public override void Dispose()
@@ -54,6 +55,7 @@ namespace CustomURP
             _shadows.Setup(_cmd.Context, _cullingResults, _asset.Shadows);
             var cameraSettings = camera ? camera.Setting : new CameraSettings();
             SetupLights(_asset.LightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);
+            
         }
 
         public override void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)

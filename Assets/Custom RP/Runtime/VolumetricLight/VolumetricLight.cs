@@ -15,6 +15,7 @@ namespace CustomURP
         Vector4[] _frustum = new Vector4[4];
         bool _reversedZ = false;
         RenderTexture _cameraDepthRT;
+       
 
         [Range(1, 64)]
         public int _samplerCount = 8;
@@ -27,7 +28,7 @@ namespace CustomURP
         [Range(0.0f, 0.999f)]
         public float _mieG = 0.1f;
         public bool _fog = false;
-        [Range(0.0f, 0.0f)]
+        [Range(0.0f, 0.5f)]
         public float _heightScale = 0.1f;
         public float _groundLevel = 0;
         public bool _noise = false;
@@ -37,6 +38,8 @@ namespace CustomURP
         public Vector2 _noiseVelocity = new Vector2(3.0f, 3.0f);
         public float _maxRayLength = 400.0f;
 
+        public bool Inited { set; get; }
+        
         public Light Light
         {
             get
@@ -52,6 +55,7 @@ namespace CustomURP
                 return _material;
             }
         }
+        
 
         void Start()
         {
@@ -67,17 +71,37 @@ namespace CustomURP
 
         public void Init(CustomRenderPipelineCamera camera)
         {
+            if (camera == null)
+            {
+                Inited = false;
+                return;
+            }
+            
+            _light = GetComponent<Light>();
+            
             _cmd = new Command("Volumetric Light");
 
             _cameraDepthRT = RenderTexture.GetTemporary(camera._renderTarget._size.x, camera._renderTarget._size.y, 0, RenderTextureFormat.Depth);
             _cameraDepthRT.filterMode = FilterMode.Point;
+
+            Shader shader = Shader.Find("Custom RP/VolumetricLight");
+            if (shader == null)
+            {
+                throw new Exception("Error: \"Custom RP/VolumetricLight\" shader is missing.");
+            }
+            _material = new Material(shader);
+            
+            Inited = true;
         }
 
-        public void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
+        public void Tick(CustomRenderPipelineCamera camera, ref Command cmd, VolumetircLightAction action)
         {
+            
             if (_light == null || _light.gameObject == null) return;
 
             if (!_light.gameObject.activeInHierarchy || _light.enabled == false) return;
+
+            _cmd.Context = cmd.Context;
 
             _material.SetVector(ShaderParams._cameraForward, camera._camera.transform.forward);
             _material.SetFloat(ShaderParams._zTest, (int)UnityEngine.Rendering.CompareFunction.Always);
@@ -86,8 +110,8 @@ namespace CustomURP
             _material.SetVector(ShaderParams._noiseData, new Vector4(_noiseScale, _noiseIntensity, _noiseIntensityOffset));
             _material.SetVector(ShaderParams._mieG, new Vector4(1 - (_mieG * _mieG), 1 + (_mieG * _mieG), 2 * _mieG, 1.0f / (4.0f * Mathf.PI)));
             _material.SetVector(ShaderParams._volumetircLight, new Vector4(_scatteringCoef, _exinctionCoef, _light.range, 1.0f - _skyBoxExtinctionCoef));
-            camera._renderTarget.GetDepthTexture(ref cmd, ref _cameraDepthRT);
-            _material.SetTexture(ShaderParams._CameraDepthTextureId, _cameraDepthRT);
+            // camera._renderTarget.GetDepthTexture(ref cmd, ref _cameraDepthRT);
+            // _material.SetTexture(ShaderParams._CameraDepthTextureId, _cameraDepthRT);
             if (_fog)
             {
                 _material.EnableKeyword("_HEIGHT_FOG");
@@ -101,7 +125,7 @@ namespace CustomURP
             switch (_light.type)
             {
                 case LightType.Directional:
-                    SetDirectionalLight(camera._camera);
+                    SetDirectionalLight(camera._camera, action);
                     break;
                 case LightType.Point:
                     break;
@@ -111,7 +135,7 @@ namespace CustomURP
 
         }
 
-        void SetDirectionalLight(Camera camera)
+        void SetDirectionalLight(Camera camera, VolumetircLightAction action)
         {
             _cmd.Clear();
             int pass = 0;
@@ -149,11 +173,17 @@ namespace CustomURP
             
             _material.SetVectorArray(ShaderParams._frustumCorners, _frustum);
 
-            if (_light.shadows != LightShadows.None)
-            {
-                //TODO: draw volumetric light to dest rt
-                // _cmd.Cmd.Blit(null, );
-            }
+            // if (_light.shadows != LightShadows.None)
+            // {
+            //     //TODO: draw volumetric light to dest rt
+                _cmd.Cmd.Blit(null, action.GetVolumetricLightRT(), _material, pass);
+            // }
+            // else
+            // {
+            //     _cmd.Cmd.Blit(null, action.GetVolumetricLightRT(), _material, pass);
+            // }
+            _cmd.Execute();
+            
         }
     };
 };

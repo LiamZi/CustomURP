@@ -89,6 +89,7 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         // _renderer = new CameraRenderer(asset.DefaultShader);
 
         InitializeForEditor();
+        
     }
 
     public CustomRenderPipeline(CameraBufferSettings cameraBufferSettings, bool isEnabledDynamicBatch,
@@ -285,10 +286,10 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         }
 #endif
 
-         // foreach (var i in collect)
-         for(var j = 1; j < collect.Length; j++)
+         foreach (var i in collect)
+         // for(var j = 1; j < collect.Length; j++)
          { 
-             var i = collect[j]; 
+             // var i = collect[j]; 
              i.BeginRendering(camera, ref _cmd); 
              i.Tick(camera, ref _cmd); 
              i.EndRendering(camera, ref _cmd);

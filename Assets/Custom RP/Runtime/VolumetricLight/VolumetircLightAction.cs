@@ -4,7 +4,7 @@ using UnityEngine;
 namespace CustomURP
 {
     [CreateAssetMenu(menuName = "Custom URP/Pass/VolumetircLight Pass")]
-    public class VolumetircLightPass : CoreAction
+    public class VolumetircLightAction : CoreAction
     {
         static Mesh _pointLightMesh;
         static Mesh _spotLightMesh;
@@ -53,6 +53,15 @@ namespace CustomURP
             }
         }
 
+        public void SetCamera(CustomRenderPipelineCamera camera)
+        {
+            _camera = camera;
+            if (Light.Inited == false)
+            {
+                Light.Init(_camera);
+            }
+        }
+
         public RenderTexture GetVolumetricLightRT()
         {
             switch (_lightConfig._res)
@@ -89,6 +98,9 @@ namespace CustomURP
         
         protected internal override void Initialization(CustomRenderPipelineAsset asset)
         {
+            Light = GameObject.Find("Directional Light Sun").GetComponent<VolumetricLight>();
+            
+            
             Shader shader = Shader.Find("Custom URP/BlitAdd");
             if (shader == null)
             {
@@ -122,13 +134,19 @@ namespace CustomURP
 
         void ChangeRes()
         {
-            var camera = Camera.current;
+            if (_camera == null) return;
+            var camera = _camera._camera;
             int width = camera.pixelWidth;
             int height = camera.pixelHeight;
 
             if (_volumeLightTexture != null)
             {
-                 Destroy(_volumeLightTexture);
+#if UNITY_EDITOR
+                DestroyImmediate(_volumeLightTexture);
+#else
+                Destroy(_volumeLightTexture);
+#endif
+                
             }
 
             _volumeLightTexture = new RenderTexture(width, height, 0, RenderTextureFormat.ARGBHalf);
@@ -137,12 +155,20 @@ namespace CustomURP
 
             if (_halfDepthBuffer != null)
             {
+#if UNITY_EDITOR
+                DestroyImmediate(_halfDepthBuffer);
+#else
                 Destroy(_halfDepthBuffer);
+#endif
             }
 
             if (_halfVolumeLightTexture != null)
             {
+#if UNITY_EDITOR
+                DestroyImmediate(_halfVolumeLightTexture);
+#else
                 Destroy(_halfVolumeLightTexture);
+#endif
             }
 
             if (_res == VolumetricLightConfig.VolumtericRes.Half || _res == VolumetricLightConfig.VolumtericRes.Quarter)
@@ -159,12 +185,22 @@ namespace CustomURP
 
             if (_quarterVolumeLightTexture != null)
             {
+                // Destroy(_quarterVolumeLightTexture);
+#if UNITY_EDITOR
+                DestroyImmediate(_quarterVolumeLightTexture);
+#else
                 Destroy(_quarterVolumeLightTexture);
+#endif
             }
 
             if (_quartDepthBuffer != null)
             {
+                // Destroy(_quartDepthBuffer);
+#if UNITY_EDITOR
+                DestroyImmediate(_quartDepthBuffer);
+#else
                 Destroy(_quartDepthBuffer);
+#endif
             }
 
             if (_res == VolumetricLightConfig.VolumtericRes.Quarter)
@@ -236,7 +272,7 @@ namespace CustomURP
 
             if (this.Light != null)
             {
-                this.Light.Tick(_camera, ref _cmd);
+                this.Light.Tick(_camera, ref cmd, this);
             }
         }
 
@@ -255,39 +291,39 @@ namespace CustomURP
         public virtual void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             // _cmd = cmd;
-            _camera = camera;
-            if (_res == VolumetricLightConfig.VolumtericRes.Quarter)
-            {
-                var temp = RenderTexture.GetTemporary(_quartDepthBuffer.width, _quartDepthBuffer.height, 0, RenderTextureFormat.ARGBHalf);
-                temp.filterMode = FilterMode.Bilinear;
-                
-                _cmd.Cmd.Blit(_quarterVolumeLightTexture, temp, _bilateralBlurMaterial, 8);
-                _cmd.Cmd.Blit(temp, _quarterVolumeLightTexture, _bilateralBlurMaterial, 9);
-                _cmd.Cmd.Blit(_quarterVolumeLightTexture, _volumeLightTexture, _bilateralBlurMaterial, 7);
-                RenderTexture.ReleaseTemporary(temp);
-            }
-            else if (_res == VolumetricLightConfig.VolumtericRes.Half)
-            {
-                var temp = RenderTexture.GetTemporary(_halfVolumeLightTexture.width, _halfVolumeLightTexture.height, 0, RenderTextureFormat.ARGBHalf);
-                temp.filterMode = FilterMode.Bilinear;
-                _cmd.Cmd.Blit(_halfVolumeLightTexture, temp, _bilateralBlurMaterial, 2);
-                _cmd.Cmd.Blit(temp, _halfVolumeLightTexture, _bilateralBlurMaterial, 3);
-                _cmd.Cmd.Blit(_halfVolumeLightTexture, _volumeLightTexture, _bilateralBlurMaterial, 5);
-                RenderTexture.ReleaseTemporary(temp);
-            }
-            else
-            {
-                var temp = RenderTexture.GetTemporary(_volumeLightTexture.width, _volumeLightTexture.height, 0, RenderTextureFormat.ARGBHalf);
-                temp.filterMode = FilterMode.Bilinear;
-                _cmd.Cmd.Blit(_volumeLightTexture, temp, _bilateralBlurMaterial, 0);
-                _cmd.Cmd.Blit(temp, _volumeLightTexture, _bilateralBlurMaterial, 1);
-               
-                RenderTexture.ReleaseTemporary(temp);
-            }
-            
-            _cmd.Cmd.SetGlobalTexture("_Source", ShaderParams._CameraColorTextureId);
-            _cmd.Cmd.Blit(_volumeLightTexture, ShaderParams._CameraColorTextureId, _blitAddMaterial);
-            cmd.Context.ExecuteCommandBuffer(_cmd.Cmd);
+            // _camera = camera;
+            // if (_res == VolumetricLightConfig.VolumtericRes.Quarter)
+            // {
+            //     var temp = RenderTexture.GetTemporary(_quartDepthBuffer.width, _quartDepthBuffer.height, 0, RenderTextureFormat.ARGBHalf);
+            //     temp.filterMode = FilterMode.Bilinear;
+            //     
+            //     _cmd.Cmd.Blit(_quarterVolumeLightTexture, temp, _bilateralBlurMaterial, 8);
+            //     _cmd.Cmd.Blit(temp, _quarterVolumeLightTexture, _bilateralBlurMaterial, 9);
+            //     _cmd.Cmd.Blit(_quarterVolumeLightTexture, _volumeLightTexture, _bilateralBlurMaterial, 7);
+            //     RenderTexture.ReleaseTemporary(temp);
+            // }
+            // else if (_res == VolumetricLightConfig.VolumtericRes.Half)
+            // {
+            //     var temp = RenderTexture.GetTemporary(_halfVolumeLightTexture.width, _halfVolumeLightTexture.height, 0, RenderTextureFormat.ARGBHalf);
+            //     temp.filterMode = FilterMode.Bilinear;
+            //     _cmd.Cmd.Blit(_halfVolumeLightTexture, temp, _bilateralBlurMaterial, 2);
+            //     _cmd.Cmd.Blit(temp, _halfVolumeLightTexture, _bilateralBlurMaterial, 3);
+            //     _cmd.Cmd.Blit(_halfVolumeLightTexture, _volumeLightTexture, _bilateralBlurMaterial, 5);
+            //     RenderTexture.ReleaseTemporary(temp);
+            // }
+            // else
+            // {
+            //     var temp = RenderTexture.GetTemporary(_volumeLightTexture.width, _volumeLightTexture.height, 0, RenderTextureFormat.ARGBHalf);
+            //     temp.filterMode = FilterMode.Bilinear;
+            //     _cmd.Cmd.Blit(_volumeLightTexture, temp, _bilateralBlurMaterial, 0);
+            //     _cmd.Cmd.Blit(temp, _volumeLightTexture, _bilateralBlurMaterial, 1);
+            //    
+            //     RenderTexture.ReleaseTemporary(temp);
+            // }
+            //
+            // _cmd.Cmd.SetGlobalTexture("_Source", ShaderParams._CameraColorTextureId);
+            // _cmd.Cmd.Blit(_volumeLightTexture, ShaderParams._CameraColorTextureId, _blitAddMaterial);
+            // cmd.Context.ExecuteCommandBuffer(_cmd.Cmd);
         }
 
         void GenerateDitherTexture()

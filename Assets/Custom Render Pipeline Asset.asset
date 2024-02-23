@@ -64,3 +64,4 @@ MonoBehaviour:
     _ClusterRenderShader: {fileID: 7200000, guid: 6b73e3f1aaefb03438a8b870cedc1c9b, type: 3}
   _clusterShadingSettings: {fileID: 11400000, guid: 19a9fc3692f27f643808f981f444826b, type: 2}
   _volumeCloudSettings: {fileID: 11400000, guid: d1987b6f2e453464ba058189405a779e, type: 2}
+  volumetircLightAction: {fileID: 11400000, guid: ef3634423ab57874583e1cf59e4c7a23, type: 2}

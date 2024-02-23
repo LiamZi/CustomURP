@@ -8,6 +8,7 @@ using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
 public class RenderingTypeAttribute : Attribute
@@ -151,6 +152,15 @@ public unsafe partial class CustomRenderPipelineAsset : RenderPipelineAsset
         get => _volumeCloudSettings;
     }
 
+    [FormerlySerializedAs("_volumetircLightPass")]
+    [SerializeField]
+    VolumetircLightAction volumetircLightAction;
+
+    public VolumetircLightAction VolumetircLightAction
+    {
+        get => volumetircLightAction;
+    }
+    
     public enum CameraRenderType
     {
         Forward
