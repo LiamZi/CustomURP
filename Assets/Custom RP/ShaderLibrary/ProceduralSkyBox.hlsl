@@ -1,6 +1,18 @@
 #ifndef __SHADER_LIBRARY_PROCEDURAL_SKY_BOX_HLSL__
 #define __SHADER_LIBRARY_PROCEDURAL_SKY_BOX_HLSL__
 
+#include "Surface.hlsl"
+#include "Shadows.hlsl"
+#if defined(USE_CLUSTER_LIGHT)
+#include "ClusterLight.hlsl"
+#else
+#include "Light.hlsl"
+#endif
+
+#include "BRDF.hlsl"
+#include "GI.hlsl"
+#include "Lighting.hlsl"
+
 #include "SkyBoxFunctions.hlsl"
 
 struct VertexInput
@@ -81,16 +93,29 @@ half4 frag(VertexOutput input) : SV_Target
     float3 cameraPos = float3(0,kInnerRadius + kCameraHeight,0);
     float height = kInnerRadius + kCameraHeight;
     float depth = exp(kScaleOverScaleDepth * (-kCameraHeight));
+
+
+    float3 sunDirection = float3(0.0, 0.0, 0.0);
+#if defined(USE_CLUSTER_LIGHT)
+    sunDirection = _cluster_directionalLightDirectionAndMasks[0].xyz;
+#else
+    sunDirection = _directionalLightDirectionAndMasks[0].xyz;
+#endif
     
-    half4 sun = CalcSunAttenuation(normalizePosWS, -_SunDirectionWS) * _SunIntensity * _SunCol;
-    half4 scattering = smoothstep(0.5, 1.5, dot(normalizePosWS, -_SunDirectionWS.xyz)) * _SunCol * _ScatteringIntensity;
-    half scatteringInstensity = max(0.15, smoothstep(0.6, 0.0, -_SunDirectionWS.y));
+#if defined(_ENABLED_SUN)    
+    half4 sun = CalcSunAttenuation(normalizePosWS, -sunDirection) * _SunIntensity * _SunCol;
+    half4 scattering = smoothstep(0.5, 1.5, dot(normalizePosWS, -sunDirection.xyz)) * _SunCol * _ScatteringIntensity;
+    half scatteringInstensity = max(0.15, smoothstep(0.6, 0.0, -sunDirection.y));
     // scattering *= float4(exp(-clamp(scatteringInstensity, 0.0, 50.0) * (kInvWavelength * kKr4PI + kKm4PI)) , 1.0);
     // scattering *= scatteringInstensity;
     scattering *= float4(exp(-clamp(scatteringInstensity, 0.0, 50.0) * (kInvWavelength * kKr4PI + kKm4PI)) , 1.0);
     
     // sun += (scattering * depth * height);
     sun += scattering;
+#else
+    
+    half scatteringInstensity = max(0.15, smoothstep(0.6, 0.0, -sunDirection.y)); 
+#endif    
     
     half4 skyColor = SAMPLE_TEXTURE2D(_SkyGradientTex, sampler_SkyGradientTex, float2(sphereUV.y, 0.5));
     half4 skyScattering = float4(exp(-clamp(scatteringInstensity, 0.0, 50.0) * (kInvWavelength * kKr4PI + kKm4PI)) , 1.0);
@@ -146,12 +171,16 @@ half4 frag(VertexOutput input) : SV_Target
     half3 milkywayBG = smoothstep(0.1, 1.5, milkyWayTex.r) * _MilkyWayColor2.rgb * 0.2;
 
 #if defined(_ENABLED_MILKYWAY)    
-    half3 milkyCol = (SoftLight(milkyWayCol1, milkyWayCol2) + SoftLight(milkyWayCol2, milkyWayCol1)) * 0.5 * _MilkywayIntensity + milkywayBG + milkyStar;
+    half3 milkyCol = (SoftLightSky(milkyWayCol1, milkyWayCol2) + SoftLightSky(milkyWayCol2, milkyWayCol1)) * 0.5 * _MilkywayIntensity + milkywayBG + milkyStar;
     milkyCol *= _MilkywayIntensity;
 #else
     half3 milkyCol = half3(0.0, 0.0, 0.0);
 #endif
-
+    
+#if !defined(_ENABLED_SUN)
+    half4 sun = (0.0, 0.0, 0.0, 0.0);
+#endif
+    
     half4 col = skyColor + sun + star + moon + milkyCol.rgbr;
     // half4 col = skyColor + sun + moon + milkyCol.rgbr;
     return sqrt(col);

@@ -70,7 +70,7 @@ float SoftLight(float s, float d)
             : d + (2.0 * s - 1.0) * (sqrt(d) - d); 
 }
 
-float3 SoftLight(float3 s, float3 d)
+float3 SoftLightSky(float3 s, float3 d)
 {
     return float3(SoftLight(s.x, d.x), SoftLight(s.y, d.y), SoftLight(s.z, d.z));
 }

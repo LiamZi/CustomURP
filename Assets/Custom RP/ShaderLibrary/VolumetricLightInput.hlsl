@@ -39,7 +39,7 @@ float GetDensity(float3 pos)
 {
     float density = 1;
     
-#ifdef NOISE
+#if defined(_NOISE)
     float noiseUV = frac(pos * _NoiseData.x + float3(_Time.y * _NoiseVelocity.x, 0, _Time.y * _NoiseVelocity.y));
     float noise = SAMPLE_TEXTURE3D(_NoiseTexture, sampler_NoiseTexture, noiseUV);
     noise = saturate(noise - _NoiseData.z) * _NoiseData.y;

@@ -52,5 +52,45 @@
             #include "../ShaderLibrary/TerrainVTLit.hlsl"
             ENDHLSL
         }
+
+        Pass
+        {
+            Tags 
+            {
+                "LightMode" = "ShadowCaster"
+            }
+            
+            ColorMask 0
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma multi_compile_instancing
+            #pragma shader_feature _ _SHADOWS_CLIP _SHADOWS_DITHER
+            #pragma multi_compile _ LOD_FADE_CROSSFADE LOD_FADE_PERCENTAGE 
+            #pragma vertex ShadowCasterVert
+            #pragma fragment ShadowCasterFrag
+
+            #include "../ShaderLibrary/ShadowCaster.hlsl"
+            
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Tags
+            {
+                "LightMode" = "Meta"
+            }
+            
+            Cull Off
+            
+            HLSLPROGRAM
+            #pragma target 3.5
+            #pragma vertex MetaPassVert
+            #pragma fragment MetaPassFrag
+            
+            #include "../ShaderLibrary/MetaPass.hlsl"
+            ENDHLSL
+        }
+        
     }
 }

@@ -5,51 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Models.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/Cliffs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/Cliffs/TiledCliffs_01_Diff.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/Cliffs/TiledCliffs_01_Diff.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/MountainPeaks.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/MountainPeaks/Materials.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/MountainPeaks/Materials/MountainPeak_01.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/MountainPeaks/Materials/MountainPeak_01.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/MountainPeaks/MountainPeak_01.FBX" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/MountainPeaks/MountainPeak_01.FBX.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/MountainPeaks/MountainPeak_01_NM.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Terrain/MountainPeaks/MountainPeak_01_NM.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Mountains.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Mountains.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/VolumetricLightScene.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/VolumetricLightScene/VolumetricLightScene.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/VolumetricLightScene/VolumetricLightScene.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/testNoise.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/testNoise.asset.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Logic/Scene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/CustomRenderPipeline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/GeometryPass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/PostProcessPass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/PostProcessPass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/RenderTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/RenderTarget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Shadows.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Shadows.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Interfaces/Actions/ClusterAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetircLightAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetircLightAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetricLight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetricLight.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetricLightConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetricLightConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BlitAdd.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/BlitAdd.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Shadows.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/Shadows.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/UnityInput.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/UnityInput.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumetricLight.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumetricLight.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/ProceduralSkyBox.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxFunctions.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/SkyBoxFunctions.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumetricLightInput.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumetricLightInput.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/BilaternalBlur.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/BilaternalBlur.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/BlitAdd.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/BlitAdd.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumetricLight.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/VolumetricLight.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Utility/ShaderParams.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/SkyBox.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Shaders/TerrainVTLit.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Shaders/TerrainVTLit.shader" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom Render Pipeline Asset.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/SkyBox/SkyBox.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LodScene/LodScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LodScene/LodScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/VolumetricLightScene/VolumetricLightScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/VolumetricLightScene/VolumetricLightScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VolumetricLightConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VolumetricLightConfig.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,6 +242,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/InputField/TouchInputFieldTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Util/ImageHook.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Util/UIBehaviourExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../CustomURP2/Assets/Custom RP/Runtime/Terrain/RuntimeMesh.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -488,7 +461,9 @@
       <workItem from="1708915564890" duration="44635000" />
       <workItem from="1709032550849" duration="20026000" />
       <workItem from="1709174056178" duration="12143000" />
-      <workItem from="1709193840638" duration="17103000" />
+      <workItem from="1709193840638" duration="22208000" />
+      <workItem from="1709277681619" duration="937000" />
+      <workItem from="1709279013455" duration="4436000" />
     </task>
     <servers />
   </component>
@@ -948,10 +923,10 @@
           <line>56</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeMesh.cs" initialLine="56" containingFunctionPresentation="方法 'Reset'">
             <startOffsets>
-              <option value="1659" />
+              <option value="1658" />
             </startOffsets>
             <endOffsets>
-              <option value="1682" />
+              <option value="1681" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="298" />
@@ -1039,10 +1014,10 @@
           <line>180</line>
           <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\Terrain\RuntimeMesh.cs" initialLine="180" containingFunctionPresentation="方法 'RequestTexture'">
             <startOffsets>
-              <option value="5350" />
+              <option value="5349" />
             </startOffsets>
             <endOffsets>
-              <option value="5376" />
+              <option value="5375" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="325" />
@@ -1101,29 +1076,16 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetircLightAction.cs</url>
-          <line>224</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\VolumetricLight\VolumetircLightAction.cs" initialLine="221" containingFunctionPresentation="方法 'ChangeRes'">
+          <line>147</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\VolumetricLight\VolumetircLightAction.cs" initialLine="147" containingFunctionPresentation="方法 'Initialization'">
             <startOffsets>
-              <option value="6932" />
+              <option value="4320" />
             </startOffsets>
             <endOffsets>
-              <option value="7035" />
+              <option value="4320" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="450" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetricLight.cs</url>
-          <line>165</line>
-          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\VolumetricLight\VolumetricLight.cs" initialLine="165" containingFunctionPresentation="方法 'SetDirectionalLight'">
-            <startOffsets>
-              <option value="5528" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5573" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="470" />
+          <option name="timeStamp" value="472" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

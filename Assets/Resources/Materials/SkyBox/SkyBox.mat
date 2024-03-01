@@ -36,6 +36,7 @@ Material:
     - _Enabled_MilkyWay: 0
     - _Enabled_Moon: 0
     - _Enabled_Star: 0
+    - _Enabled_Sun: 0
     - _Exposure: 1.3
     - _FlowSpeed: 0.05
     - _MilkyWayIntensity: 1

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d85c3d64a7e4c45b9c25869b0d7bc78, type: 3}
   m_Name: VolumetricLightConfig
   m_EditorClassIdentifier: 
-  _config: 1
+  _res: 2
+  _noiseTexture3D: {fileID: 11700000, guid: bec9959e0f804da46b93db1ddd6ae5c1, type: 2}

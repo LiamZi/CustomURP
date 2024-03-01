@@ -16,5 +16,6 @@ namespace CustomURP
 
         [SerializeField]
         public VolumtericRes _res = VolumtericRes.Half;
+        public Texture3D _noiseTexture3D = null;
     };
 };

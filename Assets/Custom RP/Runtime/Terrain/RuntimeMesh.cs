@@ -43,7 +43,7 @@ namespace CustomURP
             _go = new GameObject("TerrainPatch");
             _mesh = _go.AddComponent<MeshFilter>();
             _renderer = _go.AddComponent<MeshRenderer>();
-            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         }
 
         public void Reset(TData header, IVTCreator vtCreator, RenderMesh mesh, Vector3 offset)

@@ -139,6 +139,21 @@ namespace CustomURP
             _cmd.Context = cmd.Context;
             _camera = camera;
             
+            // for (var i = 0; i < 16; ++i)
+            // {
+            //     var terrainIndex = string.Format("heightfield_{0}", i);
+            //     // var terrainGo = GameObject.Find("heightfield_1");
+            //     var terrainGo = GameObject.Find(terrainIndex);
+            //     if (terrainGo)
+            //     {
+            //         var loader = terrainGo.GetComponent<TLoader>();
+            //         if (loader)
+            //         {
+            //             loader.Tick(camera, ref _cmd);
+            //         }
+            //     }
+            // }
+            
             var cameraSettings = camera ? camera.Setting : new CameraSettings();
             _shadows.Setup(cmd.Context, _cullingResults, _asset.Shadows);
             BuildLightList(_asset.LightsPerObject, cameraSettings._maskLights ? cameraSettings._renderingLayerMask : -1);

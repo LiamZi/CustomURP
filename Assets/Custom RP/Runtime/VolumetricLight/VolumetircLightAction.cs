@@ -144,6 +144,8 @@ namespace CustomURP
                 }
                 _lightMaterial = new Material(shader);
             }
+
+            
             
             GenerateDitherTexture();
         }
@@ -311,6 +313,11 @@ namespace CustomURP
             _bilateralBlurMaterial.SetTexture("_HalfResColor", _halfVolumeLightTexture);
             _bilateralBlurMaterial.SetTexture("_QuaterResDepthBuffer", _quartDepthBuffer);
             _bilateralBlurMaterial.SetTexture("_QuaterResColor", _quarterVolumeLightTexture);
+
+            if (_lightConfig)
+            {
+                _noiseTex = _lightConfig._noiseTexture3D;
+            }
             
             Shader.SetGlobalTexture("_DitherTexture", _ditheringTex);
             Shader.SetGlobalTexture("_NoiseTexture", _noiseTex);
@@ -356,10 +363,10 @@ namespace CustomURP
             
            
             // _cmd.Execute();
-            var test = RenderTexture.GetTemporary(camera._renderTarget._size.x, camera._renderTarget._size.y, 0, RenderTextureFormat.Default);
-            test.name = "Test RT";
+            var temporary = RenderTexture.GetTemporary(camera._renderTarget._size.x, camera._renderTarget._size.y, 0, RenderTextureFormat.Default);
+            // test.name = "Temp RT";
             // int test = -1;
-            // _cmd.GetTemporaryRT(test, camera._renderTarget._size.x, camera._renderTarget._size.y, 0, FilterMode.Bilinear, RenderTextureFormat.Default);
+            // _cmd.GetTemporaryRT(temporary, camera._renderTarget._size.x, camera._renderTarget._size.y, 0, FilterMode.Bilinear, RenderTextureFormat.Default);
             _blitAddMaterial.SetTexture("_MainTex", _volumeLightTexture);
             _cmd.Cmd.SetGlobalTexture("_OutputTex", camera._renderTarget._colorAttachmentId);
             // _cmd.Cmd.SetRenderTarget(camera._renderTarget._colorAttachmentId, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
@@ -373,12 +380,12 @@ namespace CustomURP
             // _commandBuffer.SetRenderTarget(BuiltinRenderTextureType.CameraTarget, _camera.rect == FullViewRect ? RenderBufferLoadAction.DontCare : RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
             // _cmd.SetViewport(camera._camera.pixelRect);
             
-            _cmd.Cmd.Blit(_volumeLightTexture, test, _blitAddMaterial);
-            _cmd.Cmd.Blit(test, camera._renderTarget._colorAttachmentId);
+            _cmd.Cmd.Blit(_volumeLightTexture, temporary, _blitAddMaterial);
+            _cmd.Cmd.Blit(temporary, camera._renderTarget._colorAttachmentId);
             // _cmd.DrawProcedural(Matrix4x4.identity, _blitAddMaterial, 0, MeshTopology.Triangles, 3);
             _cmd.Execute();
             // _camera._renderTarget._colorAttachmentId = test;
-            RenderTexture.ReleaseTemporary(test);
+            RenderTexture.ReleaseTemporary(temporary);
         }
 
         void GenerateDitherTexture()
