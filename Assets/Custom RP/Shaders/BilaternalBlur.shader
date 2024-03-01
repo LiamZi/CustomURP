@@ -27,6 +27,7 @@
             #pragma vertex vert
             #pragma fragment highHorizontalFrag
             #pragma target 4.0
+            #pragma enable_d3d11_debug_symbols
             
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
@@ -41,6 +42,8 @@
             #pragma vertex vert
             #pragma fragment highVerticalFrag
             #pragma target 4.0
+            #pragma enable_d3d11_debug_symbols
+
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
             ENDHLSL
@@ -53,6 +56,7 @@
             #pragma vertex vert
             #pragma fragment lowHorizontalFrag
             #pragma target 4.0
+            #pragma enable_d3d11_debug_symbols
             
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
@@ -66,6 +70,7 @@
             #pragma vertex vert
             #pragma fragment lowVerticalFrag
             #pragma target 4.0
+            #pragma enable_d3d11_debug_symbols
             
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
@@ -79,6 +84,7 @@
             #pragma vertex vertHalfDepth
             #pragma fragment fragHalfDepth
             #pragma target 4.0
+            #pragma enable_d3d11_debug_symbols
             
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
@@ -92,6 +98,7 @@
             #pragma vertex vertUpSampleToFull
             #pragma fragment fragUpSampleToFull
             #pragma target 4.0
+            #pragma enable_d3d11_debug_symbols
             
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
@@ -118,7 +125,7 @@
             #pragma vertex vertQuarterDepth
             #pragma fragment fragQuarterDepth
             #pragma target 4.0
-            
+            #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
             ENDHLSL
@@ -131,7 +138,7 @@
             #pragma vertex vertUpSampleToFull
             #pragma fragment fragUpSampleToFull
             #pragma target 4.0
-            
+            #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
             ENDHLSL
@@ -144,7 +151,7 @@
             #pragma vertex vert
             #pragma fragment quarterhorizontalFrag
             #pragma target 4.0
-            
+            #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
             ENDHLSL
@@ -157,7 +164,7 @@
             #pragma vertex vert
             #pragma fragment quarterVerticalFrag
             #pragma target 4.0
-            
+            #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
             ENDHLSL
@@ -170,7 +177,7 @@
             #pragma vertex vertHalfDepth
             #pragma fragment fragHalfDepth
             #pragma target 4.0
-            
+            #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
             ENDHLSL
@@ -183,7 +190,7 @@
             #pragma vertex vertQuarterDepth
             #pragma fragment fragQuarterDepth
             #pragma target 4.0
-            
+            #pragma enable_d3d11_debug_symbols
             #include "../ShaderLibrary/BilaternalBlurFunction.hlsl"
             #include "../ShaderLibrary/BilaternalBlur.hlsl"
             ENDHLSL

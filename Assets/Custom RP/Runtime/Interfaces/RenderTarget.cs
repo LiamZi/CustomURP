@@ -81,11 +81,13 @@ namespace CustomURP
             }
 
             if (!DeviceUtility.CopyTextureSupported)
+            {
                 cmd.SetRenderTarget(_colorAttachmentId,
                     RenderBufferLoadAction.Load, RenderBufferStoreAction.Store,
                     _depthAttachmentId,
                     RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
-
+            }
+            
             cmd.Execute();
         }
 

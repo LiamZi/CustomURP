@@ -2,7 +2,7 @@
 #define __SHADER_LIBRARY_VOLUMETRIC_LIGHT_HLSL__
 
 
-
+// TEXTURE2D(_VLDepthTexture);
 
 struct Attributes
 {
@@ -30,12 +30,11 @@ Varyins vert(Attributes input)
 
 float4 frag(Varyins input) : SV_TARGET
 {
-    Surface surface;
-    ShadowData shadowData = GetShadowData(surface);
+    
     float2 uv = input.uv;
     float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_point_clamp, uv);
     float linearDepth = Linear01Depth(depth, _ZBufferParams);
-
+    
     float3 positionWS = input.positionWS;
     float3 rayStart = _WorldSpaceCameraPos;
     float3 rayDir = positionWS - rayStart;
@@ -45,7 +44,7 @@ float4 frag(Varyins input) : SV_TARGET
     rayDir /= rayLength;
 
     rayLength = min(rayLength, _MaxRayLength);
-    float4 color = RayMarch(input.positionCS.xy, rayStart, rayDir, rayLength, surface, shadowData);
+    float4 color = RayMarch(input.positionCS.xy, rayStart, rayDir, rayLength);
 
     if(linearDepth > 0.999999)
     {

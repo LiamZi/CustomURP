@@ -9,6 +9,7 @@ namespace CustomURP
         private static readonly Rect     fullViewRect = new Rect(0f, 0f, 1f, 1f);
         private                 Material _material;
         private                 PostPass _pass;
+        VolumetircLightAction _vlight = null;
 
         protected internal override void Initialization(CustomRenderPipelineAsset asset)
         {
@@ -22,6 +23,11 @@ namespace CustomURP
         public override void Dispose()
         {
             base.Dispose();
+            if (_vlight != null)
+            {
+                _vlight.Dispose();
+                _vlight = null;
+            }
         }
 
         public override void Tick(CustomRenderPipelineCamera camera, ref Command cmd)
@@ -29,7 +35,15 @@ namespace CustomURP
             base.Tick(camera, ref cmd);
             if (_pass == null) return;
             var useIntermediateBuffer = camera._renderTarget._isUseIntermediateBuffer;
+            
 
+
+            if (_vlight)
+            {
+                _vlight.BeginRendering(camera, ref _cmd);
+                _vlight.EndRendering(camera, ref _cmd);
+            }
+            
             if (_pass.IsActive)
             {
                 _pass.Render(camera._renderTarget._colorAttachmentId);
@@ -42,6 +56,7 @@ namespace CustomURP
 
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
+            cmd.Name = "PostProcess Pass";
             base.BeginRendering(camera, ref cmd);
             DrawGizmosBeforePostPass();
 
@@ -59,6 +74,14 @@ namespace CustomURP
             _pass.Setup(cmd.Context, camera._camera, bufferSize, settings,
                 cameraSettings._keepAlpha, useHDR, (int)_asset.ColorLUT, cameraSettings._finalBlendMode,
                 _asset.CameraBuffer._bicubicRescaling, _asset.CameraBuffer._fxaa);
+            
+            if (_vlight == null)
+            {
+                _vlight = _asset.VolumetircLightAction;
+                _vlight.Initialization(_asset);
+                _vlight.SetCamera(_camera);
+                _vlight.ChangeRes();
+            }
             
         }
 
@@ -82,6 +105,7 @@ namespace CustomURP
             _cmd.SetGlobalTexture(rt._sourceTextureId, rt._colorAttachmentId);
             _cmd.SetRenderTarget(
                 BuiltinRenderTextureType.CameraTarget,
+                // rt._colorAttachmentId,
                 finalBlendMode._destiantion == BlendMode.Zero && _camera._camera.rect == fullViewRect
                     ? RenderBufferLoadAction.DontCare
                     : RenderBufferLoadAction.Load,

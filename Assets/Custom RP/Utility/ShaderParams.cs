@@ -182,7 +182,7 @@ namespace CustomURP
         public static readonly int _shadowMapTexture = Shader.PropertyToID("_ShadowMapTexture");
         public static readonly int _maxRayLength = Shader.PropertyToID("_MaxRayLength");
         public static readonly int _frustumCorners = Shader.PropertyToID("_FrustumCorners");
-        
+        // public static readonly int _vlDepthTexture = Shader.PropertyToID("_VLDepthTexture");
         
         
         public static ShaderTagId[] _LegacyShaderTagIdsagId =

@@ -17,7 +17,7 @@ namespace CustomPipeline
         ClusterAction _cluster = null;
         public ClusterAction Cluster { get => _cluster; set { _cluster = value; } }
 
-        VolumetircLightAction _volumetircLight = null;
+        // VolumetircLightAction _volumetircLight = null;
         
         public VolumetircLightAction VolumeLight { get; set; }
         
@@ -39,26 +39,36 @@ namespace CustomPipeline
             if (_cluster == null)
             {
                 _cluster = _asset.ClusterShading._clusterAction;
-                _cluster.Initialization(_asset);
+                if (_cluster)
+                {
+                    _cluster.Initialization(_asset);
+                    _gpuDriven = true;
+                }
+                else
+                {
+                    _gpuDriven = false;
+                }
+                
             }
             else
             {
                 _cluster.Initialization(_asset);
+                _gpuDriven = true;
             }
 
-            if (_volumetircLight == null)
-            {
-                
-                if (_asset.VolumetircLightAction != null)
-                {
-                    _volumetircLight = _asset.VolumetircLightAction;
-                    _volumetircLight.Initialization(_asset);
-                }
-            }
-            else
-            {
-                _volumetircLight.Initialization(_asset);
-            }
+            // if (_volumetircLight == null)
+            // {
+            //     
+            //     if (_asset.VolumetircLightAction != null)
+            //     {
+            //         _volumetircLight = _asset.VolumetircLightAction;
+            //         _volumetircLight.Initialization(_asset);
+            //     }
+            // }
+            // else
+            // {
+            //     _volumetircLight.Initialization(_asset);
+            // }
         }
 
         public void SetClusterCullResult(CullingResults results)
@@ -70,11 +80,11 @@ namespace CustomPipeline
             }
         }
 
-        public void SetVolumetricLightCamera(CustomRenderPipelineCamera camera)
-        {
-            if (_volumetircLight == null) return;
-            _volumetircLight.SetCamera(camera);
-        }
+        // public void SetVolumetricLightCamera(CustomRenderPipelineCamera camera)
+        // {
+        //     if (_volumetircLight == null) return;
+        //     _volumetircLight.SetCamera(camera);
+        // }
         
         public void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
@@ -85,10 +95,11 @@ namespace CustomPipeline
                 _cluster.BeginRendering(camera, ref cmd);
             }
 
-            if (_volumetircLight != null && _volumetircLight.Enabled)
-            {
-                _volumetircLight.BeginRendering(camera, ref cmd);
-            }
+            // if (_volumetircLight != null && _volumetircLight.Enabled)
+            // {
+            //     _volumetircLight.SetCamera(camera);
+            //     _volumetircLight.BeginRendering(camera, ref cmd);
+            // }
         }
 
 
@@ -105,18 +116,18 @@ namespace CustomPipeline
 
             CleanClusterShadow();
             
-            if (_volumetircLight != null && _volumetircLight.Enabled)
-            {
-                _volumetircLight.Tick(camera, ref cmd);
-            }
+            // if (_volumetircLight != null && _volumetircLight.Enabled)
+            // {
+            //     _volumetircLight.Tick(camera, ref cmd);
+            // }
         }
 
         public void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {   
-            if (_volumetircLight != null && _volumetircLight.Enabled)
-            {
-                _volumetircLight.EndRendering(camera, ref cmd);
-            }
+            // if (_volumetircLight != null && _volumetircLight.Enabled)
+            // {
+            //     _volumetircLight.EndRendering(camera, ref cmd);
+            // }
         }
 
         public void CleanClusterShadow()
@@ -132,8 +143,15 @@ namespace CustomPipeline
             if (_cluster)
             {
                 _cluster.Dispose();
-                // _cluster = null;
+                _cluster = null;
+                _gpuDriven = false;
             }
+
+            // if (_volumetircLight)
+            // {
+            //     _volumetircLight.Dispose();
+            //     _volumetircLight = null;
+            // }
         }
 
         public void SetState()

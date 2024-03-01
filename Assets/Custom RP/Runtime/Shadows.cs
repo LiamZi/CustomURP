@@ -19,6 +19,7 @@ public class Shadows
     private static readonly int _otherShadwAtlasId      = Shader.PropertyToID("_OtherShadowAtlas");
     private static readonly int _otherShadowMatricesId  = Shader.PropertyToID("_OtherShadowMatrices");
     private static readonly int _shadowPancakingId      = Shader.PropertyToID("_ShadowPancaking");
+    private static readonly int _shadowSplitSqRadiiId = Shader.PropertyToID("_shadowSplitSqRadii");
 
     private static readonly int _otherShadowTilesId = Shader.PropertyToID("_OtherShadowTiles");
 
@@ -29,6 +30,7 @@ public class Shadows
 
     private static readonly Vector4[] _cascadCullingSpheres = new Vector4[MaxCascades];
     private static readonly Vector4[] _cascadData           = new Vector4[MaxCascades];
+    static readonly float[] _shadowSplitSqRadiis = new float[MaxCascades];
 
     private static readonly Vector4[] _otherShadowTiles = new Vector4[MaxShadowedOtherLightCount];
 
@@ -212,12 +214,16 @@ public class Shadows
         var split    = tiles <= 1 ? 1 : tiles <= 4 ? 2 : 4;
         var tileSize = atlasSize / split;
 
-        for (var i = 0; i < _shadowedDirectinnalLightCount; ++i) RenderDirectionalShadows(i, split, tileSize);
-
+        for (var i = 0; i < _shadowedDirectinnalLightCount; ++i)
+        {
+            RenderDirectionalShadows(i, split, tileSize);
+        }
+        
         // _commandBuffer.SetGlobalInt(_cascadCountId, _settings._directional._cascadeCount);
         _commandBuffer.SetGlobalVectorArray(_cascadCullingSphererId, _cascadCullingSpheres);
         _commandBuffer.SetGlobalVectorArray(_cascadDataId,           _cascadData);
         _commandBuffer.SetGlobalMatrixArray(_dirShadowMatricesId, _dirShadowMatrices);
+        _commandBuffer.SetGlobalFloatArray(_shadowSplitSqRadiiId, _shadowSplitSqRadiis);
         // float f = 1f - _settings._directional._cascadeFade;
         // _commandBuffer.SetGlobalVector(_shadowDistanceFadeId, new Vector4(1f / _settings._maxDistance, 1f / _settings._distanceFade, 1f / (1f - f * f)));
 
@@ -395,6 +401,7 @@ public class Shadows
         var texelSize  = 2f * cullingSphere.w / tileSize;
         var filterSize = texelSize            * ((float)_settings._directional._filter + 1f);
         // _cascadData[index].x = 1f / cullingSphere.w;
+        _shadowSplitSqRadiis[index] = cullingSphere.w * cullingSphere.w;
         cullingSphere.w              -= filterSize;
         cullingSphere.w              *= cullingSphere.w;
         _cascadCullingSpheres[index] =  cullingSphere;

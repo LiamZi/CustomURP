@@ -40,8 +40,8 @@ Material:
     - _FlowSpeed: 0.05
     - _MilkyWayIntensity: 1
     - _MoonIntensity: 1.5
-    - _ScatteringIntensity: 0.5
-    - _StarIntensity: 0
+    - _ScatteringIntensity: 0.90000004
+    - _StarIntensity: 0.4
     - _SunIntensity: 1
     - _SunSize: 0.05
     m_Colors:
@@ -49,8 +49,8 @@ Material:
     - _MilkyWayColor1: {r: 1, g: 1, b: 1, a: 1}
     - _MilkyWayColor2: {r: 1, g: 1, b: 1, a: 1}
     - _MoonCol: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonDirectionWS: {r: 0.00000006181723, g: 0.7071068, b: 0.7071067, a: 0}
+    - _MoonDirectionWS: {r: 0.00000008634646, g: 0.15643436, b: 0.98768836, a: 0}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SunCol: {r: 1, g: 1, b: 1, a: 1}
-    - _SunDirectionWS: {r: -0.00000006181723, g: -0.7071068, b: -0.7071067, a: 0}
+    - _SunDirectionWS: {r: -0.00000008634647, g: -0.15643448, b: -0.9876884, a: 0}
   m_BuildTextureStacks: []

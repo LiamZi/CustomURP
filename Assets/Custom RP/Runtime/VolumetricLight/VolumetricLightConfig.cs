@@ -8,6 +8,7 @@ namespace CustomURP
     {
         public enum VolumtericRes
         {
+            NONE,
             Full,
             Half,
             Quarter

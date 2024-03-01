@@ -79,4 +79,7 @@ float4 unity_HalfStereoSeparation;
 #endif
 CBUFFER_END
 
+CBUFFER_START(UnityShadow)
+CBUFFER_END
+
 #endif

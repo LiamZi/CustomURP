@@ -35,6 +35,9 @@
             #pragma shader_feature _ _NOISE
             #pragma shader_feature _ _DIRECTIONAL
             #pragma shader_feature _ _DIRECTIONAL_COOKIE
+            #pragma multi_compile _ USE_CLUSTER_LIGHT
+            #pragma enable_d3d11_debug_symbols
+
 
             #include "../ShaderLibrary/VolumetricLightInput.hlsl"
             #include "../ShaderLibrary/VolumetricLight.hlsl"

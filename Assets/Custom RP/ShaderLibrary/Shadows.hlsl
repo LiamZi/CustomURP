@@ -46,6 +46,7 @@ CBUFFER_START(_CustomShadows)
     float4x4 _DirectionalShadowMatrices[MAX_SHADOWED_DIRECTIONAL_LIGHT_COUNT * MAX_CASCADE_COUNT];
     float4x4 _OtherShadowMatrices[MAX_SHADOWED_OTHER_LIGHT_COUNT];
     float4 _OtherShadowTiles[MAX_SHADOWED_OTHER_LIGHT_COUNT];
+    float _shadowSplitSqRadii[MAX_CASCADE_COUNT];
 CBUFFER_END
 
 struct ShadowMask

@@ -286,10 +286,10 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
         }
 #endif
 
-         foreach (var i in collect)
-         // for(var j = 1; j < collect.Length; j++)
+         // foreach (var i in collect)
+         for(var j = 1; j < 3; j++)
          { 
-             // var i = collect[j]; 
+             var i = collect[j]; 
              i.BeginRendering(camera, ref _cmd); 
              i.Tick(camera, ref _cmd); 
              i.EndRendering(camera, ref _cmd);
@@ -309,26 +309,26 @@ public unsafe partial class CustomRenderPipeline : RenderPipeline
                 _scene.Dispose();
                 // _scene = null;
             }
-
-            if (_actions != null)
-            {
-                _actions.Clear(); 
-                _actions = null;
-            }
-        
+            
             if (_delayReleaseRenderTarget != null)
             {
                 UnsafeList.Free(_delayReleaseRenderTarget);
                 _delayReleaseRenderTarget = null;
             }
         
-            _asset._loadingThread.Dispose();
+            // _asset._loadingThread.Dispose();
 
             for (var i = 0; i < _asset._availiableActions.Length; ++i)
             {
                 var action = _asset._availiableActions[i];
-                if (action != null) continue;
+                if (action == null) continue;
                 action.Dispose();
+            }
+            
+            if (_actions != null)
+            {
+                _actions.Clear(); 
+                _actions = null;
             }
 
             DisposeForEditor();

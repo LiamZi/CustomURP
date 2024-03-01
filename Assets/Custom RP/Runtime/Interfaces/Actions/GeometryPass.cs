@@ -21,6 +21,7 @@ namespace CustomURP
         public const bool _useHiz = true;
 
         VolumeCloud _volmenCloud = null;
+
         
 
         protected internal override void Initialization(CustomRenderPipelineAsset asset)
@@ -29,6 +30,8 @@ namespace CustomURP
             _material = CoreUtils.CreateEngineMaterial(_asset.DefaultShader);
             _customURPShaderTagId = new ShaderTagId("SRPDefaultUnlit");
             _litShaderTagId = new ShaderTagId("CustomLit");
+            
+
 
             InspectDependActions();
             _isInitialized = true;
@@ -59,10 +62,9 @@ namespace CustomURP
             
             var scene = ((CustomRenderPipeline)_asset.Pipeline).SceneController;
             scene.SetClusterCullResult(_cullingResults);
-            scene.SetVolumetricLightCamera(camera);
+            // scene.SetVolumetricLightCamera(camera);
             scene.BeginRendering(camera, ref cmd);
             scene.Tick(camera, ref cmd);
-           
             
             Setup(camera);
             
@@ -94,22 +96,23 @@ namespace CustomURP
             
             DrawVisibleGeometry(cameraSettings._renderingLayerMask);
             
-            // if (_asset.VolumeCloudSettings != null)
-            // {
-            //     if (_volmenCloud == null)
-            //     {
-            //         _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
-            //         _volmenCloud.Init(_asset.VolumeCloudSettings);
-            //         // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>(_asset.VolumeCloudSettings, "");
-            //         // _volmenCloud = new VolumeCloud(_asset.VolumeCloudSettings);
-            //         // _volmenCloud.Initialization(_asset);
-            //     }
-            //
-            //     _volmenCloud.BeginRendering(_camera, ref _cmd);
-            //     _volmenCloud.Tick(_camera, ref _cmd);
-            // }
+            if (_asset.VolumeCloudSettings != null)
+            {
+                if (_volmenCloud == null)
+                {
+                    _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>();
+                    _volmenCloud.Init(_asset.VolumeCloudSettings);
+                    // _volmenCloud = ScriptableObject.CreateInstance<VolumeCloud>(_asset.VolumeCloudSettings, "");
+                    // _volmenCloud = new VolumeCloud(_asset.VolumeCloudSettings);
+                    // _volmenCloud.Initialization(_asset);
+                }
+            
+                _volmenCloud.BeginRendering(_camera, ref _cmd);
+                _volmenCloud.Tick(_camera, ref _cmd);
+            }
             
             scene.EndRendering(camera, ref cmd);
+            
             
             UnsupportedShaders();
             
@@ -119,12 +122,18 @@ namespace CustomURP
         public override void BeginRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             base.BeginRendering(camera, ref cmd);
+          
+           
         }
 
         public override void EndRendering(CustomRenderPipelineCamera camera, ref Command cmd)
         {
             base.EndRendering(camera, ref cmd);
             //Cleanup(camera);
+            // if (_vlight)
+            // {
+            //     _vlight.EndRendering(camera, ref cmd);
+            // }
         }
 
         public override bool InspectProperty()
@@ -178,6 +187,8 @@ namespace CustomURP
             _cmd.DrawRenderers(_cullingResults, ref drawingSettings, ref filteringSettings);
 
             _cmd.DrawSkybox(_camera);
+            
+
             
             if (_camera._renderTarget._isUseColorTexture || _camera._renderTarget._isUseDepthTexture)
                 _camera._renderTarget.CopyAttachments(ref _cmd, _material);

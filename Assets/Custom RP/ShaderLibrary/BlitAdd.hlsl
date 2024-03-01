@@ -3,9 +3,10 @@
 
 TEXTURE2D(_MainTex);
 SAMPLER(sampler_MainTex);
-TEXTURE2D(_Source);
+TEXTURE2D(_OutputTex);
+SAMPLER(sampler_OutputTex);
 float4 _MainTex_ST;
-float4 _Source_TexelSize;
+float4 _OutputTex_TexelSize;
 
 struct Attributes
 {
@@ -32,10 +33,11 @@ float4 frag(Varyings input) : SV_TARGET
 {
     float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
 #if UNITY_UV_STARTS_AT_TOP
-    if(_Source_TexelSize.y < 0)
+    if(_OutputTex_TexelSize.y < 0)
         input.uv.y = 1 - input.uv.y;
 #endif
-    float4 source = SAMPLE_TEXTURE2D(_Source, sampler_MainTex, input.uv);
+    
+    float4 source = SAMPLE_TEXTURE2D(_OutputTex, sampler_OutputTex, input.uv);
     source *= col.w;
     source.xyz += col.xyz;
     return source;

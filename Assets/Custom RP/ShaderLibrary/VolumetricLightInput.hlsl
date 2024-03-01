@@ -56,12 +56,54 @@ float MieScattering(float angle, float4 g)
     return g.w * (g.x / (pow(g.y - g.z * angle, 1.5)));
 }
 
-
-float4 RayMarch(float2 screenPos, float3 rayStart, float3 rayDir, float rayLength, Surface surface, ShadowData shadowData)
+inline half4 GetCascadeWeightsSplitSpheres(float3 pos)
 {
-    float inerleavedPos = fmod(floor(screenPos.xy), 8.0);
-    float offset = SAMPLE_TEXTURE2D(_DitherTexture, sampler_DitherTexture, inerleavedPos / 8.0 + float2(0.5 / 8.0, 0.5 / 8.0)).w;
+    float3 fromCenter0 = pos.xyz - _CascadCullingSpheres[0].xyz;
+    float3 fromCenter1 = pos.xyz - _CascadCullingSpheres[1].xyz;
+    float3 fromCenter2 = pos.xyz - _CascadCullingSpheres[2].xyz;
+    float3 fromCenter3 = pos.xyz - _CascadCullingSpheres[3].xyz;
 
+    float4 distances = float4(dot(fromCenter0, fromCenter0), dot(fromCenter1, fromCenter1), dot(fromCenter2, fromCenter2), dot(fromCenter3, fromCenter3));
+
+    float4 splitSqRadii = float4(_shadowSplitSqRadii[0], _shadowSplitSqRadii[1], _shadowSplitSqRadii[2], _shadowSplitSqRadii[3]);
+    
+    half4 weights = float4(distances < splitSqRadii);
+    weights.yzw = saturate(weights.yzw - weights.xyz);
+    return weights;
+}
+
+inline float4 GetCascadeShadowCoord(float4 pos, half4 weights)
+{
+    float3 sc0 = mul(_DirectionalShadowMatrices[0], pos).xyz;
+    float3 sc1 = mul(_DirectionalShadowMatrices[1], pos).xyz;
+    float3 sc2 = mul(_DirectionalShadowMatrices[2], pos).xyz;
+    float3 sc3 = mul(_DirectionalShadowMatrices[3], pos).xyz;
+
+    float4 smCoordinate = float4(sc0 * weights[0] + sc1 * weights[1] + sc2 * weights[2] + sc3 * weights[3], 1.0);
+#if defined(UNITY_REVERSED_Z)
+    float  noCascadeWeights = 1 - dot(weights, float4(1, 1, 1, 1));
+    smCoordinate.z += noCascadeWeights;
+#endif
+    return smCoordinate;
+}
+
+float GetLightAttenuation(float3 pos)
+{
+    float atten = 1;
+    float4 cascadeWeights = GetCascadeWeightsSplitSpheres(pos);
+    // atten = cascadeWeights.g;
+    bool inside = dot(cascadeWeights, float4(1, 1, 1, 1)) < 4;
+    float4 samplePos = GetCascadeShadowCoord(float4(pos, 1), cascadeWeights);
+    atten = inside ? SampleDirectionalShadowAtlas(samplePos.xyz) : 1.0f;
+    // atten = _directionalLightShadowData[0].r + atten * (1 - _directionalLightShadowData[0].r);
+    return atten;
+}
+
+
+float4 RayMarch(float2 screenPos, float3 rayStart, float3 rayDir, float rayLength)
+{
+    float2 interleavedPos = (fmod(floor(screenPos.xy), 8.0));
+    float offset = SAMPLE_TEXTURE2D(_DitherTexture, sampler_DitherTexture, interleavedPos / 8.0 + float2(0.5 / 8.0, 0.5 / 8.0)).w;
     
     int stepCount = _SampleCount;
 
@@ -71,46 +113,54 @@ float4 RayMarch(float2 screenPos, float3 rayStart, float3 rayDir, float rayLengt
     float4 vlight = 0;
     float cosAngle;
 
-#if defined(_DIRECTIONAL) || defined(_DIRECTIONAL_COOKIE)
-    float extinction = 0;
-    cosAngle = dot(_directionalLightDirectionAndMasks[0].xyz, -rayDir);
+#if defined(USE_CLUSTER_LIGHT)
+    float3 color = _cluster_directionalLightColor[0].rgb;
+    float3 direction = _cluster_directionalLightDirectionAndMasks[0].xyz;
 #else
-    float extinction = length(_WorldSpaceCameraPos - currentPos) * _VolumetricLight.y * 0.5;
+    float3 color = _directionalLightColor[0].rgb;
+    float3 direction = _directionalLightDirectionAndMasks[0].xyz;
 #endif
+   
 
-    Light light = GetDirectionalLight(0, surface, shadowData);
+// #if defined(_DIRECTIONAL) || defined(_DIRECTIONAL_COOKIE)
+    float extinction = 0;
+    cosAngle = dot(direction, rayDir);
+// #else
+//     float extinction = length(_WorldSpaceCameraPos - currentPos) * _VolumetricLight.y * 0.5;
+// #endif
     
     UNITY_LOOP
     for(int i = 0; i < stepCount; ++i)
     {
-        float atten = light.attenuation;
+        float atten = GetLightAttenuation(currentPos);
         float density = GetDensity(currentPos);
         float scattering = _VolumetricLight.x * stepSize * density;
         extinction += _VolumetricLight.y * stepSize * density;
 
-        float4 l = atten * scattering * exp(-extinction);
+        float4 light = atten * scattering * exp(-extinction);
+        // float4 light = float4(atten, 0, 0, 0);
         
-#if !defined(_DIRECTIONAL) && !defined(_DIRECTIONAL_COOKIE)
-        float3 tolight = normalize(currentPos - light.direction.xyz);
-        cosAngle = dot(tolight, -rayDir);
-        l *= MieScattering(cosAngle, _MieG);
-        
-#endif
-        vlight += l;
+// #if !defined(_DIRECTIONAL) && !defined(_DIRECTIONAL_COOKIE)
+//         float3 tolight = normalize(currentPos - direction.xyz);
+//         cosAngle = dot(tolight, -rayDir);
+//         l *= MieScattering(cosAngle, _MieG);
+//         
+// #endif
+        vlight += light;
         currentPos += step;
     }
 
-#if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
+// #if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
     vlight *= MieScattering(cosAngle, _MieG);
-#endif
-    vlight *= float4(light.color, 1.0);
+// #endif
+    vlight *= float4(color, 1.0);
     vlight = max(0, vlight);
 
-#if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
+// #if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
     vlight.w = exp(-extinction);
-#else
-    vlight.w = 0;
-#endif
+// #else
+//     vlight.w = 0;
+// #endif
     return vlight;
 }
 
