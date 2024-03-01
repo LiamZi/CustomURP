@@ -184,13 +184,13 @@ namespace CustomURP
 
             if (_light.cookie == null)
             {
-                _material.EnableKeyword("DIRECTIONAL");
-                _material.DisableKeyword("DIRECTIONAL_COOKIE");
+                _material.EnableKeyword("_DIRECTIONAL");
+                _material.DisableKeyword("_DIRECTIONAL_COOKIE");
             }
             else
             {
-                _material.EnableKeyword("DIRECTIONAL_COOKIE");
-                _material.DisableKeyword("DIRECTIONAL");
+                _material.EnableKeyword("_DIRECTIONAL_COOKIE");
+                _material.DisableKeyword("_DIRECTIONAL");
 
                 _material.SetTexture(ShaderParams._lightTexture0, _light.cookie);
             }

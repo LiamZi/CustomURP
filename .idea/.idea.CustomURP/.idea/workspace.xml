@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83351906-84a6-4474-a484-ee9cdeb09070" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CustomURP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainVT/VTScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetricLight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetricLight.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumetricLightInput.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Custom RP/ShaderLibrary/VolumetricLightInput.hlsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -448,7 +448,7 @@
       <workItem from="1709174056178" duration="12143000" />
       <workItem from="1709193840638" duration="22208000" />
       <workItem from="1709277681619" duration="937000" />
-      <workItem from="1709279013455" duration="5727000" />
+      <workItem from="1709279013455" duration="6157000" />
     </task>
     <servers />
   </component>
@@ -1071,6 +1071,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="472" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Custom RP/Runtime/VolumetricLight/VolumetricLight.cs</url>
+          <line>184</line>
+          <properties documentPath="D:\LocalProjects\CustomURP\Assets\Custom RP\Runtime\VolumetricLight\VolumetricLight.cs" initialLine="184" containingFunctionPresentation="方法 'SetDirectionalLight'">
+            <startOffsets>
+              <option value="6060" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6086" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="475" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

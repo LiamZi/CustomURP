@@ -122,12 +122,12 @@ float4 RayMarch(float2 screenPos, float3 rayStart, float3 rayDir, float rayLengt
 #endif
    
 
-// #if defined(_DIRECTIONAL) || defined(_DIRECTIONAL_COOKIE)
+#if defined(_DIRECTIONAL) || defined(_DIRECTIONAL_COOKIE)
     float extinction = 0;
     cosAngle = dot(direction, rayDir);
-// #else
-//     float extinction = length(_WorldSpaceCameraPos - currentPos) * _VolumetricLight.y * 0.5;
-// #endif
+#else
+     float extinction = length(_WorldSpaceCameraPos - currentPos) * _VolumetricLight.y * 0.5;
+#endif
     
     UNITY_LOOP
     for(int i = 0; i < stepCount; ++i)
@@ -138,29 +138,29 @@ float4 RayMarch(float2 screenPos, float3 rayStart, float3 rayDir, float rayLengt
         extinction += _VolumetricLight.y * stepSize * density;
 
         float4 light = atten * scattering * exp(-extinction);
-        // float4 light = float4(atten, 0, 0, 0);
         
-// #if !defined(_DIRECTIONAL) && !defined(_DIRECTIONAL_COOKIE)
-//         float3 tolight = normalize(currentPos - direction.xyz);
-//         cosAngle = dot(tolight, -rayDir);
-//         l *= MieScattering(cosAngle, _MieG);
-//         
-// #endif
+#if !defined(_DIRECTIONAL) && !defined(_DIRECTIONAL_COOKIE)
+        float3 tolight = normalize(currentPos - direction.xyz);
+        cosAngle = dot(tolight, -rayDir);
+        light *= MieScattering(cosAngle, _MieG);
+        
+#endif
         vlight += light;
         currentPos += step;
     }
 
-// #if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
+#if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
     vlight *= MieScattering(cosAngle, _MieG);
-// #endif
+#endif
+    
     vlight *= float4(color, 1.0);
     vlight = max(0, vlight);
 
-// #if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
+#if defined(_DIRECTIONAL) ||  defined(_DIRECTIONAL_COOKIE)
     vlight.w = exp(-extinction);
-// #else
-//     vlight.w = 0;
-// #endif
+#else
+     vlight.w = 0;
+#endif
     return vlight;
 }
 
