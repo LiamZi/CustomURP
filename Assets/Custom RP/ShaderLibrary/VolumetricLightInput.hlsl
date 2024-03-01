@@ -45,7 +45,8 @@ float GetDensity(float3 pos)
     noise = saturate(noise - _NoiseData.z) * _NoiseData.y;
     density = saturate(noise);
 #endif
-    
+
+    //TODO: use the fog
     // ApplyHeightFog(pos, density);
 
     return density;
